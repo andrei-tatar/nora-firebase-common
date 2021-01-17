@@ -1,0 +1,25 @@
+{
+  "name": "@andrei-tatar/nora-firebase-common",
+  "version": "1.0.1",
+  "description": "Common stuff for nora firebase",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc",
+    "pub": "npm run build && npm publish --registry https://registry.npmjs.org/ --access=public",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Andrei Tatar",
+  "license": "ISC",
+  "devDependencies": {
+    "tslint": "^6.1.3",
+    "typescript": "^4.1.3"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/andrei-tatar/nora-firebase-common.git"
+  },
+  "bugs": {
+    "url": "https://github.com/andrei-tatar/nora-firebase-common/issues"
+  },
+  "homepage": "https://github.com/andrei-tatar/nora-firebase-common#readme"
+}
