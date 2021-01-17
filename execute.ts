@@ -7,7 +7,7 @@ export function executeCommand(command: string, params: any, device: Device): Ch
         case 'action.devices.commands.BrightnessAbsolute':
             if (isBrightness(device)) {
                 device.state.brightness = params.brightness;
-                if (isOnOff(device) && device.noraSpecific.turnOnWhenBrightnessChanges) {
+                if (isOnOff(device) && device.noraSpecific?.turnOnWhenBrightnessChanges) {
                     device.state.on = true;
                 }
                 return ['state'];
