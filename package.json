@@ -5,9 +5,10 @@
   "main": "index.js",
   "scripts": {
     "build": "tsc && npm run schema",
+    "sch-upd-state": "typescript-json-schema ./schema-types.ts UpdateState --noExtraProps --required --strictNullChecks > schema-update-state.json",
     "sch-state": "typescript-json-schema ./schema-types.ts State --noExtraProps --required --strictNullChecks > schema-state.json",
     "sch-device": "typescript-json-schema ./schema-types.ts Device --noExtraProps --required --strictNullChecks > schema-device.json",
-    "schema": "npm run sch-state && npm run sch-device",
+    "schema": "npm run sch-state && npm run sch-device && npm run sch-upd-state",
     "pub": "npm run build && npm publish --registry https://registry.npmjs.org/ --access=public",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
