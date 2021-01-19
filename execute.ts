@@ -1,4 +1,5 @@
-import { Device, isBrightness, isLockUnlock, isOnOff, isOpenClose, isScene, isTemperatureSetting } from "./device";
+import { isBrightness, isLockUnlock, isOnOff, isOpenClose, isScene, isTemperatureSetting } from './checks';
+import { Device } from './device';
 
 export type ChangedFlags = 'state' | 'noraSpecific';
 

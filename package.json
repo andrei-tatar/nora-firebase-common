@@ -4,7 +4,10 @@
   "description": "Common stuff for nora firebase",
   "main": "index.js",
   "scripts": {
-    "build": "tsc",
+    "build": "tsc && npm run schema",
+    "sch-state": "typescript-json-schema ./schema-types.ts State --noExtraProps --required --strictNullChecks > schema-state.json",
+    "sch-device": "typescript-json-schema ./schema-types.ts Device --noExtraProps --required --strictNullChecks > schema-device.json",
+    "schema": "npm run sch-state && npm run sch-device",
     "pub": "npm run build && npm publish --registry https://registry.npmjs.org/ --access=public",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -12,7 +15,8 @@
   "license": "ISC",
   "devDependencies": {
     "tslint": "^6.1.3",
-    "typescript": "^4.1.3"
+    "typescript": "^4.1.3",
+    "typescript-json-schema": "^0.47.0"
   },
   "repository": {
     "type": "git",
