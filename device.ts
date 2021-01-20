@@ -31,7 +31,6 @@ export interface Device<TState = {}, TAttributes = {}, TNora = {}> {
     noraSpecific: {
         disabled?: boolean;
         twoFactor?: TwoFactor;
-        activateSceneHandled?: boolean;
     } & TNora;
     state: {
         online: boolean;
@@ -87,7 +86,7 @@ export type LockUnlockDevice = Device<{
 };
 
 export type SceneDevice = Device<{
-    //no state for scene trait
+    // no state for scene trait
 }, {
     sceneReversible?: boolean;
 }, {
@@ -98,7 +97,7 @@ export type SceneDevice = Device<{
     traits: ['action.devices.traits.Scene']
 };
 
-type ThermostatMode = 'off' | 'heat' | 'cool' | 'on' | 'auto' | 'fan-only' | 'purifier' | 'eco' | 'dry' | 'heatcool';
+export type ThermostatMode = 'off' | 'heat' | 'cool' | 'on' | 'auto' | 'fan-only' | 'purifier' | 'eco' | 'dry' | 'heatcool';
 
 export type TemperatureSettingDevice = Device<{
     thermostatMode: ThermostatMode;
@@ -133,7 +132,7 @@ export type VolumeDevice = Device<{
     traits: ['action.devices.traits.Volume']
 };
 
-type OpenCloseDirection = 'UP' | 'DOWN' | 'LEFT' | 'RIGHT' | 'IN' | 'OUT';
+export type OpenCloseDirection = 'UP' | 'DOWN' | 'LEFT' | 'RIGHT' | 'IN' | 'OUT';
 
 export type OpenCloseDevice = Device<{
     openPercent: number;

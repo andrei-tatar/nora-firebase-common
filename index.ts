@@ -9,7 +9,7 @@ const cache: { [trait: string]: object } = {};
 
 export async function loadSchema(schemaType: 'device' | 'state', traits: Trait[]) {
     const traitNames = traits.map(t => {
-        return t.substr(t.lastIndexOf('.') + 1).toLowerCase()
+        return t.substr(t.lastIndexOf('.') + 1).toLowerCase();
     });
     const key = traitNames.sort().join(':');
 
@@ -43,11 +43,9 @@ function mergeDeep(...objects: any[]) {
 
             if (Array.isArray(pVal) && Array.isArray(oVal)) {
                 prev[key] = pVal.concat(...oVal).filter((val, index, self) => self.indexOf(val) === index);
-            }
-            else if (isObject(pVal) && isObject(oVal)) {
+            } else if (isObject(pVal) && isObject(oVal)) {
                 prev[key] = mergeDeep(pVal, oVal);
-            }
-            else {
+            } else {
                 prev[key] = oVal;
             }
         });

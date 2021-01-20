@@ -22,7 +22,7 @@ export function executeCommand(command: string, params: any, device: Device): Ch
             device.state = {
                 ...device.state,
                 ...params,
-            }
+            };
             return ['state'];
 
         case 'action.devices.commands.TemperatureRelative':
