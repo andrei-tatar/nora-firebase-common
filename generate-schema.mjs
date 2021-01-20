@@ -12,7 +12,7 @@ console.log(`${traitNames.join(', ')}`);
 
 console.log(`creating temp source file`);
 let file = readFileSync(deviceFile).toString();
-traitNames.forEach(traitName => file += `\nexport type ${traitName}State = ${traitName}Device['state'];\n`);
+traitNames.forEach(traitName => file += `\nexport type ${traitName}State = Partial<${traitName}Device['state']>;\n`);
 const tempFile = 'device-temp.ts';
 writeFileSync(tempFile, file);
 console.log(`created`);
