@@ -1,0 +1,19 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Generate Devices Schema",
+            "args": [
+                "./generate-schema.mjs",
+            ],
+            "runtimeArgs": [
+                "--nolazy",
+            ],
+            "sourceMaps": true,
+            "cwd": "${workspaceFolder}",
+            "protocol": "inspector"
+        }
+    ]
+}

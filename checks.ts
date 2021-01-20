@@ -1,5 +1,5 @@
 import {
-    BrightnessDevice, ColorSettingDevice, Device, LockUnlockDevice,
+    Device, BrightnessDevice, ColorSettingDevice, LockUnlockDevice,
     OnOffDevice, OpenCloseDevice, SceneDevice, TemperatureSettingDevice
 } from './device';
 
