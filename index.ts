@@ -11,7 +11,7 @@ export async function loadSchema(schemaType: 'device' | 'state', traits: Trait[]
     const traitNames = traits.map(t => {
         return t.substr(t.lastIndexOf('.') + 1).toLowerCase();
     });
-    const key = traitNames.sort().join(':');
+    const key = `${schemaType}:${traitNames.sort().join(':')}`;
 
     let cachedSchema = cache[key];
     if (!cachedSchema) {
