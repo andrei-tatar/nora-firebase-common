@@ -10,12 +10,11 @@ export interface ExecuteCommandParams {
     command: string;
     params: any;
     device: Device;
-    loadState: () => Promise<void>;
     loadNoraSpecific: () => Promise<void>;
 }
 
 export async function executeCommand({
-    command, params, device, loadState, loadNoraSpecific
+    command, params, device, loadNoraSpecific
 }: ExecuteCommandParams): Promise<Changes | null> {
     switch (command) {
         case 'action.devices.commands.BrightnessAbsolute':
@@ -45,8 +44,6 @@ export async function executeCommand({
 
         case 'action.devices.commands.TemperatureRelative':
             if (isTemperatureSetting(device)) {
-                await loadState();
-
                 const { thermostatTemperatureRelativeDegree, thermostatTemperatureRelativeWeight } = params;
                 const change = thermostatTemperatureRelativeDegree || (thermostatTemperatureRelativeWeight / 2);
                 const updates: Partial<TemperatureSettingDevice['state']> = {
@@ -82,7 +79,6 @@ export async function executeCommand({
         case 'action.devices.commands.OpenClose':
             if (isOpenClose(device)) {
                 if (device.attributes.openDirection?.length) {
-                    await loadState();
                     if ('openState' in device.state) {
                         return {
                             updateState: device.state.openState.map(st => {
@@ -108,7 +104,6 @@ export async function executeCommand({
 
         case 'action.devices.commands.OpenCloseRelative':
             if (isOpenClose(device)) {
-                await loadState();
                 if ('openPercent' in device.state) {
                     return {
                         updateState: {
