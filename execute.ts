@@ -10,18 +10,13 @@ export interface ExecuteCommandParams {
     command: string;
     params: any;
     device: Device;
-    loadNoraSpecific: () => Promise<void>;
 }
 
-export async function executeCommand({
-    command, params, device, loadNoraSpecific
-}: ExecuteCommandParams): Promise<Changes | null> {
+export function executeCommand({ command, params, device }: ExecuteCommandParams): Changes | null {
     switch (command) {
         case 'action.devices.commands.BrightnessAbsolute':
             if (isBrightness(device)) {
                 const updates: Partial<BrightnessDevice['state'] & OnOffDevice['state']> = {};
-
-                await loadNoraSpecific();
 
                 updates.brightness = params.brightness;
                 if (isOnOff(device) && device.noraSpecific?.turnOnWhenBrightnessChanges) {
