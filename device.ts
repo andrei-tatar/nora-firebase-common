@@ -2,6 +2,9 @@ export type TwoFactor = {
     type: 'ack';
 } | {
     type: 'pin';
+    /**
+    * @maxLength 20
+    */
     pin: string;
 };
 
@@ -11,11 +14,17 @@ export interface Device<TState = {}, TAttributes = {}, TNora = {}> {
     traits: Trait[];
     name: {
         defaultNames?: string[];
+        /**
+        * @maxLength 20
+        */
         name: string;
         nicknames?: string[];
     };
     willReportState: boolean;
     notificationSupportedByAgent?: boolean;
+    /**
+    * @maxLength 20
+    */
     roomHint?: string;
     deviceInfo?: {
         manufacturer: string;
@@ -102,6 +111,11 @@ export type ThermostatMode = 'off' | 'heat' | 'cool' | 'on' | 'auto' | 'fan-only
 export type TemperatureSettingDevice = Device<{
     thermostatMode: ThermostatMode;
     thermostatTemperatureAmbient: number;
+    /**
+     * @minimum 0
+     * @maximum 100
+     */
+    thermostatHumidityAmbient?: number;
     thermostatTemperatureSetpoint: number;
     thermostatTemperatureSetpointHigh?: number;
     thermostatTemperatureSetpointLow?: number;
@@ -111,7 +125,7 @@ export type TemperatureSettingDevice = Device<{
         minThresholdCelsius: number;
         maxThresholdCelsius: number;
     };
-    thermostatTemperatureUnit: string;
+    thermostatTemperatureUnit: 'C' | 'F';
     bufferRangeCelsius?: number;
     commandOnlyTemperatureSetting?: boolean;
     queryOnlyTemperatureSetting?: boolean;
