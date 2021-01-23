@@ -73,7 +73,7 @@ export function executeCommand({ command, params, device }: ExecuteCommandParams
 
         case 'action.devices.commands.OpenClose':
             if (isOpenClose(device)) {
-                if (device.attributes.openDirection?.length) {
+                if (device.attributes?.openDirection?.length) {
                     if ('openState' in device.state) {
                         return {
                             updateState: device.state.openState.map(st => {
