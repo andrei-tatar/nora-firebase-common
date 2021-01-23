@@ -15,7 +15,7 @@ export interface Device<TState = {}, TAttributes = {}, TNora = {}> {
     name: {
         defaultNames?: string[];
         /**
-        * @maxLength 20
+        * @maxLength 40
         */
         name: string;
         nicknames?: string[];
@@ -23,7 +23,7 @@ export interface Device<TState = {}, TAttributes = {}, TNora = {}> {
     willReportState: boolean;
     notificationSupportedByAgent?: boolean;
     /**
-    * @maxLength 20
+    * @maxLength 40
     */
     roomHint?: string;
     deviceInfo?: {
