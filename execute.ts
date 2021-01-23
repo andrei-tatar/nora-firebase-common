@@ -1,17 +1,36 @@
 import { isBrightness, isLockUnlock, isOnOff, isOpenClose, isScene, isTemperatureSetting } from './checks';
-import { Device } from './device';
+import { BrightnessDevice, Device, LockUnlockDevice, OnOffDevice, TemperatureSettingDevice } from './device';
 
-export type ChangedFlags = 'state' | 'noraSpecific';
+export interface Changes {
+    updateState?: { [key: string]: any };
+    updateNoraSpecific?: { [key: string]: any };
+}
 
-export function executeCommand(command: string, params: any, device: Device): ChangedFlags[] {
+export interface ExecuteCommandParams {
+    command: string;
+    params: any;
+    device: Device;
+    loadState: () => Promise<void>;
+    loadNoraSpecific: () => Promise<void>;
+}
+
+export async function executeCommand({
+    command, params, device, loadState, loadNoraSpecific
+}: ExecuteCommandParams): Promise<Changes | null> {
     switch (command) {
         case 'action.devices.commands.BrightnessAbsolute':
             if (isBrightness(device)) {
-                device.state.brightness = params.brightness;
+                const updates: Partial<BrightnessDevice['state'] & OnOffDevice['state']> = {};
+
+                await loadNoraSpecific();
+
+                updates.brightness = params.brightness;
                 if (isOnOff(device) && device.noraSpecific?.turnOnWhenBrightnessChanges) {
-                    device.state.on = true;
+                    updates.on = true;
                 }
-                return ['state'];
+                return {
+                    updateState: updates,
+                };
             }
             break;
 
@@ -19,77 +38,102 @@ export function executeCommand(command: string, params: any, device: Device): Ch
         case 'action.devices.commands.ThermostatTemperatureSetpoint':
         case 'action.devices.commands.ThermostatTemperatureSetRange':
         case 'action.devices.commands.ThermostatSetMode':
-            device.state = {
-                ...device.state,
-                ...params,
+            const newState = { ...params };
+            return {
+                updateState: newState,
             };
-            return ['state'];
 
         case 'action.devices.commands.TemperatureRelative':
-            if (isTemperatureSetting(device) && device.state.thermostatMode !== 'heatcool') {
+            if (isTemperatureSetting(device)) {
+                await loadState();
+
                 const { thermostatTemperatureRelativeDegree, thermostatTemperatureRelativeWeight } = params;
                 const change = thermostatTemperatureRelativeDegree || (thermostatTemperatureRelativeWeight / 2);
-                device.state.thermostatTemperatureSetpoint = device.state.thermostatTemperatureSetpoint + change;
-                return ['state'];
+                const updates: Partial<TemperatureSettingDevice['state']> = {
+                    thermostatTemperatureSetpoint: device.state.thermostatTemperatureSetpoint + change
+                };
+                return {
+                    updateState: updates,
+                };
             }
             break;
 
         case 'action.devices.commands.LockUnlock':
             if (isLockUnlock(device)) {
-                device.state.isLocked = params.lock;
-                return ['state'];
+                const updates: Partial<LockUnlockDevice['state']> = {
+                    isLocked: params.lock,
+                };
+                return {
+                    updateState: updates,
+                };
             }
             break;
 
         case 'action.devices.commands.ActivateScene':
             if (isScene(device)) {
-                device.noraSpecific.pendingScene = {
-                    deactivate: params?.deactivate ?? false,
+                return {
+                    updateNoraSpecific: {
+                        deactivate: params?.deactivate ?? false,
+                    },
                 };
-                return ['noraSpecific'];
             }
             break;
 
         case 'action.devices.commands.OpenClose':
             if (isOpenClose(device)) {
-                if ('openPercent' in device.state) {
-                    device.state.openPercent = params.openPercent;
+                if (device.attributes.openDirection?.length) {
+                    await loadState();
+                    if ('openState' in device.state) {
+                        return {
+                            updateState: device.state.openState.map(st => {
+                                if (st.openDirection === params.openDirection || !params.openDirection) {
+                                    return {
+                                        openPercent: params.openPercent,
+                                        openDirection: params.openDirection,
+                                    };
+                                }
+                                return st;
+                            }),
+                        };
+                    }
                 } else {
-                    device.state.openState = device.state.openState.map(st => {
-                        if (st.openDirection === params.openDirection || !params.openDirection) {
-                            return {
-                                openPercent: params.openPercent,
-                                openDirection: params.openDirection,
-                            };
-                        }
-                        return st;
-                    });
+                    return {
+                        updateState: {
+                            openPercent: params.openPercent,
+                        },
+                    };
                 }
-                return ['state'];
             }
             break;
 
         case 'action.devices.commands.OpenCloseRelative':
             if (isOpenClose(device)) {
+                await loadState();
                 if ('openPercent' in device.state) {
-                    device.state.openPercent = fit(params.openRelativePercent + device.state.openPercent);
+                    return {
+                        updateState: {
+                            openPercent: fit(params.openRelativePercent + device.state.openPercent),
+                        },
+                    };
                 } else {
-                    device.state.openState = device.state.openState.map(st => {
-                        if (st.openDirection === params.openDirection || !params.openDirection) {
-                            return {
-                                openPercent: fit(params.openRelativePercent + st.openPercent),
-                                openDirection: params.openDirection,
-                            };
+                    return {
+                        updateState: {
+                            openState: device.state.openState.map(st => {
+                                if (st.openDirection === params.openDirection || !params.openDirection) {
+                                    return {
+                                        openPercent: fit(params.openRelativePercent + st.openPercent),
+                                        openDirection: params.openDirection,
+                                    };
+                                }
+                                return st;
+                            }),
                         }
-                        return st;
-                    });
+                    };
                 }
-                return ['state'];
             }
             break;
     }
-
-    return [];
+    return null;
 }
 
 
