@@ -25,5 +25,7 @@
     "url": "https://github.com/andrei-tatar/nora-firebase-common/issues"
   },
   "homepage": "https://github.com/andrei-tatar/nora-firebase-common#readme",
-  "dependencies": {}
+  "dependencies": {
+    "ajv": "^7.0.3"
+  }
 }

@@ -1,22 +1,38 @@
 export * from './execute';
 export * from './device';
 export * from './checks';
+import Ajv, { ValidateFunction } from 'ajv';
 import { promises } from 'fs';
 import { join } from 'path';
 import { Trait } from './device';
 
-const cache: { [trait: string]: object } = {};
+const cachedValidators: {
+    [schemaName: string]: ValidateFunction;
+} = {};
 
-export async function loadSchema(schemaType: 'device' | 'state', traits: Trait[]) {
-    const traitNames = traits.map(t => {
-        return t.substr(t.lastIndexOf('.') + 1).toLowerCase();
-    });
+export async function validate(traits: Trait[], schemaType: 'device' | 'state', object: any) {
+    const traitNames = traits.map(t => t.substr(t.lastIndexOf('.') + 1).toLowerCase());
     const key = `${schemaType}:${traitNames.sort().join(':')}`;
 
-    let cachedSchema = cache[key];
+    let validator = cachedValidators[key];
+    if (!validator) {
+        const ajv = new Ajv();
+        const schema = await loadSchema(schemaType, traitNames, key);
+        cachedValidators[key] = validator = ajv.compile(schema);
+    }
+
+    const valid = validator(object);
+    return { valid, errors: validator.errors };
+}
+
+
+const composedTraitCache: { [trait: string]: object } = {};
+
+async function loadSchema(schemaType: 'device' | 'state', traitNames: string[], key: string) {
+    let cachedSchema = composedTraitCache[key];
     if (!cachedSchema) {
         const schemasForTraits = await Promise.all(traitNames.map(t => loadSchemaFromFile(`${schemaType}-${t}`)));
-        cachedSchema = cache[key] = mergeDeep(...schemasForTraits);
+        cachedSchema = composedTraitCache[key] = mergeDeep(...schemasForTraits);
     }
 
     return cachedSchema;
