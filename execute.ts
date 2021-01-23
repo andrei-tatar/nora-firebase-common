@@ -1,5 +1,5 @@
 import { isBrightness, isLockUnlock, isOnOff, isOpenClose, isScene, isTemperatureSetting } from './checks';
-import { BrightnessDevice, Device, LockUnlockDevice, OnOffDevice, TemperatureSettingDevice } from './device';
+import { BrightnessDevice, Device, LockUnlockDevice, OnOffDevice, SceneDevice, TemperatureSettingDevice } from './device';
 
 export interface Changes {
     updateState?: { [key: string]: any };
@@ -63,11 +63,12 @@ export function executeCommand({ command, params, device }: ExecuteCommandParams
 
         case 'action.devices.commands.ActivateScene':
             if (isScene(device)) {
-                return {
-                    updateNoraSpecific: {
+                const noraSpecific: Partial<SceneDevice['noraSpecific']> = {
+                    pendingScene: {
                         deactivate: params?.deactivate ?? false,
                     },
                 };
+                return { updateNoraSpecific: noraSpecific };
             }
             break;
 
@@ -76,15 +77,17 @@ export function executeCommand({ command, params, device }: ExecuteCommandParams
                 if (device.attributes?.openDirection?.length) {
                     if ('openState' in device.state) {
                         return {
-                            updateState: device.state.openState.map(st => {
-                                if (st.openDirection === params.openDirection || !params.openDirection) {
-                                    return {
-                                        openPercent: params.openPercent,
-                                        openDirection: params.openDirection,
-                                    };
-                                }
-                                return st;
-                            }),
+                            updateState: {
+                                openState: device.state.openState.map(st => {
+                                    if (st.openDirection === params.openDirection || !params.openDirection) {
+                                        return {
+                                            openPercent: params.openPercent,
+                                            openDirection: params.openDirection,
+                                        };
+                                    }
+                                    return st;
+                                })
+                            },
                         };
                     }
                 } else {
