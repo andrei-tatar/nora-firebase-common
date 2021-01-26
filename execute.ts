@@ -31,16 +31,33 @@ export function executeCommand({ command, params, device }: ExecuteCommandParams
         case 'action.devices.commands.OnOff':
         case 'action.devices.commands.ThermostatTemperatureSetpoint':
         case 'action.devices.commands.ThermostatTemperatureSetRange':
-        case 'action.devices.commands.ThermostatSetMode':
             const newState = { ...params };
             return {
                 updateState: newState,
             };
 
+        case 'action.devices.commands.ThermostatSetMode':
+            if (isTemperatureSetting(device)) {
+                if (params.thermostatMode === 'on') {
+                    if (device.noraSpecific?.previousMode) {
+                        return {
+                            updateState: {
+                                thermostatMode: device.noraSpecific?.previousMode,
+                            },
+                        };
+                    }
+                } else {
+                    return {
+                        updateState: { ...params },
+                    };
+                }
+            }
+            break;
+
         case 'action.devices.commands.TemperatureRelative':
             if (isTemperatureSetting(device)) {
                 const { thermostatTemperatureRelativeDegree, thermostatTemperatureRelativeWeight } = params;
-                const change = thermostatTemperatureRelativeDegree ?? (thermostatTemperatureRelativeWeight / 2);
+                const change = thermostatTemperatureRelativeDegree || (thermostatTemperatureRelativeWeight / 2);
                 const updates: Partial<TemperatureSettingDevice['state']> = {
                     thermostatTemperatureSetpoint: device.state.thermostatTemperatureSetpoint + change
                 };
