@@ -12,7 +12,10 @@ console.log(`${traitNames.join(', ')}`);
 
 console.log(`creating temp source file`);
 let file = readFileSync(deviceFile).toString();
-traitNames.forEach(traitName => file += `\nexport type ${traitName}State = Partial<${traitName}Device['state']>;\n`);
+traitNames.forEach(traitName => file += `
+export type ${traitName}State = Partial<${traitName}Device['state']>;
+export type ${traitName}Nora = Partial<${traitName}Device['noraSpecific']>;
+`);
 const tempFile = 'device-temp.ts';
 writeFileSync(tempFile, file);
 console.log(`created`);
@@ -24,9 +27,11 @@ try {
         console.log(`generating schema for trait: ${traitName}`)
         const deviceSchema = deepClone(generator.createSchema(`${traitName}Device`));
         const stateSchema = deepClone(generator.createSchema(`${traitName}State`));
+        const noraSchema = deepClone(generator.createSchema(`${traitName}Nora`));
         deviceSchema.definitions['Trait'].enum = deviceSchema.definitions['Trait'].enum.filter(f => f.endsWith(traitName));
         writeFileSync(join('build', `schema-device-${traitName.toLowerCase()}.json`), JSON.stringify(deviceSchema, undefined, 2));
         writeFileSync(join('build', `schema-state-${traitName.toLowerCase()}.json`), JSON.stringify(stateSchema, undefined, 2));
+        writeFileSync(join('build', `schema-nora-${traitName.toLowerCase()}.json`), JSON.stringify(noraSchema, undefined, 2));
     }
 } finally {
     unlinkSync(tempFile)

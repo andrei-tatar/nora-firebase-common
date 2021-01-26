@@ -135,6 +135,8 @@ export type TemperatureSettingDevice = Device<{
     bufferRangeCelsius?: number;
     commandOnlyTemperatureSetting?: boolean;
     queryOnlyTemperatureSetting?: boolean;
+}, {
+    previousMode?: Exclude<ThermostatMode, 'on' | 'off'> | null;
 }> & {
     traits: ['action.devices.traits.TemperatureSetting']
 };

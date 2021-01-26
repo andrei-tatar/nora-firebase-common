@@ -10,7 +10,9 @@ const cachedValidators: {
     [schemaName: string]: ValidateFunction;
 } = {};
 
-export async function validate(traits: Trait[], schemaType: 'device' | 'state', object: any) {
+export type SchemaType = 'device' | 'state' | 'nora';
+
+export async function validate(traits: Trait[], schemaType: SchemaType, object: any) {
     const traitNames = traits.map(t => t.substr(t.lastIndexOf('.') + 1).toLowerCase());
     const key = `${schemaType}:${traitNames.sort().join(':')}`;
 
@@ -28,7 +30,7 @@ export async function validate(traits: Trait[], schemaType: 'device' | 'state', 
 
 const composedTraitCache: { [trait: string]: object } = {};
 
-async function loadSchema(schemaType: 'device' | 'state', traitNames: string[], key: string) {
+async function loadSchema(schemaType: SchemaType, traitNames: string[], key: string) {
     let cachedSchema = composedTraitCache[key];
     if (!cachedSchema) {
         const schemasForTraits = await Promise.all(traitNames.map(t => loadSchemaFromFile(`${schemaType}-${t}`)));
