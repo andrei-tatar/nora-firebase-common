@@ -36,13 +36,7 @@ export interface Device<TState = {}, TAttributes = {}, TNora = {}> {
         agentId?: string;
         deviceId: string;
     }[];
-    customData?: {
-        /**
-         * @description Used for local execution to identity the instance responsible of this device
-         * @maxLength 40
-         */
-        proxyId?: string;
-    };
+    customData?: any;
     noraSpecific: {
         disabled?: boolean;
         twoFactor?: TwoFactor;
