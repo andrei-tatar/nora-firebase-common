@@ -1,4 +1,4 @@
-import { isBrightness, isLockUnlock, isOnOff, isOpenClose, isScene, isTemperatureSetting } from './checks';
+import { isBrightness, isColorSetting, isLockUnlock, isOnOff, isOpenClose, isScene, isTemperatureSetting, isVolumeDevice } from './checks';
 import { BrightnessDevice, Device, LockUnlockDevice, OnOffDevice, SceneDevice, TemperatureSettingDevice } from './device';
 
 export interface Changes {
@@ -138,6 +138,49 @@ export function executeCommand({ command, params, device }: ExecuteCommandParams
                                 return st;
                             }),
                         }
+                    };
+                }
+            }
+            break;
+
+        case 'action.devices.commands.ColorAbsolute':
+            if (isColorSetting(device)) {
+                const changes: Changes = {
+                    updateState: {
+                        color: {
+                            spectrumHsv: params.color.spectrumHSV,
+                        },
+                    },
+                };
+                if (isBrightness(device) && device.noraSpecific.turnOnWhenBrightnessChanges && changes?.updateState) {
+                    changes.updateState.on = true;
+                }
+                return changes;
+            }
+            break;
+
+        case 'action.devices.commands.setVolume':
+            if (isVolumeDevice(device)) {
+                return {
+                    updateState: {
+                        currentVolume: params.volumeLevel,
+                    },
+                };
+            }
+
+            break;
+
+        case 'action.devices.commands.volumeRelative':
+            if (isVolumeDevice(device)) {
+                const relativeStepSize = device.attributes.levelStepSize ?? params.volumeRelativeLevel ?? 1;
+                const delta = params.relativeSteps * relativeStepSize;
+                let newVolume = Math.round(device.state.currentVolume + delta);
+                newVolume = Math.min(device.attributes.volumeMaxLevel, Math.max(0, newVolume));
+                if (isFinite(newVolume)) {
+                    return {
+                        updateState: {
+                            currentVolume: newVolume,
+                        },
                     };
                 }
             }
