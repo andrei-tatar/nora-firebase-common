@@ -172,9 +172,7 @@ export function executeCommand({ command, params, device }: ExecuteCommandParams
 
         case 'action.devices.commands.volumeRelative':
             if (isVolumeDevice(device)) {
-                const relativeStepSize = device.attributes.levelStepSize ?? params.volumeRelativeLevel ?? 1;
-                const delta = params.relativeSteps * relativeStepSize;
-                let newVolume = Math.round(device.state.currentVolume + delta);
+                let newVolume = device.state.currentVolume + params.relativeSteps;
                 newVolume = Math.min(device.attributes.volumeMaxLevel, Math.max(0, newVolume));
                 if (isFinite(newVolume)) {
                     return {
