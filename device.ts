@@ -172,6 +172,16 @@ export type OpenCloseDevice = Device<{
     traits: ['action.devices.traits.OpenClose']
 };
 
+export type MediaStateDevice = Device<{
+    activityState: 'INACTIVE' | 'STANDBY' | 'ACTIVE';
+    playbackState: 'PAUSED' | 'PLAYING' | 'FAST_FORWARDING' | 'REWINDING' | 'BUFFERING' | 'STOPPED';
+}, {
+    supportActivityState?: boolean;
+    supportPlaybackState?: boolean;
+}> & {
+    traits: ['action.devices.traits.MediaState']
+};
+
 type DeviceType =
     'action.devices.types.LIGHT' |
     'action.devices.types.SWITCH' |
@@ -191,4 +201,5 @@ export type Trait =
     'action.devices.traits.Scene' |
     'action.devices.traits.TemperatureSetting' |
     'action.devices.traits.Volume' |
-    'action.devices.traits.OpenClose';
+    'action.devices.traits.OpenClose' |
+    'action.devices.traits.MediaState';
