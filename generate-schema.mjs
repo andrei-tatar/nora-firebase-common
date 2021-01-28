@@ -1,4 +1,3 @@
-import { join } from "path";
 import { readFileSync, writeFileSync, unlinkSync } from "fs";
 
 import * as tjs from "ts-json-schema-generator";
@@ -16,18 +15,36 @@ traitNames.forEach(traitName => file += `\nexport type ${traitName}State = Parti
 const tempFile = 'device-temp.ts';
 writeFileSync(tempFile, file);
 console.log(`created`);
-
 try {
     const generator = tjs.createGenerator({ path: tempFile, topRef: false });
-
+    const schemas = [];
     for (const traitName of traitNames) {
         console.log(`generating schema for trait: ${traitName}`)
         const deviceSchema = deepClone(generator.createSchema(`${traitName}Device`));
         const stateSchema = deepClone(generator.createSchema(`${traitName}State`));
         deviceSchema.definitions['Trait'].enum = deviceSchema.definitions['Trait'].enum.filter(f => f.endsWith(traitName));
-        writeFileSync(join('build', `schema-device-${traitName.toLowerCase()}.json`), JSON.stringify(deviceSchema, undefined, 2));
-        writeFileSync(join('build', `schema-state-${traitName.toLowerCase()}.json`), JSON.stringify(stateSchema, undefined, 2));
+        schemas.push({
+            device: JSON.stringify(deviceSchema, undefined, 2),
+            state: JSON.stringify(stateSchema, undefined, 2),
+            traitName: traitName.toLowerCase(),
+        });
     }
+
+    const schema = `
+    /* tslint:disable */
+    export type SchemaType = 'device' | 'state';
+    export type TraitName = ${schemas.map(s => `'${s.traitName}'`).join(' | ')};
+    export const Schema = {
+        device: {
+            ${schemas.map(s => `${s.traitName}: ${s.device},`).join('\n')}
+        },
+        state: {
+            ${schemas.map(s => `${s.traitName}: ${s.state},`).join('\n')}
+        },
+    };
+    `;
+
+    writeFileSync('schema.ts', schema);
 } finally {
     unlinkSync(tempFile)
 }

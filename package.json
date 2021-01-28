@@ -4,7 +4,8 @@
   "description": "Common stuff for nora firebase",
   "main": "build/index.js",
   "scripts": {
-    "build": "tslint -p . && tsc && npm run schema",
+    "clean": "rm -rf build",
+    "build": "npm run clean && npm run schema && tslint -p . && tsc",
     "schema": "node generate-schema.mjs",
     "pub": "npm run build && npm publish --registry https://registry.npmjs.org/ --access=public",
     "test": "echo \"Error: no test specified\" && exit 1"
