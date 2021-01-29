@@ -351,36 +351,55 @@ colorsetting: {
       "additionalProperties": false,
       "properties": {
         "color": {
-          "type": "object",
-          "properties": {
-            "temperatureK": {
-              "type": "number"
-            },
-            "spectrumRgb": {
-              "type": "number"
-            },
-            "spectrumHsv": {
+          "anyOf": [
+            {
               "type": "object",
+              "additionalProperties": false,
               "properties": {
-                "hue": {
+                "spectrumRgb": {
                   "type": "number"
                 },
-                "saturation": {
-                  "type": "number"
-                },
-                "value": {
+                "temperatureK": {
                   "type": "number"
                 }
               },
               "required": [
-                "hue",
-                "saturation",
-                "value"
-              ],
-              "additionalProperties": false
+                "spectrumRgb"
+              ]
+            },
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "spectrumHsv": {
+                  "type": "object",
+                  "properties": {
+                    "hue": {
+                      "type": "number"
+                    },
+                    "saturation": {
+                      "type": "number"
+                    },
+                    "value": {
+                      "type": "number"
+                    }
+                  },
+                  "required": [
+                    "hue",
+                    "saturation",
+                    "value"
+                  ],
+                  "additionalProperties": false
+                },
+                "temperatureK": {
+                  "type": "number"
+                }
+              },
+              "required": [
+                "spectrumHsv"
+              ]
             }
-          },
-          "additionalProperties": false
+          ]
         },
         "online": {
           "type": "boolean"
@@ -2152,36 +2171,55 @@ colorsetting: {
       "type": "boolean"
     },
     "color": {
-      "type": "object",
-      "properties": {
-        "temperatureK": {
-          "type": "number"
-        },
-        "spectrumRgb": {
-          "type": "number"
-        },
-        "spectrumHsv": {
+      "anyOf": [
+        {
           "type": "object",
+          "additionalProperties": false,
           "properties": {
-            "hue": {
+            "spectrumRgb": {
               "type": "number"
             },
-            "saturation": {
-              "type": "number"
-            },
-            "value": {
+            "temperatureK": {
               "type": "number"
             }
           },
           "required": [
-            "hue",
-            "saturation",
-            "value"
-          ],
-          "additionalProperties": false
+            "spectrumRgb"
+          ]
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "spectrumHsv": {
+              "type": "object",
+              "properties": {
+                "hue": {
+                  "type": "number"
+                },
+                "saturation": {
+                  "type": "number"
+                },
+                "value": {
+                  "type": "number"
+                }
+              },
+              "required": [
+                "hue",
+                "saturation",
+                "value"
+              ],
+              "additionalProperties": false
+            },
+            "temperatureK": {
+              "type": "number"
+            }
+          },
+          "required": [
+            "spectrumHsv"
+          ]
         }
-      },
-      "additionalProperties": false
+      ]
     }
   },
   "additionalProperties": false,

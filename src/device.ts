@@ -66,13 +66,15 @@ export type BrightnessDevice = Device<{
 export type ColorSettingDevice = Device<{
     color: {
         temperatureK?: number;
-        spectrumRgb?: number;
-        spectrumHsv?: {
+    } & ({
+        spectrumRgb: number;
+    } | {
+        spectrumHsv: {
             hue: number;
             saturation: number;
             value: number;
         }
-    }
+    });
 }, {
     commandOnlyColorSetting?: boolean;
     colorModel?: 'rgb' | 'hsv'

@@ -2,7 +2,7 @@ import { readFileSync, writeFileSync, unlinkSync } from "fs";
 
 import * as tjs from "ts-json-schema-generator";
 
-const deviceFile = './device.ts';
+const deviceFile = './src/device.ts';
 
 console.log(`loading all traits`);
 const traitSchema = tjs.createGenerator({ path: deviceFile }).createSchema('Trait');
@@ -44,7 +44,7 @@ try {
     };
     `;
 
-    writeFileSync('schema.ts', schema);
+    writeFileSync('./src/schema.ts', schema);
 } finally {
     unlinkSync(tempFile)
 }
