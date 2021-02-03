@@ -56,7 +56,7 @@ export const IndividualSchema = {
     ${individualSchemaKeys.map(key => {
         const schema = tjs.createGenerator({ path: individualSchemas[key].path, topRef: false }).createSchema(individualSchemas[key].type);
         return `
-    '${key}': ${JSON.stringify(schema)},\n`
+    '${key}': ${JSON.stringify(schema, undefined, 2)},\n`
     })}
 };
     `;

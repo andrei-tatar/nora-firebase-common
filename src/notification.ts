@@ -78,4 +78,11 @@ export interface WebpushNotification {
      * when the notification fires.
      */
     vibrate?: number | number[];
+
+    data?: {
+        /**
+         * Used by NORA to identify the notification sender.
+         */
+        sender?: string;
+    };
 }
