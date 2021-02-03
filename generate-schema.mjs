@@ -4,6 +4,13 @@ import * as tjs from "ts-json-schema-generator";
 
 const deviceFile = './src/device.ts';
 
+const individualSchemas = {
+    'notification': {
+        type: 'WebpushNotification',
+        path: './src/notification.ts',
+    },
+};
+
 console.log(`loading all traits`);
 const traitSchema = tjs.createGenerator({ path: deviceFile }).createSchema('Trait');
 const traitNames = traitSchema.definitions['Trait'].enum.map(trait => trait.substr(trait.lastIndexOf('.') + 1));
@@ -30,18 +37,28 @@ try {
         });
     }
 
+    const individualSchemaKeys = Object.keys(individualSchemas);
+
     const schema = `
-    /* tslint:disable */
-    export type SchemaType = 'device' | 'state';
-    export type TraitName = ${schemas.map(s => `'${s.traitName}'`).join(' | ')};
-    export const Schema = {
-        device: {
-            ${schemas.map(s => `${s.traitName}: ${s.device},`).join('\n')}
-        },
-        state: {
-            ${schemas.map(s => `${s.traitName}: ${s.state},`).join('\n')}
-        },
-    };
+/* tslint:disable */
+export type SchemaType = 'device' | 'state';
+export type IndividualSchemaType = ${individualSchemaKeys.map(k => `'${k}'`).join(' | ')};
+export type TraitName = ${schemas.map(s => `'${s.traitName}'`).join(' | ')};
+export const Schema = {
+    device: {
+        ${schemas.map(s => `${s.traitName}: ${s.device},`).join('\n')}
+    },
+    state: {
+        ${schemas.map(s => `${s.traitName}: ${s.state},`).join('\n')}
+    },
+};
+export const IndividualSchema = {
+    ${individualSchemaKeys.map(key => {
+        const schema = tjs.createGenerator({ path: individualSchemas[key].path, topRef: false }).createSchema(individualSchemas[key].type);
+        return `
+    '${key}': ${JSON.stringify(schema)},\n`
+    })}
+};
     `;
 
     writeFileSync('./src/schema.ts', schema);

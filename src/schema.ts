@@ -1,10 +1,11 @@
 
-    /* tslint:disable */
-    export type SchemaType = 'device' | 'state';
-    export type TraitName = 'brightness' | 'colorsetting' | 'onoff' | 'lockunlock' | 'scene' | 'temperaturesetting' | 'volume' | 'openclose' | 'mediastate';
-    export const Schema = {
-        device: {
-            brightness: {
+/* tslint:disable */
+export type SchemaType = 'device' | 'state';
+export type IndividualSchemaType = 'notification';
+export type TraitName = 'brightness' | 'colorsetting' | 'onoff' | 'lockunlock' | 'scene' | 'temperaturesetting' | 'volume' | 'openclose' | 'mediastate';
+export const Schema = {
+    device: {
+        brightness: {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "type": "object",
   "additionalProperties": false,
@@ -2147,9 +2148,9 @@ mediastate: {
     }
   }
 },
-        },
-        state: {
-            brightness: {
+    },
+    state: {
+        brightness: {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "type": "object",
   "properties": {
@@ -2406,6 +2407,11 @@ mediastate: {
   "additionalProperties": false,
   "definitions": {}
 },
-        },
-    };
+    },
+};
+export const IndividualSchema = {
+    
+    'notification': {"$schema":"http://json-schema.org/draft-07/schema#","type":"object","properties":{"title":{"type":"string","description":"Title text of the notification."},"actions":{"type":"array","items":{"type":"object","properties":{"action":{"type":"string","description":"An action available to the user when the notification is presented"},"icon":{"type":"string","description":"Optional icon for a notification action."},"title":{"type":"string","description":"Title of the notification action."}},"required":["action","title"],"additionalProperties":false},"description":"An array of notification actions representing the actions\r available to the user when the notification is presented."},"badge":{"type":"string","description":"URL of the image used to represent the notification when there is\r not enough space to display the notification itself."},"body":{"type":"string","description":"Body text of the notification."},"dir":{"type":"string","enum":["auto","ltr","rtl"],"description":"The direction in which to display the notification. Must be one\r of `auto`, `ltr` or `rtl`."},"icon":{"type":"string","description":"URL to the notification icon."},"image":{"type":"string","description":"URL of an image to be displayed in the notification."},"lang":{"type":"string","description":"The notification's language as a BCP 47 language tag."},"renotify":{"type":"boolean","description":"A boolean specifying whether the user should be notified after a\r new notification replaces an old one. Defaults to false."},"requireInteraction":{"type":"boolean","description":"Indicates that a notification should remain active until the user\r clicks or dismisses it, rather than closing automatically.\r Defaults to false."},"silent":{"type":"boolean","description":"A boolean specifying whether the notification should be silent.\r Defaults to false."},"tag":{"type":"string","description":"An identifying tag for the notification."},"timestamp":{"type":"number","description":"Timestamp of the notification. Refer to\r https://developer.mozilla.org/en-US/docs/Web/API/notification/timestamp\r for details."},"vibrate":{"anyOf":[{"type":"number"},{"type":"array","items":{"type":"number"}}],"description":"A vibration pattern for the device's vibration hardware to emit\r when the notification fires."}},"additionalProperties":false,"definitions":{}},
+
+};
     

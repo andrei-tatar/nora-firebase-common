@@ -1,6 +1,6 @@
 import Ajv, { ValidateFunction } from 'ajv';
 import { Trait } from './device';
-import { Schema, SchemaType, TraitName } from './schema';
+import { IndividualSchema, IndividualSchemaType, Schema, SchemaType, TraitName } from './schema';
 
 const cachedValidators: {
     [schemaName: string]: ValidateFunction;
@@ -21,13 +21,29 @@ export function validate(traits: Trait[], schemaType: SchemaType, object: any) {
     return { valid, errors: validator.errors };
 }
 
+export function validateIndividual(schemaType: IndividualSchemaType, object: any) {
+    const key = `individual:${schemaType}`;
+
+    let validator = cachedValidators[key];
+    if (!validator) {
+        const ajv = new Ajv();
+        const schema = IndividualSchema[schemaType];
+        cachedValidators[key] = validator = ajv.compile(schema);
+    }
+
+    const valid = validator(object);
+    return { valid, errors: validator.errors };
+}
+
 const composedTraitCache: { [trait: string]: object } = {};
 
 function loadSchema(schemaType: SchemaType, traitNames: TraitName[], key: string) {
     let cachedSchema = composedTraitCache[key];
     if (!cachedSchema) {
         const schemasForTraits = traitNames.map(t => Schema[schemaType][t]);
-        cachedSchema = composedTraitCache[key] = mergeDeep(...schemasForTraits);
+        cachedSchema = composedTraitCache[key] = schemasForTraits.length > 1
+            ? mergeDeep(...schemasForTraits)
+            : schemasForTraits[0];
     }
     return cachedSchema;
 }
