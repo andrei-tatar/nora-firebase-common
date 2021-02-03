@@ -3,3 +3,4 @@ export * from './device';
 export * from './checks';
 export * from './validate';
 export * from './update-has-changes';
+export * from './notification';
