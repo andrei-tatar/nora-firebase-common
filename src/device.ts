@@ -25,6 +25,7 @@ export interface Device<TState = {}, TAttributes = {}, TNora = {}> {
     /**
     * @maxLength 40
     */
+    structureHint?: string;
     roomHint?: string;
     deviceInfo?: {
         manufacturer: string;
