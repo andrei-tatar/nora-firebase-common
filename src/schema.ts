@@ -64,6 +64,10 @@ export const Schema = {
     "notificationSupportedByAgent": {
       "type": "boolean"
     },
+    "structureHint: {
+      "type": "string",
+      "maxLength": 40
+    },
     "roomHint": {
       "type": "string",
       "maxLength": 40
@@ -277,6 +281,10 @@ colorsetting: {
     },
     "notificationSupportedByAgent": {
       "type": "boolean"
+    },
+    "structureHint: {
+      "type": "string",
+      "maxLength": 40
     },
     "roomHint": {
       "type": "string",
@@ -557,6 +565,10 @@ onoff: {
     "notificationSupportedByAgent": {
       "type": "boolean"
     },
+    "structureHint: {
+      "type": "string",
+      "maxLength": 40
+    },
     "roomHint": {
       "type": "string",
       "maxLength": 40
@@ -768,6 +780,10 @@ lockunlock: {
     "notificationSupportedByAgent": {
       "type": "boolean"
     },
+    "structureHint: {
+      "type": "string",
+      "maxLength": 40
+    },
     "roomHint": {
       "type": "string",
       "maxLength": 40
@@ -974,6 +990,10 @@ scene: {
     },
     "notificationSupportedByAgent": {
       "type": "boolean"
+    },
+    "structureHint: {
+      "type": "string",
+      "maxLength": 40
     },
     "roomHint": {
       "type": "string",
@@ -1190,6 +1210,10 @@ temperaturesetting: {
     },
     "notificationSupportedByAgent": {
       "type": "boolean"
+    },
+    "structureHint: {
+      "type": "string",
+      "maxLength": 40
     },
     "roomHint": {
       "type": "string",
@@ -1485,6 +1509,10 @@ volume: {
     "notificationSupportedByAgent": {
       "type": "boolean"
     },
+    "structureHint: {
+      "type": "string",
+      "maxLength": 40
+    },
     "roomHint": {
       "type": "string",
       "maxLength": 40
@@ -1711,6 +1739,10 @@ openclose: {
     },
     "notificationSupportedByAgent": {
       "type": "boolean"
+    },
+    "structureHint: {
+      "type": "string",
+      "maxLength": 40
     },
     "roomHint": {
       "type": "string",
@@ -1978,6 +2010,10 @@ mediastate: {
     },
     "notificationSupportedByAgent": {
       "type": "boolean"
+    },
+    "structureHint: {
+      "type": "string",
+      "maxLength": 40
     },
     "roomHint": {
       "type": "string",
