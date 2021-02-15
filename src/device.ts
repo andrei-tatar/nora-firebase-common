@@ -23,9 +23,14 @@ export interface Device<TState = {}, TAttributes = {}, TNora = {}> {
     willReportState: boolean;
     notificationSupportedByAgent?: boolean;
     /**
-    * @maxLength 40
-    */
+     * @description Name of the home this device belongs to
+     * @maxLength 40
+     */
     structureHint?: string;
+    /**
+     * @description Name of the room this device belongs to
+     * @maxLength 40
+     */
     roomHint?: string;
     deviceInfo?: {
         manufacturer: string;

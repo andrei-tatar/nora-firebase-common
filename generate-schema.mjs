@@ -24,42 +24,38 @@ writeFileSync(tempFile, file);
 console.log(`created`);
 try {
     const generator = tjs.createGenerator({ path: tempFile, topRef: false });
-    const schemas = [];
+    const schemas = { device: {}, state: {} };
     for (const traitName of traitNames) {
         console.log(`generating schema for trait: ${traitName}`)
         const deviceSchema = deepClone(generator.createSchema(`${traitName}Device`));
         const stateSchema = deepClone(generator.createSchema(`${traitName}State`));
         deviceSchema.definitions['Trait'].enum = deviceSchema.definitions['Trait'].enum.filter(f => f.endsWith(traitName));
-        schemas.push({
-            device: JSON.stringify(deviceSchema, undefined, 2),
-            state: JSON.stringify(stateSchema, undefined, 2),
-            traitName: traitName.toLowerCase(),
-        });
+        schemas.device[traitName.toLowerCase()] = deviceSchema;
+        schemas.state[traitName.toLowerCase()] = stateSchema;
+
     }
 
-    const individualSchemaKeys = Object.keys(individualSchemas);
+    const individualSchema = Object.entries(individualSchemas).reduce((dict, [key, value]) => {
+        dict[key] = tjs
+            .createGenerator({ path: value.path, topRef: false })
+            .createSchema(value.type);
+        return dict;
+    }, {});
 
     const schema = `
+/* This file is auto-generated during build. Don't modify it! any changes will be overwritten. */
 /* tslint:disable */
-export type SchemaType = 'device' | 'state';
-export type IndividualSchemaType = ${individualSchemaKeys.map(k => `'${k}'`).join(' | ')};
-export type TraitName = ${schemas.map(s => `'${s.traitName}'`).join(' | ')};
-export const Schema = {
-    device: {
-        ${schemas.map(s => `${s.traitName}: ${s.device},`).join('\n')}
-    },
-    state: {
-        ${schemas.map(s => `${s.traitName}: ${s.state},`).join('\n')}
-    },
-};
-export const IndividualSchema = {
-    ${individualSchemaKeys.map(key => {
-        const schema = tjs.createGenerator({ path: individualSchemas[key].path, topRef: false }).createSchema(individualSchemas[key].type);
-        return `
-    '${key}': ${JSON.stringify(schema, undefined, 2)},\n`
-    })}
-};
-    `;
+
+export type SchemaType = keyof typeof Schema;
+
+export type IndividualSchemaType = keyof typeof IndividualSchema;
+
+export type TraitName = keyof typeof Schema['device'];
+
+export const Schema = ${JSON.stringify(schemas, undefined, 2)};
+
+export const IndividualSchema = ${JSON.stringify(individualSchema, undefined, 2)};
+`;
 
     writeFileSync('./src/schema.ts', schema);
 } finally {
