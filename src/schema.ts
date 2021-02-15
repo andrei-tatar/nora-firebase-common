@@ -33,9 +33,18 @@ export const Schema = {
             "action.devices.types.OUTLET",
             "action.devices.types.THERMOSTAT",
             "action.devices.types.SPEAKER",
+            "action.devices.types.LOCK",
+            "action.devices.types.CLOSET",
+            "action.devices.types.AWNING",
+            "action.devices.types.CURTAIN",
+            "action.devices.types.DOOR",
+            "action.devices.types.DRAWER",
             "action.devices.types.BLINDS",
             "action.devices.types.GARAGE",
-            "action.devices.types.LOCK"
+            "action.devices.types.GATE",
+            "action.devices.types.PERGOLA",
+            "action.devices.types.SHUTTER",
+            "action.devices.types.VALVE"
           ]
         },
         "name": {
@@ -253,9 +262,18 @@ export const Schema = {
             "action.devices.types.OUTLET",
             "action.devices.types.THERMOSTAT",
             "action.devices.types.SPEAKER",
+            "action.devices.types.LOCK",
+            "action.devices.types.CLOSET",
+            "action.devices.types.AWNING",
+            "action.devices.types.CURTAIN",
+            "action.devices.types.DOOR",
+            "action.devices.types.DRAWER",
             "action.devices.types.BLINDS",
             "action.devices.types.GARAGE",
-            "action.devices.types.LOCK"
+            "action.devices.types.GATE",
+            "action.devices.types.PERGOLA",
+            "action.devices.types.SHUTTER",
+            "action.devices.types.VALVE"
           ]
         },
         "name": {
@@ -538,9 +556,18 @@ export const Schema = {
             "action.devices.types.OUTLET",
             "action.devices.types.THERMOSTAT",
             "action.devices.types.SPEAKER",
+            "action.devices.types.LOCK",
+            "action.devices.types.CLOSET",
+            "action.devices.types.AWNING",
+            "action.devices.types.CURTAIN",
+            "action.devices.types.DOOR",
+            "action.devices.types.DRAWER",
             "action.devices.types.BLINDS",
             "action.devices.types.GARAGE",
-            "action.devices.types.LOCK"
+            "action.devices.types.GATE",
+            "action.devices.types.PERGOLA",
+            "action.devices.types.SHUTTER",
+            "action.devices.types.VALVE"
           ]
         },
         "name": {
@@ -755,9 +782,18 @@ export const Schema = {
             "action.devices.types.OUTLET",
             "action.devices.types.THERMOSTAT",
             "action.devices.types.SPEAKER",
+            "action.devices.types.LOCK",
+            "action.devices.types.CLOSET",
+            "action.devices.types.AWNING",
+            "action.devices.types.CURTAIN",
+            "action.devices.types.DOOR",
+            "action.devices.types.DRAWER",
             "action.devices.types.BLINDS",
             "action.devices.types.GARAGE",
-            "action.devices.types.LOCK"
+            "action.devices.types.GATE",
+            "action.devices.types.PERGOLA",
+            "action.devices.types.SHUTTER",
+            "action.devices.types.VALVE"
           ]
         },
         "name": {
@@ -968,9 +1004,18 @@ export const Schema = {
             "action.devices.types.OUTLET",
             "action.devices.types.THERMOSTAT",
             "action.devices.types.SPEAKER",
+            "action.devices.types.LOCK",
+            "action.devices.types.CLOSET",
+            "action.devices.types.AWNING",
+            "action.devices.types.CURTAIN",
+            "action.devices.types.DOOR",
+            "action.devices.types.DRAWER",
             "action.devices.types.BLINDS",
             "action.devices.types.GARAGE",
-            "action.devices.types.LOCK"
+            "action.devices.types.GATE",
+            "action.devices.types.PERGOLA",
+            "action.devices.types.SHUTTER",
+            "action.devices.types.VALVE"
           ]
         },
         "name": {
@@ -1190,9 +1235,18 @@ export const Schema = {
             "action.devices.types.OUTLET",
             "action.devices.types.THERMOSTAT",
             "action.devices.types.SPEAKER",
+            "action.devices.types.LOCK",
+            "action.devices.types.CLOSET",
+            "action.devices.types.AWNING",
+            "action.devices.types.CURTAIN",
+            "action.devices.types.DOOR",
+            "action.devices.types.DRAWER",
             "action.devices.types.BLINDS",
             "action.devices.types.GARAGE",
-            "action.devices.types.LOCK"
+            "action.devices.types.GATE",
+            "action.devices.types.PERGOLA",
+            "action.devices.types.SHUTTER",
+            "action.devices.types.VALVE"
           ]
         },
         "name": {
@@ -1490,9 +1544,18 @@ export const Schema = {
             "action.devices.types.OUTLET",
             "action.devices.types.THERMOSTAT",
             "action.devices.types.SPEAKER",
+            "action.devices.types.LOCK",
+            "action.devices.types.CLOSET",
+            "action.devices.types.AWNING",
+            "action.devices.types.CURTAIN",
+            "action.devices.types.DOOR",
+            "action.devices.types.DRAWER",
             "action.devices.types.BLINDS",
             "action.devices.types.GARAGE",
-            "action.devices.types.LOCK"
+            "action.devices.types.GATE",
+            "action.devices.types.PERGOLA",
+            "action.devices.types.SHUTTER",
+            "action.devices.types.VALVE"
           ]
         },
         "name": {
@@ -1723,9 +1786,18 @@ export const Schema = {
             "action.devices.types.OUTLET",
             "action.devices.types.THERMOSTAT",
             "action.devices.types.SPEAKER",
+            "action.devices.types.LOCK",
+            "action.devices.types.CLOSET",
+            "action.devices.types.AWNING",
+            "action.devices.types.CURTAIN",
+            "action.devices.types.DOOR",
+            "action.devices.types.DRAWER",
             "action.devices.types.BLINDS",
             "action.devices.types.GARAGE",
-            "action.devices.types.LOCK"
+            "action.devices.types.GATE",
+            "action.devices.types.PERGOLA",
+            "action.devices.types.SHUTTER",
+            "action.devices.types.VALVE"
           ]
         },
         "name": {
@@ -1996,9 +2068,18 @@ export const Schema = {
             "action.devices.types.OUTLET",
             "action.devices.types.THERMOSTAT",
             "action.devices.types.SPEAKER",
+            "action.devices.types.LOCK",
+            "action.devices.types.CLOSET",
+            "action.devices.types.AWNING",
+            "action.devices.types.CURTAIN",
+            "action.devices.types.DOOR",
+            "action.devices.types.DRAWER",
             "action.devices.types.BLINDS",
             "action.devices.types.GARAGE",
-            "action.devices.types.LOCK"
+            "action.devices.types.GATE",
+            "action.devices.types.PERGOLA",
+            "action.devices.types.SHUTTER",
+            "action.devices.types.VALVE"
           ]
         },
         "name": {
