@@ -44,7 +44,8 @@ export const Schema = {
             "action.devices.types.GATE",
             "action.devices.types.PERGOLA",
             "action.devices.types.SHUTTER",
-            "action.devices.types.VALVE"
+            "action.devices.types.VALVE",
+            "action.devices.types.WINDOW"
           ]
         },
         "name": {
@@ -273,7 +274,8 @@ export const Schema = {
             "action.devices.types.GATE",
             "action.devices.types.PERGOLA",
             "action.devices.types.SHUTTER",
-            "action.devices.types.VALVE"
+            "action.devices.types.VALVE",
+            "action.devices.types.WINDOW"
           ]
         },
         "name": {
@@ -567,7 +569,8 @@ export const Schema = {
             "action.devices.types.GATE",
             "action.devices.types.PERGOLA",
             "action.devices.types.SHUTTER",
-            "action.devices.types.VALVE"
+            "action.devices.types.VALVE",
+            "action.devices.types.WINDOW"
           ]
         },
         "name": {
@@ -793,7 +796,8 @@ export const Schema = {
             "action.devices.types.GATE",
             "action.devices.types.PERGOLA",
             "action.devices.types.SHUTTER",
-            "action.devices.types.VALVE"
+            "action.devices.types.VALVE",
+            "action.devices.types.WINDOW"
           ]
         },
         "name": {
@@ -1015,7 +1019,8 @@ export const Schema = {
             "action.devices.types.GATE",
             "action.devices.types.PERGOLA",
             "action.devices.types.SHUTTER",
-            "action.devices.types.VALVE"
+            "action.devices.types.VALVE",
+            "action.devices.types.WINDOW"
           ]
         },
         "name": {
@@ -1246,7 +1251,8 @@ export const Schema = {
             "action.devices.types.GATE",
             "action.devices.types.PERGOLA",
             "action.devices.types.SHUTTER",
-            "action.devices.types.VALVE"
+            "action.devices.types.VALVE",
+            "action.devices.types.WINDOW"
           ]
         },
         "name": {
@@ -1555,7 +1561,8 @@ export const Schema = {
             "action.devices.types.GATE",
             "action.devices.types.PERGOLA",
             "action.devices.types.SHUTTER",
-            "action.devices.types.VALVE"
+            "action.devices.types.VALVE",
+            "action.devices.types.WINDOW"
           ]
         },
         "name": {
@@ -1797,7 +1804,8 @@ export const Schema = {
             "action.devices.types.GATE",
             "action.devices.types.PERGOLA",
             "action.devices.types.SHUTTER",
-            "action.devices.types.VALVE"
+            "action.devices.types.VALVE",
+            "action.devices.types.WINDOW"
           ]
         },
         "name": {
@@ -2079,7 +2087,8 @@ export const Schema = {
             "action.devices.types.GATE",
             "action.devices.types.PERGOLA",
             "action.devices.types.SHUTTER",
-            "action.devices.types.VALVE"
+            "action.devices.types.VALVE",
+            "action.devices.types.WINDOW"
           ]
         },
         "name": {

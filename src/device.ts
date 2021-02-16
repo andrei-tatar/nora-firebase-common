@@ -209,7 +209,7 @@ type DeviceType =
     'action.devices.types.GATE' |
     'action.devices.types.PERGOLA' |
     'action.devices.types.SHUTTER' |
-    'action.devices.types.VALVE';
+    'action.devices.types.VALVE' |
     'action.devices.types.WINDOW';
 
 export type Trait =
