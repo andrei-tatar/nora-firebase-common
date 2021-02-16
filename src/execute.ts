@@ -148,10 +148,18 @@ export function executeCommand({ command, params, device }: ExecuteCommandParams
                 const changes: Changes = {
                     updateState: {
                         color: {
-                            spectrumHsv: params.color.spectrumHSV,
                         },
                     },
                 };
+                if ('spectrumHSV' in params?.color && changes.updateState?.color) {
+                    changes.updateState.color.spectrumHsv = params.color.spectrumHSV;
+                }
+                if ('spectrumRGB' in params?.color && changes.updateState?.color) {
+                    changes.updateState.color.spectrumRgb = params.color.spectrumRGB;
+                }
+                if ('temperature' in params?.color && changes.updateState?.color) {
+                    changes.updateState.color.temperatureK = params.color.temperature;
+                }
                 if (isBrightness(device) && device.noraSpecific.turnOnWhenBrightnessChanges && changes?.updateState) {
                     changes.updateState.on = true;
                 }

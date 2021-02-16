@@ -14,6 +14,25 @@
             "sourceMaps": true,
             "cwd": "${workspaceFolder}",
             "protocol": "inspector"
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Launch Nora-Common File",
+            "args": [
+                "${file}",
+            ],
+            "runtimeArgs": [
+                "--nolazy",
+                "-r",
+                "ts-node/register/type-check",
+            ],
+            "env": {
+                "TS_NODE_FILES": "true",
+            },
+            "sourceMaps": true,
+            "cwd": "${workspaceFolder}",
+            "protocol": "inspector"
         }
     ]
 }

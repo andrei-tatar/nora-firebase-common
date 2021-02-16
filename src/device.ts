@@ -71,8 +71,8 @@ export type BrightnessDevice = Device<{
 
 export type ColorSettingDevice = Device<{
     color: {
-        temperatureK?: number;
-    } & ({
+        temperatureK: number;
+    } | {
         spectrumRgb: number;
     } | {
         spectrumHsv: {
@@ -80,15 +80,17 @@ export type ColorSettingDevice = Device<{
             saturation: number;
             value: number;
         }
-    });
+    };
 }, {
     commandOnlyColorSetting?: boolean;
-    colorModel?: 'rgb' | 'hsv'
-    colorTemperatureRange?: {
+} & ({
+    colorModel: 'rgb' | 'hsv';
+} | {
+    colorTemperatureRange: {
         temperatureMinK: number;
         temperatureMaxK: number;
     }
-}> & {
+})> & {
     traits: ['action.devices.traits.ColorSetting'];
 };
 

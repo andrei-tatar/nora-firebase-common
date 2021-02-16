@@ -392,22 +392,30 @@ export const Schema = {
               "anyOf": [
                 {
                   "type": "object",
-                  "additionalProperties": false,
                   "properties": {
-                    "spectrumRgb": {
-                      "type": "number"
-                    },
                     "temperatureK": {
                       "type": "number"
                     }
                   },
                   "required": [
-                    "spectrumRgb"
-                  ]
+                    "temperatureK"
+                  ],
+                  "additionalProperties": false
                 },
                 {
                   "type": "object",
-                  "additionalProperties": false,
+                  "properties": {
+                    "spectrumRgb": {
+                      "type": "number"
+                    }
+                  },
+                  "required": [
+                    "spectrumRgb"
+                  ],
+                  "additionalProperties": false
+                },
+                {
+                  "type": "object",
                   "properties": {
                     "spectrumHsv": {
                       "type": "object",
@@ -428,14 +436,12 @@ export const Schema = {
                         "value"
                       ],
                       "additionalProperties": false
-                    },
-                    "temperatureK": {
-                      "type": "number"
                     }
                   },
                   "required": [
                     "spectrumHsv"
-                  ]
+                  ],
+                  "additionalProperties": false
                 }
               ]
             },
@@ -449,36 +455,55 @@ export const Schema = {
           ]
         },
         "attributes": {
-          "type": "object",
-          "properties": {
-            "commandOnlyColorSetting": {
-              "type": "boolean"
-            },
-            "colorModel": {
-              "type": "string",
-              "enum": [
-                "rgb",
-                "hsv"
-              ]
-            },
-            "colorTemperatureRange": {
+          "anyOf": [
+            {
               "type": "object",
+              "additionalProperties": false,
               "properties": {
-                "temperatureMinK": {
-                  "type": "number"
+                "colorModel": {
+                  "type": "string",
+                  "enum": [
+                    "rgb",
+                    "hsv"
+                  ]
                 },
-                "temperatureMaxK": {
-                  "type": "number"
+                "commandOnlyColorSetting": {
+                  "type": "boolean"
                 }
               },
               "required": [
-                "temperatureMinK",
-                "temperatureMaxK"
-              ],
-              "additionalProperties": false
+                "colorModel"
+              ]
+            },
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "colorTemperatureRange": {
+                  "type": "object",
+                  "properties": {
+                    "temperatureMinK": {
+                      "type": "number"
+                    },
+                    "temperatureMaxK": {
+                      "type": "number"
+                    }
+                  },
+                  "required": [
+                    "temperatureMinK",
+                    "temperatureMaxK"
+                  ],
+                  "additionalProperties": false
+                },
+                "commandOnlyColorSetting": {
+                  "type": "boolean"
+                }
+              },
+              "required": [
+                "colorTemperatureRange"
+              ]
             }
-          },
-          "additionalProperties": false
+          ]
         }
       },
       "required": [
@@ -2324,22 +2349,30 @@ export const Schema = {
           "anyOf": [
             {
               "type": "object",
-              "additionalProperties": false,
               "properties": {
-                "spectrumRgb": {
-                  "type": "number"
-                },
                 "temperatureK": {
                   "type": "number"
                 }
               },
               "required": [
-                "spectrumRgb"
-              ]
+                "temperatureK"
+              ],
+              "additionalProperties": false
             },
             {
               "type": "object",
-              "additionalProperties": false,
+              "properties": {
+                "spectrumRgb": {
+                  "type": "number"
+                }
+              },
+              "required": [
+                "spectrumRgb"
+              ],
+              "additionalProperties": false
+            },
+            {
+              "type": "object",
               "properties": {
                 "spectrumHsv": {
                   "type": "object",
@@ -2360,14 +2393,12 @@ export const Schema = {
                     "value"
                   ],
                   "additionalProperties": false
-                },
-                "temperatureK": {
-                  "type": "number"
                 }
               },
               "required": [
                 "spectrumHsv"
-              ]
+              ],
+              "additionalProperties": false
             }
           ]
         }
