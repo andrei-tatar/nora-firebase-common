@@ -1,4 +1,5 @@
 import * as chai from 'chai';
+import { Trait } from './device';
 import { validate } from './validate';
 
 const expect = chai.expect;
@@ -57,5 +58,29 @@ describe('validate', () => {
         expect(result.valid).to.be.true;
     });
 
+    it('should merge anyOf schemas and validate ok', () => {
+        const device = {
+            id: '3fa1fb5:3a24c04',
+            type: 'action.devices.types.CURTAIN',
+            traits: [
+                'action.devices.traits.OpenClose',
+                'action.devices.traits.LockUnlock'
+            ],
+            name: { name: 'Test' },
+            roomHint: '',
+            willReportState: true,
+            state: { online: true, openPercent: 0, isLocked: false, isJammed: false },
+            noraSpecific: {},
+            attributes: {
+                discreteOnlyOpenClose: true,
+                commandOnlyOpenClose: false,
+                queryOnlyOpenClose: false
+            },
+            structureHint: 'Test'
+        };
+
+        const result = validate(device.traits as Trait[], 'device', device);
+        expect(result.valid).to.be.true;
+    })
 });
 

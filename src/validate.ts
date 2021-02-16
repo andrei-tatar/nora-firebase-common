@@ -42,13 +42,13 @@ function loadSchema(schemaType: SchemaType, traitNames: TraitName[], key: string
     if (!cachedSchema) {
         const schemasForTraits = traitNames.map(t => Schema[schemaType][t]);
         cachedSchema = composedTraitCache[key] = schemasForTraits.length > 1
-            ? mergeDeep(...schemasForTraits)
+            ? mergeSchemas(...schemasForTraits)
             : schemasForTraits[0];
     }
     return cachedSchema;
 }
 
-function mergeDeep(...objects: any[]) {
+function mergeSchemas(...objects: any[]) {
     const isObject = (obj: any) => obj && typeof obj === 'object';
 
     return objects.reduce((prev, obj) => {
@@ -59,7 +59,22 @@ function mergeDeep(...objects: any[]) {
             if (Array.isArray(pVal) && Array.isArray(oVal)) {
                 prev[key] = pVal.concat(...oVal).filter((val, index, self) => self.indexOf(val) === index);
             } else if (isObject(pVal) && isObject(oVal)) {
-                prev[key] = mergeDeep(pVal, oVal);
+                if (isAnyOfSchema(pVal) && isAnyOfSchema(oVal)) {
+                    prev[key] = {
+                        anyOf: [],
+                    };
+                    for (const pAnyOf of pVal.anyOf) {
+                        for (const oAnyOf of oVal.anyOf) {
+                            prev[key].anyOf.push(mergeSchemas(pAnyOf, oAnyOf));
+                        }
+                    }
+                } else if (isAnyOfSchema(pVal)) {
+                    prev[key] = { anyOf: pVal.anyOf.map(o => mergeSchemas(o, oVal)) };
+                } else if (isAnyOfSchema(oVal)) {
+                    prev[key] = { anyOf: oVal.anyOf.map(o => mergeSchemas(o, pVal)) };
+                } else {
+                    prev[key] = mergeSchemas(pVal, oVal);
+                }
             } else {
                 prev[key] = oVal;
             }
@@ -67,4 +82,8 @@ function mergeDeep(...objects: any[]) {
 
         return prev;
     }, {});
+}
+
+function isAnyOfSchema(s: any): s is { anyOf: any[] } {
+    return 'anyOf' in s && Array.isArray(s.anyOf);
 }
