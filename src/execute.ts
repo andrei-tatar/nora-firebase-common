@@ -99,7 +99,7 @@ export function executeCommand({ command, params, device }: ExecuteCommandParams
                                     if (st.openDirection === params.openDirection || !params.openDirection) {
                                         return {
                                             openPercent: params.openPercent,
-                                            openDirection: params.openDirection,
+                                            openDirection: st.openDirection,
                                         };
                                     }
                                     return st;
@@ -122,7 +122,7 @@ export function executeCommand({ command, params, device }: ExecuteCommandParams
                 if ('openPercent' in device.state) {
                     return {
                         updateState: {
-                            openPercent: fit(params.openRelativePercent + device.state.openPercent),
+                            openPercent: fitPercent(params.openRelativePercent + device.state.openPercent),
                         },
                     };
                 } else {
@@ -131,8 +131,8 @@ export function executeCommand({ command, params, device }: ExecuteCommandParams
                             openState: device.state.openState.map(st => {
                                 if (st.openDirection === params.openDirection || !params.openDirection) {
                                     return {
-                                        openPercent: fit(params.openRelativePercent + st.openPercent),
-                                        openDirection: params.openDirection,
+                                        openPercent: fitPercent(params.openRelativePercent + st.openPercent),
+                                        openDirection: st.openDirection,
                                     };
                                 }
                                 return st;
@@ -196,6 +196,6 @@ export function executeCommand({ command, params, device }: ExecuteCommandParams
 }
 
 
-function fit(n: number, minimum = 0, maximum = 100) {
+function fitPercent(n: number, minimum = 0, maximum = 100) {
     return Math.min(maximum, Math.max(minimum, n));
 }
