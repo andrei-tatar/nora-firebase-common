@@ -167,9 +167,17 @@ export type VolumeDevice = Device<{
 export type OpenCloseDirection = 'UP' | 'DOWN' | 'LEFT' | 'RIGHT' | 'IN' | 'OUT';
 
 export type OpenCloseDevice = Device<{
+    /**
+     * @minimum 0
+     * @maximum 100
+     */
     openPercent: number;
 } | {
     openState: {
+        /**
+         * @minimum 0
+         * @maximum 100
+         */
         openPercent: number;
         openDirection: OpenCloseDirection;
     }[]

@@ -1946,7 +1946,9 @@ export const Schema = {
               "additionalProperties": false,
               "properties": {
                 "openPercent": {
-                  "type": "number"
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 100
                 },
                 "online": {
                   "type": "boolean"
@@ -1967,7 +1969,9 @@ export const Schema = {
                     "type": "object",
                     "properties": {
                       "openPercent": {
-                        "type": "number"
+                        "type": "number",
+                        "minimum": 0,
+                        "maximum": 100
                       },
                       "openDirection": {
                         "$ref": "#/definitions/OpenCloseDirection"
@@ -2520,7 +2524,9 @@ export const Schema = {
           "type": "boolean"
         },
         "openPercent": {
-          "type": "number"
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100
         },
         "openState": {
           "type": "array",
@@ -2528,7 +2534,9 @@ export const Schema = {
             "type": "object",
             "properties": {
               "openPercent": {
-                "type": "number"
+                "type": "number",
+                "minimum": 0,
+                "maximum": 100
               },
               "openDirection": {
                 "$ref": "#/definitions/OpenCloseDirection"
