@@ -108,6 +108,20 @@ describe('validate', () => {
 
         const result = validate(device.traits as Trait[], 'device', device);
         expect(result.valid).to.be.true;
+    });
+
+    it('should merge anyOf partial state schemas and validate ok', () => {
+        const result = validate([
+            'action.devices.traits.OpenClose',
+            'action.devices.traits.LockUnlock'
+        ], 'state-update', {
+            openState: [
+                {
+                    openPercent: 50
+                }
+            ]
+        });
+        expect(result.valid).to.be.true;
     })
 });
 

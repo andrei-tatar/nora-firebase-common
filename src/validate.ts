@@ -1,6 +1,7 @@
 import Ajv, { ValidateFunction } from 'ajv';
 import { Trait } from './device';
 import { IndividualSchema, IndividualSchemaType, Schema, SchemaType, TraitName } from './schema';
+import { deepClone } from './update-state';
 
 const cachedValidators: {
     [schemaName: string]: ValidateFunction;
@@ -42,46 +43,65 @@ function loadSchema(schemaType: SchemaType, traitNames: TraitName[], key: string
     if (!cachedSchema) {
         const schemasForTraits = traitNames.map(t => Schema[schemaType][t]);
         cachedSchema = composedTraitCache[key] = schemasForTraits.length > 1
-            ? mergeSchemas(...schemasForTraits)
+            ? mergeSchemas(schemasForTraits)
             : schemasForTraits[0];
     }
     return cachedSchema;
 }
 
-function mergeSchemas(...objects: any[]) {
-    const isObject = (obj: any) => obj && typeof obj === 'object';
-
-    return objects.reduce((prev, obj) => {
-        Object.keys(obj).forEach(key => {
-            const pVal = prev[key];
-            const oVal = obj[key];
-
-            if (Array.isArray(pVal) && Array.isArray(oVal)) {
-                prev[key] = pVal.concat(...oVal).filter((val, index, self) => self.indexOf(val) === index);
-            } else if (isObject(pVal) && isObject(oVal)) {
-                if (isAnyOfSchema(pVal) && isAnyOfSchema(oVal)) {
-                    prev[key] = {
-                        anyOf: [],
-                    };
-                    for (const pAnyOf of pVal.anyOf) {
-                        for (const oAnyOf of oVal.anyOf) {
-                            prev[key].anyOf.push(mergeSchemas(pAnyOf, oAnyOf));
-                        }
-                    }
-                } else if (isAnyOfSchema(pVal)) {
-                    prev[key] = { anyOf: pVal.anyOf.map(o => mergeSchemas(o, oVal)) };
-                } else if (isAnyOfSchema(oVal)) {
-                    prev[key] = { anyOf: oVal.anyOf.map(o => mergeSchemas(o, pVal)) };
-                } else {
-                    prev[key] = mergeSchemas(pVal, oVal);
+function mergeSchemas(objects: any[], level = 0): any {
+    return objects.map(o => deepClone(o)).reduce((a, b) => {
+        const isAnyA = isAnyOfSchema(a);
+        const isAnyB = isAnyOfSchema(b);
+        if (isAnyA && isAnyB) {
+            const anyOf = [];
+            for (const pAnyOf of a.anyOf) {
+                for (const oAnyOf of b.anyOf) {
+                    anyOf.push(mergeSchemas([pAnyOf, oAnyOf], level + 1));
                 }
-            } else {
-                prev[key] = oVal;
             }
-        });
+            delete a.anyOf;
+            delete b.anyOf;
+            return {
+                ...mergeSchemas([a, b]),
+                anyOf,
+            };
+        } else if (isAnyA) {
+            return {
+                ...a,
+                anyOf: a.anyOf.map((o: any) => mergeSchemas([o, b], level + 1)),
+            };
+        } else if (isAnyB) {
+            return {
+                ...b,
+                anyOf: b.anyOf.map((o: any) => mergeSchemas([o, a], level + 1))
+            };
+        }
 
-        return prev;
-    }, {});
+        for (const key of Object.keys(b)) {
+            const aVal = a[key];
+            const bVal = b[key];
+
+            if (Array.isArray(aVal) && Array.isArray(bVal)) {
+                a[key] = aVal.concat(...bVal).filter((val, index, self) => self.indexOf(val) === index);
+            } else if (isObject(aVal) && isObject(bVal)) {
+                a[key] = mergeSchemas([aVal, bVal], level + 1);
+            } else {
+                a[key] = bVal;
+            }
+        }
+
+        const clone =  deepClone(a);
+        if (level > 0) {
+            delete clone['$schema'];
+            delete clone['definitions'];
+        }
+        return clone;
+    });
+}
+
+function isObject(obj: any) {
+    return obj && typeof obj === 'object';
 }
 
 function isAnyOfSchema(s: any): s is { anyOf: any[] } {
