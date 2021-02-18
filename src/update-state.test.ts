@@ -76,7 +76,7 @@ describe('updateState', () => {
         expect(hasChanges).to.be.false;
     });
 
-    it('should append array items when key resolver not found', () => {
+    it('should ignore array items when key resolver doesnt find existing item', () => {
         const { hasChanges, state } = updateState({
             openState: [{
                 openDirection: 'NEW-DIRECTION',
@@ -93,7 +93,7 @@ describe('updateState', () => {
             }]
         });
 
-        expect(hasChanges).to.be.true;
+        expect(hasChanges).to.be.false;
         expect(state).to.deep.eq({
             openState: [{
                 openDirection: 'BOTTOM',
@@ -102,9 +102,6 @@ describe('updateState', () => {
                 openDirection: 'TOP',
                 value: 'top-value',
                 dontChange: 123,
-            }, {
-                openDirection: 'NEW-DIRECTION',
-                value: 'new'
             }]
         });
     });

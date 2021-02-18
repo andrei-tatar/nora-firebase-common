@@ -12,7 +12,7 @@ export function deepClone(o: any) {
 }
 
 const keyResolvers = new Map<string, (item: any, index: number) => any>([
-    ['openState', (item) => item.openDirection]
+    ['openState', (item) => item.openDirection.toUpperCase().trim()]
 ]);
 
 function updateArrayState(update: any[], state: any[], path = ''): boolean {
@@ -28,8 +28,7 @@ function updateArrayState(update: any[], state: any[], path = ''): boolean {
                     hasChanges = true;
                 }
             } else {
-                state.push(item);
-                hasChanges = true;
+                //TODO: not sure what to do. safest for now is to ignore
             }
         }
     } else {
