@@ -2331,24 +2331,26 @@ export const Schema = {
     "brightness": {
       "$schema": "http://json-schema.org/draft-07/schema#",
       "type": "object",
+      "additionalProperties": false,
       "properties": {
-        "online": {
-          "type": "boolean"
-        },
         "brightness": {
           "type": "number"
+        },
+        "online": {
+          "type": "boolean"
         }
       },
-      "additionalProperties": false,
+      "required": [
+        "brightness",
+        "online"
+      ],
       "definitions": {}
     },
     "colorsetting": {
       "$schema": "http://json-schema.org/draft-07/schema#",
       "type": "object",
+      "additionalProperties": false,
       "properties": {
-        "online": {
-          "type": "boolean"
-        },
         "color": {
           "anyOf": [
             {
@@ -2405,60 +2407,76 @@ export const Schema = {
               "additionalProperties": false
             }
           ]
+        },
+        "online": {
+          "type": "boolean"
         }
       },
-      "additionalProperties": false,
+      "required": [
+        "color",
+        "online"
+      ],
       "definitions": {}
     },
     "onoff": {
       "$schema": "http://json-schema.org/draft-07/schema#",
       "type": "object",
+      "additionalProperties": false,
       "properties": {
-        "online": {
+        "on": {
           "type": "boolean"
         },
-        "on": {
+        "online": {
           "type": "boolean"
         }
       },
-      "additionalProperties": false,
+      "required": [
+        "on",
+        "online"
+      ],
       "definitions": {}
     },
     "lockunlock": {
       "$schema": "http://json-schema.org/draft-07/schema#",
       "type": "object",
+      "additionalProperties": false,
       "properties": {
-        "online": {
-          "type": "boolean"
-        },
         "isLocked": {
           "type": "boolean"
         },
         "isJammed": {
           "type": "boolean"
+        },
+        "online": {
+          "type": "boolean"
         }
       },
-      "additionalProperties": false,
+      "required": [
+        "isJammed",
+        "isLocked",
+        "online"
+      ],
       "definitions": {}
     },
     "scene": {
       "$schema": "http://json-schema.org/draft-07/schema#",
       "type": "object",
+      "additionalProperties": false,
       "properties": {
         "online": {
           "type": "boolean"
         }
       },
-      "additionalProperties": false,
+      "required": [
+        "online"
+      ],
       "definitions": {}
     },
     "temperaturesetting": {
       "$schema": "http://json-schema.org/draft-07/schema#",
       "type": "object",
+      "additionalProperties": false,
       "properties": {
-        "online": {
-          "type": "boolean"
-        },
         "thermostatMode": {
           "$ref": "#/definitions/ThermostatMode"
         },
@@ -2478,9 +2496,17 @@ export const Schema = {
         },
         "thermostatTemperatureSetpointLow": {
           "type": "number"
+        },
+        "online": {
+          "type": "boolean"
         }
       },
-      "additionalProperties": false,
+      "required": [
+        "online",
+        "thermostatMode",
+        "thermostatTemperatureAmbient",
+        "thermostatTemperatureSetpoint"
+      ],
       "definitions": {
         "ThermostatMode": {
           "type": "string",
@@ -2502,55 +2528,80 @@ export const Schema = {
     "volume": {
       "$schema": "http://json-schema.org/draft-07/schema#",
       "type": "object",
+      "additionalProperties": false,
       "properties": {
-        "online": {
-          "type": "boolean"
-        },
         "currentVolume": {
           "type": "number"
         },
         "isMuted": {
           "type": "boolean"
+        },
+        "online": {
+          "type": "boolean"
         }
       },
-      "additionalProperties": false,
+      "required": [
+        "currentVolume",
+        "online"
+      ],
       "definitions": {}
     },
     "openclose": {
       "$schema": "http://json-schema.org/draft-07/schema#",
-      "type": "object",
-      "properties": {
-        "online": {
-          "type": "boolean"
+      "anyOf": [
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "openPercent": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 100
+            },
+            "online": {
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "online",
+            "openPercent"
+          ]
         },
-        "openPercent": {
-          "type": "number",
-          "minimum": 0,
-          "maximum": 100
-        },
-        "openState": {
-          "type": "array",
-          "items": {
-            "type": "object",
-            "properties": {
-              "openPercent": {
-                "type": "number",
-                "minimum": 0,
-                "maximum": 100
-              },
-              "openDirection": {
-                "$ref": "#/definitions/OpenCloseDirection"
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "openState": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "openPercent": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 100
+                  },
+                  "openDirection": {
+                    "$ref": "#/definitions/OpenCloseDirection"
+                  }
+                },
+                "required": [
+                  "openPercent",
+                  "openDirection"
+                ],
+                "additionalProperties": false
               }
             },
-            "required": [
-              "openPercent",
-              "openDirection"
-            ],
-            "additionalProperties": false
-          }
+            "online": {
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "online",
+            "openState"
+          ]
         }
-      },
-      "additionalProperties": false,
+      ],
       "definitions": {
         "OpenCloseDirection": {
           "type": "string",
@@ -2568,10 +2619,8 @@ export const Schema = {
     "mediastate": {
       "$schema": "http://json-schema.org/draft-07/schema#",
       "type": "object",
+      "additionalProperties": false,
       "properties": {
-        "online": {
-          "type": "boolean"
-        },
         "activityState": {
           "type": "string",
           "enum": [
@@ -2590,9 +2639,280 @@ export const Schema = {
             "BUFFERING",
             "STOPPED"
           ]
+        },
+        "online": {
+          "type": "boolean"
         }
       },
+      "required": [
+        "activityState",
+        "online",
+        "playbackState"
+      ],
+      "definitions": {}
+    }
+  },
+  "state-update": {
+    "brightness": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "type": "object",
       "additionalProperties": false,
+      "properties": {
+        "brightness": {
+          "type": "number"
+        },
+        "online": {
+          "type": "boolean"
+        }
+      },
+      "definitions": {}
+    },
+    "colorsetting": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "color": {
+          "anyOf": [
+            {
+              "type": "object",
+              "properties": {
+                "temperatureK": {
+                  "type": "number"
+                }
+              },
+              "additionalProperties": false
+            },
+            {
+              "type": "object",
+              "properties": {
+                "spectrumRgb": {
+                  "type": "number"
+                }
+              },
+              "additionalProperties": false
+            },
+            {
+              "type": "object",
+              "properties": {
+                "spectrumHsv": {
+                  "type": "object",
+                  "properties": {
+                    "hue": {
+                      "type": "number"
+                    },
+                    "saturation": {
+                      "type": "number"
+                    },
+                    "value": {
+                      "type": "number"
+                    }
+                  },
+                  "additionalProperties": false
+                }
+              },
+              "additionalProperties": false
+            }
+          ]
+        },
+        "online": {
+          "type": "boolean"
+        }
+      },
+      "definitions": {}
+    },
+    "onoff": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "on": {
+          "type": "boolean"
+        },
+        "online": {
+          "type": "boolean"
+        }
+      },
+      "definitions": {}
+    },
+    "lockunlock": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "isLocked": {
+          "type": "boolean"
+        },
+        "isJammed": {
+          "type": "boolean"
+        },
+        "online": {
+          "type": "boolean"
+        }
+      },
+      "definitions": {}
+    },
+    "scene": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "online": {
+          "type": "boolean"
+        }
+      },
+      "definitions": {}
+    },
+    "temperaturesetting": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "thermostatMode": {
+          "$ref": "#/definitions/ThermostatMode"
+        },
+        "thermostatTemperatureAmbient": {
+          "type": "number"
+        },
+        "thermostatHumidityAmbient": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100
+        },
+        "thermostatTemperatureSetpoint": {
+          "type": "number"
+        },
+        "thermostatTemperatureSetpointHigh": {
+          "type": "number"
+        },
+        "thermostatTemperatureSetpointLow": {
+          "type": "number"
+        },
+        "online": {
+          "type": "boolean"
+        }
+      },
+      "definitions": {
+        "ThermostatMode": {
+          "type": "string",
+          "enum": [
+            "off",
+            "heat",
+            "cool",
+            "on",
+            "auto",
+            "fan-only",
+            "purifier",
+            "eco",
+            "dry",
+            "heatcool"
+          ]
+        }
+      }
+    },
+    "volume": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "currentVolume": {
+          "type": "number"
+        },
+        "isMuted": {
+          "type": "boolean"
+        },
+        "online": {
+          "type": "boolean"
+        }
+      },
+      "definitions": {}
+    },
+    "openclose": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "anyOf": [
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "openPercent": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 100
+            },
+            "online": {
+              "type": "boolean"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "openState": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "openPercent": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 100
+                  },
+                  "openDirection": {
+                    "$ref": "#/definitions/OpenCloseDirection"
+                  }
+                },
+                "additionalProperties": false
+              }
+            },
+            "online": {
+              "type": "boolean"
+            }
+          }
+        }
+      ],
+      "definitions": {
+        "OpenCloseDirection": {
+          "type": "string",
+          "enum": [
+            "UP",
+            "DOWN",
+            "LEFT",
+            "RIGHT",
+            "IN",
+            "OUT"
+          ]
+        }
+      }
+    },
+    "mediastate": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "activityState": {
+          "type": "string",
+          "enum": [
+            "INACTIVE",
+            "STANDBY",
+            "ACTIVE"
+          ]
+        },
+        "playbackState": {
+          "type": "string",
+          "enum": [
+            "PAUSED",
+            "PLAYING",
+            "FAST_FORWARDING",
+            "REWINDING",
+            "BUFFERING",
+            "STOPPED"
+          ]
+        },
+        "online": {
+          "type": "boolean"
+        }
+      },
       "definitions": {}
     }
   }

@@ -44,13 +44,40 @@ describe('validate', () => {
         expect(result.valid).to.be.false;
     });
 
-    it('should return true for complete children', () => {
+    it('complete state schema check should return true for complete children', () => {
         const result = validate(['action.devices.traits.ColorSetting'], 'state', {
             color: {
                 spectrumHsv: {
                     hue: 230,
                     saturation: .5,
                     value: .5,
+                },
+            },
+            online: true,
+        });
+
+        expect(result.valid).to.be.true;
+    });
+
+    it('should return true for complete children', () => {
+        const result = validate(['action.devices.traits.ColorSetting'], 'state-update', {
+            color: {
+                spectrumHsv: {
+                    hue: 230,
+                    saturation: .5,
+                    value: .5,
+                },
+            },
+        });
+
+        expect(result.valid).to.be.true;
+    });
+
+    it('update should return true for partial children', () => {
+        const result = validate(['action.devices.traits.ColorSetting'], 'state-update', {
+            color: {
+                spectrumHsv: {
+                    hue: 230,
                 },
             },
         });
