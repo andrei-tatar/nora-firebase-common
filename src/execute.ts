@@ -1,4 +1,7 @@
-import { isBrightness, isColorSetting, isLockUnlock, isOnOff, isOpenClose, isScene, isTemperatureSetting, isVolumeDevice } from './checks';
+import {
+    isBrightness, isColorSetting, isLockUnlock, isOnOff, isOpenClose, isScene,
+    isTemperatureControl, isTemperatureSetting, isVolumeDevice
+} from './checks';
 import { BrightnessDevice, Device, LockUnlockDevice, OnOffDevice, SceneDevice, TemperatureSettingDevice } from './device';
 
 export interface Changes {
@@ -63,6 +66,16 @@ export function executeCommand({ command, params, device }: ExecuteCommandParams
                 };
                 return {
                     updateState: updates,
+                };
+            }
+            break;
+
+        case 'action.devices.commands.SetTemperature':
+            if (isTemperatureControl(device)) {
+                return {
+                    updateState: {
+                        temperatureSetpointCelsius: params.temperature,
+                    },
                 };
             }
             break;

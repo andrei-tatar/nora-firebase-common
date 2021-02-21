@@ -1,5 +1,6 @@
 import * as chai from 'chai';
 import { updateState } from './update-state';
+import { SensorStateDevice } from './device';
 
 const expect = chai.expect;
 describe('updateState', () => {
@@ -153,7 +154,7 @@ describe('updateState', () => {
         });
 
         expect(hasChanges).to.be.false;
-        expect(state).to.deep.eq({})
+        expect(state).to.deep.eq({});
     });
 
     it('should look into children for changes', () => {
@@ -185,6 +186,40 @@ describe('updateState', () => {
                     dontChange: 'dont change',
                 }
             },
+        });
+    });
+
+    it('should update sensor state by name', () => {
+        const currentState: SensorStateDevice['state'] = {
+            online: true,
+            currentSensorStateData: [{
+                name: 'CarbonMonoxideLevel',
+                currentSensorState: 'no carbon monoxide detected',
+                rawValue: 0,
+            }, {
+                name: 'RainDetection',
+                currentSensorState: 'no rain detected',
+            }],
+        };
+
+        const { hasChanges, state } = updateState({
+            currentSensorStateData: [{
+                name: 'RainDetection',
+                currentSensorState: 'rain detected',
+            }],
+        }, currentState);
+
+        expect(hasChanges).to.be.true;
+        expect(state).to.deep.eq({
+            online: true,
+            currentSensorStateData: [{
+                name: 'CarbonMonoxideLevel',
+                currentSensorState: 'no carbon monoxide detected',
+                rawValue: 0,
+            }, {
+                name: 'RainDetection',
+                currentSensorState: 'rain detected',
+            }],
         });
     });
 });

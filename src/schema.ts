@@ -34,6 +34,7 @@ export const Schema = {
             "action.devices.types.THERMOSTAT",
             "action.devices.types.SPEAKER",
             "action.devices.types.LOCK",
+            "action.devices.types.SENSOR",
             "action.devices.types.CLOSET",
             "action.devices.types.AWNING",
             "action.devices.types.CURTAIN",
@@ -264,6 +265,7 @@ export const Schema = {
             "action.devices.types.THERMOSTAT",
             "action.devices.types.SPEAKER",
             "action.devices.types.LOCK",
+            "action.devices.types.SENSOR",
             "action.devices.types.CLOSET",
             "action.devices.types.AWNING",
             "action.devices.types.CURTAIN",
@@ -584,6 +586,7 @@ export const Schema = {
             "action.devices.types.THERMOSTAT",
             "action.devices.types.SPEAKER",
             "action.devices.types.LOCK",
+            "action.devices.types.SENSOR",
             "action.devices.types.CLOSET",
             "action.devices.types.AWNING",
             "action.devices.types.CURTAIN",
@@ -811,6 +814,7 @@ export const Schema = {
             "action.devices.types.THERMOSTAT",
             "action.devices.types.SPEAKER",
             "action.devices.types.LOCK",
+            "action.devices.types.SENSOR",
             "action.devices.types.CLOSET",
             "action.devices.types.AWNING",
             "action.devices.types.CURTAIN",
@@ -1034,6 +1038,7 @@ export const Schema = {
             "action.devices.types.THERMOSTAT",
             "action.devices.types.SPEAKER",
             "action.devices.types.LOCK",
+            "action.devices.types.SENSOR",
             "action.devices.types.CLOSET",
             "action.devices.types.AWNING",
             "action.devices.types.CURTAIN",
@@ -1266,6 +1271,7 @@ export const Schema = {
             "action.devices.types.THERMOSTAT",
             "action.devices.types.SPEAKER",
             "action.devices.types.LOCK",
+            "action.devices.types.SENSOR",
             "action.devices.types.CLOSET",
             "action.devices.types.AWNING",
             "action.devices.types.CURTAIN",
@@ -1576,6 +1582,7 @@ export const Schema = {
             "action.devices.types.THERMOSTAT",
             "action.devices.types.SPEAKER",
             "action.devices.types.LOCK",
+            "action.devices.types.SENSOR",
             "action.devices.types.CLOSET",
             "action.devices.types.AWNING",
             "action.devices.types.CURTAIN",
@@ -1819,6 +1826,7 @@ export const Schema = {
             "action.devices.types.THERMOSTAT",
             "action.devices.types.SPEAKER",
             "action.devices.types.LOCK",
+            "action.devices.types.SENSOR",
             "action.devices.types.CLOSET",
             "action.devices.types.AWNING",
             "action.devices.types.CURTAIN",
@@ -2106,6 +2114,7 @@ export const Schema = {
             "action.devices.types.THERMOSTAT",
             "action.devices.types.SPEAKER",
             "action.devices.types.LOCK",
+            "action.devices.types.SENSOR",
             "action.devices.types.CLOSET",
             "action.devices.types.AWNING",
             "action.devices.types.CURTAIN",
@@ -2287,6 +2296,1190 @@ export const Schema = {
           "type": "string",
           "enum": [
             "action.devices.traits.MediaState"
+          ]
+        },
+        "TwoFactor": {
+          "anyOf": [
+            {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "type": "string",
+                  "const": "ack"
+                }
+              },
+              "required": [
+                "type"
+              ],
+              "additionalProperties": false
+            },
+            {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "type": "string",
+                  "const": "pin"
+                },
+                "pin": {
+                  "type": "string",
+                  "maxLength": 20
+                }
+              },
+              "required": [
+                "type",
+                "pin"
+              ],
+              "additionalProperties": false
+            }
+          ]
+        }
+      }
+    },
+    "sensorstate": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "traits": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Trait"
+          }
+        },
+        "id": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "action.devices.types.LIGHT",
+            "action.devices.types.SWITCH",
+            "action.devices.types.SCENE",
+            "action.devices.types.OUTLET",
+            "action.devices.types.THERMOSTAT",
+            "action.devices.types.SPEAKER",
+            "action.devices.types.LOCK",
+            "action.devices.types.SENSOR",
+            "action.devices.types.CLOSET",
+            "action.devices.types.AWNING",
+            "action.devices.types.CURTAIN",
+            "action.devices.types.DOOR",
+            "action.devices.types.DRAWER",
+            "action.devices.types.BLINDS",
+            "action.devices.types.GARAGE",
+            "action.devices.types.GATE",
+            "action.devices.types.PERGOLA",
+            "action.devices.types.SHUTTER",
+            "action.devices.types.VALVE",
+            "action.devices.types.WINDOW"
+          ]
+        },
+        "name": {
+          "type": "object",
+          "properties": {
+            "defaultNames": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "name": {
+              "type": "string",
+              "maxLength": 40
+            },
+            "nicknames": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          "required": [
+            "name"
+          ],
+          "additionalProperties": false
+        },
+        "willReportState": {
+          "type": "boolean"
+        },
+        "notificationSupportedByAgent": {
+          "type": "boolean"
+        },
+        "structureHint": {
+          "type": "string",
+          "description": "Name of the home this device belongs to",
+          "maxLength": 40
+        },
+        "roomHint": {
+          "type": "string",
+          "description": "Name of the room this device belongs to",
+          "maxLength": 40
+        },
+        "deviceInfo": {
+          "type": "object",
+          "properties": {
+            "manufacturer": {
+              "type": "string"
+            },
+            "model": {
+              "type": "string"
+            },
+            "hwVersion": {
+              "type": "string"
+            },
+            "swVersion": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "manufacturer",
+            "model",
+            "hwVersion",
+            "swVersion"
+          ],
+          "additionalProperties": false
+        },
+        "otherDeviceIds": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "agentId": {
+                "type": "string"
+              },
+              "deviceId": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "deviceId"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "customData": {
+          "type": "object",
+          "properties": {
+            "proxyId": {
+              "type": "string",
+              "description": "Used for local execution to identity the instance responsible of this device",
+              "maxLength": 40
+            }
+          },
+          "additionalProperties": false
+        },
+        "noraSpecific": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "disabled": {
+              "type": "boolean"
+            },
+            "twoFactor": {
+              "$ref": "#/definitions/TwoFactor"
+            }
+          }
+        },
+        "state": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "currentSensorStateData": {
+              "type": "array",
+              "items": {
+                "anyOf": [
+                  {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                      "rawValue": {
+                        "type": "number"
+                      },
+                      "currentSensorState": {
+                        "type": "string",
+                        "enum": [
+                          "healthy",
+                          "moderate",
+                          "unhealthy",
+                          "unhealthy for sensitive groups",
+                          "very unhealthy",
+                          "hazardous",
+                          "good",
+                          "fair",
+                          "poor",
+                          "very poor",
+                          "severe",
+                          "unknown"
+                        ]
+                      },
+                      "name": {
+                        "type": "string",
+                        "const": "AirQuality"
+                      }
+                    },
+                    "required": [
+                      "currentSensorState",
+                      "name",
+                      "rawValue"
+                    ]
+                  },
+                  {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                      "rawValue": {
+                        "type": "number"
+                      },
+                      "currentSensorState": {
+                        "type": "string",
+                        "enum": [
+                          "carbon monoxide detected",
+                          "high",
+                          "no carbon monoxide detected",
+                          "unknown"
+                        ]
+                      },
+                      "name": {
+                        "type": "string",
+                        "const": "CarbonMonoxideLevel"
+                      }
+                    },
+                    "required": [
+                      "currentSensorState",
+                      "name",
+                      "rawValue"
+                    ]
+                  },
+                  {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                      "rawValue": {
+                        "type": "number"
+                      },
+                      "currentSensorState": {
+                        "type": "string",
+                        "enum": [
+                          "smoke detected",
+                          "high",
+                          "no smoke detected",
+                          "unknown"
+                        ]
+                      },
+                      "name": {
+                        "type": "string",
+                        "const": "SmokeLevel"
+                      }
+                    },
+                    "required": [
+                      "currentSensorState",
+                      "name",
+                      "rawValue"
+                    ]
+                  },
+                  {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                      "currentSensorState": {
+                        "type": "string",
+                        "enum": [
+                          "clean",
+                          "dirty",
+                          "needs replacement",
+                          "unknown"
+                        ]
+                      },
+                      "name": {
+                        "type": "string",
+                        "const": "FilterCleanliness"
+                      }
+                    },
+                    "required": [
+                      "currentSensorState",
+                      "name"
+                    ]
+                  },
+                  {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                      "currentSensorState": {
+                        "type": "string",
+                        "enum": [
+                          "leak",
+                          "no leak",
+                          "unknown"
+                        ]
+                      },
+                      "name": {
+                        "type": "string",
+                        "const": "WaterLeak"
+                      }
+                    },
+                    "required": [
+                      "currentSensorState",
+                      "name"
+                    ]
+                  },
+                  {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                      "currentSensorState": {
+                        "type": "string",
+                        "enum": [
+                          "rain detected",
+                          "no rain detected",
+                          "unknown"
+                        ]
+                      },
+                      "name": {
+                        "type": "string",
+                        "const": "RainDetection"
+                      }
+                    },
+                    "required": [
+                      "currentSensorState",
+                      "name"
+                    ]
+                  },
+                  {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                      "rawValue": {
+                        "type": "number",
+                        "minimum": 0,
+                        "maximum": 100
+                      },
+                      "currentSensorState": {
+                        "type": "string",
+                        "enum": [
+                          "new",
+                          "good",
+                          "replace soon",
+                          "replace now",
+                          "unknown"
+                        ]
+                      },
+                      "name": {
+                        "type": "string",
+                        "const": "FilterLifeTime"
+                      }
+                    },
+                    "required": [
+                      "currentSensorState",
+                      "name",
+                      "rawValue"
+                    ]
+                  },
+                  {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                      "rawValue": {
+                        "type": "number",
+                        "minimum": 0,
+                        "maximum": 100
+                      },
+                      "name": {
+                        "type": "string",
+                        "enum": [
+                          "PreFilterLifeTime",
+                          "HEPAFilterLifeTime",
+                          "Max2FilterLifeTime"
+                        ]
+                      }
+                    },
+                    "required": [
+                      "name",
+                      "rawValue"
+                    ]
+                  },
+                  {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                      "rawValue": {
+                        "type": "number"
+                      },
+                      "name": {
+                        "type": "string",
+                        "const": "CarbonDioxideLevel"
+                      }
+                    },
+                    "required": [
+                      "name",
+                      "rawValue"
+                    ]
+                  },
+                  {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                      "rawValue": {
+                        "type": "number"
+                      },
+                      "name": {
+                        "type": "string",
+                        "enum": [
+                          "PM2.5",
+                          "PM10"
+                        ]
+                      }
+                    },
+                    "required": [
+                      "name",
+                      "rawValue"
+                    ]
+                  },
+                  {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                      "rawValue": {
+                        "type": "number"
+                      },
+                      "name": {
+                        "type": "string",
+                        "const": "VolatileOrganicCompounds"
+                      }
+                    },
+                    "required": [
+                      "name",
+                      "rawValue"
+                    ]
+                  }
+                ]
+              }
+            },
+            "online": {
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "currentSensorStateData",
+            "online"
+          ]
+        },
+        "attributes": {
+          "type": "object",
+          "properties": {
+            "sensorStatesSupported": {
+              "type": "array",
+              "items": {
+                "anyOf": [
+                  {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                      "numericCapabilities": {
+                        "type": "object",
+                        "properties": {
+                          "rawValueUnit": {
+                            "type": "string",
+                            "const": "AQI"
+                          }
+                        },
+                        "required": [
+                          "rawValueUnit"
+                        ],
+                        "additionalProperties": false
+                      },
+                      "descriptiveCapabilities": {
+                        "type": "object",
+                        "properties": {
+                          "availableStates": {
+                            "type": "array",
+                            "items": {
+                              "type": "string",
+                              "enum": [
+                                "healthy",
+                                "moderate",
+                                "unhealthy",
+                                "unhealthy for sensitive groups",
+                                "very unhealthy",
+                                "hazardous",
+                                "good",
+                                "fair",
+                                "poor",
+                                "very poor",
+                                "severe",
+                                "unknown"
+                              ]
+                            }
+                          }
+                        },
+                        "required": [
+                          "availableStates"
+                        ],
+                        "additionalProperties": false
+                      },
+                      "name": {
+                        "type": "string",
+                        "const": "AirQuality"
+                      }
+                    },
+                    "required": [
+                      "descriptiveCapabilities",
+                      "name",
+                      "numericCapabilities"
+                    ]
+                  },
+                  {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                      "numericCapabilities": {
+                        "type": "object",
+                        "properties": {
+                          "rawValueUnit": {
+                            "type": "string",
+                            "const": "PARTS_PER_MILLION"
+                          }
+                        },
+                        "required": [
+                          "rawValueUnit"
+                        ],
+                        "additionalProperties": false
+                      },
+                      "descriptiveCapabilities": {
+                        "type": "object",
+                        "properties": {
+                          "availableStates": {
+                            "type": "array",
+                            "items": {
+                              "type": "string",
+                              "enum": [
+                                "carbon monoxide detected",
+                                "high",
+                                "no carbon monoxide detected",
+                                "unknown"
+                              ]
+                            }
+                          }
+                        },
+                        "required": [
+                          "availableStates"
+                        ],
+                        "additionalProperties": false
+                      },
+                      "name": {
+                        "type": "string",
+                        "const": "CarbonMonoxideLevel"
+                      }
+                    },
+                    "required": [
+                      "descriptiveCapabilities",
+                      "name",
+                      "numericCapabilities"
+                    ]
+                  },
+                  {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                      "numericCapabilities": {
+                        "type": "object",
+                        "properties": {
+                          "rawValueUnit": {
+                            "type": "string",
+                            "const": "PARTS_PER_MILLION"
+                          }
+                        },
+                        "required": [
+                          "rawValueUnit"
+                        ],
+                        "additionalProperties": false
+                      },
+                      "descriptiveCapabilities": {
+                        "type": "object",
+                        "properties": {
+                          "availableStates": {
+                            "type": "array",
+                            "items": {
+                              "type": "string",
+                              "enum": [
+                                "smoke detected",
+                                "high",
+                                "no smoke detected",
+                                "unknown"
+                              ]
+                            }
+                          }
+                        },
+                        "required": [
+                          "availableStates"
+                        ],
+                        "additionalProperties": false
+                      },
+                      "name": {
+                        "type": "string",
+                        "const": "SmokeLevel"
+                      }
+                    },
+                    "required": [
+                      "descriptiveCapabilities",
+                      "name",
+                      "numericCapabilities"
+                    ]
+                  },
+                  {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                      "descriptiveCapabilities": {
+                        "type": "object",
+                        "properties": {
+                          "availableStates": {
+                            "type": "array",
+                            "items": {
+                              "type": "string",
+                              "enum": [
+                                "clean",
+                                "dirty",
+                                "needs replacement",
+                                "unknown"
+                              ]
+                            }
+                          }
+                        },
+                        "required": [
+                          "availableStates"
+                        ],
+                        "additionalProperties": false
+                      },
+                      "name": {
+                        "type": "string",
+                        "const": "FilterCleanliness"
+                      }
+                    },
+                    "required": [
+                      "descriptiveCapabilities",
+                      "name"
+                    ]
+                  },
+                  {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                      "descriptiveCapabilities": {
+                        "type": "object",
+                        "properties": {
+                          "availableStates": {
+                            "type": "array",
+                            "items": {
+                              "type": "string",
+                              "enum": [
+                                "leak",
+                                "no leak",
+                                "unknown"
+                              ]
+                            }
+                          }
+                        },
+                        "required": [
+                          "availableStates"
+                        ],
+                        "additionalProperties": false
+                      },
+                      "name": {
+                        "type": "string",
+                        "const": "WaterLeak"
+                      }
+                    },
+                    "required": [
+                      "descriptiveCapabilities",
+                      "name"
+                    ]
+                  },
+                  {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                      "descriptiveCapabilities": {
+                        "type": "object",
+                        "properties": {
+                          "availableStates": {
+                            "type": "array",
+                            "items": {
+                              "type": "string",
+                              "enum": [
+                                "rain detected",
+                                "no rain detected",
+                                "unknown"
+                              ]
+                            }
+                          }
+                        },
+                        "required": [
+                          "availableStates"
+                        ],
+                        "additionalProperties": false
+                      },
+                      "name": {
+                        "type": "string",
+                        "const": "RainDetection"
+                      }
+                    },
+                    "required": [
+                      "descriptiveCapabilities",
+                      "name"
+                    ]
+                  },
+                  {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                      "numericCapabilities": {
+                        "type": "object",
+                        "properties": {
+                          "rawValueUnit": {
+                            "type": "string",
+                            "const": "PERCENTAGE"
+                          }
+                        },
+                        "required": [
+                          "rawValueUnit"
+                        ],
+                        "additionalProperties": false
+                      },
+                      "descriptiveCapabilities": {
+                        "type": "object",
+                        "properties": {
+                          "availableStates": {
+                            "type": "array",
+                            "items": {
+                              "type": "string",
+                              "enum": [
+                                "new",
+                                "good",
+                                "replace soon",
+                                "replace now",
+                                "unknown"
+                              ]
+                            }
+                          }
+                        },
+                        "required": [
+                          "availableStates"
+                        ],
+                        "additionalProperties": false
+                      },
+                      "name": {
+                        "type": "string",
+                        "const": "FilterLifeTime"
+                      }
+                    },
+                    "required": [
+                      "descriptiveCapabilities",
+                      "name",
+                      "numericCapabilities"
+                    ]
+                  },
+                  {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                      "numericCapabilities": {
+                        "type": "object",
+                        "properties": {
+                          "rawValueUnit": {
+                            "type": "string",
+                            "const": "PERCENTAGE"
+                          }
+                        },
+                        "required": [
+                          "rawValueUnit"
+                        ],
+                        "additionalProperties": false
+                      },
+                      "name": {
+                        "type": "string",
+                        "enum": [
+                          "PreFilterLifeTime",
+                          "HEPAFilterLifeTime",
+                          "Max2FilterLifeTime"
+                        ]
+                      }
+                    },
+                    "required": [
+                      "name",
+                      "numericCapabilities"
+                    ]
+                  },
+                  {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                      "numericCapabilities": {
+                        "type": "object",
+                        "properties": {
+                          "rawValueUnit": {
+                            "type": "string",
+                            "const": "PARTS_PER_MILLION"
+                          }
+                        },
+                        "required": [
+                          "rawValueUnit"
+                        ],
+                        "additionalProperties": false
+                      },
+                      "name": {
+                        "type": "string",
+                        "const": "CarbonDioxideLevel"
+                      }
+                    },
+                    "required": [
+                      "name",
+                      "numericCapabilities"
+                    ]
+                  },
+                  {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                      "numericCapabilities": {
+                        "type": "object",
+                        "properties": {
+                          "rawValueUnit": {
+                            "type": "string",
+                            "const": "MICROGRAMS_PER_CUBIC_METER"
+                          }
+                        },
+                        "required": [
+                          "rawValueUnit"
+                        ],
+                        "additionalProperties": false
+                      },
+                      "name": {
+                        "type": "string",
+                        "enum": [
+                          "PM2.5",
+                          "PM10"
+                        ]
+                      }
+                    },
+                    "required": [
+                      "name",
+                      "numericCapabilities"
+                    ]
+                  },
+                  {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                      "numericCapabilities": {
+                        "type": "object",
+                        "properties": {
+                          "rawValueUnit": {
+                            "type": "string",
+                            "const": "PARTS_PER_MILLION"
+                          }
+                        },
+                        "required": [
+                          "rawValueUnit"
+                        ],
+                        "additionalProperties": false
+                      },
+                      "name": {
+                        "type": "string",
+                        "const": "VolatileOrganicCompounds"
+                      }
+                    },
+                    "required": [
+                      "name",
+                      "numericCapabilities"
+                    ]
+                  }
+                ]
+              }
+            }
+          },
+          "required": [
+            "sensorStatesSupported"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "attributes",
+        "id",
+        "name",
+        "noraSpecific",
+        "state",
+        "traits",
+        "type",
+        "willReportState"
+      ],
+      "definitions": {
+        "Trait": {
+          "type": "string",
+          "enum": [
+            "action.devices.traits.SensorState"
+          ]
+        },
+        "TwoFactor": {
+          "anyOf": [
+            {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "type": "string",
+                  "const": "ack"
+                }
+              },
+              "required": [
+                "type"
+              ],
+              "additionalProperties": false
+            },
+            {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "type": "string",
+                  "const": "pin"
+                },
+                "pin": {
+                  "type": "string",
+                  "maxLength": 20
+                }
+              },
+              "required": [
+                "type",
+                "pin"
+              ],
+              "additionalProperties": false
+            }
+          ]
+        }
+      }
+    },
+    "temperaturecontrol": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "traits": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Trait"
+          }
+        },
+        "id": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "action.devices.types.LIGHT",
+            "action.devices.types.SWITCH",
+            "action.devices.types.SCENE",
+            "action.devices.types.OUTLET",
+            "action.devices.types.THERMOSTAT",
+            "action.devices.types.SPEAKER",
+            "action.devices.types.LOCK",
+            "action.devices.types.SENSOR",
+            "action.devices.types.CLOSET",
+            "action.devices.types.AWNING",
+            "action.devices.types.CURTAIN",
+            "action.devices.types.DOOR",
+            "action.devices.types.DRAWER",
+            "action.devices.types.BLINDS",
+            "action.devices.types.GARAGE",
+            "action.devices.types.GATE",
+            "action.devices.types.PERGOLA",
+            "action.devices.types.SHUTTER",
+            "action.devices.types.VALVE",
+            "action.devices.types.WINDOW"
+          ]
+        },
+        "name": {
+          "type": "object",
+          "properties": {
+            "defaultNames": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "name": {
+              "type": "string",
+              "maxLength": 40
+            },
+            "nicknames": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          "required": [
+            "name"
+          ],
+          "additionalProperties": false
+        },
+        "willReportState": {
+          "type": "boolean"
+        },
+        "notificationSupportedByAgent": {
+          "type": "boolean"
+        },
+        "structureHint": {
+          "type": "string",
+          "description": "Name of the home this device belongs to",
+          "maxLength": 40
+        },
+        "roomHint": {
+          "type": "string",
+          "description": "Name of the room this device belongs to",
+          "maxLength": 40
+        },
+        "deviceInfo": {
+          "type": "object",
+          "properties": {
+            "manufacturer": {
+              "type": "string"
+            },
+            "model": {
+              "type": "string"
+            },
+            "hwVersion": {
+              "type": "string"
+            },
+            "swVersion": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "manufacturer",
+            "model",
+            "hwVersion",
+            "swVersion"
+          ],
+          "additionalProperties": false
+        },
+        "otherDeviceIds": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "agentId": {
+                "type": "string"
+              },
+              "deviceId": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "deviceId"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "customData": {
+          "type": "object",
+          "properties": {
+            "proxyId": {
+              "type": "string",
+              "description": "Used for local execution to identity the instance responsible of this device",
+              "maxLength": 40
+            }
+          },
+          "additionalProperties": false
+        },
+        "noraSpecific": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "disabled": {
+              "type": "boolean"
+            },
+            "twoFactor": {
+              "$ref": "#/definitions/TwoFactor"
+            }
+          }
+        },
+        "state": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "temperatureSetpointCelsius": {
+              "type": "number"
+            },
+            "temperatureAmbientCelsius": {
+              "type": "number"
+            },
+            "online": {
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "online",
+            "temperatureAmbientCelsius",
+            "temperatureSetpointCelsius"
+          ]
+        },
+        "attributes": {
+          "type": "object",
+          "properties": {
+            "temperatureRange": {
+              "type": "object",
+              "properties": {
+                "minThresholdCelsius": {
+                  "type": "number"
+                },
+                "maxThresholdCelsius": {
+                  "type": "number"
+                }
+              },
+              "required": [
+                "minThresholdCelsius",
+                "maxThresholdCelsius"
+              ],
+              "additionalProperties": false
+            },
+            "temperatureStepCelsius": {
+              "type": "number"
+            },
+            "temperatureUnitForUX": {
+              "type": "string",
+              "enum": [
+                "C",
+                "F"
+              ]
+            },
+            "commandOnlyTemperatureControl": {
+              "type": "boolean"
+            },
+            "queryOnlyTemperatureControl": {
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "temperatureRange",
+            "temperatureUnitForUX"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "attributes",
+        "id",
+        "name",
+        "noraSpecific",
+        "state",
+        "traits",
+        "type",
+        "willReportState"
+      ],
+      "definitions": {
+        "Trait": {
+          "type": "string",
+          "enum": [
+            "action.devices.traits.TemperatureControl"
           ]
         },
         "TwoFactor": {
@@ -2650,6 +3843,313 @@ export const Schema = {
         "playbackState"
       ],
       "definitions": {}
+    },
+    "sensorstate": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "currentSensorStateData": {
+          "type": "array",
+          "items": {
+            "anyOf": [
+              {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "rawValue": {
+                    "type": "number"
+                  },
+                  "currentSensorState": {
+                    "type": "string",
+                    "enum": [
+                      "healthy",
+                      "moderate",
+                      "unhealthy",
+                      "unhealthy for sensitive groups",
+                      "very unhealthy",
+                      "hazardous",
+                      "good",
+                      "fair",
+                      "poor",
+                      "very poor",
+                      "severe",
+                      "unknown"
+                    ]
+                  },
+                  "name": {
+                    "type": "string",
+                    "const": "AirQuality"
+                  }
+                },
+                "required": [
+                  "currentSensorState",
+                  "name",
+                  "rawValue"
+                ]
+              },
+              {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "rawValue": {
+                    "type": "number"
+                  },
+                  "currentSensorState": {
+                    "type": "string",
+                    "enum": [
+                      "carbon monoxide detected",
+                      "high",
+                      "no carbon monoxide detected",
+                      "unknown"
+                    ]
+                  },
+                  "name": {
+                    "type": "string",
+                    "const": "CarbonMonoxideLevel"
+                  }
+                },
+                "required": [
+                  "currentSensorState",
+                  "name",
+                  "rawValue"
+                ]
+              },
+              {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "rawValue": {
+                    "type": "number"
+                  },
+                  "currentSensorState": {
+                    "type": "string",
+                    "enum": [
+                      "smoke detected",
+                      "high",
+                      "no smoke detected",
+                      "unknown"
+                    ]
+                  },
+                  "name": {
+                    "type": "string",
+                    "const": "SmokeLevel"
+                  }
+                },
+                "required": [
+                  "currentSensorState",
+                  "name",
+                  "rawValue"
+                ]
+              },
+              {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "currentSensorState": {
+                    "type": "string",
+                    "enum": [
+                      "clean",
+                      "dirty",
+                      "needs replacement",
+                      "unknown"
+                    ]
+                  },
+                  "name": {
+                    "type": "string",
+                    "const": "FilterCleanliness"
+                  }
+                },
+                "required": [
+                  "currentSensorState",
+                  "name"
+                ]
+              },
+              {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "currentSensorState": {
+                    "type": "string",
+                    "enum": [
+                      "leak",
+                      "no leak",
+                      "unknown"
+                    ]
+                  },
+                  "name": {
+                    "type": "string",
+                    "const": "WaterLeak"
+                  }
+                },
+                "required": [
+                  "currentSensorState",
+                  "name"
+                ]
+              },
+              {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "currentSensorState": {
+                    "type": "string",
+                    "enum": [
+                      "rain detected",
+                      "no rain detected",
+                      "unknown"
+                    ]
+                  },
+                  "name": {
+                    "type": "string",
+                    "const": "RainDetection"
+                  }
+                },
+                "required": [
+                  "currentSensorState",
+                  "name"
+                ]
+              },
+              {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "rawValue": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 100
+                  },
+                  "currentSensorState": {
+                    "type": "string",
+                    "enum": [
+                      "new",
+                      "good",
+                      "replace soon",
+                      "replace now",
+                      "unknown"
+                    ]
+                  },
+                  "name": {
+                    "type": "string",
+                    "const": "FilterLifeTime"
+                  }
+                },
+                "required": [
+                  "currentSensorState",
+                  "name",
+                  "rawValue"
+                ]
+              },
+              {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "rawValue": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 100
+                  },
+                  "name": {
+                    "type": "string",
+                    "enum": [
+                      "PreFilterLifeTime",
+                      "HEPAFilterLifeTime",
+                      "Max2FilterLifeTime"
+                    ]
+                  }
+                },
+                "required": [
+                  "name",
+                  "rawValue"
+                ]
+              },
+              {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "rawValue": {
+                    "type": "number"
+                  },
+                  "name": {
+                    "type": "string",
+                    "const": "CarbonDioxideLevel"
+                  }
+                },
+                "required": [
+                  "name",
+                  "rawValue"
+                ]
+              },
+              {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "rawValue": {
+                    "type": "number"
+                  },
+                  "name": {
+                    "type": "string",
+                    "enum": [
+                      "PM2.5",
+                      "PM10"
+                    ]
+                  }
+                },
+                "required": [
+                  "name",
+                  "rawValue"
+                ]
+              },
+              {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "rawValue": {
+                    "type": "number"
+                  },
+                  "name": {
+                    "type": "string",
+                    "const": "VolatileOrganicCompounds"
+                  }
+                },
+                "required": [
+                  "name",
+                  "rawValue"
+                ]
+              }
+            ]
+          }
+        },
+        "online": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "currentSensorStateData",
+        "online"
+      ],
+      "definitions": {}
+    },
+    "temperaturecontrol": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "temperatureSetpointCelsius": {
+          "type": "number"
+        },
+        "temperatureAmbientCelsius": {
+          "type": "number"
+        },
+        "online": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "online",
+        "temperatureAmbientCelsius",
+        "temperatureSetpointCelsius"
+      ],
+      "definitions": {}
     }
   },
   "state-update": {
@@ -2914,6 +4414,256 @@ export const Schema = {
         }
       },
       "definitions": {}
+    },
+    "sensorstate": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "currentSensorStateData": {
+          "type": "array",
+          "items": {
+            "anyOf": [
+              {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "rawValue": {
+                    "type": "number"
+                  },
+                  "currentSensorState": {
+                    "type": "string",
+                    "enum": [
+                      "healthy",
+                      "moderate",
+                      "unhealthy",
+                      "unhealthy for sensitive groups",
+                      "very unhealthy",
+                      "hazardous",
+                      "good",
+                      "fair",
+                      "poor",
+                      "very poor",
+                      "severe",
+                      "unknown"
+                    ]
+                  },
+                  "name": {
+                    "type": "string",
+                    "const": "AirQuality"
+                  }
+                }
+              },
+              {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "rawValue": {
+                    "type": "number"
+                  },
+                  "currentSensorState": {
+                    "type": "string",
+                    "enum": [
+                      "carbon monoxide detected",
+                      "high",
+                      "no carbon monoxide detected",
+                      "unknown"
+                    ]
+                  },
+                  "name": {
+                    "type": "string",
+                    "const": "CarbonMonoxideLevel"
+                  }
+                }
+              },
+              {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "rawValue": {
+                    "type": "number"
+                  },
+                  "currentSensorState": {
+                    "type": "string",
+                    "enum": [
+                      "smoke detected",
+                      "high",
+                      "no smoke detected",
+                      "unknown"
+                    ]
+                  },
+                  "name": {
+                    "type": "string",
+                    "const": "SmokeLevel"
+                  }
+                }
+              },
+              {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "currentSensorState": {
+                    "type": "string",
+                    "enum": [
+                      "clean",
+                      "dirty",
+                      "needs replacement",
+                      "unknown"
+                    ]
+                  },
+                  "name": {
+                    "type": "string",
+                    "const": "FilterCleanliness"
+                  }
+                }
+              },
+              {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "currentSensorState": {
+                    "type": "string",
+                    "enum": [
+                      "leak",
+                      "no leak",
+                      "unknown"
+                    ]
+                  },
+                  "name": {
+                    "type": "string",
+                    "const": "WaterLeak"
+                  }
+                }
+              },
+              {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "currentSensorState": {
+                    "type": "string",
+                    "enum": [
+                      "rain detected",
+                      "no rain detected",
+                      "unknown"
+                    ]
+                  },
+                  "name": {
+                    "type": "string",
+                    "const": "RainDetection"
+                  }
+                }
+              },
+              {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "rawValue": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 100
+                  },
+                  "currentSensorState": {
+                    "type": "string",
+                    "enum": [
+                      "new",
+                      "good",
+                      "replace soon",
+                      "replace now",
+                      "unknown"
+                    ]
+                  },
+                  "name": {
+                    "type": "string",
+                    "const": "FilterLifeTime"
+                  }
+                }
+              },
+              {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "rawValue": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 100
+                  },
+                  "name": {
+                    "type": "string",
+                    "enum": [
+                      "PreFilterLifeTime",
+                      "HEPAFilterLifeTime",
+                      "Max2FilterLifeTime"
+                    ]
+                  }
+                }
+              },
+              {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "rawValue": {
+                    "type": "number"
+                  },
+                  "name": {
+                    "type": "string",
+                    "const": "CarbonDioxideLevel"
+                  }
+                }
+              },
+              {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "rawValue": {
+                    "type": "number"
+                  },
+                  "name": {
+                    "type": "string",
+                    "enum": [
+                      "PM2.5",
+                      "PM10"
+                    ]
+                  }
+                }
+              },
+              {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "rawValue": {
+                    "type": "number"
+                  },
+                  "name": {
+                    "type": "string",
+                    "const": "VolatileOrganicCompounds"
+                  }
+                }
+              }
+            ]
+          }
+        },
+        "online": {
+          "type": "boolean"
+        }
+      },
+      "definitions": {}
+    },
+    "temperaturecontrol": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "temperatureSetpointCelsius": {
+          "type": "number"
+        },
+        "temperatureAmbientCelsius": {
+          "type": "number"
+        },
+        "online": {
+          "type": "boolean"
+        }
+      },
+      "definitions": {}
     }
   }
 };
@@ -2951,11 +4701,11 @@ export const IndividualSchema = {
           ],
           "additionalProperties": false
         },
-        "description": "An array of notification actions representing the actions\r available to the user when the notification is presented."
+        "description": "An array of notification actions representing the actions available to the user when the notification is presented."
       },
       "badge": {
         "type": "string",
-        "description": "URL of the image used to represent the notification when there is\r not enough space to display the notification itself."
+        "description": "URL of the image used to represent the notification when there is not enough space to display the notification itself."
       },
       "body": {
         "type": "string",
@@ -2968,7 +4718,7 @@ export const IndividualSchema = {
           "ltr",
           "rtl"
         ],
-        "description": "The direction in which to display the notification. Must be one\r of `auto`, `ltr` or `rtl`."
+        "description": "The direction in which to display the notification. Must be one of `auto`, `ltr` or `rtl`."
       },
       "icon": {
         "type": "string",
@@ -2984,15 +4734,15 @@ export const IndividualSchema = {
       },
       "renotify": {
         "type": "boolean",
-        "description": "A boolean specifying whether the user should be notified after a\r new notification replaces an old one. Defaults to false."
+        "description": "A boolean specifying whether the user should be notified after a new notification replaces an old one. Defaults to false."
       },
       "requireInteraction": {
         "type": "boolean",
-        "description": "Indicates that a notification should remain active until the user\r clicks or dismisses it, rather than closing automatically.\r Defaults to false."
+        "description": "Indicates that a notification should remain active until the user clicks or dismisses it, rather than closing automatically. Defaults to false."
       },
       "silent": {
         "type": "boolean",
-        "description": "A boolean specifying whether the notification should be silent.\r Defaults to false."
+        "description": "A boolean specifying whether the notification should be silent. Defaults to false."
       },
       "tag": {
         "type": "string",
@@ -3000,7 +4750,7 @@ export const IndividualSchema = {
       },
       "timestamp": {
         "type": "number",
-        "description": "Timestamp of the notification. Refer to\r https://developer.mozilla.org/en-US/docs/Web/API/notification/timestamp\r for details."
+        "description": "Timestamp of the notification. Refer to https://developer.mozilla.org/en-US/docs/Web/API/notification/timestamp for details."
       },
       "vibrate": {
         "anyOf": [
@@ -3014,7 +4764,7 @@ export const IndividualSchema = {
             }
           }
         ],
-        "description": "A vibration pattern for the device's vibration hardware to emit\r when the notification fires."
+        "description": "A vibration pattern for the device's vibration hardware to emit when the notification fires."
       },
       "data": {
         "type": "object",

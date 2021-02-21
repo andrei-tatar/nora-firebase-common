@@ -12,7 +12,8 @@ export function deepClone(o: any) {
 }
 
 const keyResolvers = new Map<string, (item: any, index: number) => any>([
-    ['openState', (item) => item.openDirection.toUpperCase().trim()]
+    ['openState', (item) => item.openDirection.toUpperCase().trim()],
+    ['currentSensorStateData', (item) => item.name],
 ]);
 
 function updateArrayState(update: any[], state: any[], path = ''): boolean {
@@ -32,6 +33,7 @@ function updateArrayState(update: any[], state: any[], path = ''): boolean {
             }
         }
     } else {
+        // TODO: check if there is a difference between the state and the update
         state.splice(0, state.length, ...update);
         return true;
     }
