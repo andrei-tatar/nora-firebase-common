@@ -1,5 +1,5 @@
 import {
-    BrightnessDevice, ColorSettingDevice, Device, LockUnlockDevice, OnOffDevice, OpenCloseDevice,
+    BrightnessDevice, ColorSettingDevice, Device, HumiditySettingDevice, LockUnlockDevice, OnOffDevice, OpenCloseDevice,
     SceneDevice, SensorStateDevice, TemperatureControlDevice, TemperatureSettingDevice, VolumeDevice
 } from './device';
 
@@ -41,4 +41,8 @@ export function isTemperatureControl(device: Pick<Device, 'traits'>): device is 
 
 export function isSensorState(device: Pick<Device, 'traits'>): device is SensorStateDevice {
     return device.traits.includes('action.devices.traits.SensorState');
+}
+
+export function isHumiditySetting(device: Pick<Device, 'traits'>): device is HumiditySettingDevice {
+    return device.traits.includes('action.devices.traits.HumiditySetting');
 }

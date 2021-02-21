@@ -314,6 +314,36 @@ export type TemperatureControlDevice = Device<{
     traits: ['action.devices.traits.TemperatureControl']
 };
 
+export type HumiditySettingDevice = Device<{
+    /**
+     * @minimum 0
+     * @maximum 100
+     */
+    humiditySetpointPercent: number;
+    /**
+     * @minimum 0
+     * @maximum 100
+     */
+    humidityAmbientPercent: number;
+}, {
+    humiditySetpointRange?: {
+        /**
+         * @minimum 0
+         * @maximum 100
+         */
+        minPercent: number;
+        /**
+         * @minimum 0
+         * @maximum 100
+         */
+        maxPercent: number;
+    };
+    commandOnlyHumiditySetting?: boolean;
+    queryOnlyHumiditySetting?: boolean;
+}> & {
+    traits: ['action.devices.traits.HumiditySetting']
+};
+
 type DeviceType =
     'action.devices.types.LIGHT' |
     'action.devices.types.SWITCH' |
@@ -335,7 +365,8 @@ type DeviceType =
     'action.devices.types.PERGOLA' |
     'action.devices.types.SHUTTER' |
     'action.devices.types.VALVE' |
-    'action.devices.types.WINDOW';
+    'action.devices.types.WINDOW' |
+    'action.devices.types.HUMIDIFIER';
 
 export type Trait =
     'action.devices.traits.Brightness' |
@@ -348,4 +379,5 @@ export type Trait =
     'action.devices.traits.OpenClose' |
     'action.devices.traits.MediaState' |
     'action.devices.traits.SensorState' |
-    'action.devices.traits.TemperatureControl';
+    'action.devices.traits.TemperatureControl' |
+    'action.devices.traits.HumiditySetting';

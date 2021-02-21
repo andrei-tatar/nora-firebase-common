@@ -1,5 +1,5 @@
 import {
-    isBrightness, isColorSetting, isLockUnlock, isOnOff, isOpenClose, isScene,
+    isBrightness, isColorSetting, isHumiditySetting, isLockUnlock, isOnOff, isOpenClose, isScene,
     isTemperatureControl, isTemperatureSetting, isVolumeDevice
 } from './checks';
 import { BrightnessDevice, Device, LockUnlockDevice, OnOffDevice, SceneDevice, TemperatureSettingDevice } from './device';
@@ -75,6 +75,32 @@ export function executeCommand({ command, params, device }: ExecuteCommandParams
                 return {
                     updateState: {
                         temperatureSetpointCelsius: params.temperature,
+                    },
+                };
+            }
+            break;
+
+        case 'action.devices.commands.SetHumidity':
+            if (isHumiditySetting(device)) {
+                return {
+                    updateState: {
+                        humiditySetpointPercent: params.humidity,
+                    },
+                };
+            }
+            break;
+
+        case 'action.devices.commands.HumidityRelative':
+            if (isHumiditySetting(device)) {
+                let newHumidity: number;
+                if ('humidityRelativePercent' in params) {
+                    newHumidity = device.state.humiditySetpointPercent + params.humidityRelativePercent;
+                } else {
+                    newHumidity = device.state.humiditySetpointPercent + params.humidityRelativeWeight * 10;
+                }
+                return {
+                    updateState: {
+                        humiditySetpointPercent: fitPercent(newHumidity),
                     },
                 };
             }

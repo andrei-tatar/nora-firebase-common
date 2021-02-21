@@ -46,7 +46,8 @@ export const Schema = {
             "action.devices.types.PERGOLA",
             "action.devices.types.SHUTTER",
             "action.devices.types.VALVE",
-            "action.devices.types.WINDOW"
+            "action.devices.types.WINDOW",
+            "action.devices.types.HUMIDIFIER"
           ]
         },
         "name": {
@@ -277,7 +278,8 @@ export const Schema = {
             "action.devices.types.PERGOLA",
             "action.devices.types.SHUTTER",
             "action.devices.types.VALVE",
-            "action.devices.types.WINDOW"
+            "action.devices.types.WINDOW",
+            "action.devices.types.HUMIDIFIER"
           ]
         },
         "name": {
@@ -598,7 +600,8 @@ export const Schema = {
             "action.devices.types.PERGOLA",
             "action.devices.types.SHUTTER",
             "action.devices.types.VALVE",
-            "action.devices.types.WINDOW"
+            "action.devices.types.WINDOW",
+            "action.devices.types.HUMIDIFIER"
           ]
         },
         "name": {
@@ -826,7 +829,8 @@ export const Schema = {
             "action.devices.types.PERGOLA",
             "action.devices.types.SHUTTER",
             "action.devices.types.VALVE",
-            "action.devices.types.WINDOW"
+            "action.devices.types.WINDOW",
+            "action.devices.types.HUMIDIFIER"
           ]
         },
         "name": {
@@ -1050,7 +1054,8 @@ export const Schema = {
             "action.devices.types.PERGOLA",
             "action.devices.types.SHUTTER",
             "action.devices.types.VALVE",
-            "action.devices.types.WINDOW"
+            "action.devices.types.WINDOW",
+            "action.devices.types.HUMIDIFIER"
           ]
         },
         "name": {
@@ -1283,7 +1288,8 @@ export const Schema = {
             "action.devices.types.PERGOLA",
             "action.devices.types.SHUTTER",
             "action.devices.types.VALVE",
-            "action.devices.types.WINDOW"
+            "action.devices.types.WINDOW",
+            "action.devices.types.HUMIDIFIER"
           ]
         },
         "name": {
@@ -1594,7 +1600,8 @@ export const Schema = {
             "action.devices.types.PERGOLA",
             "action.devices.types.SHUTTER",
             "action.devices.types.VALVE",
-            "action.devices.types.WINDOW"
+            "action.devices.types.WINDOW",
+            "action.devices.types.HUMIDIFIER"
           ]
         },
         "name": {
@@ -1838,7 +1845,8 @@ export const Schema = {
             "action.devices.types.PERGOLA",
             "action.devices.types.SHUTTER",
             "action.devices.types.VALVE",
-            "action.devices.types.WINDOW"
+            "action.devices.types.WINDOW",
+            "action.devices.types.HUMIDIFIER"
           ]
         },
         "name": {
@@ -2126,7 +2134,8 @@ export const Schema = {
             "action.devices.types.PERGOLA",
             "action.devices.types.SHUTTER",
             "action.devices.types.VALVE",
-            "action.devices.types.WINDOW"
+            "action.devices.types.WINDOW",
+            "action.devices.types.HUMIDIFIER"
           ]
         },
         "name": {
@@ -2371,7 +2380,8 @@ export const Schema = {
             "action.devices.types.PERGOLA",
             "action.devices.types.SHUTTER",
             "action.devices.types.VALVE",
-            "action.devices.types.WINDOW"
+            "action.devices.types.WINDOW",
+            "action.devices.types.HUMIDIFIER"
           ]
         },
         "name": {
@@ -3293,7 +3303,8 @@ export const Schema = {
             "action.devices.types.PERGOLA",
             "action.devices.types.SHUTTER",
             "action.devices.types.VALVE",
-            "action.devices.types.WINDOW"
+            "action.devices.types.WINDOW",
+            "action.devices.types.HUMIDIFIER"
           ]
         },
         "name": {
@@ -3480,6 +3491,263 @@ export const Schema = {
           "type": "string",
           "enum": [
             "action.devices.traits.TemperatureControl"
+          ]
+        },
+        "TwoFactor": {
+          "anyOf": [
+            {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "type": "string",
+                  "const": "ack"
+                }
+              },
+              "required": [
+                "type"
+              ],
+              "additionalProperties": false
+            },
+            {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "type": "string",
+                  "const": "pin"
+                },
+                "pin": {
+                  "type": "string",
+                  "maxLength": 20
+                }
+              },
+              "required": [
+                "type",
+                "pin"
+              ],
+              "additionalProperties": false
+            }
+          ]
+        }
+      }
+    },
+    "humiditysetting": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "traits": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Trait"
+          }
+        },
+        "id": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "action.devices.types.LIGHT",
+            "action.devices.types.SWITCH",
+            "action.devices.types.SCENE",
+            "action.devices.types.OUTLET",
+            "action.devices.types.THERMOSTAT",
+            "action.devices.types.SPEAKER",
+            "action.devices.types.LOCK",
+            "action.devices.types.SENSOR",
+            "action.devices.types.CLOSET",
+            "action.devices.types.AWNING",
+            "action.devices.types.CURTAIN",
+            "action.devices.types.DOOR",
+            "action.devices.types.DRAWER",
+            "action.devices.types.BLINDS",
+            "action.devices.types.GARAGE",
+            "action.devices.types.GATE",
+            "action.devices.types.PERGOLA",
+            "action.devices.types.SHUTTER",
+            "action.devices.types.VALVE",
+            "action.devices.types.WINDOW",
+            "action.devices.types.HUMIDIFIER"
+          ]
+        },
+        "name": {
+          "type": "object",
+          "properties": {
+            "defaultNames": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "name": {
+              "type": "string",
+              "maxLength": 40
+            },
+            "nicknames": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          "required": [
+            "name"
+          ],
+          "additionalProperties": false
+        },
+        "willReportState": {
+          "type": "boolean"
+        },
+        "notificationSupportedByAgent": {
+          "type": "boolean"
+        },
+        "structureHint": {
+          "type": "string",
+          "description": "Name of the home this device belongs to",
+          "maxLength": 40
+        },
+        "roomHint": {
+          "type": "string",
+          "description": "Name of the room this device belongs to",
+          "maxLength": 40
+        },
+        "deviceInfo": {
+          "type": "object",
+          "properties": {
+            "manufacturer": {
+              "type": "string"
+            },
+            "model": {
+              "type": "string"
+            },
+            "hwVersion": {
+              "type": "string"
+            },
+            "swVersion": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "manufacturer",
+            "model",
+            "hwVersion",
+            "swVersion"
+          ],
+          "additionalProperties": false
+        },
+        "otherDeviceIds": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "agentId": {
+                "type": "string"
+              },
+              "deviceId": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "deviceId"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "customData": {
+          "type": "object",
+          "properties": {
+            "proxyId": {
+              "type": "string",
+              "description": "Used for local execution to identity the instance responsible of this device",
+              "maxLength": 40
+            }
+          },
+          "additionalProperties": false
+        },
+        "noraSpecific": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "disabled": {
+              "type": "boolean"
+            },
+            "twoFactor": {
+              "$ref": "#/definitions/TwoFactor"
+            }
+          }
+        },
+        "state": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "humiditySetpointPercent": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 100
+            },
+            "humidityAmbientPercent": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 100
+            },
+            "online": {
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "humidityAmbientPercent",
+            "humiditySetpointPercent",
+            "online"
+          ]
+        },
+        "attributes": {
+          "type": "object",
+          "properties": {
+            "humiditySetpointRange": {
+              "type": "object",
+              "properties": {
+                "minPercent": {
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 100
+                },
+                "maxPercent": {
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 100
+                }
+              },
+              "required": [
+                "minPercent",
+                "maxPercent"
+              ],
+              "additionalProperties": false
+            },
+            "commandOnlyHumiditySetting": {
+              "type": "boolean"
+            },
+            "queryOnlyHumiditySetting": {
+              "type": "boolean"
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "attributes",
+        "id",
+        "name",
+        "noraSpecific",
+        "state",
+        "traits",
+        "type",
+        "willReportState"
+      ],
+      "definitions": {
+        "Trait": {
+          "type": "string",
+          "enum": [
+            "action.devices.traits.HumiditySetting"
           ]
         },
         "TwoFactor": {
@@ -4150,6 +4418,32 @@ export const Schema = {
         "temperatureSetpointCelsius"
       ],
       "definitions": {}
+    },
+    "humiditysetting": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "humiditySetpointPercent": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100
+        },
+        "humidityAmbientPercent": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100
+        },
+        "online": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "humidityAmbientPercent",
+        "humiditySetpointPercent",
+        "online"
+      ],
+      "definitions": {}
     }
   },
   "state-update": {
@@ -4658,6 +4952,27 @@ export const Schema = {
         },
         "temperatureAmbientCelsius": {
           "type": "number"
+        },
+        "online": {
+          "type": "boolean"
+        }
+      },
+      "definitions": {}
+    },
+    "humiditysetting": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "humiditySetpointPercent": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100
+        },
+        "humidityAmbientPercent": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100
         },
         "online": {
           "type": "boolean"
