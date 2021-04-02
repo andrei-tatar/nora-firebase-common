@@ -156,6 +156,19 @@ export const Schema = {
             },
             "twoFactor": {
               "$ref": "#/definitions/TwoFactor"
+            },
+            "error": {
+              "type": "object",
+              "properties": {
+                "msg": {
+                  "type": "string"
+                },
+                "details": {}
+              },
+              "required": [
+                "msg"
+              ],
+              "additionalProperties": false
             }
           },
           "required": [
@@ -385,6 +398,19 @@ export const Schema = {
             },
             "twoFactor": {
               "$ref": "#/definitions/TwoFactor"
+            },
+            "error": {
+              "type": "object",
+              "properties": {
+                "msg": {
+                  "type": "string"
+                },
+                "details": {}
+              },
+              "required": [
+                "msg"
+              ],
+              "additionalProperties": false
             }
           }
         },
@@ -707,6 +733,19 @@ export const Schema = {
             },
             "twoFactor": {
               "$ref": "#/definitions/TwoFactor"
+            },
+            "error": {
+              "type": "object",
+              "properties": {
+                "msg": {
+                  "type": "string"
+                },
+                "details": {}
+              },
+              "required": [
+                "msg"
+              ],
+              "additionalProperties": false
             }
           }
         },
@@ -936,6 +975,19 @@ export const Schema = {
             },
             "twoFactor": {
               "$ref": "#/definitions/TwoFactor"
+            },
+            "error": {
+              "type": "object",
+              "properties": {
+                "msg": {
+                  "type": "string"
+                },
+                "details": {}
+              },
+              "required": [
+                "msg"
+              ],
+              "additionalProperties": false
             }
           }
         },
@@ -1173,6 +1225,19 @@ export const Schema = {
             },
             "twoFactor": {
               "$ref": "#/definitions/TwoFactor"
+            },
+            "error": {
+              "type": "object",
+              "properties": {
+                "msg": {
+                  "type": "string"
+                },
+                "details": {}
+              },
+              "required": [
+                "msg"
+              ],
+              "additionalProperties": false
             }
           }
         },
@@ -1408,6 +1473,19 @@ export const Schema = {
             },
             "twoFactor": {
               "$ref": "#/definitions/TwoFactor"
+            },
+            "error": {
+              "type": "object",
+              "properties": {
+                "msg": {
+                  "type": "string"
+                },
+                "details": {}
+              },
+              "required": [
+                "msg"
+              ],
+              "additionalProperties": false
             }
           }
         },
@@ -1707,6 +1785,19 @@ export const Schema = {
             },
             "twoFactor": {
               "$ref": "#/definitions/TwoFactor"
+            },
+            "error": {
+              "type": "object",
+              "properties": {
+                "msg": {
+                  "type": "string"
+                },
+                "details": {}
+              },
+              "required": [
+                "msg"
+              ],
+              "additionalProperties": false
             }
           }
         },
@@ -1952,6 +2043,19 @@ export const Schema = {
             },
             "twoFactor": {
               "$ref": "#/definitions/TwoFactor"
+            },
+            "error": {
+              "type": "object",
+              "properties": {
+                "msg": {
+                  "type": "string"
+                },
+                "details": {}
+              },
+              "required": [
+                "msg"
+              ],
+              "additionalProperties": false
             }
           }
         },
@@ -2241,6 +2345,19 @@ export const Schema = {
             },
             "twoFactor": {
               "$ref": "#/definitions/TwoFactor"
+            },
+            "error": {
+              "type": "object",
+              "properties": {
+                "msg": {
+                  "type": "string"
+                },
+                "details": {}
+              },
+              "required": [
+                "msg"
+              ],
+              "additionalProperties": false
             }
           }
         },
@@ -2487,6 +2604,19 @@ export const Schema = {
             },
             "twoFactor": {
               "$ref": "#/definitions/TwoFactor"
+            },
+            "error": {
+              "type": "object",
+              "properties": {
+                "msg": {
+                  "type": "string"
+                },
+                "details": {}
+              },
+              "required": [
+                "msg"
+              ],
+              "additionalProperties": false
             }
           }
         },
@@ -3410,6 +3540,19 @@ export const Schema = {
             },
             "twoFactor": {
               "$ref": "#/definitions/TwoFactor"
+            },
+            "error": {
+              "type": "object",
+              "properties": {
+                "msg": {
+                  "type": "string"
+                },
+                "details": {}
+              },
+              "required": [
+                "msg"
+              ],
+              "additionalProperties": false
             }
           }
         },
@@ -3673,6 +3816,19 @@ export const Schema = {
             },
             "twoFactor": {
               "$ref": "#/definitions/TwoFactor"
+            },
+            "error": {
+              "type": "object",
+              "properties": {
+                "msg": {
+                  "type": "string"
+                },
+                "details": {}
+              },
+              "required": [
+                "msg"
+              ],
+              "additionalProperties": false
             }
           }
         },

@@ -52,6 +52,10 @@ export interface Device<TState = {}, TAttributes = {}, TNora = {}> {
     noraSpecific: {
         disabled?: boolean;
         twoFactor?: TwoFactor;
+        error?: {
+            msg: string;
+            details?: any;
+        };
     } & TNora;
     state: {
         online: boolean;
