@@ -42,10 +42,14 @@ export function executeCommand({ command, params, device }: ExecuteCommandParams
         case 'action.devices.commands.ThermostatSetMode':
             if (isTemperatureSetting(device)) {
                 if (params.thermostatMode === 'on') {
-                    if (device.noraSpecific?.previousMode) {
+                    const mode =
+                        device.noraSpecific?.previousMode ??
+                        device.noraSpecific?.defaultMode ??
+                        device.attributes.availableThermostatModes.filter(m => m !== 'on' && m !== 'off')?.[0];
+                    if (mode) {
                         return {
                             updateState: {
-                                thermostatMode: device.noraSpecific?.previousMode,
+                                thermostatMode: mode,
                             },
                         };
                     }

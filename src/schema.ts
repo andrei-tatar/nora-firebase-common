@@ -1468,6 +1468,19 @@ export const Schema = {
                 "heatcool"
               ]
             },
+            "defaultMode": {
+              "type": "string",
+              "enum": [
+                "heat",
+                "cool",
+                "auto",
+                "fan-only",
+                "purifier",
+                "eco",
+                "dry",
+                "heatcool"
+              ]
+            },
             "disabled": {
               "type": "boolean"
             },

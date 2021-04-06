@@ -151,6 +151,7 @@ export type TemperatureSettingDevice = Device<{
     queryOnlyTemperatureSetting?: boolean;
 }, {
     previousMode?: Exclude<ThermostatMode, 'on' | 'off'>,
+    defaultMode?: Exclude<ThermostatMode, 'on' | 'off'>;
 }> & {
     traits: ['action.devices.traits.TemperatureSetting']
 };
