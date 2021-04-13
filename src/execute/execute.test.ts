@@ -1,6 +1,6 @@
 import * as chai from 'chai';
-import { TemperatureSettingDevice } from './device';
-import { executeCommand } from './execute';
+import { TemperatureSettingDevice } from '../device';
+import { executeCommand } from '.';
 
 const expect = chai.expect;
 describe('executeCommand', () => {
