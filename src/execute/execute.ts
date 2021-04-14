@@ -32,7 +32,8 @@ export class TwoFactorError extends ExecuteCommandError {
 }
 
 export function executeCommand({ command, params, device, challenge }: ExecuteCommandParams): Changes | null {
-    checkSecondaryVerification(device, challenge);
     const handler = HANDLERS.get(command);
-    return handler?.(device, params) ?? null;
+    const result = handler?.(device, params) ?? null;
+    checkSecondaryVerification(device, challenge);
+    return result;
 }
