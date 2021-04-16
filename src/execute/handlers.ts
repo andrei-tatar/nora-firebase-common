@@ -122,6 +122,7 @@ HANDLERS.set('action.devices.commands.LockUnlock', (device, params) => {
         };
         return {
             updateState: updates,
+            skipSecondaryVerification: params.lock,
         };
     }
     return null;
@@ -153,6 +154,7 @@ HANDLERS.set('action.devices.commands.OpenClose', (device, params) => {
                             return st;
                         })
                     },
+                    skipSecondaryVerification: params.openPercent === 0,
                 };
             }
         } else {
@@ -160,6 +162,7 @@ HANDLERS.set('action.devices.commands.OpenClose', (device, params) => {
                 updateState: {
                     openPercent: params.openPercent,
                 },
+                skipSecondaryVerification: params.openPercent === 0,
             };
         }
     }

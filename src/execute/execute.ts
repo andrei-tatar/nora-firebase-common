@@ -5,6 +5,7 @@ import { checkSecondaryVerification } from './secondary-verification';
 export interface Changes {
     updateState?: { [key: string]: any };
     updateNoraSpecific?: { [key: string]: any };
+    skipSecondaryVerification?: boolean;
 }
 
 export interface ExecuteCommandParams {
@@ -34,6 +35,8 @@ export class TwoFactorError extends ExecuteCommandError {
 export function executeCommand({ command, params, device, challenge }: ExecuteCommandParams): Changes | null {
     const handler = HANDLERS.get(command);
     const result = handler?.(device, params) ?? null;
-    checkSecondaryVerification(device, challenge);
+    if (result?.skipSecondaryVerification !== true) {
+        checkSecondaryVerification(device, challenge);
+    }
     return result;
 }
