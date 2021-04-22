@@ -349,6 +349,36 @@ export type HumiditySettingDevice = Device<{
     traits: ['action.devices.traits.HumiditySetting']
 };
 
+export type FanSpeedDevice = Device<{
+    currentFanSpeedSetting: string;
+} | {
+    /**
+     * @minimum 0
+     * @maximum 100
+     */
+    currentFanSpeedPercent: number;
+}, {
+    reversible?: boolean;
+    commandOnlyFanSpeed?: boolean;
+} & ({
+    availableFanSpeeds: {
+        speeds: {
+            speed_name: string;
+            speed_values: {
+                speed_synonym: string[];
+                lang: Language;
+            }[];
+        }[];
+        ordered: boolean;
+    }
+} | {
+    supportsFanSpeedPercent: true;
+})> & {
+    traits: ['action.devices.traits.FanSpeed']
+};
+
+type Language = 'da' | 'nl' | 'en' | 'fr' | 'de' | 'hi' | 'id' | 'it' | 'ja' | 'ko' | 'no' | 'pt-BR' | 'es' | 'sv' | 'th';
+
 type DeviceType =
     'action.devices.types.LIGHT' |
     'action.devices.types.SWITCH' |
@@ -358,6 +388,7 @@ type DeviceType =
     'action.devices.types.SPEAKER' |
     'action.devices.types.LOCK' |
     'action.devices.types.SENSOR' |
+    'action.devices.types.FAN' |
 
     'action.devices.types.CLOSET' |
     'action.devices.types.AWNING' |
@@ -385,4 +416,5 @@ export type Trait =
     'action.devices.traits.MediaState' |
     'action.devices.traits.SensorState' |
     'action.devices.traits.TemperatureControl' |
-    'action.devices.traits.HumiditySetting';
+    'action.devices.traits.HumiditySetting' |
+    'action.devices.traits.FanSpeed';

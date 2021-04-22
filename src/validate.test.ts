@@ -1,5 +1,5 @@
 import * as chai from 'chai';
-import { SensorStateDevice, Trait } from './device';
+import { FanSpeedDevice, OnOffDevice, SensorStateDevice, Trait } from './device';
 import { validate } from './validate';
 
 const expect = chai.expect;
@@ -186,4 +186,29 @@ describe('validate', () => {
     const result = validate(['action.devices.traits.SensorState'], 'state', sensorState);
     expect(result.valid).to.be.false;
   });
+
+  it('should validate FanSpeed&OnOff device', () => {
+    const device: FanSpeedDevice & OnOffDevice = {
+      id: 'some-id',
+      traits: ['action.devices.traits.FanSpeed', 'action.devices.traits.OnOff'] as never,
+      name: {
+        name: 'test'
+      },
+      noraSpecific: {},
+      attributes: {
+        supportsFanSpeedPercent: true,
+      },
+      state: {
+        currentFanSpeedPercent: 10,
+        on: true,
+        online: true,
+      },
+      type: 'action.devices.types.FAN',
+      willReportState: true,
+    };
+
+    const result = validate(['action.devices.traits.FanSpeed', 'action.devices.traits.OnOff'], 'device', device);
+    expect(result.valid).to.be.true;
+  });
+
 });

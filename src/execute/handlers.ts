@@ -1,8 +1,8 @@
 import {
-    isBrightness, isColorSetting, isHumiditySetting, isLockUnlock, isOnOff, isOpenClose, isScene,
+    isBrightness, isColorSetting, isFanSpeedDevice, isHumiditySetting, isLockUnlock, isOnOff, isOpenClose, isScene,
     isTemperatureControl, isTemperatureSetting, isVolumeDevice
 } from '../checks';
-import { BrightnessDevice, Device, LockUnlockDevice, OnOffDevice, SceneDevice, TemperatureSettingDevice } from '../device';
+import { BrightnessDevice, Device, FanSpeedDevice, LockUnlockDevice, OnOffDevice, SceneDevice, TemperatureSettingDevice, VolumeDevice } from '../device';
 import { Changes, ExecuteCommandError } from './execute';
 
 export type CommandHandler = (device: Device, params: any) => Changes | null;
@@ -105,7 +105,7 @@ HANDLERS.set('action.devices.commands.HumidityRelative', (device, params) => {
         }
         return {
             updateState: {
-                humiditySetpointPercent: fitPercent(newHumidity),
+                humiditySetpointPercent: limit(newHumidity),
             },
         };
     }
@@ -173,7 +173,7 @@ HANDLERS.set('action.devices.commands.OpenCloseRelative', (device, params) => {
         if ('openPercent' in device.state) {
             return {
                 updateState: {
-                    openPercent: fitPercent(params.openRelativePercent + device.state.openPercent),
+                    openPercent: limit(params.openRelativePercent + device.state.openPercent),
                 },
             };
         } else {
@@ -182,7 +182,7 @@ HANDLERS.set('action.devices.commands.OpenCloseRelative', (device, params) => {
                     openState: device.state.openState.map(st => {
                         if (st.openDirection === params.openDirection || !params.openDirection) {
                             return {
-                                openPercent: fitPercent(params.openRelativePercent + st.openPercent),
+                                openPercent: limit(params.openRelativePercent + st.openPercent),
                                 openDirection: st.openDirection,
                             };
                         }
@@ -220,11 +220,19 @@ HANDLERS.set('action.devices.commands.ColorAbsolute', (device, params) => {
 });
 HANDLERS.set('action.devices.commands.setVolume', (device, params) => {
     if (isVolumeDevice(device)) {
-        return {
-            updateState: {
-                currentVolume: params.volumeLevel,
-            },
+        const updateState: Partial<VolumeDevice['state']> = {
+            currentVolume: params.volumeLevel,
         };
+        return { updateState };
+    }
+    return null;
+});
+HANDLERS.set('action.devices.commands.mute', (device, params) => {
+    if (isVolumeDevice(device)) {
+        const updateState: Partial<VolumeDevice['state']> = {
+            isMuted: params.mute,
+        };
+        return { updateState };
     }
     return null;
 });
@@ -242,7 +250,56 @@ HANDLERS.set('action.devices.commands.volumeRelative', (device, params) => {
     }
     return null;
 });
+HANDLERS.set('action.devices.commands.SetFanSpeed', (device, params) => {
+    if (isFanSpeedDevice(device)) {
+        let updateState: Partial<FanSpeedDevice['state']> | undefined;
+        if ('supportsFanSpeedPercent' in device.attributes && typeof params.fanSpeedPercent === 'number') {
+            updateState = {
+                currentFanSpeedPercent: params.fanSpeedPercent,
+            };
+        } else if ('availableFanSpeeds' in device.attributes && typeof params.fanSpeed === 'string') {
+            updateState = {
+                currentFanSpeedSetting: params.fanSpeed,
+            };
+        }
+        return {
+            updateState
+        };
+    }
+    return null;
+});
+HANDLERS.set('action.devices.commands.SetFanSpeedRelative', (device, params) => {
+    if (isFanSpeedDevice(device)) {
+        let updateState: Partial<FanSpeedDevice['state']> | undefined;
+        if ('supportsFanSpeedPercent' in device.attributes &&
+            'currentFanSpeedPercent' in device.state) {
+            if (typeof params.fanSpeedRelativePercent === 'number') {
+                updateState = {
+                    currentFanSpeedPercent: limit(device.state.currentFanSpeedPercent + params.fanSpeedRelativePercent),
+                };
+            } else {
+                updateState = {
+                    currentFanSpeedPercent: limit(device.state.currentFanSpeedPercent + params.fanSpeedRelativeWeight * 10),
+                };
+            }
+        } else if ('availableFanSpeeds' in device.attributes && typeof params.fanSpeedRelativeWeight === 'number' &&
+            'currentFanSpeedSetting' in device.state) {
+            const currentSpeed = device.state.currentFanSpeedSetting;
+            let index = device.attributes.availableFanSpeeds.speeds.findIndex(d => d.speed_name === currentSpeed);
+            if (index !== -1) {
+                index = limit(index + params.fanSpeedRelativeWeight, 0, device.attributes.availableFanSpeeds.speeds.length - 1);
+                updateState = {
+                    currentFanSpeedSetting: device.attributes.availableFanSpeeds.speeds[index].speed_name,
+                };
+            }
+        }
+        return {
+            updateState
+        };
+    }
+    return null;
+});
 
-function fitPercent(n: number, minimum = 0, maximum = 100) {
+function limit(n: number, minimum = 0, maximum = 100) {
     return Math.min(maximum, Math.max(minimum, n));
 }
