@@ -211,7 +211,7 @@ HANDLERS.set('action.devices.commands.ColorAbsolute', (device, params) => {
         if ('temperature' in params?.color && changes.updateState?.color) {
             changes.updateState.color.temperatureK = params.color.temperature;
         }
-        if (isBrightness(device) && device.noraSpecific.turnOnWhenBrightnessChanges && changes?.updateState) {
+        if (device.noraSpecific.turnOnWhenColorChanges && changes?.updateState) {
             changes.updateState.on = true;
         }
         return changes;

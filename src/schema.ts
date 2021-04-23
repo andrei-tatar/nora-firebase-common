@@ -395,6 +395,9 @@ export const Schema = {
           "type": "object",
           "additionalProperties": false,
           "properties": {
+            "turnOnWhenColorChanges": {
+              "type": "boolean"
+            },
             "disabled": {
               "type": "boolean"
             },

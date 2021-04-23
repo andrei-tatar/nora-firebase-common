@@ -94,7 +94,9 @@ export type ColorSettingDevice = Device<{
         temperatureMinK: number;
         temperatureMaxK: number;
     }
-})> & {
+}), {
+    turnOnWhenColorChanges?: boolean;
+}> & {
     traits: ['action.devices.traits.ColorSetting'];
 };
 
