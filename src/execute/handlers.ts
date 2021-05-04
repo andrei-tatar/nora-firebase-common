@@ -252,13 +252,15 @@ HANDLERS.set('action.devices.commands.volumeRelative', (device, params) => {
 });
 HANDLERS.set('action.devices.commands.SetFanSpeed', (device, params) => {
     if (isFanSpeedDevice(device)) {
-        let updateState: Partial<FanSpeedDevice['state']> | undefined;
+        let updateState: Partial<(FanSpeedDevice & OnOffDevice)['state']> | undefined;
         if ('supportsFanSpeedPercent' in device.attributes && typeof params.fanSpeedPercent === 'number') {
             updateState = {
+                on: true,
                 currentFanSpeedPercent: params.fanSpeedPercent,
             };
         } else if ('availableFanSpeeds' in device.attributes && typeof params.fanSpeed === 'string') {
             updateState = {
+                on: true,
                 currentFanSpeedSetting: params.fanSpeed,
             };
         }
@@ -270,15 +272,17 @@ HANDLERS.set('action.devices.commands.SetFanSpeed', (device, params) => {
 });
 HANDLERS.set('action.devices.commands.SetFanSpeedRelative', (device, params) => {
     if (isFanSpeedDevice(device)) {
-        let updateState: Partial<FanSpeedDevice['state']> | undefined;
+        let updateState: Partial<(FanSpeedDevice & OnOffDevice)['state']> | undefined;
         if ('supportsFanSpeedPercent' in device.attributes &&
             'currentFanSpeedPercent' in device.state) {
             if (typeof params.fanSpeedRelativePercent === 'number') {
                 updateState = {
+                    on: true,
                     currentFanSpeedPercent: limit(device.state.currentFanSpeedPercent + params.fanSpeedRelativePercent),
                 };
             } else {
                 updateState = {
+                    on: true,
                     currentFanSpeedPercent: limit(device.state.currentFanSpeedPercent + params.fanSpeedRelativeWeight * 10),
                 };
             }
@@ -289,6 +293,7 @@ HANDLERS.set('action.devices.commands.SetFanSpeedRelative', (device, params) => 
             if (index !== -1) {
                 index = limit(index + params.fanSpeedRelativeWeight, 0, device.attributes.availableFanSpeeds.speeds.length - 1);
                 updateState = {
+                    on: true,
                     currentFanSpeedSetting: device.attributes.availableFanSpeeds.speeds[index].speed_name,
                 };
             }
