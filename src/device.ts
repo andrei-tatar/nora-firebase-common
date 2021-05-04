@@ -129,9 +129,13 @@ export type SceneDevice = Device<{
 };
 
 export type ThermostatMode = 'off' | 'heat' | 'cool' | 'on' | 'auto' | 'fan-only' | 'purifier' | 'eco' | 'dry' | 'heatcool';
+export type ThermostatActiveMode = ThermostatMode | 'none';
+export type PreviousMode = Exclude<ThermostatMode, 'on' | 'off'>;
 
 export type TemperatureSettingDevice = Device<{
-    thermostatMode: ThermostatMode;
+    activeThermostatMode?: ThermostatActiveMode;
+    targetTempReachedEstimateUnixTimestampSec?: number;
+    thermostatMode: ThermostatActiveMode;
     thermostatTemperatureAmbient: number;
     /**
      * @minimum 0
@@ -152,8 +156,8 @@ export type TemperatureSettingDevice = Device<{
     commandOnlyTemperatureSetting?: boolean;
     queryOnlyTemperatureSetting?: boolean;
 }, {
-    previousMode?: Exclude<ThermostatMode, 'on' | 'off'>,
-    defaultMode?: Exclude<ThermostatMode, 'on' | 'off'>;
+    previousMode?: PreviousMode;
+    defaultMode?: PreviousMode;
 }> & {
     traits: ['action.devices.traits.TemperatureSetting']
 };
@@ -373,6 +377,7 @@ export type FanSpeedDevice = Device<{
         }[];
         ordered: boolean;
     }
+    supportsFanSpeedPercent?: false;
 } | {
     supportsFanSpeedPercent: true;
 })> & {

@@ -1465,30 +1465,10 @@ export const Schema = {
           "additionalProperties": false,
           "properties": {
             "previousMode": {
-              "type": "string",
-              "enum": [
-                "heat",
-                "cool",
-                "auto",
-                "fan-only",
-                "purifier",
-                "eco",
-                "dry",
-                "heatcool"
-              ]
+              "$ref": "#/definitions/PreviousMode"
             },
             "defaultMode": {
-              "type": "string",
-              "enum": [
-                "heat",
-                "cool",
-                "auto",
-                "fan-only",
-                "purifier",
-                "eco",
-                "dry",
-                "heatcool"
-              ]
+              "$ref": "#/definitions/PreviousMode"
             },
             "disabled": {
               "type": "boolean"
@@ -1515,8 +1495,14 @@ export const Schema = {
           "type": "object",
           "additionalProperties": false,
           "properties": {
+            "activeThermostatMode": {
+              "$ref": "#/definitions/ThermostatActiveMode"
+            },
+            "targetTempReachedEstimateUnixTimestampSec": {
+              "type": "number"
+            },
             "thermostatMode": {
-              "$ref": "#/definitions/ThermostatMode"
+              "$ref": "#/definitions/ThermostatActiveMode"
             },
             "thermostatTemperatureAmbient": {
               "type": "number"
@@ -1612,6 +1598,19 @@ export const Schema = {
             "action.devices.traits.TemperatureSetting"
           ]
         },
+        "PreviousMode": {
+          "type": "string",
+          "enum": [
+            "heat",
+            "cool",
+            "auto",
+            "fan-only",
+            "purifier",
+            "eco",
+            "dry",
+            "heatcool"
+          ]
+        },
         "TwoFactor": {
           "anyOf": [
             {
@@ -1644,6 +1643,17 @@ export const Schema = {
                 "pin"
               ],
               "additionalProperties": false
+            }
+          ]
+        },
+        "ThermostatActiveMode": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/ThermostatMode"
+            },
+            {
+              "type": "string",
+              "const": "none"
             }
           ]
         },
@@ -4243,6 +4253,10 @@ export const Schema = {
                   ],
                   "additionalProperties": false
                 },
+                "supportsFanSpeedPercent": {
+                  "type": "boolean",
+                  "const": false
+                },
                 "reversible": {
                   "type": "boolean"
                 },
@@ -4481,8 +4495,14 @@ export const Schema = {
       "type": "object",
       "additionalProperties": false,
       "properties": {
+        "activeThermostatMode": {
+          "$ref": "#/definitions/ThermostatActiveMode"
+        },
+        "targetTempReachedEstimateUnixTimestampSec": {
+          "type": "number"
+        },
         "thermostatMode": {
-          "$ref": "#/definitions/ThermostatMode"
+          "$ref": "#/definitions/ThermostatActiveMode"
         },
         "thermostatTemperatureAmbient": {
           "type": "number"
@@ -4512,6 +4532,17 @@ export const Schema = {
         "thermostatTemperatureSetpoint"
       ],
       "definitions": {
+        "ThermostatActiveMode": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/ThermostatMode"
+            },
+            {
+              "type": "string",
+              "const": "none"
+            }
+          ]
+        },
         "ThermostatMode": {
           "type": "string",
           "enum": [
@@ -5145,8 +5176,14 @@ export const Schema = {
       "type": "object",
       "additionalProperties": false,
       "properties": {
+        "activeThermostatMode": {
+          "$ref": "#/definitions/ThermostatActiveMode"
+        },
+        "targetTempReachedEstimateUnixTimestampSec": {
+          "type": "number"
+        },
         "thermostatMode": {
-          "$ref": "#/definitions/ThermostatMode"
+          "$ref": "#/definitions/ThermostatActiveMode"
         },
         "thermostatTemperatureAmbient": {
           "type": "number"
@@ -5170,6 +5207,17 @@ export const Schema = {
         }
       },
       "definitions": {
+        "ThermostatActiveMode": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/ThermostatMode"
+            },
+            {
+              "type": "string",
+              "const": "none"
+            }
+          ]
+        },
         "ThermostatMode": {
           "type": "string",
           "enum": [
