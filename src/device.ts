@@ -105,6 +105,8 @@ export type OnOffDevice = Device<{
 }, {
     commandOnlyOnOff?: boolean;
     queryOnlyOnOff?: boolean;
+}, {
+    returnOnOffErrorCodeIfStateAlreadySet?: boolean;
 }> & {
     traits: ['action.devices.traits.OnOff']
 };
@@ -112,6 +114,8 @@ export type OnOffDevice = Device<{
 export type LockUnlockDevice = Device<{
     isLocked: boolean;
     isJammed: boolean;
+}, {}, {
+    returnLockUnlockErrorCodeIfStateAlreadySet?: boolean;
 }> & {
     traits: ['action.devices.traits.LockUnlock']
 };
@@ -197,6 +201,8 @@ export type OpenCloseDevice = Device<{
     openDirection?: OpenCloseDirection[];
     commandOnlyOpenClose?: boolean;
     queryOnlyOpenClose?: boolean;
+}, {
+    returnOpenCloseErrorCodeIfStateAlreadySet?: boolean;
 }> & {
     traits: ['action.devices.traits.OpenClose']
 };

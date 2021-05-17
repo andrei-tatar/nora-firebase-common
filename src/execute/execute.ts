@@ -18,7 +18,8 @@ export interface ExecuteCommandParams {
 export type ErrorCode =
     'challengeNeeded' | 'deviceJammingDetected' | 'obstructionDetected' |
     'lockedState' | 'notSupported' | 'alreadyLocked' | 'alreadyUnlocked' |
-    'deviceTurnedOff' | 'deviceOffline';
+    'deviceTurnedOff' | 'deviceOffline' | 'alreadyOpen' | 'alreadyClosed' |
+    'alreadyOn' | 'alreadyOff';
 
 export class ExecuteCommandError extends Error {
     constructor(public readonly errorCode: ErrorCode) {

@@ -734,6 +734,9 @@ export const Schema = {
           "type": "object",
           "additionalProperties": false,
           "properties": {
+            "returnOnOffErrorCodeIfStateAlreadySet": {
+              "type": "boolean"
+            },
             "disabled": {
               "type": "boolean"
             },
@@ -977,6 +980,9 @@ export const Schema = {
           "type": "object",
           "additionalProperties": false,
           "properties": {
+            "returnLockUnlockErrorCodeIfStateAlreadySet": {
+              "type": "boolean"
+            },
             "disabled": {
               "type": "boolean"
             },
@@ -2072,6 +2078,9 @@ export const Schema = {
           "type": "object",
           "additionalProperties": false,
           "properties": {
+            "returnOpenCloseErrorCodeIfStateAlreadySet": {
+              "type": "boolean"
+            },
             "disabled": {
               "type": "boolean"
             },

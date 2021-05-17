@@ -31,7 +31,26 @@ HANDLERS.set('action.devices.commands.BrightnessAbsolute', (device, params) => {
 
     return null;
 });
-HANDLERS.set('action.devices.commands.OnOff', COPY_PARAMS_HANDLER);
+HANDLERS.set('action.devices.commands.OnOff', (device, params) => {
+    if (isOnOff(device)) {
+        const update: Partial<OnOffDevice['state']> = { ...params };
+
+        if (device.noraSpecific?.returnOnOffErrorCodeIfStateAlreadySet &&
+            device.state.on === update.on) {
+            if (device.state.on) {
+                throw new ExecuteCommandError('alreadyOn');
+            } else {
+                throw new ExecuteCommandError('alreadyOff');
+            }
+        }
+
+        return {
+            updateState: update,
+        };
+    }
+
+    return null;
+});
 HANDLERS.set('action.devices.commands.ThermostatTemperatureSetpoint', COPY_PARAMS_HANDLER);
 HANDLERS.set('action.devices.commands.ThermostatTemperatureSetRange', COPY_PARAMS_HANDLER);
 HANDLERS.set('action.devices.commands.ThermostatSetMode', (device, params) => {
@@ -120,6 +139,16 @@ HANDLERS.set('action.devices.commands.LockUnlock', (device, params) => {
         const updates: Partial<LockUnlockDevice['state']> = {
             isLocked: params.lock,
         };
+
+        if (device.noraSpecific?.returnLockUnlockErrorCodeIfStateAlreadySet &&
+            updates.isLocked === device.state.isLocked) {
+            if (device.state.isLocked) {
+                throw new ExecuteCommandError('alreadyLocked');
+            } else {
+                throw new ExecuteCommandError('alreadyUnlocked');
+            }
+        }
+
         return {
             updateState: updates,
             skipSecondaryVerification: params.lock,
@@ -158,6 +187,15 @@ HANDLERS.set('action.devices.commands.OpenClose', (device, params) => {
                 };
             }
         } else {
+            if (device.noraSpecific?.returnOpenCloseErrorCodeIfStateAlreadySet &&
+                'openPercent' in device.state &&
+                params.openPercent === device.state.openPercent) {
+                if (device.state.openPercent === 100) {
+                    throw new ExecuteCommandError('alreadyOpen');
+                } else if (device.state.openPercent === 0) {
+                    throw new ExecuteCommandError('alreadyClosed');
+                }
+            }
             return {
                 updateState: {
                     openPercent: params.openPercent,
