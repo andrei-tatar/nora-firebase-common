@@ -316,8 +316,8 @@ export type SensorStateDevice = Device<{
 };
 
 export type TemperatureControlDevice = Device<{
-    temperatureSetpointCelsius: number;
-    temperatureAmbientCelsius: number;
+    temperatureSetpointCelsius?: number;
+    temperatureAmbientCelsius?: number;
 }, {
     temperatureRange: {
         minThresholdCelsius: number;
@@ -326,19 +326,7 @@ export type TemperatureControlDevice = Device<{
     temperatureStepCelsius?: number;
     temperatureUnitForUX: 'C' | 'F';
     commandOnlyTemperatureControl?: boolean;
-    queryOnlyTemperatureControl?: false;
-}> & {
-    traits: ['action.devices.traits.TemperatureControl']
-} | Device<{
-    temperatureAmbientCelsius: number;
-}, {
-    temperatureRange: {
-        minThresholdCelsius: number;
-        maxThresholdCelsius: number;
-    };
-    temperatureStepCelsius?: number;
-    temperatureUnitForUX: 'C' | 'F';
-    queryOnlyTemperatureControl: true;
+    queryOnlyTemperatureControl?: boolean;
 }> & {
     traits: ['action.devices.traits.TemperatureControl']
 };
