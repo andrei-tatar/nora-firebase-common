@@ -326,7 +326,19 @@ export type TemperatureControlDevice = Device<{
     temperatureStepCelsius?: number;
     temperatureUnitForUX: 'C' | 'F';
     commandOnlyTemperatureControl?: boolean;
-    queryOnlyTemperatureControl?: boolean;
+    queryOnlyTemperatureControl?: false;
+}> & {
+    traits: ['action.devices.traits.TemperatureControl']
+} | Device<{
+    temperatureAmbientCelsius: number;
+}, {
+    temperatureRange: {
+        minThresholdCelsius: number;
+        maxThresholdCelsius: number;
+    };
+    temperatureStepCelsius?: number;
+    temperatureUnitForUX: 'C' | 'F';
+    queryOnlyTemperatureControl: true;
 }> & {
     traits: ['action.devices.traits.TemperatureControl']
 };
@@ -336,12 +348,12 @@ export type HumiditySettingDevice = Device<{
      * @minimum 0
      * @maximum 100
      */
-    humiditySetpointPercent: number;
+    humiditySetpointPercent?: number;
     /**
      * @minimum 0
      * @maximum 100
      */
-    humidityAmbientPercent: number;
+    humidityAmbientPercent?: number;
 }, {
     humiditySetpointRange?: {
         /**

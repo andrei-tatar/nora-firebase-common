@@ -3444,236 +3444,469 @@ export const Schema = {
     },
     "temperaturecontrol": {
       "$schema": "http://json-schema.org/draft-07/schema#",
-      "type": "object",
-      "additionalProperties": false,
-      "properties": {
-        "traits": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/Trait"
-          }
-        },
-        "id": {
-          "type": "string"
-        },
-        "type": {
-          "type": "string",
-          "enum": [
-            "action.devices.types.LIGHT",
-            "action.devices.types.SWITCH",
-            "action.devices.types.SCENE",
-            "action.devices.types.OUTLET",
-            "action.devices.types.THERMOSTAT",
-            "action.devices.types.SPEAKER",
-            "action.devices.types.LOCK",
-            "action.devices.types.SENSOR",
-            "action.devices.types.FAN",
-            "action.devices.types.CLOSET",
-            "action.devices.types.AWNING",
-            "action.devices.types.CURTAIN",
-            "action.devices.types.DOOR",
-            "action.devices.types.DRAWER",
-            "action.devices.types.BLINDS",
-            "action.devices.types.GARAGE",
-            "action.devices.types.GATE",
-            "action.devices.types.PERGOLA",
-            "action.devices.types.SHUTTER",
-            "action.devices.types.VALVE",
-            "action.devices.types.WINDOW",
-            "action.devices.types.HUMIDIFIER"
-          ]
-        },
-        "name": {
+      "anyOf": [
+        {
           "type": "object",
+          "additionalProperties": false,
           "properties": {
-            "defaultNames": {
+            "traits": {
               "type": "array",
               "items": {
-                "type": "string"
+                "$ref": "#/definitions/Trait"
               }
+            },
+            "id": {
+              "type": "string"
+            },
+            "type": {
+              "type": "string",
+              "enum": [
+                "action.devices.types.LIGHT",
+                "action.devices.types.SWITCH",
+                "action.devices.types.SCENE",
+                "action.devices.types.OUTLET",
+                "action.devices.types.THERMOSTAT",
+                "action.devices.types.SPEAKER",
+                "action.devices.types.LOCK",
+                "action.devices.types.SENSOR",
+                "action.devices.types.FAN",
+                "action.devices.types.CLOSET",
+                "action.devices.types.AWNING",
+                "action.devices.types.CURTAIN",
+                "action.devices.types.DOOR",
+                "action.devices.types.DRAWER",
+                "action.devices.types.BLINDS",
+                "action.devices.types.GARAGE",
+                "action.devices.types.GATE",
+                "action.devices.types.PERGOLA",
+                "action.devices.types.SHUTTER",
+                "action.devices.types.VALVE",
+                "action.devices.types.WINDOW",
+                "action.devices.types.HUMIDIFIER"
+              ]
             },
             "name": {
-              "type": "string",
-              "maxLength": 40
-            },
-            "nicknames": {
-              "type": "array",
-              "items": {
-                "type": "string"
-              }
-            }
-          },
-          "required": [
-            "name"
-          ],
-          "additionalProperties": false
-        },
-        "willReportState": {
-          "type": "boolean"
-        },
-        "notificationSupportedByAgent": {
-          "type": "boolean"
-        },
-        "structureHint": {
-          "type": "string",
-          "description": "Name of the home this device belongs to",
-          "maxLength": 40
-        },
-        "roomHint": {
-          "type": "string",
-          "description": "Name of the room this device belongs to",
-          "maxLength": 40
-        },
-        "deviceInfo": {
-          "type": "object",
-          "properties": {
-            "manufacturer": {
-              "type": "string"
-            },
-            "model": {
-              "type": "string"
-            },
-            "hwVersion": {
-              "type": "string"
-            },
-            "swVersion": {
-              "type": "string"
-            }
-          },
-          "required": [
-            "manufacturer",
-            "model",
-            "hwVersion",
-            "swVersion"
-          ],
-          "additionalProperties": false
-        },
-        "otherDeviceIds": {
-          "type": "array",
-          "items": {
-            "type": "object",
-            "properties": {
-              "agentId": {
-                "type": "string"
-              },
-              "deviceId": {
-                "type": "string"
-              }
-            },
-            "required": [
-              "deviceId"
-            ],
-            "additionalProperties": false
-          }
-        },
-        "customData": {
-          "type": "object",
-          "properties": {
-            "proxyId": {
-              "type": "string",
-              "description": "Used for local execution to identity the instance responsible of this device",
-              "maxLength": 40
-            }
-          },
-          "additionalProperties": false
-        },
-        "noraSpecific": {
-          "type": "object",
-          "additionalProperties": false,
-          "properties": {
-            "disabled": {
-              "type": "boolean"
-            },
-            "twoFactor": {
-              "$ref": "#/definitions/TwoFactor"
-            },
-            "error": {
               "type": "object",
               "properties": {
-                "msg": {
-                  "type": "string"
+                "defaultNames": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
                 },
-                "details": {}
-              },
-              "required": [
-                "msg"
-              ],
-              "additionalProperties": false
-            }
-          }
-        },
-        "state": {
-          "type": "object",
-          "additionalProperties": false,
-          "properties": {
-            "temperatureSetpointCelsius": {
-              "type": "number"
-            },
-            "temperatureAmbientCelsius": {
-              "type": "number"
-            },
-            "online": {
-              "type": "boolean"
-            }
-          },
-          "required": [
-            "online",
-            "temperatureAmbientCelsius",
-            "temperatureSetpointCelsius"
-          ]
-        },
-        "attributes": {
-          "type": "object",
-          "properties": {
-            "temperatureRange": {
-              "type": "object",
-              "properties": {
-                "minThresholdCelsius": {
-                  "type": "number"
+                "name": {
+                  "type": "string",
+                  "maxLength": 40
                 },
-                "maxThresholdCelsius": {
-                  "type": "number"
+                "nicknames": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
                 }
               },
               "required": [
-                "minThresholdCelsius",
-                "maxThresholdCelsius"
+                "name"
               ],
               "additionalProperties": false
             },
-            "temperatureStepCelsius": {
-              "type": "number"
+            "willReportState": {
+              "type": "boolean"
             },
-            "temperatureUnitForUX": {
+            "notificationSupportedByAgent": {
+              "type": "boolean"
+            },
+            "structureHint": {
               "type": "string",
-              "enum": [
-                "C",
-                "F"
+              "description": "Name of the home this device belongs to",
+              "maxLength": 40
+            },
+            "roomHint": {
+              "type": "string",
+              "description": "Name of the room this device belongs to",
+              "maxLength": 40
+            },
+            "deviceInfo": {
+              "type": "object",
+              "properties": {
+                "manufacturer": {
+                  "type": "string"
+                },
+                "model": {
+                  "type": "string"
+                },
+                "hwVersion": {
+                  "type": "string"
+                },
+                "swVersion": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "manufacturer",
+                "model",
+                "hwVersion",
+                "swVersion"
+              ],
+              "additionalProperties": false
+            },
+            "otherDeviceIds": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "agentId": {
+                    "type": "string"
+                  },
+                  "deviceId": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "deviceId"
+                ],
+                "additionalProperties": false
+              }
+            },
+            "customData": {
+              "type": "object",
+              "properties": {
+                "proxyId": {
+                  "type": "string",
+                  "description": "Used for local execution to identity the instance responsible of this device",
+                  "maxLength": 40
+                }
+              },
+              "additionalProperties": false
+            },
+            "noraSpecific": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "disabled": {
+                  "type": "boolean"
+                },
+                "twoFactor": {
+                  "$ref": "#/definitions/TwoFactor"
+                },
+                "error": {
+                  "type": "object",
+                  "properties": {
+                    "msg": {
+                      "type": "string"
+                    },
+                    "details": {}
+                  },
+                  "required": [
+                    "msg"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            },
+            "state": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "temperatureSetpointCelsius": {
+                  "type": "number"
+                },
+                "temperatureAmbientCelsius": {
+                  "type": "number"
+                },
+                "online": {
+                  "type": "boolean"
+                }
+              },
+              "required": [
+                "online",
+                "temperatureAmbientCelsius",
+                "temperatureSetpointCelsius"
               ]
             },
-            "commandOnlyTemperatureControl": {
-              "type": "boolean"
-            },
-            "queryOnlyTemperatureControl": {
-              "type": "boolean"
+            "attributes": {
+              "type": "object",
+              "properties": {
+                "temperatureRange": {
+                  "type": "object",
+                  "properties": {
+                    "minThresholdCelsius": {
+                      "type": "number"
+                    },
+                    "maxThresholdCelsius": {
+                      "type": "number"
+                    }
+                  },
+                  "required": [
+                    "minThresholdCelsius",
+                    "maxThresholdCelsius"
+                  ],
+                  "additionalProperties": false
+                },
+                "temperatureStepCelsius": {
+                  "type": "number"
+                },
+                "temperatureUnitForUX": {
+                  "type": "string",
+                  "enum": [
+                    "C",
+                    "F"
+                  ]
+                },
+                "commandOnlyTemperatureControl": {
+                  "type": "boolean"
+                },
+                "queryOnlyTemperatureControl": {
+                  "type": "boolean",
+                  "const": false
+                }
+              },
+              "required": [
+                "temperatureRange",
+                "temperatureUnitForUX"
+              ],
+              "additionalProperties": false
             }
           },
           "required": [
-            "temperatureRange",
-            "temperatureUnitForUX"
-          ],
-          "additionalProperties": false
+            "attributes",
+            "id",
+            "name",
+            "noraSpecific",
+            "state",
+            "traits",
+            "type",
+            "willReportState"
+          ]
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "traits": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Trait"
+              }
+            },
+            "id": {
+              "type": "string"
+            },
+            "type": {
+              "type": "string",
+              "enum": [
+                "action.devices.types.LIGHT",
+                "action.devices.types.SWITCH",
+                "action.devices.types.SCENE",
+                "action.devices.types.OUTLET",
+                "action.devices.types.THERMOSTAT",
+                "action.devices.types.SPEAKER",
+                "action.devices.types.LOCK",
+                "action.devices.types.SENSOR",
+                "action.devices.types.FAN",
+                "action.devices.types.CLOSET",
+                "action.devices.types.AWNING",
+                "action.devices.types.CURTAIN",
+                "action.devices.types.DOOR",
+                "action.devices.types.DRAWER",
+                "action.devices.types.BLINDS",
+                "action.devices.types.GARAGE",
+                "action.devices.types.GATE",
+                "action.devices.types.PERGOLA",
+                "action.devices.types.SHUTTER",
+                "action.devices.types.VALVE",
+                "action.devices.types.WINDOW",
+                "action.devices.types.HUMIDIFIER"
+              ]
+            },
+            "name": {
+              "type": "object",
+              "properties": {
+                "defaultNames": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "name": {
+                  "type": "string",
+                  "maxLength": 40
+                },
+                "nicknames": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              },
+              "required": [
+                "name"
+              ],
+              "additionalProperties": false
+            },
+            "willReportState": {
+              "type": "boolean"
+            },
+            "notificationSupportedByAgent": {
+              "type": "boolean"
+            },
+            "structureHint": {
+              "type": "string",
+              "description": "Name of the home this device belongs to",
+              "maxLength": 40
+            },
+            "roomHint": {
+              "type": "string",
+              "description": "Name of the room this device belongs to",
+              "maxLength": 40
+            },
+            "deviceInfo": {
+              "type": "object",
+              "properties": {
+                "manufacturer": {
+                  "type": "string"
+                },
+                "model": {
+                  "type": "string"
+                },
+                "hwVersion": {
+                  "type": "string"
+                },
+                "swVersion": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "manufacturer",
+                "model",
+                "hwVersion",
+                "swVersion"
+              ],
+              "additionalProperties": false
+            },
+            "otherDeviceIds": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "agentId": {
+                    "type": "string"
+                  },
+                  "deviceId": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "deviceId"
+                ],
+                "additionalProperties": false
+              }
+            },
+            "customData": {
+              "type": "object",
+              "properties": {
+                "proxyId": {
+                  "type": "string",
+                  "description": "Used for local execution to identity the instance responsible of this device",
+                  "maxLength": 40
+                }
+              },
+              "additionalProperties": false
+            },
+            "noraSpecific": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "disabled": {
+                  "type": "boolean"
+                },
+                "twoFactor": {
+                  "$ref": "#/definitions/TwoFactor"
+                },
+                "error": {
+                  "type": "object",
+                  "properties": {
+                    "msg": {
+                      "type": "string"
+                    },
+                    "details": {}
+                  },
+                  "required": [
+                    "msg"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            },
+            "state": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "temperatureAmbientCelsius": {
+                  "type": "number"
+                },
+                "online": {
+                  "type": "boolean"
+                }
+              },
+              "required": [
+                "online",
+                "temperatureAmbientCelsius"
+              ]
+            },
+            "attributes": {
+              "type": "object",
+              "properties": {
+                "temperatureRange": {
+                  "type": "object",
+                  "properties": {
+                    "minThresholdCelsius": {
+                      "type": "number"
+                    },
+                    "maxThresholdCelsius": {
+                      "type": "number"
+                    }
+                  },
+                  "required": [
+                    "minThresholdCelsius",
+                    "maxThresholdCelsius"
+                  ],
+                  "additionalProperties": false
+                },
+                "temperatureStepCelsius": {
+                  "type": "number"
+                },
+                "temperatureUnitForUX": {
+                  "type": "string",
+                  "enum": [
+                    "C",
+                    "F"
+                  ]
+                },
+                "queryOnlyTemperatureControl": {
+                  "type": "boolean",
+                  "const": true
+                }
+              },
+              "required": [
+                "temperatureRange",
+                "temperatureUnitForUX",
+                "queryOnlyTemperatureControl"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "required": [
+            "attributes",
+            "id",
+            "name",
+            "noraSpecific",
+            "state",
+            "traits",
+            "type",
+            "willReportState"
+          ]
         }
-      },
-      "required": [
-        "attributes",
-        "id",
-        "name",
-        "noraSpecific",
-        "state",
-        "traits",
-        "type",
-        "willReportState"
       ],
       "definitions": {
         "Trait": {
@@ -3898,8 +4131,6 @@ export const Schema = {
             }
           },
           "required": [
-            "humidityAmbientPercent",
-            "humiditySetpointPercent",
             "online"
           ]
         },
@@ -4982,23 +5213,43 @@ export const Schema = {
     },
     "temperaturecontrol": {
       "$schema": "http://json-schema.org/draft-07/schema#",
-      "type": "object",
-      "additionalProperties": false,
-      "properties": {
-        "temperatureSetpointCelsius": {
-          "type": "number"
+      "anyOf": [
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "temperatureSetpointCelsius": {
+              "type": "number"
+            },
+            "temperatureAmbientCelsius": {
+              "type": "number"
+            },
+            "online": {
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "online",
+            "temperatureAmbientCelsius",
+            "temperatureSetpointCelsius"
+          ]
         },
-        "temperatureAmbientCelsius": {
-          "type": "number"
-        },
-        "online": {
-          "type": "boolean"
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "temperatureAmbientCelsius": {
+              "type": "number"
+            },
+            "online": {
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "online",
+            "temperatureAmbientCelsius"
+          ]
         }
-      },
-      "required": [
-        "online",
-        "temperatureAmbientCelsius",
-        "temperatureSetpointCelsius"
       ],
       "definitions": {}
     },
@@ -5022,8 +5273,6 @@ export const Schema = {
         }
       },
       "required": [
-        "humidityAmbientPercent",
-        "humiditySetpointPercent",
         "online"
       ],
       "definitions": {}
@@ -5584,19 +5833,35 @@ export const Schema = {
     },
     "temperaturecontrol": {
       "$schema": "http://json-schema.org/draft-07/schema#",
-      "type": "object",
-      "additionalProperties": false,
-      "properties": {
-        "temperatureSetpointCelsius": {
-          "type": "number"
+      "anyOf": [
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "temperatureSetpointCelsius": {
+              "type": "number"
+            },
+            "temperatureAmbientCelsius": {
+              "type": "number"
+            },
+            "online": {
+              "type": "boolean"
+            }
+          }
         },
-        "temperatureAmbientCelsius": {
-          "type": "number"
-        },
-        "online": {
-          "type": "boolean"
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "temperatureAmbientCelsius": {
+              "type": "number"
+            },
+            "online": {
+              "type": "boolean"
+            }
+          }
         }
-      },
+      ],
       "definitions": {}
     },
     "humiditysetting": {
