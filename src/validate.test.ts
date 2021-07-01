@@ -1,5 +1,5 @@
 import * as chai from 'chai';
-import { FanSpeedDevice, OnOffDevice, SensorStateDevice, Trait } from './device';
+import { ArmDisarmDevice, FanSpeedDevice, OnOffDevice, SensorStateDevice, Trait } from './device';
 import { validate } from './validate';
 
 const expect = chai.expect;
@@ -208,6 +208,45 @@ describe('validate', () => {
     };
 
     const result = validate(['action.devices.traits.FanSpeed', 'action.devices.traits.OnOff'], 'device', device);
+    expect(result.valid).to.be.true;
+  });
+
+
+  it('should validate ArmDisarm device', () => {
+    const device: ArmDisarmDevice = {
+      id: 'some-id',
+      traits: ['action.devices.traits.ArmDisarm'] as never,
+      name: {
+        name: 'test'
+      },
+      noraSpecific: {},
+      attributes: {
+        availableArmLevels: {
+          levels: [
+            {
+              level_name: 'L1',
+              level_values: [
+                {
+                  level_synonym: ['L1'],
+                  lang: 'de'
+                }
+              ]
+            }
+          ],
+          ordered: true
+        }
+      },
+      state: {
+        isArmed: true,
+        currentArmLevel: 'L1',
+        exitAllowance: 10,
+        online: true
+      },
+      type: 'action.devices.types.SECURITYSYSTEM',
+      willReportState: true,
+    };
+
+    const result = validate(['action.devices.traits.ArmDisarm'], 'device', device);
     expect(result.valid).to.be.true;
   });
 

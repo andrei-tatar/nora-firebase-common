@@ -1,5 +1,5 @@
 import * as chai from 'chai';
-import { TemperatureSettingDevice } from '../device';
+import { TemperatureSettingDevice, ArmDisarmDevice } from '../device';
 import { executeCommand } from '.';
 
 const expect = chai.expect;
@@ -40,6 +40,67 @@ describe('executeCommand', () => {
             });
 
             expect(changes?.updateState?.thermostatMode).to.be.equal('cool');
+        });
+    });
+
+    describe('action.devices.commands.ArmDisarm', () => {
+
+        const armdisarm: ArmDisarmDevice = {
+            id: 'some-id',
+            traits: ['action.devices.traits.ArmDisarm'] as never,
+            name: {
+              name: 'test'
+            },
+            noraSpecific: {},
+            attributes: {
+              availableArmLevels: {
+                levels: [
+                  {
+                    level_name: 'L1',
+                    level_values: [
+                      {
+                        level_synonym: ['L1'],
+                        lang: 'de'
+                      }
+                    ]
+                  }
+                ],
+                ordered: true
+              }
+            },
+            state: {
+              isArmed: false,
+              currentArmLevel: 'L0',
+              exitAllowance: 10,
+              online: true
+            },
+            type: 'action.devices.types.SECURITYSYSTEM',
+            willReportState: true,
+        };
+
+        it('should arm the security system', () => {
+            const changes = executeCommand({
+                command: 'action.devices.commands.ArmDisarm',
+                device: armdisarm,
+                params: {
+                    arm: true
+                },
+            });
+
+            expect(changes?.updateState?.isArmed).to.be.equal(true);
+        });
+
+        it('should assign the armLevel', () => {
+            const changes = executeCommand({
+                command: 'action.devices.commands.ArmDisarm',
+                device: armdisarm,
+                params: {
+                    arm: true,
+                    armLevel: 'L1',
+                },
+            });
+
+            expect(changes?.updateState?.currentArmLevel).to.be.equal('L1');
         });
     });
 });
