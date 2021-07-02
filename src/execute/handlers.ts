@@ -2,9 +2,9 @@ import {
     isArmDisarm, isBrightness, isColorSetting, isFanSpeedDevice, isHumiditySetting, isLockUnlock, isOnOff, isOpenClose, isScene,
     isTemperatureControl, isTemperatureSetting, isVolumeDevice
 } from '../checks';
-import { 
-    ArmDisarmDevice, BrightnessDevice, Device, FanSpeedDevice, LockUnlockDevice, OnOffDevice, SceneDevice, TemperatureSettingDevice, 
-    VolumeDevice 
+import {
+    ArmDisarmDevice, BrightnessDevice, Device, FanSpeedDevice, LockUnlockDevice, OnOffDevice, SceneDevice, TemperatureSettingDevice,
+    VolumeDevice
 } from '../device';
 import { Changes, ExecuteCommandError } from './execute';
 
