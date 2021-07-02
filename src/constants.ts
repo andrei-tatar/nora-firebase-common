@@ -1,0 +1,1 @@
+export const HEARTBEAT_TIMEOUT_SEC = 60;

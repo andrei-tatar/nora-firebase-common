@@ -335,8 +335,8 @@ export type SensorStateDevice = Device<{
 };
 
 export type TemperatureControlDevice = Device<{
-    temperatureSetpointCelsius: number;
-    temperatureAmbientCelsius: number;
+    temperatureSetpointCelsius?: number;
+    temperatureAmbientCelsius?: number;
 }, {
     temperatureRange: {
         minThresholdCelsius: number;
@@ -355,12 +355,12 @@ export type HumiditySettingDevice = Device<{
      * @minimum 0
      * @maximum 100
      */
-    humiditySetpointPercent: number;
+    humiditySetpointPercent?: number;
     /**
      * @minimum 0
      * @maximum 100
      */
-    humidityAmbientPercent: number;
+    humidityAmbientPercent?: number;
 }, {
     humiditySetpointRange?: {
         /**

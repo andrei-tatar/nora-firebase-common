@@ -3945,9 +3945,7 @@ export const Schema = {
             }
           },
           "required": [
-            "online",
-            "temperatureAmbientCelsius",
-            "temperatureSetpointCelsius"
+            "online"
           ]
         },
         "attributes": {
@@ -4227,8 +4225,6 @@ export const Schema = {
             }
           },
           "required": [
-            "humidityAmbientPercent",
-            "humiditySetpointPercent",
             "online"
           ]
         },
@@ -5352,9 +5348,7 @@ export const Schema = {
         }
       },
       "required": [
-        "online",
-        "temperatureAmbientCelsius",
-        "temperatureSetpointCelsius"
+        "online"
       ],
       "definitions": {}
     },
@@ -5378,8 +5372,6 @@ export const Schema = {
         }
       },
       "required": [
-        "humidityAmbientPercent",
-        "humiditySetpointPercent",
         "online"
       ],
       "definitions": {}

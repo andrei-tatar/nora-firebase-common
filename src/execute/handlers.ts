@@ -138,10 +138,11 @@ HANDLERS.set('action.devices.commands.SetHumidity', (device, params) => {
 HANDLERS.set('action.devices.commands.HumidityRelative', (device, params) => {
     if (isHumiditySetting(device)) {
         let newHumidity: number;
+        const currentHumidity = device.state.humiditySetpointPercent ?? 0;
         if ('humidityRelativePercent' in params) {
-            newHumidity = device.state.humiditySetpointPercent + params.humidityRelativePercent;
+            newHumidity = currentHumidity + params.humidityRelativePercent;
         } else {
-            newHumidity = device.state.humiditySetpointPercent + params.humidityRelativeWeight * 10;
+            newHumidity = currentHumidity + params.humidityRelativeWeight * 10;
         }
         return {
             updateState: {
