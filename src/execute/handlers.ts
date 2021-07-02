@@ -1,8 +1,11 @@
 import {
-    isBrightness, isColorSetting, isFanSpeedDevice, isHumiditySetting, isLockUnlock, isOnOff, isOpenClose, isScene,
+    isArmDisarm, isBrightness, isColorSetting, isFanSpeedDevice, isHumiditySetting, isLockUnlock, isOnOff, isOpenClose, isScene,
     isTemperatureControl, isTemperatureSetting, isVolumeDevice
 } from '../checks';
-import { BrightnessDevice, Device, FanSpeedDevice, LockUnlockDevice, OnOffDevice, SceneDevice, TemperatureSettingDevice, VolumeDevice } from '../device';
+import { 
+    ArmDisarmDevice, BrightnessDevice, Device, FanSpeedDevice, LockUnlockDevice, OnOffDevice, SceneDevice, TemperatureSettingDevice, 
+    VolumeDevice 
+} from '../device';
 import { Changes, ExecuteCommandError } from './execute';
 
 export type CommandHandler = (device: Device, params: any) => Changes | null;
@@ -15,6 +18,24 @@ const COPY_PARAMS_HANDLER: CommandHandler = (_, params) => {
         updateState: newState,
     };
 };
+
+HANDLERS.set('action.devices.commands.ArmDisarm', (device, params) => {
+    if (isArmDisarm(device)) {
+        const updateState: Partial<ArmDisarmDevice['state']> = {};
+
+        updateState.isArmed = params.arm;
+
+        if ('armLevel' in params) {
+            updateState.currentArmLevel = params.armLevel;
+        }
+
+        return {
+            updateState: updateState,
+        };
+    }
+
+    return null;
+});
 
 HANDLERS.set('action.devices.commands.BrightnessAbsolute', (device, params) => {
     if (isBrightness(device)) {

@@ -63,6 +63,25 @@ export interface Device<TState = {}, TAttributes = {}, TNora = {}> {
     attributes: TAttributes;
 }
 
+export declare type ArmDisarmDevice = Device<{
+    isArmed: boolean;
+    currentArmLevel: string,
+    exitAllowance: number
+}, {
+    availableArmLevels: {
+        levels: {
+            level_name: string;
+            level_values: {
+                level_synonym: string[];
+                lang: Language;
+            }[];
+        }[];
+        ordered: boolean;
+    };
+}> & {
+    traits: ['action.devices.traits.ArmDisarm'];
+};
+
 export type BrightnessDevice = Device<{
     brightness: number;
 }, {
@@ -402,6 +421,7 @@ type DeviceType =
     'action.devices.types.LOCK' |
     'action.devices.types.SENSOR' |
     'action.devices.types.FAN' |
+    'action.devices.types.SECURITYSYSTEM' |
 
     'action.devices.types.CLOSET' |
     'action.devices.types.AWNING' |
@@ -418,6 +438,7 @@ type DeviceType =
     'action.devices.types.HUMIDIFIER';
 
 export type Trait =
+    'action.devices.traits.ArmDisarm' |
     'action.devices.traits.Brightness' |
     'action.devices.traits.ColorSetting' |
     'action.devices.traits.OnOff' |

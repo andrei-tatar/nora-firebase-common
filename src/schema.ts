@@ -10,6 +10,323 @@ export type TraitName = keyof typeof Schema['device'];
 
 export const Schema = {
   "device": {
+    "armdisarm": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "traits": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Trait"
+          }
+        },
+        "id": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "action.devices.types.LIGHT",
+            "action.devices.types.SWITCH",
+            "action.devices.types.SCENE",
+            "action.devices.types.OUTLET",
+            "action.devices.types.THERMOSTAT",
+            "action.devices.types.SPEAKER",
+            "action.devices.types.LOCK",
+            "action.devices.types.SENSOR",
+            "action.devices.types.FAN",
+            "action.devices.types.SECURITYSYSTEM",
+            "action.devices.types.CLOSET",
+            "action.devices.types.AWNING",
+            "action.devices.types.CURTAIN",
+            "action.devices.types.DOOR",
+            "action.devices.types.DRAWER",
+            "action.devices.types.BLINDS",
+            "action.devices.types.GARAGE",
+            "action.devices.types.GATE",
+            "action.devices.types.PERGOLA",
+            "action.devices.types.SHUTTER",
+            "action.devices.types.VALVE",
+            "action.devices.types.WINDOW",
+            "action.devices.types.HUMIDIFIER"
+          ]
+        },
+        "name": {
+          "type": "object",
+          "properties": {
+            "defaultNames": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "name": {
+              "type": "string",
+              "maxLength": 40
+            },
+            "nicknames": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          "required": [
+            "name"
+          ],
+          "additionalProperties": false
+        },
+        "willReportState": {
+          "type": "boolean"
+        },
+        "notificationSupportedByAgent": {
+          "type": "boolean"
+        },
+        "structureHint": {
+          "type": "string",
+          "description": "Name of the home this device belongs to",
+          "maxLength": 40
+        },
+        "roomHint": {
+          "type": "string",
+          "description": "Name of the room this device belongs to",
+          "maxLength": 40
+        },
+        "deviceInfo": {
+          "type": "object",
+          "properties": {
+            "manufacturer": {
+              "type": "string"
+            },
+            "model": {
+              "type": "string"
+            },
+            "hwVersion": {
+              "type": "string"
+            },
+            "swVersion": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "manufacturer",
+            "model",
+            "hwVersion",
+            "swVersion"
+          ],
+          "additionalProperties": false
+        },
+        "otherDeviceIds": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "agentId": {
+                "type": "string"
+              },
+              "deviceId": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "deviceId"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "customData": {
+          "type": "object",
+          "properties": {
+            "proxyId": {
+              "type": "string",
+              "description": "Used for local execution to identity the instance responsible of this device",
+              "maxLength": 40
+            }
+          },
+          "additionalProperties": false
+        },
+        "noraSpecific": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "disabled": {
+              "type": "boolean"
+            },
+            "twoFactor": {
+              "$ref": "#/definitions/TwoFactor"
+            },
+            "error": {
+              "type": "object",
+              "properties": {
+                "msg": {
+                  "type": "string"
+                },
+                "details": {}
+              },
+              "required": [
+                "msg"
+              ],
+              "additionalProperties": false
+            }
+          }
+        },
+        "state": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "isArmed": {
+              "type": "boolean"
+            },
+            "currentArmLevel": {
+              "type": "string"
+            },
+            "exitAllowance": {
+              "type": "number"
+            },
+            "online": {
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "currentArmLevel",
+            "exitAllowance",
+            "isArmed",
+            "online"
+          ]
+        },
+        "attributes": {
+          "type": "object",
+          "properties": {
+            "availableArmLevels": {
+              "type": "object",
+              "properties": {
+                "levels": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "level_name": {
+                        "type": "string"
+                      },
+                      "level_values": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "level_synonym": {
+                              "type": "array",
+                              "items": {
+                                "type": "string"
+                              }
+                            },
+                            "lang": {
+                              "type": "string",
+                              "enum": [
+                                "da",
+                                "nl",
+                                "en",
+                                "fr",
+                                "de",
+                                "hi",
+                                "id",
+                                "it",
+                                "ja",
+                                "ko",
+                                "no",
+                                "pt-BR",
+                                "es",
+                                "sv",
+                                "th"
+                              ]
+                            }
+                          },
+                          "required": [
+                            "level_synonym",
+                            "lang"
+                          ],
+                          "additionalProperties": false
+                        }
+                      }
+                    },
+                    "required": [
+                      "level_name",
+                      "level_values"
+                    ],
+                    "additionalProperties": false
+                  }
+                },
+                "ordered": {
+                  "type": "boolean"
+                }
+              },
+              "required": [
+                "levels",
+                "ordered"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "required": [
+            "availableArmLevels"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "attributes",
+        "id",
+        "name",
+        "noraSpecific",
+        "state",
+        "traits",
+        "type",
+        "willReportState"
+      ],
+      "definitions": {
+        "Trait": {
+          "type": "string",
+          "enum": [
+            "action.devices.traits.ArmDisarm"
+          ]
+        },
+        "TwoFactor": {
+          "anyOf": [
+            {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "type": "string",
+                  "const": "ack"
+                }
+              },
+              "required": [
+                "type"
+              ],
+              "additionalProperties": false
+            },
+            {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "type": "string",
+                  "const": "pin"
+                },
+                "pin": {
+                  "type": "string",
+                  "maxLength": 20
+                }
+              },
+              "required": [
+                "type",
+                "pin"
+              ],
+              "additionalProperties": false
+            }
+          ]
+        }
+      }
+    },
     "brightness": {
       "$schema": "http://json-schema.org/draft-07/schema#",
       "type": "object",
@@ -36,6 +353,7 @@ export const Schema = {
             "action.devices.types.LOCK",
             "action.devices.types.SENSOR",
             "action.devices.types.FAN",
+            "action.devices.types.SECURITYSYSTEM",
             "action.devices.types.CLOSET",
             "action.devices.types.AWNING",
             "action.devices.types.CURTAIN",
@@ -282,6 +600,7 @@ export const Schema = {
             "action.devices.types.LOCK",
             "action.devices.types.SENSOR",
             "action.devices.types.FAN",
+            "action.devices.types.SECURITYSYSTEM",
             "action.devices.types.CLOSET",
             "action.devices.types.AWNING",
             "action.devices.types.CURTAIN",
@@ -621,6 +940,7 @@ export const Schema = {
             "action.devices.types.LOCK",
             "action.devices.types.SENSOR",
             "action.devices.types.FAN",
+            "action.devices.types.SECURITYSYSTEM",
             "action.devices.types.CLOSET",
             "action.devices.types.AWNING",
             "action.devices.types.CURTAIN",
@@ -867,6 +1187,7 @@ export const Schema = {
             "action.devices.types.LOCK",
             "action.devices.types.SENSOR",
             "action.devices.types.FAN",
+            "action.devices.types.SECURITYSYSTEM",
             "action.devices.types.CLOSET",
             "action.devices.types.AWNING",
             "action.devices.types.CURTAIN",
@@ -1109,6 +1430,7 @@ export const Schema = {
             "action.devices.types.LOCK",
             "action.devices.types.SENSOR",
             "action.devices.types.FAN",
+            "action.devices.types.SECURITYSYSTEM",
             "action.devices.types.CLOSET",
             "action.devices.types.AWNING",
             "action.devices.types.CURTAIN",
@@ -1357,6 +1679,7 @@ export const Schema = {
             "action.devices.types.LOCK",
             "action.devices.types.SENSOR",
             "action.devices.types.FAN",
+            "action.devices.types.SECURITYSYSTEM",
             "action.devices.types.CLOSET",
             "action.devices.types.AWNING",
             "action.devices.types.CURTAIN",
@@ -1706,6 +2029,7 @@ export const Schema = {
             "action.devices.types.LOCK",
             "action.devices.types.SENSOR",
             "action.devices.types.FAN",
+            "action.devices.types.SECURITYSYSTEM",
             "action.devices.types.CLOSET",
             "action.devices.types.AWNING",
             "action.devices.types.CURTAIN",
@@ -1965,6 +2289,7 @@ export const Schema = {
             "action.devices.types.LOCK",
             "action.devices.types.SENSOR",
             "action.devices.types.FAN",
+            "action.devices.types.SECURITYSYSTEM",
             "action.devices.types.CLOSET",
             "action.devices.types.AWNING",
             "action.devices.types.CURTAIN",
@@ -2271,6 +2596,7 @@ export const Schema = {
             "action.devices.types.LOCK",
             "action.devices.types.SENSOR",
             "action.devices.types.FAN",
+            "action.devices.types.SECURITYSYSTEM",
             "action.devices.types.CLOSET",
             "action.devices.types.AWNING",
             "action.devices.types.CURTAIN",
@@ -2531,6 +2857,7 @@ export const Schema = {
             "action.devices.types.LOCK",
             "action.devices.types.SENSOR",
             "action.devices.types.FAN",
+            "action.devices.types.SECURITYSYSTEM",
             "action.devices.types.CLOSET",
             "action.devices.types.AWNING",
             "action.devices.types.CURTAIN",
@@ -3468,6 +3795,7 @@ export const Schema = {
             "action.devices.types.LOCK",
             "action.devices.types.SENSOR",
             "action.devices.types.FAN",
+            "action.devices.types.SECURITYSYSTEM",
             "action.devices.types.CLOSET",
             "action.devices.types.AWNING",
             "action.devices.types.CURTAIN",
@@ -3743,6 +4071,7 @@ export const Schema = {
             "action.devices.types.LOCK",
             "action.devices.types.SENSOR",
             "action.devices.types.FAN",
+            "action.devices.types.SECURITYSYSTEM",
             "action.devices.types.CLOSET",
             "action.devices.types.AWNING",
             "action.devices.types.CURTAIN",
@@ -4012,6 +4341,7 @@ export const Schema = {
             "action.devices.types.LOCK",
             "action.devices.types.SENSOR",
             "action.devices.types.FAN",
+            "action.devices.types.SECURITYSYSTEM",
             "action.devices.types.CLOSET",
             "action.devices.types.AWNING",
             "action.devices.types.CURTAIN",
@@ -4351,6 +4681,32 @@ export const Schema = {
     }
   },
   "state": {
+    "armdisarm": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "isArmed": {
+          "type": "boolean"
+        },
+        "currentArmLevel": {
+          "type": "string"
+        },
+        "exitAllowance": {
+          "type": "number"
+        },
+        "online": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "currentArmLevel",
+        "exitAllowance",
+        "isArmed",
+        "online"
+      ],
+      "definitions": {}
+    },
     "brightness": {
       "$schema": "http://json-schema.org/draft-07/schema#",
       "type": "object",
@@ -5062,6 +5418,26 @@ export const Schema = {
     }
   },
   "state-update": {
+    "armdisarm": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "isArmed": {
+          "type": "boolean"
+        },
+        "currentArmLevel": {
+          "type": "string"
+        },
+        "exitAllowance": {
+          "type": "number"
+        },
+        "online": {
+          "type": "boolean"
+        }
+      },
+      "definitions": {}
+    },
     "brightness": {
       "$schema": "http://json-schema.org/draft-07/schema#",
       "type": "object",

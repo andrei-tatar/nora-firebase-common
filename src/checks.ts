@@ -1,7 +1,11 @@
 import {
-    BrightnessDevice, ColorSettingDevice, Device, FanSpeedDevice, HumiditySettingDevice, LockUnlockDevice, OnOffDevice, OpenCloseDevice,
-    SceneDevice, SensorStateDevice, TemperatureControlDevice, TemperatureSettingDevice, VolumeDevice
+    ArmDisarmDevice, BrightnessDevice, ColorSettingDevice, Device, FanSpeedDevice, HumiditySettingDevice, LockUnlockDevice, OnOffDevice, 
+    OpenCloseDevice, SceneDevice, SensorStateDevice, TemperatureControlDevice, TemperatureSettingDevice, VolumeDevice
 } from './device';
+
+export function isArmDisarm(device: Pick<Device, 'traits'>): device is ArmDisarmDevice {
+    return device.traits.includes('action.devices.traits.ArmDisarm');
+}
 
 export function isBrightness(device: Pick<Device, 'traits'>): device is BrightnessDevice {
     return device.traits.includes('action.devices.traits.Brightness');
