@@ -13,9 +13,13 @@ export function validate(traits: Trait[], schemaType: SchemaType, object: any) {
 
     let validator = cachedValidators[key];
     if (!validator) {
-        const ajv = new Ajv();
         const schema = loadSchema(schemaType, traitNames, key);
-        cachedValidators[key] = validator = ajv.compile(schema);
+        try {
+            const ajv = new Ajv();
+            cachedValidators[key] = validator = ajv.compile(schema);
+        } catch (err) {
+            throw new Error(`${err.message}\ntraits:${traits.join(',')}\nschema type:${schemaType}\nschema:${JSON.stringify(schema)}`);
+        }
     }
 
     const valid = validator(object);
@@ -91,7 +95,7 @@ function mergeSchemas(objects: any[], level = 0): any {
             }
         }
 
-        const clone =  deepClone(a);
+        const clone = deepClone(a);
         if (level > 0) {
             delete clone['$schema'];
             delete clone['definitions'];
