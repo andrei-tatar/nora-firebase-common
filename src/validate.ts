@@ -8,22 +8,32 @@ const cachedValidators: {
 } = {};
 
 export function validate(traits: Trait[], schemaType: SchemaType, object: any) {
-    const traitNames = traits.map(t => t.substr(t.lastIndexOf('.') + 1).toLowerCase() as TraitName);
-    const key = `${schemaType}:${traitNames.sort().join(':')}`;
-
-    let validator = cachedValidators[key];
-    if (!validator) {
-        const schema = loadSchema(schemaType, traitNames, key);
-        try {
-            const ajv = new Ajv();
-            cachedValidators[key] = validator = ajv.compile(schema);
-        } catch (err) {
-            throw new Error(`${err.message}\ntraits:${traits.join(',')}\nschema type:${schemaType}\nschema:${JSON.stringify(schema)}`);
-        }
+    if (!traits?.length) {
+        return {
+            valid: false,
+            errors: [{ description: 'device has no traits' }],
+        };
     }
 
-    const valid = validator(object);
-    return { valid, errors: validator.errors };
+    try {
+        const traitNames = traits.map(t => t.substr(t.lastIndexOf('.') + 1).toLowerCase() as TraitName);
+        const key = `${schemaType}:${traitNames.sort().join(':')}`;
+
+        let validator = cachedValidators[key];
+        if (!validator) {
+            const schema = loadSchema(schemaType, traitNames, key);
+            const ajv = new Ajv();
+            cachedValidators[key] = validator = ajv.compile(schema);
+        }
+
+        const valid = validator(object);
+        return { valid, errors: validator.errors };
+    } catch (err) {
+        return {
+            valid: false,
+            errors: [{ description: err.message, stack: err.stack }],
+        };
+    }
 }
 
 export function validateIndividual(schemaType: IndividualSchemaType, object: any) {
