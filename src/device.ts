@@ -417,6 +417,7 @@ type DeviceType =
     'action.devices.types.SCENE' |
     'action.devices.types.OUTLET' |
     'action.devices.types.THERMOSTAT' |
+    'action.devices.types.AC_UNIT' |
     'action.devices.types.SPEAKER' |
     'action.devices.types.LOCK' |
     'action.devices.types.SENSOR' |
