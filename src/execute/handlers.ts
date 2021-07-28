@@ -1,10 +1,11 @@
 import {
-    isArmDisarm, isBrightness, isColorSetting, isFanSpeedDevice, isHumiditySetting, isLockUnlock, isOnOff, isOpenClose, isScene,
-    isTemperatureControl, isTemperatureSetting, isVolumeDevice
+    isArmDisarm, isBrightness, isColorSetting, isFanSpeedDevice, isHumiditySetting, isInputSelectorDevice, isLockUnlock,
+    isOnOff, isOpenClose, isScene, isTemperatureControl, isTemperatureSetting, isTransportControlDevice,
+    isVolumeDevice
 } from '../checks';
 import {
-    ArmDisarmDevice, BrightnessDevice, Device, FanSpeedDevice, LockUnlockDevice, OnOffDevice, SceneDevice, TemperatureSettingDevice,
-    VolumeDevice
+    ArmDisarmDevice, BrightnessDevice, Device, FanSpeedDevice, InputSelectorDevice, LockUnlockDevice, OnOffDevice,
+    SceneDevice, TemperatureSettingDevice, TransportControlCommand, VolumeDevice
 } from '../device';
 import { Changes, ExecuteCommandError } from './execute';
 
@@ -364,6 +365,74 @@ HANDLERS.set('action.devices.commands.SetFanSpeedRelative', (device, params) => 
     }
     return null;
 });
+HANDLERS.set('action.devices.commands.SetInput', (device, params) => {
+    if (isInputSelectorDevice(device)) {
+        const updateState: Partial<InputSelectorDevice['state']> = {
+            currentInput: params.newInput,
+        };
+        return {
+            updateState
+        };
+    }
+    return null;
+});
+HANDLERS.set('action.devices.commands.NextInput', (device) => {
+    if (isInputSelectorDevice(device)) {
+        const index = device.attributes.availableInputs.findIndex(i => i.key === device.state.currentInput);
+        const nextIndex = (index + 1) % device.attributes.availableInputs.length;
+        const updateState: Partial<InputSelectorDevice['state']> = {
+            currentInput: device.attributes.availableInputs[nextIndex].key,
+        };
+        return {
+            updateState
+        };
+    }
+    return null;
+});
+HANDLERS.set('action.devices.commands.PreviousInput', (device) => {
+    if (isInputSelectorDevice(device)) {
+        const index = device.attributes.availableInputs.findIndex(i => i.key === device.state.currentInput);
+        const nextIndex = index === 0
+            ? device.attributes.availableInputs.length - 1
+            : index - 1;
+        const updateState: Partial<InputSelectorDevice['state']> = {
+            currentInput: device.attributes.availableInputs[nextIndex].key,
+        };
+        return {
+            updateState
+        };
+    }
+    return null;
+});
+registerTransportControlCommand('CAPTION_CONTROL');
+registerTransportControlCommand('NEXT');
+registerTransportControlCommand('PAUSE');
+registerTransportControlCommand('PREVIOUS');
+registerTransportControlCommand('RESUME');
+registerTransportControlCommand('SEEK_RELATIVE');
+registerTransportControlCommand('SEEK_TO_POSITION');
+registerTransportControlCommand('SET_REPEAT');
+registerTransportControlCommand('SHUFFLE');
+registerTransportControlCommand('STOP');
+
+function registerTransportControlCommand(command: TransportControlCommand) {
+    const pascalCase = toPascalCase(command);
+    HANDLERS.set(`action.devices.commands.${pascalCase}`, device => {
+        if (isTransportControlDevice(device)) {
+            return {
+                updateNoraSpecific: {
+                    pendingTransportControlCommand: command,
+                },
+            };
+        }
+        return null;
+    });
+}
+
+function toPascalCase(command: TransportControlCommand) {
+    const lowerCase = command.toLowerCase();
+    return lowerCase.replace(/_(\w)|^(\w)/mg, (_, g1, g2) => (g1 ?? g2).toUpperCase());
+}
 
 function limit(n: number, minimum = 0, maximum = 100) {
     return Math.min(maximum, Math.max(minimum, n));

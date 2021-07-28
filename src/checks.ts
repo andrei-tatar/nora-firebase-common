@@ -1,6 +1,7 @@
 import {
-    ArmDisarmDevice, BrightnessDevice, ColorSettingDevice, Device, FanSpeedDevice, HumiditySettingDevice, LockUnlockDevice, OnOffDevice,
-    OpenCloseDevice, SceneDevice, SensorStateDevice, TemperatureControlDevice, TemperatureSettingDevice, VolumeDevice
+    ArmDisarmDevice, BrightnessDevice, ColorSettingDevice, Device, FanSpeedDevice, HumiditySettingDevice,
+    InputSelectorDevice, LockUnlockDevice, OnOffDevice, OpenCloseDevice, SceneDevice, SensorStateDevice,
+    TemperatureControlDevice, TemperatureSettingDevice, TransportControlDevice, VolumeDevice
 } from './device';
 
 export function isArmDisarm(device: Pick<Device, 'traits'>): device is ArmDisarmDevice {
@@ -53,4 +54,12 @@ export function isHumiditySetting(device: Pick<Device, 'traits'>): device is Hum
 
 export function isFanSpeedDevice(device: Pick<Device, 'traits'>): device is FanSpeedDevice {
     return device.traits.includes('action.devices.traits.FanSpeed');
+}
+
+export function isTransportControlDevice(device: Pick<Device, 'traits'>): device is TransportControlDevice {
+    return device.traits.includes('action.devices.traits.TransportControl');
+}
+
+export function isInputSelectorDevice(device: Pick<Device, 'traits'>): device is InputSelectorDevice {
+    return device.traits.includes('action.devices.traits.InputSelector');
 }

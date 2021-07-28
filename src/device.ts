@@ -227,13 +227,44 @@ export type OpenCloseDevice = Device<{
 };
 
 export type MediaStateDevice = Device<{
-    activityState: 'INACTIVE' | 'STANDBY' | 'ACTIVE';
-    playbackState: 'PAUSED' | 'PLAYING' | 'FAST_FORWARDING' | 'REWINDING' | 'BUFFERING' | 'STOPPED';
+    activityState?: 'INACTIVE' | 'STANDBY' | 'ACTIVE';
+    playbackState?: 'PAUSED' | 'PLAYING' | 'FAST_FORWARDING' | 'REWINDING' | 'BUFFERING' | 'STOPPED';
 }, {
     supportActivityState?: boolean;
     supportPlaybackState?: boolean;
 }> & {
     traits: ['action.devices.traits.MediaState']
+};
+
+export type TransportControlCommand =
+    'CAPTION_CONTROL' | 'NEXT' | 'PAUSE' | 'PREVIOUS' | 'RESUME' | 'SEEK_RELATIVE' |
+    'SEEK_TO_POSITION' | 'SET_REPEAT' | 'SHUFFLE' | 'STOP';
+
+export type TransportControlDevice = Device<{}, {
+    /**
+     * @minItems 1
+     */
+    transportControlSupportedCommands: TransportControlCommand[];
+}, {
+    pendingTransportControlCommand?: TransportControlCommand;
+}> & {
+    traits: ['action.devices.traits.TransportControl']
+};
+
+export type InputSelectorDevice = Device<{
+    currentInput: string;
+}, {
+    availableInputs: {
+        key: string;
+        names: {
+            lang: Language;
+            name_synonym: string[];
+        }[];
+    }[];
+    commandOnlyInputSelector?: boolean;
+    orderedInputs?: boolean;
+}> & {
+    traits: ['action.devices.traits.InputSelector']
 };
 
 type NumericCapabilitites<T> = T extends 'PERCENTAGE' ? {
@@ -449,6 +480,8 @@ export type Trait =
     'action.devices.traits.Volume' |
     'action.devices.traits.OpenClose' |
     'action.devices.traits.MediaState' |
+    'action.devices.traits.TransportControl' |
+    'action.devices.traits.InputSelector' |
     'action.devices.traits.SensorState' |
     'action.devices.traits.TemperatureControl' |
     'action.devices.traits.HumiditySetting' |
