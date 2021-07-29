@@ -6798,7 +6798,7 @@ export const Schema = {
       "definitions": {}
     }
   }
-};
+} as const;
 
 export const IndividualSchema = {
   "notification": {
@@ -6904,6 +6904,10 @@ export const IndividualSchema = {
           "sender": {
             "type": "string",
             "description": "Used by NORA to identify the notification sender."
+          },
+          "defaultAction": {
+            "type": "string",
+            "description": "Used to set a default action for clicking this notification."
           }
         },
         "additionalProperties": false
@@ -6912,4 +6916,4 @@ export const IndividualSchema = {
     "additionalProperties": false,
     "definitions": {}
   }
-};
+} as const;

@@ -84,5 +84,9 @@ export interface WebpushNotification {
          * Used by NORA to identify the notification sender.
          */
         sender?: string;
+        /**
+         * Used to set a default action for clicking this notification.
+         */
+        defaultAction?: string;
     };
 }

@@ -53,9 +53,9 @@ export type IndividualSchemaType = keyof typeof IndividualSchema;
 
 export type TraitName = keyof typeof Schema['device'];
 
-export const Schema = ${JSON.stringify(schemas, undefined, 2)};
+export const Schema = ${JSON.stringify(schemas, undefined, 2)} as const;
 
-export const IndividualSchema = ${JSON.stringify(individualSchema, undefined, 2)};
+export const IndividualSchema = ${JSON.stringify(individualSchema, undefined, 2)} as const;
 `;
 
     writeFileSync('./src/schema.ts', schema);
