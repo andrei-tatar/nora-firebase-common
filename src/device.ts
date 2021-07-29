@@ -449,11 +449,21 @@ type DeviceType =
     'action.devices.types.OUTLET' |
     'action.devices.types.THERMOSTAT' |
     'action.devices.types.AC_UNIT' |
-    'action.devices.types.SPEAKER' |
     'action.devices.types.LOCK' |
     'action.devices.types.SENSOR' |
+    'action.devices.types.SMOKE_DETECTOR' |
     'action.devices.types.FAN' |
     'action.devices.types.SECURITYSYSTEM' |
+
+    'action.devices.types.SPEAKER' |
+    'action.devices.types.AUDIO_VIDEO_RECEIVER' |
+    'action.devices.types.REMOTECONTROL' |
+    'action.devices.types.SETTOP' |
+    'action.devices.types.SOUNDBAR' |
+    'action.devices.types.STREAMING_BOX' |
+    'action.devices.types.STREAMING_SOUNDBAR' |
+    'action.devices.types.STREAMING_STICK' |
+    'action.devices.types.TV' |
 
     'action.devices.types.CLOSET' |
     'action.devices.types.AWNING' |
