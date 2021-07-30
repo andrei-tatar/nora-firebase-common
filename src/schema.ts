@@ -25,42 +25,7 @@ export const Schema = {
           "type": "string"
         },
         "type": {
-          "type": "string",
-          "enum": [
-            "action.devices.types.LIGHT",
-            "action.devices.types.SWITCH",
-            "action.devices.types.SCENE",
-            "action.devices.types.OUTLET",
-            "action.devices.types.THERMOSTAT",
-            "action.devices.types.AC_UNIT",
-            "action.devices.types.LOCK",
-            "action.devices.types.SENSOR",
-            "action.devices.types.SMOKE_DETECTOR",
-            "action.devices.types.FAN",
-            "action.devices.types.SECURITYSYSTEM",
-            "action.devices.types.SPEAKER",
-            "action.devices.types.AUDIO_VIDEO_RECEIVER",
-            "action.devices.types.REMOTECONTROL",
-            "action.devices.types.SETTOP",
-            "action.devices.types.SOUNDBAR",
-            "action.devices.types.STREAMING_BOX",
-            "action.devices.types.STREAMING_SOUNDBAR",
-            "action.devices.types.STREAMING_STICK",
-            "action.devices.types.TV",
-            "action.devices.types.CLOSET",
-            "action.devices.types.AWNING",
-            "action.devices.types.CURTAIN",
-            "action.devices.types.DOOR",
-            "action.devices.types.DRAWER",
-            "action.devices.types.BLINDS",
-            "action.devices.types.GARAGE",
-            "action.devices.types.GATE",
-            "action.devices.types.PERGOLA",
-            "action.devices.types.SHUTTER",
-            "action.devices.types.VALVE",
-            "action.devices.types.WINDOW",
-            "action.devices.types.HUMIDIFIER"
-          ]
+          "$ref": "#/definitions/DeviceType"
         },
         "name": {
           "type": "object",
@@ -231,24 +196,7 @@ export const Schema = {
                               }
                             },
                             "lang": {
-                              "type": "string",
-                              "enum": [
-                                "da",
-                                "nl",
-                                "en",
-                                "fr",
-                                "de",
-                                "hi",
-                                "id",
-                                "it",
-                                "ja",
-                                "ko",
-                                "no",
-                                "pt-BR",
-                                "es",
-                                "sv",
-                                "th"
-                              ]
+                              "$ref": "#/definitions/Language"
                             }
                           },
                           "required": [
@@ -300,58 +248,7 @@ export const Schema = {
             "action.devices.traits.ArmDisarm"
           ]
         },
-        "TwoFactor": {
-          "anyOf": [
-            {
-              "type": "object",
-              "properties": {
-                "type": {
-                  "type": "string",
-                  "const": "ack"
-                }
-              },
-              "required": [
-                "type"
-              ],
-              "additionalProperties": false
-            },
-            {
-              "type": "object",
-              "properties": {
-                "type": {
-                  "type": "string",
-                  "const": "pin"
-                },
-                "pin": {
-                  "type": "string",
-                  "maxLength": 20
-                }
-              },
-              "required": [
-                "type",
-                "pin"
-              ],
-              "additionalProperties": false
-            }
-          ]
-        }
-      }
-    },
-    "brightness": {
-      "$schema": "http://json-schema.org/draft-07/schema#",
-      "type": "object",
-      "additionalProperties": false,
-      "properties": {
-        "traits": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/Trait"
-          }
-        },
-        "id": {
-          "type": "string"
-        },
-        "type": {
+        "DeviceType": {
           "type": "string",
           "enum": [
             "action.devices.types.LIGHT",
@@ -388,6 +285,80 @@ export const Schema = {
             "action.devices.types.WINDOW",
             "action.devices.types.HUMIDIFIER"
           ]
+        },
+        "TwoFactor": {
+          "anyOf": [
+            {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "type": "string",
+                  "const": "ack"
+                }
+              },
+              "required": [
+                "type"
+              ],
+              "additionalProperties": false
+            },
+            {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "type": "string",
+                  "const": "pin"
+                },
+                "pin": {
+                  "type": "string",
+                  "maxLength": 20
+                }
+              },
+              "required": [
+                "type",
+                "pin"
+              ],
+              "additionalProperties": false
+            }
+          ]
+        },
+        "Language": {
+          "type": "string",
+          "enum": [
+            "da",
+            "nl",
+            "en",
+            "fr",
+            "de",
+            "hi",
+            "id",
+            "it",
+            "ja",
+            "ko",
+            "no",
+            "pt-BR",
+            "es",
+            "sv",
+            "th"
+          ]
+        }
+      }
+    },
+    "brightness": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "traits": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Trait"
+          }
+        },
+        "id": {
+          "type": "string"
+        },
+        "type": {
+          "$ref": "#/definitions/DeviceType"
         },
         "name": {
           "type": "object",
@@ -557,6 +528,44 @@ export const Schema = {
             "action.devices.traits.Brightness"
           ]
         },
+        "DeviceType": {
+          "type": "string",
+          "enum": [
+            "action.devices.types.LIGHT",
+            "action.devices.types.SWITCH",
+            "action.devices.types.SCENE",
+            "action.devices.types.OUTLET",
+            "action.devices.types.THERMOSTAT",
+            "action.devices.types.AC_UNIT",
+            "action.devices.types.LOCK",
+            "action.devices.types.SENSOR",
+            "action.devices.types.SMOKE_DETECTOR",
+            "action.devices.types.FAN",
+            "action.devices.types.SECURITYSYSTEM",
+            "action.devices.types.SPEAKER",
+            "action.devices.types.AUDIO_VIDEO_RECEIVER",
+            "action.devices.types.REMOTECONTROL",
+            "action.devices.types.SETTOP",
+            "action.devices.types.SOUNDBAR",
+            "action.devices.types.STREAMING_BOX",
+            "action.devices.types.STREAMING_SOUNDBAR",
+            "action.devices.types.STREAMING_STICK",
+            "action.devices.types.TV",
+            "action.devices.types.CLOSET",
+            "action.devices.types.AWNING",
+            "action.devices.types.CURTAIN",
+            "action.devices.types.DOOR",
+            "action.devices.types.DRAWER",
+            "action.devices.types.BLINDS",
+            "action.devices.types.GARAGE",
+            "action.devices.types.GATE",
+            "action.devices.types.PERGOLA",
+            "action.devices.types.SHUTTER",
+            "action.devices.types.VALVE",
+            "action.devices.types.WINDOW",
+            "action.devices.types.HUMIDIFIER"
+          ]
+        },
         "TwoFactor": {
           "anyOf": [
             {
@@ -609,42 +618,7 @@ export const Schema = {
           "type": "string"
         },
         "type": {
-          "type": "string",
-          "enum": [
-            "action.devices.types.LIGHT",
-            "action.devices.types.SWITCH",
-            "action.devices.types.SCENE",
-            "action.devices.types.OUTLET",
-            "action.devices.types.THERMOSTAT",
-            "action.devices.types.AC_UNIT",
-            "action.devices.types.LOCK",
-            "action.devices.types.SENSOR",
-            "action.devices.types.SMOKE_DETECTOR",
-            "action.devices.types.FAN",
-            "action.devices.types.SECURITYSYSTEM",
-            "action.devices.types.SPEAKER",
-            "action.devices.types.AUDIO_VIDEO_RECEIVER",
-            "action.devices.types.REMOTECONTROL",
-            "action.devices.types.SETTOP",
-            "action.devices.types.SOUNDBAR",
-            "action.devices.types.STREAMING_BOX",
-            "action.devices.types.STREAMING_SOUNDBAR",
-            "action.devices.types.STREAMING_STICK",
-            "action.devices.types.TV",
-            "action.devices.types.CLOSET",
-            "action.devices.types.AWNING",
-            "action.devices.types.CURTAIN",
-            "action.devices.types.DOOR",
-            "action.devices.types.DRAWER",
-            "action.devices.types.BLINDS",
-            "action.devices.types.GARAGE",
-            "action.devices.types.GATE",
-            "action.devices.types.PERGOLA",
-            "action.devices.types.SHUTTER",
-            "action.devices.types.VALVE",
-            "action.devices.types.WINDOW",
-            "action.devices.types.HUMIDIFIER"
-          ]
+          "$ref": "#/definitions/DeviceType"
         },
         "name": {
           "type": "object",
@@ -907,6 +881,44 @@ export const Schema = {
             "action.devices.traits.ColorSetting"
           ]
         },
+        "DeviceType": {
+          "type": "string",
+          "enum": [
+            "action.devices.types.LIGHT",
+            "action.devices.types.SWITCH",
+            "action.devices.types.SCENE",
+            "action.devices.types.OUTLET",
+            "action.devices.types.THERMOSTAT",
+            "action.devices.types.AC_UNIT",
+            "action.devices.types.LOCK",
+            "action.devices.types.SENSOR",
+            "action.devices.types.SMOKE_DETECTOR",
+            "action.devices.types.FAN",
+            "action.devices.types.SECURITYSYSTEM",
+            "action.devices.types.SPEAKER",
+            "action.devices.types.AUDIO_VIDEO_RECEIVER",
+            "action.devices.types.REMOTECONTROL",
+            "action.devices.types.SETTOP",
+            "action.devices.types.SOUNDBAR",
+            "action.devices.types.STREAMING_BOX",
+            "action.devices.types.STREAMING_SOUNDBAR",
+            "action.devices.types.STREAMING_STICK",
+            "action.devices.types.TV",
+            "action.devices.types.CLOSET",
+            "action.devices.types.AWNING",
+            "action.devices.types.CURTAIN",
+            "action.devices.types.DOOR",
+            "action.devices.types.DRAWER",
+            "action.devices.types.BLINDS",
+            "action.devices.types.GARAGE",
+            "action.devices.types.GATE",
+            "action.devices.types.PERGOLA",
+            "action.devices.types.SHUTTER",
+            "action.devices.types.VALVE",
+            "action.devices.types.WINDOW",
+            "action.devices.types.HUMIDIFIER"
+          ]
+        },
         "TwoFactor": {
           "anyOf": [
             {
@@ -959,42 +971,7 @@ export const Schema = {
           "type": "string"
         },
         "type": {
-          "type": "string",
-          "enum": [
-            "action.devices.types.LIGHT",
-            "action.devices.types.SWITCH",
-            "action.devices.types.SCENE",
-            "action.devices.types.OUTLET",
-            "action.devices.types.THERMOSTAT",
-            "action.devices.types.AC_UNIT",
-            "action.devices.types.LOCK",
-            "action.devices.types.SENSOR",
-            "action.devices.types.SMOKE_DETECTOR",
-            "action.devices.types.FAN",
-            "action.devices.types.SECURITYSYSTEM",
-            "action.devices.types.SPEAKER",
-            "action.devices.types.AUDIO_VIDEO_RECEIVER",
-            "action.devices.types.REMOTECONTROL",
-            "action.devices.types.SETTOP",
-            "action.devices.types.SOUNDBAR",
-            "action.devices.types.STREAMING_BOX",
-            "action.devices.types.STREAMING_SOUNDBAR",
-            "action.devices.types.STREAMING_STICK",
-            "action.devices.types.TV",
-            "action.devices.types.CLOSET",
-            "action.devices.types.AWNING",
-            "action.devices.types.CURTAIN",
-            "action.devices.types.DOOR",
-            "action.devices.types.DRAWER",
-            "action.devices.types.BLINDS",
-            "action.devices.types.GARAGE",
-            "action.devices.types.GATE",
-            "action.devices.types.PERGOLA",
-            "action.devices.types.SHUTTER",
-            "action.devices.types.VALVE",
-            "action.devices.types.WINDOW",
-            "action.devices.types.HUMIDIFIER"
-          ]
+          "$ref": "#/definitions/DeviceType"
         },
         "name": {
           "type": "object",
@@ -1164,6 +1141,44 @@ export const Schema = {
             "action.devices.traits.OnOff"
           ]
         },
+        "DeviceType": {
+          "type": "string",
+          "enum": [
+            "action.devices.types.LIGHT",
+            "action.devices.types.SWITCH",
+            "action.devices.types.SCENE",
+            "action.devices.types.OUTLET",
+            "action.devices.types.THERMOSTAT",
+            "action.devices.types.AC_UNIT",
+            "action.devices.types.LOCK",
+            "action.devices.types.SENSOR",
+            "action.devices.types.SMOKE_DETECTOR",
+            "action.devices.types.FAN",
+            "action.devices.types.SECURITYSYSTEM",
+            "action.devices.types.SPEAKER",
+            "action.devices.types.AUDIO_VIDEO_RECEIVER",
+            "action.devices.types.REMOTECONTROL",
+            "action.devices.types.SETTOP",
+            "action.devices.types.SOUNDBAR",
+            "action.devices.types.STREAMING_BOX",
+            "action.devices.types.STREAMING_SOUNDBAR",
+            "action.devices.types.STREAMING_STICK",
+            "action.devices.types.TV",
+            "action.devices.types.CLOSET",
+            "action.devices.types.AWNING",
+            "action.devices.types.CURTAIN",
+            "action.devices.types.DOOR",
+            "action.devices.types.DRAWER",
+            "action.devices.types.BLINDS",
+            "action.devices.types.GARAGE",
+            "action.devices.types.GATE",
+            "action.devices.types.PERGOLA",
+            "action.devices.types.SHUTTER",
+            "action.devices.types.VALVE",
+            "action.devices.types.WINDOW",
+            "action.devices.types.HUMIDIFIER"
+          ]
+        },
         "TwoFactor": {
           "anyOf": [
             {
@@ -1216,42 +1231,7 @@ export const Schema = {
           "type": "string"
         },
         "type": {
-          "type": "string",
-          "enum": [
-            "action.devices.types.LIGHT",
-            "action.devices.types.SWITCH",
-            "action.devices.types.SCENE",
-            "action.devices.types.OUTLET",
-            "action.devices.types.THERMOSTAT",
-            "action.devices.types.AC_UNIT",
-            "action.devices.types.LOCK",
-            "action.devices.types.SENSOR",
-            "action.devices.types.SMOKE_DETECTOR",
-            "action.devices.types.FAN",
-            "action.devices.types.SECURITYSYSTEM",
-            "action.devices.types.SPEAKER",
-            "action.devices.types.AUDIO_VIDEO_RECEIVER",
-            "action.devices.types.REMOTECONTROL",
-            "action.devices.types.SETTOP",
-            "action.devices.types.SOUNDBAR",
-            "action.devices.types.STREAMING_BOX",
-            "action.devices.types.STREAMING_SOUNDBAR",
-            "action.devices.types.STREAMING_STICK",
-            "action.devices.types.TV",
-            "action.devices.types.CLOSET",
-            "action.devices.types.AWNING",
-            "action.devices.types.CURTAIN",
-            "action.devices.types.DOOR",
-            "action.devices.types.DRAWER",
-            "action.devices.types.BLINDS",
-            "action.devices.types.GARAGE",
-            "action.devices.types.GATE",
-            "action.devices.types.PERGOLA",
-            "action.devices.types.SHUTTER",
-            "action.devices.types.VALVE",
-            "action.devices.types.WINDOW",
-            "action.devices.types.HUMIDIFIER"
-          ]
+          "$ref": "#/definitions/DeviceType"
         },
         "name": {
           "type": "object",
@@ -1417,6 +1397,44 @@ export const Schema = {
             "action.devices.traits.LockUnlock"
           ]
         },
+        "DeviceType": {
+          "type": "string",
+          "enum": [
+            "action.devices.types.LIGHT",
+            "action.devices.types.SWITCH",
+            "action.devices.types.SCENE",
+            "action.devices.types.OUTLET",
+            "action.devices.types.THERMOSTAT",
+            "action.devices.types.AC_UNIT",
+            "action.devices.types.LOCK",
+            "action.devices.types.SENSOR",
+            "action.devices.types.SMOKE_DETECTOR",
+            "action.devices.types.FAN",
+            "action.devices.types.SECURITYSYSTEM",
+            "action.devices.types.SPEAKER",
+            "action.devices.types.AUDIO_VIDEO_RECEIVER",
+            "action.devices.types.REMOTECONTROL",
+            "action.devices.types.SETTOP",
+            "action.devices.types.SOUNDBAR",
+            "action.devices.types.STREAMING_BOX",
+            "action.devices.types.STREAMING_SOUNDBAR",
+            "action.devices.types.STREAMING_STICK",
+            "action.devices.types.TV",
+            "action.devices.types.CLOSET",
+            "action.devices.types.AWNING",
+            "action.devices.types.CURTAIN",
+            "action.devices.types.DOOR",
+            "action.devices.types.DRAWER",
+            "action.devices.types.BLINDS",
+            "action.devices.types.GARAGE",
+            "action.devices.types.GATE",
+            "action.devices.types.PERGOLA",
+            "action.devices.types.SHUTTER",
+            "action.devices.types.VALVE",
+            "action.devices.types.WINDOW",
+            "action.devices.types.HUMIDIFIER"
+          ]
+        },
         "TwoFactor": {
           "anyOf": [
             {
@@ -1469,42 +1487,7 @@ export const Schema = {
           "type": "string"
         },
         "type": {
-          "type": "string",
-          "enum": [
-            "action.devices.types.LIGHT",
-            "action.devices.types.SWITCH",
-            "action.devices.types.SCENE",
-            "action.devices.types.OUTLET",
-            "action.devices.types.THERMOSTAT",
-            "action.devices.types.AC_UNIT",
-            "action.devices.types.LOCK",
-            "action.devices.types.SENSOR",
-            "action.devices.types.SMOKE_DETECTOR",
-            "action.devices.types.FAN",
-            "action.devices.types.SECURITYSYSTEM",
-            "action.devices.types.SPEAKER",
-            "action.devices.types.AUDIO_VIDEO_RECEIVER",
-            "action.devices.types.REMOTECONTROL",
-            "action.devices.types.SETTOP",
-            "action.devices.types.SOUNDBAR",
-            "action.devices.types.STREAMING_BOX",
-            "action.devices.types.STREAMING_SOUNDBAR",
-            "action.devices.types.STREAMING_STICK",
-            "action.devices.types.TV",
-            "action.devices.types.CLOSET",
-            "action.devices.types.AWNING",
-            "action.devices.types.CURTAIN",
-            "action.devices.types.DOOR",
-            "action.devices.types.DRAWER",
-            "action.devices.types.BLINDS",
-            "action.devices.types.GARAGE",
-            "action.devices.types.GATE",
-            "action.devices.types.PERGOLA",
-            "action.devices.types.SHUTTER",
-            "action.devices.types.VALVE",
-            "action.devices.types.WINDOW",
-            "action.devices.types.HUMIDIFIER"
-          ]
+          "$ref": "#/definitions/DeviceType"
         },
         "name": {
           "type": "object",
@@ -1676,6 +1659,44 @@ export const Schema = {
             "action.devices.traits.Scene"
           ]
         },
+        "DeviceType": {
+          "type": "string",
+          "enum": [
+            "action.devices.types.LIGHT",
+            "action.devices.types.SWITCH",
+            "action.devices.types.SCENE",
+            "action.devices.types.OUTLET",
+            "action.devices.types.THERMOSTAT",
+            "action.devices.types.AC_UNIT",
+            "action.devices.types.LOCK",
+            "action.devices.types.SENSOR",
+            "action.devices.types.SMOKE_DETECTOR",
+            "action.devices.types.FAN",
+            "action.devices.types.SECURITYSYSTEM",
+            "action.devices.types.SPEAKER",
+            "action.devices.types.AUDIO_VIDEO_RECEIVER",
+            "action.devices.types.REMOTECONTROL",
+            "action.devices.types.SETTOP",
+            "action.devices.types.SOUNDBAR",
+            "action.devices.types.STREAMING_BOX",
+            "action.devices.types.STREAMING_SOUNDBAR",
+            "action.devices.types.STREAMING_STICK",
+            "action.devices.types.TV",
+            "action.devices.types.CLOSET",
+            "action.devices.types.AWNING",
+            "action.devices.types.CURTAIN",
+            "action.devices.types.DOOR",
+            "action.devices.types.DRAWER",
+            "action.devices.types.BLINDS",
+            "action.devices.types.GARAGE",
+            "action.devices.types.GATE",
+            "action.devices.types.PERGOLA",
+            "action.devices.types.SHUTTER",
+            "action.devices.types.VALVE",
+            "action.devices.types.WINDOW",
+            "action.devices.types.HUMIDIFIER"
+          ]
+        },
         "TwoFactor": {
           "anyOf": [
             {
@@ -1728,42 +1749,7 @@ export const Schema = {
           "type": "string"
         },
         "type": {
-          "type": "string",
-          "enum": [
-            "action.devices.types.LIGHT",
-            "action.devices.types.SWITCH",
-            "action.devices.types.SCENE",
-            "action.devices.types.OUTLET",
-            "action.devices.types.THERMOSTAT",
-            "action.devices.types.AC_UNIT",
-            "action.devices.types.LOCK",
-            "action.devices.types.SENSOR",
-            "action.devices.types.SMOKE_DETECTOR",
-            "action.devices.types.FAN",
-            "action.devices.types.SECURITYSYSTEM",
-            "action.devices.types.SPEAKER",
-            "action.devices.types.AUDIO_VIDEO_RECEIVER",
-            "action.devices.types.REMOTECONTROL",
-            "action.devices.types.SETTOP",
-            "action.devices.types.SOUNDBAR",
-            "action.devices.types.STREAMING_BOX",
-            "action.devices.types.STREAMING_SOUNDBAR",
-            "action.devices.types.STREAMING_STICK",
-            "action.devices.types.TV",
-            "action.devices.types.CLOSET",
-            "action.devices.types.AWNING",
-            "action.devices.types.CURTAIN",
-            "action.devices.types.DOOR",
-            "action.devices.types.DRAWER",
-            "action.devices.types.BLINDS",
-            "action.devices.types.GARAGE",
-            "action.devices.types.GATE",
-            "action.devices.types.PERGOLA",
-            "action.devices.types.SHUTTER",
-            "action.devices.types.VALVE",
-            "action.devices.types.WINDOW",
-            "action.devices.types.HUMIDIFIER"
-          ]
+          "$ref": "#/definitions/DeviceType"
         },
         "name": {
           "type": "object",
@@ -1997,6 +1983,44 @@ export const Schema = {
             "action.devices.traits.TemperatureSetting"
           ]
         },
+        "DeviceType": {
+          "type": "string",
+          "enum": [
+            "action.devices.types.LIGHT",
+            "action.devices.types.SWITCH",
+            "action.devices.types.SCENE",
+            "action.devices.types.OUTLET",
+            "action.devices.types.THERMOSTAT",
+            "action.devices.types.AC_UNIT",
+            "action.devices.types.LOCK",
+            "action.devices.types.SENSOR",
+            "action.devices.types.SMOKE_DETECTOR",
+            "action.devices.types.FAN",
+            "action.devices.types.SECURITYSYSTEM",
+            "action.devices.types.SPEAKER",
+            "action.devices.types.AUDIO_VIDEO_RECEIVER",
+            "action.devices.types.REMOTECONTROL",
+            "action.devices.types.SETTOP",
+            "action.devices.types.SOUNDBAR",
+            "action.devices.types.STREAMING_BOX",
+            "action.devices.types.STREAMING_SOUNDBAR",
+            "action.devices.types.STREAMING_STICK",
+            "action.devices.types.TV",
+            "action.devices.types.CLOSET",
+            "action.devices.types.AWNING",
+            "action.devices.types.CURTAIN",
+            "action.devices.types.DOOR",
+            "action.devices.types.DRAWER",
+            "action.devices.types.BLINDS",
+            "action.devices.types.GARAGE",
+            "action.devices.types.GATE",
+            "action.devices.types.PERGOLA",
+            "action.devices.types.SHUTTER",
+            "action.devices.types.VALVE",
+            "action.devices.types.WINDOW",
+            "action.devices.types.HUMIDIFIER"
+          ]
+        },
         "PreviousMode": {
           "type": "string",
           "enum": [
@@ -2088,42 +2112,7 @@ export const Schema = {
           "type": "string"
         },
         "type": {
-          "type": "string",
-          "enum": [
-            "action.devices.types.LIGHT",
-            "action.devices.types.SWITCH",
-            "action.devices.types.SCENE",
-            "action.devices.types.OUTLET",
-            "action.devices.types.THERMOSTAT",
-            "action.devices.types.AC_UNIT",
-            "action.devices.types.LOCK",
-            "action.devices.types.SENSOR",
-            "action.devices.types.SMOKE_DETECTOR",
-            "action.devices.types.FAN",
-            "action.devices.types.SECURITYSYSTEM",
-            "action.devices.types.SPEAKER",
-            "action.devices.types.AUDIO_VIDEO_RECEIVER",
-            "action.devices.types.REMOTECONTROL",
-            "action.devices.types.SETTOP",
-            "action.devices.types.SOUNDBAR",
-            "action.devices.types.STREAMING_BOX",
-            "action.devices.types.STREAMING_SOUNDBAR",
-            "action.devices.types.STREAMING_STICK",
-            "action.devices.types.TV",
-            "action.devices.types.CLOSET",
-            "action.devices.types.AWNING",
-            "action.devices.types.CURTAIN",
-            "action.devices.types.DOOR",
-            "action.devices.types.DRAWER",
-            "action.devices.types.BLINDS",
-            "action.devices.types.GARAGE",
-            "action.devices.types.GATE",
-            "action.devices.types.PERGOLA",
-            "action.devices.types.SHUTTER",
-            "action.devices.types.VALVE",
-            "action.devices.types.WINDOW",
-            "action.devices.types.HUMIDIFIER"
-          ]
+          "$ref": "#/definitions/DeviceType"
         },
         "name": {
           "type": "object",
@@ -2306,6 +2295,44 @@ export const Schema = {
             "action.devices.traits.Volume"
           ]
         },
+        "DeviceType": {
+          "type": "string",
+          "enum": [
+            "action.devices.types.LIGHT",
+            "action.devices.types.SWITCH",
+            "action.devices.types.SCENE",
+            "action.devices.types.OUTLET",
+            "action.devices.types.THERMOSTAT",
+            "action.devices.types.AC_UNIT",
+            "action.devices.types.LOCK",
+            "action.devices.types.SENSOR",
+            "action.devices.types.SMOKE_DETECTOR",
+            "action.devices.types.FAN",
+            "action.devices.types.SECURITYSYSTEM",
+            "action.devices.types.SPEAKER",
+            "action.devices.types.AUDIO_VIDEO_RECEIVER",
+            "action.devices.types.REMOTECONTROL",
+            "action.devices.types.SETTOP",
+            "action.devices.types.SOUNDBAR",
+            "action.devices.types.STREAMING_BOX",
+            "action.devices.types.STREAMING_SOUNDBAR",
+            "action.devices.types.STREAMING_STICK",
+            "action.devices.types.TV",
+            "action.devices.types.CLOSET",
+            "action.devices.types.AWNING",
+            "action.devices.types.CURTAIN",
+            "action.devices.types.DOOR",
+            "action.devices.types.DRAWER",
+            "action.devices.types.BLINDS",
+            "action.devices.types.GARAGE",
+            "action.devices.types.GATE",
+            "action.devices.types.PERGOLA",
+            "action.devices.types.SHUTTER",
+            "action.devices.types.VALVE",
+            "action.devices.types.WINDOW",
+            "action.devices.types.HUMIDIFIER"
+          ]
+        },
         "TwoFactor": {
           "anyOf": [
             {
@@ -2358,42 +2385,7 @@ export const Schema = {
           "type": "string"
         },
         "type": {
-          "type": "string",
-          "enum": [
-            "action.devices.types.LIGHT",
-            "action.devices.types.SWITCH",
-            "action.devices.types.SCENE",
-            "action.devices.types.OUTLET",
-            "action.devices.types.THERMOSTAT",
-            "action.devices.types.AC_UNIT",
-            "action.devices.types.LOCK",
-            "action.devices.types.SENSOR",
-            "action.devices.types.SMOKE_DETECTOR",
-            "action.devices.types.FAN",
-            "action.devices.types.SECURITYSYSTEM",
-            "action.devices.types.SPEAKER",
-            "action.devices.types.AUDIO_VIDEO_RECEIVER",
-            "action.devices.types.REMOTECONTROL",
-            "action.devices.types.SETTOP",
-            "action.devices.types.SOUNDBAR",
-            "action.devices.types.STREAMING_BOX",
-            "action.devices.types.STREAMING_SOUNDBAR",
-            "action.devices.types.STREAMING_STICK",
-            "action.devices.types.TV",
-            "action.devices.types.CLOSET",
-            "action.devices.types.AWNING",
-            "action.devices.types.CURTAIN",
-            "action.devices.types.DOOR",
-            "action.devices.types.DRAWER",
-            "action.devices.types.BLINDS",
-            "action.devices.types.GARAGE",
-            "action.devices.types.GATE",
-            "action.devices.types.PERGOLA",
-            "action.devices.types.SHUTTER",
-            "action.devices.types.VALVE",
-            "action.devices.types.WINDOW",
-            "action.devices.types.HUMIDIFIER"
-          ]
+          "$ref": "#/definitions/DeviceType"
         },
         "name": {
           "type": "object",
@@ -2612,6 +2604,44 @@ export const Schema = {
             "action.devices.traits.OpenClose"
           ]
         },
+        "DeviceType": {
+          "type": "string",
+          "enum": [
+            "action.devices.types.LIGHT",
+            "action.devices.types.SWITCH",
+            "action.devices.types.SCENE",
+            "action.devices.types.OUTLET",
+            "action.devices.types.THERMOSTAT",
+            "action.devices.types.AC_UNIT",
+            "action.devices.types.LOCK",
+            "action.devices.types.SENSOR",
+            "action.devices.types.SMOKE_DETECTOR",
+            "action.devices.types.FAN",
+            "action.devices.types.SECURITYSYSTEM",
+            "action.devices.types.SPEAKER",
+            "action.devices.types.AUDIO_VIDEO_RECEIVER",
+            "action.devices.types.REMOTECONTROL",
+            "action.devices.types.SETTOP",
+            "action.devices.types.SOUNDBAR",
+            "action.devices.types.STREAMING_BOX",
+            "action.devices.types.STREAMING_SOUNDBAR",
+            "action.devices.types.STREAMING_STICK",
+            "action.devices.types.TV",
+            "action.devices.types.CLOSET",
+            "action.devices.types.AWNING",
+            "action.devices.types.CURTAIN",
+            "action.devices.types.DOOR",
+            "action.devices.types.DRAWER",
+            "action.devices.types.BLINDS",
+            "action.devices.types.GARAGE",
+            "action.devices.types.GATE",
+            "action.devices.types.PERGOLA",
+            "action.devices.types.SHUTTER",
+            "action.devices.types.VALVE",
+            "action.devices.types.WINDOW",
+            "action.devices.types.HUMIDIFIER"
+          ]
+        },
         "TwoFactor": {
           "anyOf": [
             {
@@ -2675,42 +2705,7 @@ export const Schema = {
           "type": "string"
         },
         "type": {
-          "type": "string",
-          "enum": [
-            "action.devices.types.LIGHT",
-            "action.devices.types.SWITCH",
-            "action.devices.types.SCENE",
-            "action.devices.types.OUTLET",
-            "action.devices.types.THERMOSTAT",
-            "action.devices.types.AC_UNIT",
-            "action.devices.types.LOCK",
-            "action.devices.types.SENSOR",
-            "action.devices.types.SMOKE_DETECTOR",
-            "action.devices.types.FAN",
-            "action.devices.types.SECURITYSYSTEM",
-            "action.devices.types.SPEAKER",
-            "action.devices.types.AUDIO_VIDEO_RECEIVER",
-            "action.devices.types.REMOTECONTROL",
-            "action.devices.types.SETTOP",
-            "action.devices.types.SOUNDBAR",
-            "action.devices.types.STREAMING_BOX",
-            "action.devices.types.STREAMING_SOUNDBAR",
-            "action.devices.types.STREAMING_STICK",
-            "action.devices.types.TV",
-            "action.devices.types.CLOSET",
-            "action.devices.types.AWNING",
-            "action.devices.types.CURTAIN",
-            "action.devices.types.DOOR",
-            "action.devices.types.DRAWER",
-            "action.devices.types.BLINDS",
-            "action.devices.types.GARAGE",
-            "action.devices.types.GATE",
-            "action.devices.types.PERGOLA",
-            "action.devices.types.SHUTTER",
-            "action.devices.types.VALVE",
-            "action.devices.types.WINDOW",
-            "action.devices.types.HUMIDIFIER"
-          ]
+          "$ref": "#/definitions/DeviceType"
         },
         "name": {
           "type": "object",
@@ -2892,6 +2887,44 @@ export const Schema = {
             "action.devices.traits.MediaState"
           ]
         },
+        "DeviceType": {
+          "type": "string",
+          "enum": [
+            "action.devices.types.LIGHT",
+            "action.devices.types.SWITCH",
+            "action.devices.types.SCENE",
+            "action.devices.types.OUTLET",
+            "action.devices.types.THERMOSTAT",
+            "action.devices.types.AC_UNIT",
+            "action.devices.types.LOCK",
+            "action.devices.types.SENSOR",
+            "action.devices.types.SMOKE_DETECTOR",
+            "action.devices.types.FAN",
+            "action.devices.types.SECURITYSYSTEM",
+            "action.devices.types.SPEAKER",
+            "action.devices.types.AUDIO_VIDEO_RECEIVER",
+            "action.devices.types.REMOTECONTROL",
+            "action.devices.types.SETTOP",
+            "action.devices.types.SOUNDBAR",
+            "action.devices.types.STREAMING_BOX",
+            "action.devices.types.STREAMING_SOUNDBAR",
+            "action.devices.types.STREAMING_STICK",
+            "action.devices.types.TV",
+            "action.devices.types.CLOSET",
+            "action.devices.types.AWNING",
+            "action.devices.types.CURTAIN",
+            "action.devices.types.DOOR",
+            "action.devices.types.DRAWER",
+            "action.devices.types.BLINDS",
+            "action.devices.types.GARAGE",
+            "action.devices.types.GATE",
+            "action.devices.types.PERGOLA",
+            "action.devices.types.SHUTTER",
+            "action.devices.types.VALVE",
+            "action.devices.types.WINDOW",
+            "action.devices.types.HUMIDIFIER"
+          ]
+        },
         "TwoFactor": {
           "anyOf": [
             {
@@ -2944,42 +2977,7 @@ export const Schema = {
           "type": "string"
         },
         "type": {
-          "type": "string",
-          "enum": [
-            "action.devices.types.LIGHT",
-            "action.devices.types.SWITCH",
-            "action.devices.types.SCENE",
-            "action.devices.types.OUTLET",
-            "action.devices.types.THERMOSTAT",
-            "action.devices.types.AC_UNIT",
-            "action.devices.types.LOCK",
-            "action.devices.types.SENSOR",
-            "action.devices.types.SMOKE_DETECTOR",
-            "action.devices.types.FAN",
-            "action.devices.types.SECURITYSYSTEM",
-            "action.devices.types.SPEAKER",
-            "action.devices.types.AUDIO_VIDEO_RECEIVER",
-            "action.devices.types.REMOTECONTROL",
-            "action.devices.types.SETTOP",
-            "action.devices.types.SOUNDBAR",
-            "action.devices.types.STREAMING_BOX",
-            "action.devices.types.STREAMING_SOUNDBAR",
-            "action.devices.types.STREAMING_STICK",
-            "action.devices.types.TV",
-            "action.devices.types.CLOSET",
-            "action.devices.types.AWNING",
-            "action.devices.types.CURTAIN",
-            "action.devices.types.DOOR",
-            "action.devices.types.DRAWER",
-            "action.devices.types.BLINDS",
-            "action.devices.types.GARAGE",
-            "action.devices.types.GATE",
-            "action.devices.types.PERGOLA",
-            "action.devices.types.SHUTTER",
-            "action.devices.types.VALVE",
-            "action.devices.types.WINDOW",
-            "action.devices.types.HUMIDIFIER"
-          ]
+          "$ref": "#/definitions/DeviceType"
         },
         "name": {
           "type": "object",
@@ -3149,6 +3147,44 @@ export const Schema = {
             "action.devices.traits.TransportControl"
           ]
         },
+        "DeviceType": {
+          "type": "string",
+          "enum": [
+            "action.devices.types.LIGHT",
+            "action.devices.types.SWITCH",
+            "action.devices.types.SCENE",
+            "action.devices.types.OUTLET",
+            "action.devices.types.THERMOSTAT",
+            "action.devices.types.AC_UNIT",
+            "action.devices.types.LOCK",
+            "action.devices.types.SENSOR",
+            "action.devices.types.SMOKE_DETECTOR",
+            "action.devices.types.FAN",
+            "action.devices.types.SECURITYSYSTEM",
+            "action.devices.types.SPEAKER",
+            "action.devices.types.AUDIO_VIDEO_RECEIVER",
+            "action.devices.types.REMOTECONTROL",
+            "action.devices.types.SETTOP",
+            "action.devices.types.SOUNDBAR",
+            "action.devices.types.STREAMING_BOX",
+            "action.devices.types.STREAMING_SOUNDBAR",
+            "action.devices.types.STREAMING_STICK",
+            "action.devices.types.TV",
+            "action.devices.types.CLOSET",
+            "action.devices.types.AWNING",
+            "action.devices.types.CURTAIN",
+            "action.devices.types.DOOR",
+            "action.devices.types.DRAWER",
+            "action.devices.types.BLINDS",
+            "action.devices.types.GARAGE",
+            "action.devices.types.GATE",
+            "action.devices.types.PERGOLA",
+            "action.devices.types.SHUTTER",
+            "action.devices.types.VALVE",
+            "action.devices.types.WINDOW",
+            "action.devices.types.HUMIDIFIER"
+          ]
+        },
         "TransportControlCommand": {
           "type": "string",
           "enum": [
@@ -3216,42 +3252,7 @@ export const Schema = {
           "type": "string"
         },
         "type": {
-          "type": "string",
-          "enum": [
-            "action.devices.types.LIGHT",
-            "action.devices.types.SWITCH",
-            "action.devices.types.SCENE",
-            "action.devices.types.OUTLET",
-            "action.devices.types.THERMOSTAT",
-            "action.devices.types.AC_UNIT",
-            "action.devices.types.LOCK",
-            "action.devices.types.SENSOR",
-            "action.devices.types.SMOKE_DETECTOR",
-            "action.devices.types.FAN",
-            "action.devices.types.SECURITYSYSTEM",
-            "action.devices.types.SPEAKER",
-            "action.devices.types.AUDIO_VIDEO_RECEIVER",
-            "action.devices.types.REMOTECONTROL",
-            "action.devices.types.SETTOP",
-            "action.devices.types.SOUNDBAR",
-            "action.devices.types.STREAMING_BOX",
-            "action.devices.types.STREAMING_SOUNDBAR",
-            "action.devices.types.STREAMING_STICK",
-            "action.devices.types.TV",
-            "action.devices.types.CLOSET",
-            "action.devices.types.AWNING",
-            "action.devices.types.CURTAIN",
-            "action.devices.types.DOOR",
-            "action.devices.types.DRAWER",
-            "action.devices.types.BLINDS",
-            "action.devices.types.GARAGE",
-            "action.devices.types.GATE",
-            "action.devices.types.PERGOLA",
-            "action.devices.types.SHUTTER",
-            "action.devices.types.VALVE",
-            "action.devices.types.WINDOW",
-            "action.devices.types.HUMIDIFIER"
-          ]
+          "$ref": "#/definitions/DeviceType"
         },
         "name": {
           "type": "object",
@@ -3405,24 +3406,7 @@ export const Schema = {
                       "type": "object",
                       "properties": {
                         "lang": {
-                          "type": "string",
-                          "enum": [
-                            "da",
-                            "nl",
-                            "en",
-                            "fr",
-                            "de",
-                            "hi",
-                            "id",
-                            "it",
-                            "ja",
-                            "ko",
-                            "no",
-                            "pt-BR",
-                            "es",
-                            "sv",
-                            "th"
-                          ]
+                          "$ref": "#/definitions/Language"
                         },
                         "name_synonym": {
                           "type": "array",
@@ -3476,58 +3460,7 @@ export const Schema = {
             "action.devices.traits.InputSelector"
           ]
         },
-        "TwoFactor": {
-          "anyOf": [
-            {
-              "type": "object",
-              "properties": {
-                "type": {
-                  "type": "string",
-                  "const": "ack"
-                }
-              },
-              "required": [
-                "type"
-              ],
-              "additionalProperties": false
-            },
-            {
-              "type": "object",
-              "properties": {
-                "type": {
-                  "type": "string",
-                  "const": "pin"
-                },
-                "pin": {
-                  "type": "string",
-                  "maxLength": 20
-                }
-              },
-              "required": [
-                "type",
-                "pin"
-              ],
-              "additionalProperties": false
-            }
-          ]
-        }
-      }
-    },
-    "sensorstate": {
-      "$schema": "http://json-schema.org/draft-07/schema#",
-      "type": "object",
-      "additionalProperties": false,
-      "properties": {
-        "traits": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/Trait"
-          }
-        },
-        "id": {
-          "type": "string"
-        },
-        "type": {
+        "DeviceType": {
           "type": "string",
           "enum": [
             "action.devices.types.LIGHT",
@@ -3564,6 +3497,80 @@ export const Schema = {
             "action.devices.types.WINDOW",
             "action.devices.types.HUMIDIFIER"
           ]
+        },
+        "TwoFactor": {
+          "anyOf": [
+            {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "type": "string",
+                  "const": "ack"
+                }
+              },
+              "required": [
+                "type"
+              ],
+              "additionalProperties": false
+            },
+            {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "type": "string",
+                  "const": "pin"
+                },
+                "pin": {
+                  "type": "string",
+                  "maxLength": 20
+                }
+              },
+              "required": [
+                "type",
+                "pin"
+              ],
+              "additionalProperties": false
+            }
+          ]
+        },
+        "Language": {
+          "type": "string",
+          "enum": [
+            "da",
+            "nl",
+            "en",
+            "fr",
+            "de",
+            "hi",
+            "id",
+            "it",
+            "ja",
+            "ko",
+            "no",
+            "pt-BR",
+            "es",
+            "sv",
+            "th"
+          ]
+        }
+      }
+    },
+    "sensorstate": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "traits": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Trait"
+          }
+        },
+        "id": {
+          "type": "string"
+        },
+        "type": {
+          "$ref": "#/definitions/DeviceType"
         },
         "name": {
           "type": "object",
@@ -4424,6 +4431,44 @@ export const Schema = {
             "action.devices.traits.SensorState"
           ]
         },
+        "DeviceType": {
+          "type": "string",
+          "enum": [
+            "action.devices.types.LIGHT",
+            "action.devices.types.SWITCH",
+            "action.devices.types.SCENE",
+            "action.devices.types.OUTLET",
+            "action.devices.types.THERMOSTAT",
+            "action.devices.types.AC_UNIT",
+            "action.devices.types.LOCK",
+            "action.devices.types.SENSOR",
+            "action.devices.types.SMOKE_DETECTOR",
+            "action.devices.types.FAN",
+            "action.devices.types.SECURITYSYSTEM",
+            "action.devices.types.SPEAKER",
+            "action.devices.types.AUDIO_VIDEO_RECEIVER",
+            "action.devices.types.REMOTECONTROL",
+            "action.devices.types.SETTOP",
+            "action.devices.types.SOUNDBAR",
+            "action.devices.types.STREAMING_BOX",
+            "action.devices.types.STREAMING_SOUNDBAR",
+            "action.devices.types.STREAMING_STICK",
+            "action.devices.types.TV",
+            "action.devices.types.CLOSET",
+            "action.devices.types.AWNING",
+            "action.devices.types.CURTAIN",
+            "action.devices.types.DOOR",
+            "action.devices.types.DRAWER",
+            "action.devices.types.BLINDS",
+            "action.devices.types.GARAGE",
+            "action.devices.types.GATE",
+            "action.devices.types.PERGOLA",
+            "action.devices.types.SHUTTER",
+            "action.devices.types.VALVE",
+            "action.devices.types.WINDOW",
+            "action.devices.types.HUMIDIFIER"
+          ]
+        },
         "TwoFactor": {
           "anyOf": [
             {
@@ -4476,42 +4521,7 @@ export const Schema = {
           "type": "string"
         },
         "type": {
-          "type": "string",
-          "enum": [
-            "action.devices.types.LIGHT",
-            "action.devices.types.SWITCH",
-            "action.devices.types.SCENE",
-            "action.devices.types.OUTLET",
-            "action.devices.types.THERMOSTAT",
-            "action.devices.types.AC_UNIT",
-            "action.devices.types.LOCK",
-            "action.devices.types.SENSOR",
-            "action.devices.types.SMOKE_DETECTOR",
-            "action.devices.types.FAN",
-            "action.devices.types.SECURITYSYSTEM",
-            "action.devices.types.SPEAKER",
-            "action.devices.types.AUDIO_VIDEO_RECEIVER",
-            "action.devices.types.REMOTECONTROL",
-            "action.devices.types.SETTOP",
-            "action.devices.types.SOUNDBAR",
-            "action.devices.types.STREAMING_BOX",
-            "action.devices.types.STREAMING_SOUNDBAR",
-            "action.devices.types.STREAMING_STICK",
-            "action.devices.types.TV",
-            "action.devices.types.CLOSET",
-            "action.devices.types.AWNING",
-            "action.devices.types.CURTAIN",
-            "action.devices.types.DOOR",
-            "action.devices.types.DRAWER",
-            "action.devices.types.BLINDS",
-            "action.devices.types.GARAGE",
-            "action.devices.types.GATE",
-            "action.devices.types.PERGOLA",
-            "action.devices.types.SHUTTER",
-            "action.devices.types.VALVE",
-            "action.devices.types.WINDOW",
-            "action.devices.types.HUMIDIFIER"
-          ]
+          "$ref": "#/definitions/DeviceType"
         },
         "name": {
           "type": "object",
@@ -4710,6 +4720,44 @@ export const Schema = {
             "action.devices.traits.TemperatureControl"
           ]
         },
+        "DeviceType": {
+          "type": "string",
+          "enum": [
+            "action.devices.types.LIGHT",
+            "action.devices.types.SWITCH",
+            "action.devices.types.SCENE",
+            "action.devices.types.OUTLET",
+            "action.devices.types.THERMOSTAT",
+            "action.devices.types.AC_UNIT",
+            "action.devices.types.LOCK",
+            "action.devices.types.SENSOR",
+            "action.devices.types.SMOKE_DETECTOR",
+            "action.devices.types.FAN",
+            "action.devices.types.SECURITYSYSTEM",
+            "action.devices.types.SPEAKER",
+            "action.devices.types.AUDIO_VIDEO_RECEIVER",
+            "action.devices.types.REMOTECONTROL",
+            "action.devices.types.SETTOP",
+            "action.devices.types.SOUNDBAR",
+            "action.devices.types.STREAMING_BOX",
+            "action.devices.types.STREAMING_SOUNDBAR",
+            "action.devices.types.STREAMING_STICK",
+            "action.devices.types.TV",
+            "action.devices.types.CLOSET",
+            "action.devices.types.AWNING",
+            "action.devices.types.CURTAIN",
+            "action.devices.types.DOOR",
+            "action.devices.types.DRAWER",
+            "action.devices.types.BLINDS",
+            "action.devices.types.GARAGE",
+            "action.devices.types.GATE",
+            "action.devices.types.PERGOLA",
+            "action.devices.types.SHUTTER",
+            "action.devices.types.VALVE",
+            "action.devices.types.WINDOW",
+            "action.devices.types.HUMIDIFIER"
+          ]
+        },
         "TwoFactor": {
           "anyOf": [
             {
@@ -4762,42 +4810,7 @@ export const Schema = {
           "type": "string"
         },
         "type": {
-          "type": "string",
-          "enum": [
-            "action.devices.types.LIGHT",
-            "action.devices.types.SWITCH",
-            "action.devices.types.SCENE",
-            "action.devices.types.OUTLET",
-            "action.devices.types.THERMOSTAT",
-            "action.devices.types.AC_UNIT",
-            "action.devices.types.LOCK",
-            "action.devices.types.SENSOR",
-            "action.devices.types.SMOKE_DETECTOR",
-            "action.devices.types.FAN",
-            "action.devices.types.SECURITYSYSTEM",
-            "action.devices.types.SPEAKER",
-            "action.devices.types.AUDIO_VIDEO_RECEIVER",
-            "action.devices.types.REMOTECONTROL",
-            "action.devices.types.SETTOP",
-            "action.devices.types.SOUNDBAR",
-            "action.devices.types.STREAMING_BOX",
-            "action.devices.types.STREAMING_SOUNDBAR",
-            "action.devices.types.STREAMING_STICK",
-            "action.devices.types.TV",
-            "action.devices.types.CLOSET",
-            "action.devices.types.AWNING",
-            "action.devices.types.CURTAIN",
-            "action.devices.types.DOOR",
-            "action.devices.types.DRAWER",
-            "action.devices.types.BLINDS",
-            "action.devices.types.GARAGE",
-            "action.devices.types.GATE",
-            "action.devices.types.PERGOLA",
-            "action.devices.types.SHUTTER",
-            "action.devices.types.VALVE",
-            "action.devices.types.WINDOW",
-            "action.devices.types.HUMIDIFIER"
-          ]
+          "$ref": "#/definitions/DeviceType"
         },
         "name": {
           "type": "object",
@@ -4990,6 +5003,44 @@ export const Schema = {
             "action.devices.traits.HumiditySetting"
           ]
         },
+        "DeviceType": {
+          "type": "string",
+          "enum": [
+            "action.devices.types.LIGHT",
+            "action.devices.types.SWITCH",
+            "action.devices.types.SCENE",
+            "action.devices.types.OUTLET",
+            "action.devices.types.THERMOSTAT",
+            "action.devices.types.AC_UNIT",
+            "action.devices.types.LOCK",
+            "action.devices.types.SENSOR",
+            "action.devices.types.SMOKE_DETECTOR",
+            "action.devices.types.FAN",
+            "action.devices.types.SECURITYSYSTEM",
+            "action.devices.types.SPEAKER",
+            "action.devices.types.AUDIO_VIDEO_RECEIVER",
+            "action.devices.types.REMOTECONTROL",
+            "action.devices.types.SETTOP",
+            "action.devices.types.SOUNDBAR",
+            "action.devices.types.STREAMING_BOX",
+            "action.devices.types.STREAMING_SOUNDBAR",
+            "action.devices.types.STREAMING_STICK",
+            "action.devices.types.TV",
+            "action.devices.types.CLOSET",
+            "action.devices.types.AWNING",
+            "action.devices.types.CURTAIN",
+            "action.devices.types.DOOR",
+            "action.devices.types.DRAWER",
+            "action.devices.types.BLINDS",
+            "action.devices.types.GARAGE",
+            "action.devices.types.GATE",
+            "action.devices.types.PERGOLA",
+            "action.devices.types.SHUTTER",
+            "action.devices.types.VALVE",
+            "action.devices.types.WINDOW",
+            "action.devices.types.HUMIDIFIER"
+          ]
+        },
         "TwoFactor": {
           "anyOf": [
             {
@@ -5042,42 +5093,7 @@ export const Schema = {
           "type": "string"
         },
         "type": {
-          "type": "string",
-          "enum": [
-            "action.devices.types.LIGHT",
-            "action.devices.types.SWITCH",
-            "action.devices.types.SCENE",
-            "action.devices.types.OUTLET",
-            "action.devices.types.THERMOSTAT",
-            "action.devices.types.AC_UNIT",
-            "action.devices.types.LOCK",
-            "action.devices.types.SENSOR",
-            "action.devices.types.SMOKE_DETECTOR",
-            "action.devices.types.FAN",
-            "action.devices.types.SECURITYSYSTEM",
-            "action.devices.types.SPEAKER",
-            "action.devices.types.AUDIO_VIDEO_RECEIVER",
-            "action.devices.types.REMOTECONTROL",
-            "action.devices.types.SETTOP",
-            "action.devices.types.SOUNDBAR",
-            "action.devices.types.STREAMING_BOX",
-            "action.devices.types.STREAMING_SOUNDBAR",
-            "action.devices.types.STREAMING_STICK",
-            "action.devices.types.TV",
-            "action.devices.types.CLOSET",
-            "action.devices.types.AWNING",
-            "action.devices.types.CURTAIN",
-            "action.devices.types.DOOR",
-            "action.devices.types.DRAWER",
-            "action.devices.types.BLINDS",
-            "action.devices.types.GARAGE",
-            "action.devices.types.GATE",
-            "action.devices.types.PERGOLA",
-            "action.devices.types.SHUTTER",
-            "action.devices.types.VALVE",
-            "action.devices.types.WINDOW",
-            "action.devices.types.HUMIDIFIER"
-          ]
+          "$ref": "#/definitions/DeviceType"
         },
         "name": {
           "type": "object",
@@ -5265,24 +5281,7 @@ export const Schema = {
                                   }
                                 },
                                 "lang": {
-                                  "type": "string",
-                                  "enum": [
-                                    "da",
-                                    "nl",
-                                    "en",
-                                    "fr",
-                                    "de",
-                                    "hi",
-                                    "id",
-                                    "it",
-                                    "ja",
-                                    "ko",
-                                    "no",
-                                    "pt-BR",
-                                    "es",
-                                    "sv",
-                                    "th"
-                                  ]
+                                  "$ref": "#/definitions/Language"
                                 }
                               },
                               "required": [
@@ -5364,6 +5363,44 @@ export const Schema = {
             "action.devices.traits.FanSpeed"
           ]
         },
+        "DeviceType": {
+          "type": "string",
+          "enum": [
+            "action.devices.types.LIGHT",
+            "action.devices.types.SWITCH",
+            "action.devices.types.SCENE",
+            "action.devices.types.OUTLET",
+            "action.devices.types.THERMOSTAT",
+            "action.devices.types.AC_UNIT",
+            "action.devices.types.LOCK",
+            "action.devices.types.SENSOR",
+            "action.devices.types.SMOKE_DETECTOR",
+            "action.devices.types.FAN",
+            "action.devices.types.SECURITYSYSTEM",
+            "action.devices.types.SPEAKER",
+            "action.devices.types.AUDIO_VIDEO_RECEIVER",
+            "action.devices.types.REMOTECONTROL",
+            "action.devices.types.SETTOP",
+            "action.devices.types.SOUNDBAR",
+            "action.devices.types.STREAMING_BOX",
+            "action.devices.types.STREAMING_SOUNDBAR",
+            "action.devices.types.STREAMING_STICK",
+            "action.devices.types.TV",
+            "action.devices.types.CLOSET",
+            "action.devices.types.AWNING",
+            "action.devices.types.CURTAIN",
+            "action.devices.types.DOOR",
+            "action.devices.types.DRAWER",
+            "action.devices.types.BLINDS",
+            "action.devices.types.GARAGE",
+            "action.devices.types.GATE",
+            "action.devices.types.PERGOLA",
+            "action.devices.types.SHUTTER",
+            "action.devices.types.VALVE",
+            "action.devices.types.WINDOW",
+            "action.devices.types.HUMIDIFIER"
+          ]
+        },
         "TwoFactor": {
           "anyOf": [
             {
@@ -5397,6 +5434,26 @@ export const Schema = {
               ],
               "additionalProperties": false
             }
+          ]
+        },
+        "Language": {
+          "type": "string",
+          "enum": [
+            "da",
+            "nl",
+            "en",
+            "fr",
+            "de",
+            "hi",
+            "id",
+            "it",
+            "ja",
+            "ko",
+            "no",
+            "pt-BR",
+            "es",
+            "sv",
+            "th"
           ]
         }
       }

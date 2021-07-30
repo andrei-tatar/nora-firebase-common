@@ -440,9 +440,9 @@ export type FanSpeedDevice = Device<{
     traits: ['action.devices.traits.FanSpeed']
 };
 
-type Language = 'da' | 'nl' | 'en' | 'fr' | 'de' | 'hi' | 'id' | 'it' | 'ja' | 'ko' | 'no' | 'pt-BR' | 'es' | 'sv' | 'th';
+export type Language = 'da' | 'nl' | 'en' | 'fr' | 'de' | 'hi' | 'id' | 'it' | 'ja' | 'ko' | 'no' | 'pt-BR' | 'es' | 'sv' | 'th';
 
-type DeviceType =
+export type DeviceType =
     'action.devices.types.LIGHT' |
     'action.devices.types.SWITCH' |
     'action.devices.types.SCENE' |
