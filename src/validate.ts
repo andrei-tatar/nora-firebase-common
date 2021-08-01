@@ -69,9 +69,9 @@ function mergeSchemas(objects: any[], level = 0): any {
         const isAnyB = isAnyOfSchema(b);
         if (isAnyA && isAnyB) {
             const anyOf = [];
-            for (const pAnyOf of a.anyOf) {
-                for (const oAnyOf of b.anyOf) {
-                    anyOf.push(mergeSchemas([pAnyOf, oAnyOf], level + 1));
+            for (const aAnyOf of a.anyOf) {
+                for (const bAnyOf of b.anyOf) {
+                    anyOf.push(mergeSchemas([aAnyOf, bAnyOf], level + 1));
                 }
             }
             delete a.anyOf;
@@ -84,11 +84,19 @@ function mergeSchemas(objects: any[], level = 0): any {
             return {
                 ...a,
                 anyOf: a.anyOf.map((o: any) => mergeSchemas([o, b], level + 1)),
+                definitions: {
+                    ...a.definitions,
+                    ...b.definitions,
+                },
             };
         } else if (isAnyB) {
             return {
                 ...b,
-                anyOf: b.anyOf.map((o: any) => mergeSchemas([o, a], level + 1))
+                anyOf: b.anyOf.map((o: any) => mergeSchemas([o, a], level + 1)),
+                definitions: {
+                    ...a.definitions,
+                    ...b.definitions,
+                },
             };
         }
 

@@ -1,5 +1,8 @@
 import * as chai from 'chai';
-import { ArmDisarmDevice, FanSpeedDevice, OnOffDevice, SensorStateDevice, Trait } from './device';
+import {
+  ArmDisarmDevice, FanSpeedDevice, OnOffDevice, SensorStateDevice,
+  TemperatureSettingDevice, Trait
+} from './device';
 import { validate } from './validate';
 
 const expect = chai.expect;
@@ -250,4 +253,16 @@ describe('validate', () => {
     expect(result.valid).to.be.true;
   });
 
+  it('should validate TemperatureSetting & FanSpeed state update', () => {
+    const update: Partial<(TemperatureSettingDevice & FanSpeedDevice)['state']> = {
+      thermostatMode: 'cool',
+    };
+
+    const result = validate([
+      'action.devices.traits.TemperatureSetting',
+      'action.devices.traits.FanSpeed',
+    ], 'state-update', update);
+
+    expect(result.valid).to.be.true;
+  });
 });
