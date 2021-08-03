@@ -1,5 +1,5 @@
 import {
-    ArmDisarmDevice, BrightnessDevice, ColorSettingDevice, Device, FanSpeedDevice, HumiditySettingDevice,
+    ArmDisarmDevice, BrightnessDevice, ChannelDevice, ColorSettingDevice, Device, FanSpeedDevice, HumiditySettingDevice,
     InputSelectorDevice, LockUnlockDevice, MediaStateDevice, OnOffDevice, OpenCloseDevice, SceneDevice,
     SensorStateDevice, TemperatureControlDevice, TemperatureSettingDevice, TransportControlDevice, VolumeDevice
 } from './device';
@@ -66,4 +66,8 @@ export function isMediaStateDevice(device: Pick<Device, 'traits'>): device is Me
 
 export function isInputSelectorDevice(device: Pick<Device, 'traits'>): device is InputSelectorDevice {
     return device.traits.includes('action.devices.traits.InputSelector');
+}
+
+export function isChannelDevice(device: Pick<Device, 'traits'>): device is ChannelDevice {
+    return device.traits.includes('action.devices.traits.Channel');
 }

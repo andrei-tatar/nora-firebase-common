@@ -237,8 +237,8 @@ export type MediaStateDevice = Device<{
 };
 
 export type TransportControlCommand =
-    'CAPTION_CONTROL' | 'NEXT' | 'PAUSE' | 'PREVIOUS' | 'RESUME' | 'SEEK_RELATIVE' |
-    'SEEK_TO_POSITION' | 'SET_REPEAT' | 'SHUFFLE' | 'STOP';
+    'NEXT' | 'PAUSE' | 'PREVIOUS' | 'RESUME' | 'SHUFFLE' | 'STOP';
+// | 'SEEK_RELATIVE' | 'SEEK_TO_POSITION' | 'SET_REPEAT' | 'CAPTION_CONTROL';
 
 export type TransportControlDevice = Device<{}, {
     /**
@@ -442,6 +442,29 @@ export type FanSpeedDevice = Device<{
 
 export type Language = 'da' | 'nl' | 'en' | 'fr' | 'de' | 'hi' | 'id' | 'it' | 'ja' | 'ko' | 'no' | 'pt-BR' | 'es' | 'sv' | 'th';
 
+export type ChannelDevice = Device<{}, {
+    availableChannels: {
+        key: string;
+        names: string[];
+        number?: string;
+    }[];
+    commandOnlyChannels?: boolean;
+}, {
+    pendingChannelChangeCommand?: {
+        type: 'selectChannel';
+        channelCode: string;
+        channelName: string;
+        channelNumber: string;
+    } | {
+        type: 'relativeChannel';
+        relativeChannelChange: number;
+    } | {
+        type: 'returnChannel';
+    };
+}> & {
+    traits: ['action.devices.traits.Channel']
+};
+
 export type DeviceType =
     'action.devices.types.LIGHT' |
     'action.devices.types.SWITCH' |
@@ -492,6 +515,7 @@ export type Trait =
     'action.devices.traits.MediaState' |
     'action.devices.traits.TransportControl' |
     'action.devices.traits.InputSelector' |
+    'action.devices.traits.Channel' |
     'action.devices.traits.SensorState' |
     'action.devices.traits.TemperatureControl' |
     'action.devices.traits.HumiditySetting' |

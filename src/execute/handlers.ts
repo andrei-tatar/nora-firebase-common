@@ -1,10 +1,10 @@
 import {
-    isArmDisarm, isBrightness, isColorSetting, isFanSpeedDevice, isHumiditySetting, isInputSelectorDevice, isLockUnlock,
-    isOnOff, isOpenClose, isScene, isTemperatureControl, isTemperatureSetting, isTransportControlDevice,
-    isVolumeDevice
+    isArmDisarm, isBrightness, isChannelDevice, isColorSetting, isFanSpeedDevice, isHumiditySetting,
+    isInputSelectorDevice, isLockUnlock, isOnOff, isOpenClose, isScene, isTemperatureControl,
+    isTemperatureSetting, isTransportControlDevice, isVolumeDevice
 } from '../checks';
 import {
-    ArmDisarmDevice, BrightnessDevice, Device, FanSpeedDevice, InputSelectorDevice, LockUnlockDevice, OnOffDevice,
+    ArmDisarmDevice, BrightnessDevice, ChannelDevice, Device, FanSpeedDevice, InputSelectorDevice, LockUnlockDevice, OnOffDevice,
     SceneDevice, TemperatureSettingDevice, TransportControlCommand, VolumeDevice
 } from '../device';
 import { Changes, ExecuteCommandError } from './execute';
@@ -404,14 +404,49 @@ HANDLERS.set('action.devices.commands.PreviousInput', (device) => {
     }
     return null;
 });
-registerTransportControlCommand('CAPTION_CONTROL');
+HANDLERS.set('action.devices.commands.selectChannel', (device, params) => {
+    if (isChannelDevice(device)) {
+        const updateNoraSpecific: Partial<ChannelDevice['noraSpecific']> = {
+            pendingChannelChangeCommand: {
+                type: 'selectChannel',
+                ...params,
+            },
+        };
+        return { updateNoraSpecific };
+    }
+    return null;
+});
+HANDLERS.set('action.devices.commands.relativeChannel', (device, params) => {
+    if (isChannelDevice(device)) {
+        const updateNoraSpecific: Partial<ChannelDevice['noraSpecific']> = {
+            pendingChannelChangeCommand: {
+                type: 'relativeChannel',
+                ...params,
+            },
+        };
+        return { updateNoraSpecific };
+    }
+    return null;
+});
+HANDLERS.set('action.devices.commands.returnChannel', (device) => {
+    if (isChannelDevice(device)) {
+        const updateNoraSpecific: Partial<ChannelDevice['noraSpecific']> = {
+            pendingChannelChangeCommand: {
+                type: 'returnChannel',
+            },
+        };
+        return { updateNoraSpecific };
+    }
+    return null;
+});
+// registerTransportControlCommand('CAPTION_CONTROL');
 registerTransportControlCommand('NEXT');
 registerTransportControlCommand('PAUSE');
 registerTransportControlCommand('PREVIOUS');
 registerTransportControlCommand('RESUME');
-registerTransportControlCommand('SEEK_RELATIVE');
-registerTransportControlCommand('SEEK_TO_POSITION');
-registerTransportControlCommand('SET_REPEAT');
+// registerTransportControlCommand('SEEK_RELATIVE');
+// registerTransportControlCommand('SEEK_TO_POSITION');
+// registerTransportControlCommand('SET_REPEAT');
 registerTransportControlCommand('SHUFFLE');
 registerTransportControlCommand('STOP');
 

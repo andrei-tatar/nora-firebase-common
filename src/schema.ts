@@ -3188,14 +3188,10 @@ export const Schema = {
         "TransportControlCommand": {
           "type": "string",
           "enum": [
-            "CAPTION_CONTROL",
             "NEXT",
             "PAUSE",
             "PREVIOUS",
             "RESUME",
-            "SEEK_RELATIVE",
-            "SEEK_TO_POSITION",
-            "SET_REPEAT",
             "SHUFFLE",
             "STOP"
           ]
@@ -3551,6 +3547,343 @@ export const Schema = {
             "es",
             "sv",
             "th"
+          ]
+        }
+      }
+    },
+    "channel": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "traits": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Trait"
+          }
+        },
+        "id": {
+          "type": "string"
+        },
+        "type": {
+          "$ref": "#/definitions/DeviceType"
+        },
+        "name": {
+          "type": "object",
+          "properties": {
+            "defaultNames": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "name": {
+              "type": "string",
+              "maxLength": 40
+            },
+            "nicknames": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          "required": [
+            "name"
+          ],
+          "additionalProperties": false
+        },
+        "willReportState": {
+          "type": "boolean"
+        },
+        "notificationSupportedByAgent": {
+          "type": "boolean"
+        },
+        "structureHint": {
+          "type": "string",
+          "description": "Name of the home this device belongs to",
+          "maxLength": 40
+        },
+        "roomHint": {
+          "type": "string",
+          "description": "Name of the room this device belongs to",
+          "maxLength": 40
+        },
+        "deviceInfo": {
+          "type": "object",
+          "properties": {
+            "manufacturer": {
+              "type": "string"
+            },
+            "model": {
+              "type": "string"
+            },
+            "hwVersion": {
+              "type": "string"
+            },
+            "swVersion": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "manufacturer",
+            "model",
+            "hwVersion",
+            "swVersion"
+          ],
+          "additionalProperties": false
+        },
+        "otherDeviceIds": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "agentId": {
+                "type": "string"
+              },
+              "deviceId": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "deviceId"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "customData": {
+          "type": "object",
+          "properties": {
+            "proxyId": {
+              "type": "string",
+              "description": "Used for local execution to identity the instance responsible of this device",
+              "maxLength": 40
+            }
+          },
+          "additionalProperties": false
+        },
+        "noraSpecific": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "pendingChannelChangeCommand": {
+              "anyOf": [
+                {
+                  "type": "object",
+                  "properties": {
+                    "type": {
+                      "type": "string",
+                      "const": "selectChannel"
+                    },
+                    "channelCode": {
+                      "type": "string"
+                    },
+                    "channelName": {
+                      "type": "string"
+                    },
+                    "channelNumber": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "type",
+                    "channelCode",
+                    "channelName",
+                    "channelNumber"
+                  ],
+                  "additionalProperties": false
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "type": {
+                      "type": "string",
+                      "const": "relativeChannel"
+                    },
+                    "relativeChannelChange": {
+                      "type": "number"
+                    }
+                  },
+                  "required": [
+                    "type",
+                    "relativeChannelChange"
+                  ],
+                  "additionalProperties": false
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "type": {
+                      "type": "string",
+                      "const": "returnChannel"
+                    }
+                  },
+                  "required": [
+                    "type"
+                  ],
+                  "additionalProperties": false
+                }
+              ]
+            },
+            "disabled": {
+              "type": "boolean"
+            },
+            "twoFactor": {
+              "$ref": "#/definitions/TwoFactor"
+            },
+            "error": {
+              "type": "object",
+              "properties": {
+                "msg": {
+                  "type": "string"
+                },
+                "details": {}
+              },
+              "required": [
+                "msg"
+              ],
+              "additionalProperties": false
+            }
+          }
+        },
+        "state": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "online": {
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "online"
+          ]
+        },
+        "attributes": {
+          "type": "object",
+          "properties": {
+            "availableChannels": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "key": {
+                    "type": "string"
+                  },
+                  "names": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "number": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "key",
+                  "names"
+                ],
+                "additionalProperties": false
+              }
+            },
+            "commandOnlyChannels": {
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "availableChannels"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "attributes",
+        "id",
+        "name",
+        "noraSpecific",
+        "state",
+        "traits",
+        "type",
+        "willReportState"
+      ],
+      "definitions": {
+        "Trait": {
+          "type": "string",
+          "enum": [
+            "action.devices.traits.Channel"
+          ]
+        },
+        "DeviceType": {
+          "type": "string",
+          "enum": [
+            "action.devices.types.LIGHT",
+            "action.devices.types.SWITCH",
+            "action.devices.types.SCENE",
+            "action.devices.types.OUTLET",
+            "action.devices.types.THERMOSTAT",
+            "action.devices.types.AC_UNIT",
+            "action.devices.types.LOCK",
+            "action.devices.types.SENSOR",
+            "action.devices.types.SMOKE_DETECTOR",
+            "action.devices.types.FAN",
+            "action.devices.types.SECURITYSYSTEM",
+            "action.devices.types.SPEAKER",
+            "action.devices.types.AUDIO_VIDEO_RECEIVER",
+            "action.devices.types.REMOTECONTROL",
+            "action.devices.types.SETTOP",
+            "action.devices.types.SOUNDBAR",
+            "action.devices.types.STREAMING_BOX",
+            "action.devices.types.STREAMING_SOUNDBAR",
+            "action.devices.types.STREAMING_STICK",
+            "action.devices.types.TV",
+            "action.devices.types.CLOSET",
+            "action.devices.types.AWNING",
+            "action.devices.types.CURTAIN",
+            "action.devices.types.DOOR",
+            "action.devices.types.DRAWER",
+            "action.devices.types.BLINDS",
+            "action.devices.types.GARAGE",
+            "action.devices.types.GATE",
+            "action.devices.types.PERGOLA",
+            "action.devices.types.SHUTTER",
+            "action.devices.types.VALVE",
+            "action.devices.types.WINDOW",
+            "action.devices.types.HUMIDIFIER"
+          ]
+        },
+        "TwoFactor": {
+          "anyOf": [
+            {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "type": "string",
+                  "const": "ack"
+                }
+              },
+              "required": [
+                "type"
+              ],
+              "additionalProperties": false
+            },
+            {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "type": "string",
+                  "const": "pin"
+                },
+                "pin": {
+                  "type": "string",
+                  "maxLength": 20
+                }
+              },
+              "required": [
+                "type",
+                "pin"
+              ],
+              "additionalProperties": false
+            }
           ]
         }
       }
@@ -5856,6 +6189,20 @@ export const Schema = {
       ],
       "definitions": {}
     },
+    "channel": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "online": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "online"
+      ],
+      "definitions": {}
+    },
     "sensorstate": {
       "$schema": "http://json-schema.org/draft-07/schema#",
       "type": "object",
@@ -6545,6 +6892,17 @@ export const Schema = {
         "currentInput": {
           "type": "string"
         },
+        "online": {
+          "type": "boolean"
+        }
+      },
+      "definitions": {}
+    },
+    "channel": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
         "online": {
           "type": "boolean"
         }
