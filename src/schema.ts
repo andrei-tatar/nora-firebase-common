@@ -3843,9 +3843,9 @@ export const Schema = {
                 {
                   "type": "object",
                   "properties": {
-                    "type": {
+                    "command": {
                       "type": "string",
-                      "const": "selectChannel"
+                      "const": "SelectChannel"
                     },
                     "channelCode": {
                       "type": "string"
@@ -3858,7 +3858,7 @@ export const Schema = {
                     }
                   },
                   "required": [
-                    "type",
+                    "command",
                     "channelCode",
                     "channelName",
                     "channelNumber"
@@ -3868,16 +3868,16 @@ export const Schema = {
                 {
                   "type": "object",
                   "properties": {
-                    "type": {
+                    "command": {
                       "type": "string",
-                      "const": "relativeChannel"
+                      "const": "RelativeChannel"
                     },
                     "relativeChannelChange": {
                       "type": "number"
                     }
                   },
                   "required": [
-                    "type",
+                    "command",
                     "relativeChannelChange"
                   ],
                   "additionalProperties": false
@@ -3885,13 +3885,13 @@ export const Schema = {
                 {
                   "type": "object",
                   "properties": {
-                    "type": {
+                    "command": {
                       "type": "string",
-                      "const": "returnChannel"
+                      "const": "ReturnChannel"
                     }
                   },
                   "required": [
-                    "type"
+                    "command"
                   ],
                   "additionalProperties": false
                 }

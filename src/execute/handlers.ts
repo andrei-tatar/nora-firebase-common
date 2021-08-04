@@ -408,8 +408,10 @@ HANDLERS.set('action.devices.commands.selectChannel', (device, params) => {
     if (isChannelDevice(device)) {
         const updateNoraSpecific: Partial<ChannelDevice['noraSpecific']> = {
             pendingChannelChangeCommand: {
-                type: 'selectChannel',
-                ...params,
+                command: 'SelectChannel',
+                channelCode: params?.channelCode,
+                channelName: params?.channelName,
+                channelNumber: params?.channelNumber,
             },
         };
         return { updateNoraSpecific };
@@ -420,8 +422,8 @@ HANDLERS.set('action.devices.commands.relativeChannel', (device, params) => {
     if (isChannelDevice(device)) {
         const updateNoraSpecific: Partial<ChannelDevice['noraSpecific']> = {
             pendingChannelChangeCommand: {
-                type: 'relativeChannel',
-                ...params,
+                command: 'RelativeChannel',
+                relativeChannelChange: params?.relativeChannelChange,
             },
         };
         return { updateNoraSpecific };
@@ -432,7 +434,7 @@ HANDLERS.set('action.devices.commands.returnChannel', (device) => {
     if (isChannelDevice(device)) {
         const updateNoraSpecific: Partial<ChannelDevice['noraSpecific']> = {
             pendingChannelChangeCommand: {
-                type: 'returnChannel',
+                command: 'ReturnChannel',
             },
         };
         return { updateNoraSpecific };

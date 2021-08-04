@@ -481,15 +481,15 @@ export type ChannelDevice = Device<{}, {
     commandOnlyChannels?: boolean;
 }, {
     pendingChannelChangeCommand?: {
-        type: 'selectChannel';
+        command: 'SelectChannel';
         channelCode: string;
         channelName: string;
         channelNumber: string;
     } | {
-        type: 'relativeChannel';
+        command: 'RelativeChannel';
         relativeChannelChange: number;
     } | {
-        type: 'returnChannel';
+        command: 'ReturnChannel';
     };
 }> & {
     traits: ['action.devices.traits.Channel']
