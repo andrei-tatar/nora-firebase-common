@@ -236,17 +236,47 @@ export type MediaStateDevice = Device<{
     traits: ['action.devices.traits.MediaState']
 };
 
-export type TransportControlCommand =
-    'NEXT' | 'PAUSE' | 'PREVIOUS' | 'RESUME' | 'SHUFFLE' | 'STOP';
-// | 'SEEK_RELATIVE' | 'SEEK_TO_POSITION' | 'SET_REPEAT' | 'CAPTION_CONTROL';
+export type SupportedTransportControlCommand =
+    'NEXT' | 'PAUSE' | 'PREVIOUS' | 'RESUME' | 'SHUFFLE' | 'STOP' |
+    'SEEK_RELATIVE' | 'SEEK_TO_POSITION' | 'SET_REPEAT' | 'CAPTION_CONTROL';
+
+export type TransportControlIncomingCommand = {
+    command: 'Stop';
+} | {
+    command: 'Next';
+} | {
+    command: 'Previous';
+} | {
+    command: 'Pause';
+} | {
+    command: 'Resume';
+} | {
+    command: 'SeekRelative';
+    relativePositionMs: number;
+} | {
+    command: 'SeekToPosition';
+    absPositionMs: number;
+} | {
+    command: 'RepeatMode';
+    isOn: boolean;
+    isSingle?: boolean;
+} | {
+    command: 'Shuffle';
+} | {
+    command: 'ClosedCaptioningOn';
+    closedCaptioningLanguage?: string;
+    userQueryLanguage?: string;
+} | {
+    command: 'ClosedCaptioningOff';
+};
 
 export type TransportControlDevice = Device<{}, {
     /**
      * @minItems 1
      */
-    transportControlSupportedCommands: TransportControlCommand[];
+    transportControlSupportedCommands: SupportedTransportControlCommand[];
 }, {
-    pendingTransportControlCommand?: TransportControlCommand;
+    pendingTransportControlCommand?: TransportControlIncomingCommand;
 }> & {
     traits: ['action.devices.traits.TransportControl']
 };

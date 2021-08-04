@@ -5,7 +5,7 @@ import {
 } from '../checks';
 import {
     ArmDisarmDevice, BrightnessDevice, ChannelDevice, Device, FanSpeedDevice, InputSelectorDevice, LockUnlockDevice, OnOffDevice,
-    SceneDevice, TemperatureSettingDevice, TransportControlCommand, VolumeDevice
+    SceneDevice, TemperatureSettingDevice, TransportControlDevice, VolumeDevice
 } from '../device';
 import { Changes, ExecuteCommandError } from './execute';
 
@@ -439,35 +439,26 @@ HANDLERS.set('action.devices.commands.returnChannel', (device) => {
     }
     return null;
 });
-// registerTransportControlCommand('CAPTION_CONTROL');
-registerTransportControlCommand('NEXT');
-registerTransportControlCommand('PAUSE');
-registerTransportControlCommand('PREVIOUS');
-registerTransportControlCommand('RESUME');
-// registerTransportControlCommand('SEEK_RELATIVE');
-// registerTransportControlCommand('SEEK_TO_POSITION');
-// registerTransportControlCommand('SET_REPEAT');
-registerTransportControlCommand('SHUFFLE');
-registerTransportControlCommand('STOP');
 
-function registerTransportControlCommand(command: TransportControlCommand) {
-    const pascalCase = toPascalCase(command);
-    HANDLERS.set(`action.devices.commands.${pascalCase}`, device => {
+([
+    'Stop', 'Next', 'Previous', 'Pause', 'Resume', 'SeekRelative', 'SeekToPosition',
+    'RepeatMode', 'Shuffle', 'ClosedCaptioningOn', 'ClosedCaptioningOff',
+] as const).forEach(suffix => {
+    HANDLERS.set(`action.devices.commands.media${suffix}`, (device, params) => {
         if (isTransportControlDevice(device)) {
-            return {
-                updateNoraSpecific: {
-                    pendingTransportControlCommand: command,
+            const updateNoraSpecific: Partial<TransportControlDevice['noraSpecific']> = {
+                pendingTransportControlCommand: {
+                    command: suffix,
+                    ...params,
                 },
+            };
+            return {
+                updateNoraSpecific,
             };
         }
         return null;
     });
-}
-
-function toPascalCase(command: TransportControlCommand) {
-    const lowerCase = command.toLowerCase();
-    return lowerCase.replace(/_(\w)|^(\w)/mg, (_, g1, g2) => (g1 ?? g2).toUpperCase());
-}
+});
 
 function limit(n: number, minimum = 0, maximum = 100) {
     return Math.min(maximum, Math.max(minimum, n));

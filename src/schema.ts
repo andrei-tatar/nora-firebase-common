@@ -3078,7 +3078,7 @@ export const Schema = {
           "additionalProperties": false,
           "properties": {
             "pendingTransportControlCommand": {
-              "$ref": "#/definitions/TransportControlCommand"
+              "$ref": "#/definitions/TransportControlIncomingCommand"
             },
             "disabled": {
               "type": "boolean"
@@ -3119,7 +3119,7 @@ export const Schema = {
             "transportControlSupportedCommands": {
               "type": "array",
               "items": {
-                "$ref": "#/definitions/TransportControlCommand"
+                "$ref": "#/definitions/SupportedTransportControlCommand"
               },
               "minItems": 1
             }
@@ -3185,15 +3185,172 @@ export const Schema = {
             "action.devices.types.HUMIDIFIER"
           ]
         },
-        "TransportControlCommand": {
-          "type": "string",
-          "enum": [
-            "NEXT",
-            "PAUSE",
-            "PREVIOUS",
-            "RESUME",
-            "SHUFFLE",
-            "STOP"
+        "TransportControlIncomingCommand": {
+          "anyOf": [
+            {
+              "type": "object",
+              "properties": {
+                "command": {
+                  "type": "string",
+                  "const": "Stop"
+                }
+              },
+              "required": [
+                "command"
+              ],
+              "additionalProperties": false
+            },
+            {
+              "type": "object",
+              "properties": {
+                "command": {
+                  "type": "string",
+                  "const": "Next"
+                }
+              },
+              "required": [
+                "command"
+              ],
+              "additionalProperties": false
+            },
+            {
+              "type": "object",
+              "properties": {
+                "command": {
+                  "type": "string",
+                  "const": "Previous"
+                }
+              },
+              "required": [
+                "command"
+              ],
+              "additionalProperties": false
+            },
+            {
+              "type": "object",
+              "properties": {
+                "command": {
+                  "type": "string",
+                  "const": "Pause"
+                }
+              },
+              "required": [
+                "command"
+              ],
+              "additionalProperties": false
+            },
+            {
+              "type": "object",
+              "properties": {
+                "command": {
+                  "type": "string",
+                  "const": "Resume"
+                }
+              },
+              "required": [
+                "command"
+              ],
+              "additionalProperties": false
+            },
+            {
+              "type": "object",
+              "properties": {
+                "command": {
+                  "type": "string",
+                  "const": "SeekRelative"
+                },
+                "relativePositionMs": {
+                  "type": "number"
+                }
+              },
+              "required": [
+                "command",
+                "relativePositionMs"
+              ],
+              "additionalProperties": false
+            },
+            {
+              "type": "object",
+              "properties": {
+                "command": {
+                  "type": "string",
+                  "const": "SeekToPosition"
+                },
+                "absPositionMs": {
+                  "type": "number"
+                }
+              },
+              "required": [
+                "command",
+                "absPositionMs"
+              ],
+              "additionalProperties": false
+            },
+            {
+              "type": "object",
+              "properties": {
+                "command": {
+                  "type": "string",
+                  "const": "RepeatMode"
+                },
+                "isOn": {
+                  "type": "boolean"
+                },
+                "isSingle": {
+                  "type": "boolean"
+                }
+              },
+              "required": [
+                "command",
+                "isOn"
+              ],
+              "additionalProperties": false
+            },
+            {
+              "type": "object",
+              "properties": {
+                "command": {
+                  "type": "string",
+                  "const": "Shuffle"
+                }
+              },
+              "required": [
+                "command"
+              ],
+              "additionalProperties": false
+            },
+            {
+              "type": "object",
+              "properties": {
+                "command": {
+                  "type": "string",
+                  "const": "ClosedCaptioningOn"
+                },
+                "closedCaptioningLanguage": {
+                  "type": "string"
+                },
+                "userQueryLanguage": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "command"
+              ],
+              "additionalProperties": false
+            },
+            {
+              "type": "object",
+              "properties": {
+                "command": {
+                  "type": "string",
+                  "const": "ClosedCaptioningOff"
+                }
+              },
+              "required": [
+                "command"
+              ],
+              "additionalProperties": false
+            }
           ]
         },
         "TwoFactor": {
@@ -3229,6 +3386,21 @@ export const Schema = {
               ],
               "additionalProperties": false
             }
+          ]
+        },
+        "SupportedTransportControlCommand": {
+          "type": "string",
+          "enum": [
+            "NEXT",
+            "PAUSE",
+            "PREVIOUS",
+            "RESUME",
+            "SHUFFLE",
+            "STOP",
+            "SEEK_RELATIVE",
+            "SEEK_TO_POSITION",
+            "SET_REPEAT",
+            "CAPTION_CONTROL"
           ]
         }
       }
