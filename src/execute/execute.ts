@@ -2,6 +2,8 @@ import { Device } from '../device';
 import { HANDLERS } from './handlers';
 import { checkSecondaryVerification } from './secondary-verification';
 
+export { HANDLERS as COMMAND_HANDLERS };
+
 export interface Changes {
     updateState?: { [key: string]: any };
     updateNoraSpecific?: { [key: string]: any };
