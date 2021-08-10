@@ -150,48 +150,13 @@ export const Schema = {
             "commands": {
               "type": "object",
               "additionalProperties": {
-                "type": "object",
-                "properties": {
-                  "command": {
-                    "type": "string"
-                  },
-                  "params": {
-                    "type": "object",
-                    "additionalProperties": {
-                      "type": [
-                        "boolean",
-                        "number",
-                        "string"
-                      ]
-                    }
-                  },
-                  "timestamp": {
-                    "type": "number"
-                  }
-                },
-                "required": [
-                  "command",
-                  "params",
-                  "timestamp"
-                ],
-                "additionalProperties": false
+                "$ref": "#/definitions/AsyncCommand"
               }
             },
             "responses": {
               "type": "object",
               "additionalProperties": {
-                "type": "object",
-                "properties": {
-                  "updateState": {},
-                  "updateNoraSpecific": {},
-                  "skipSecondaryVerification": {
-                    "type": "boolean"
-                  },
-                  "errorCode": {
-                    "$ref": "#/definitions/ErrorCode"
-                  }
-                },
-                "additionalProperties": false
+                "$ref": "#/definitions/AsyncReponse"
               }
             }
           }
@@ -370,6 +335,39 @@ export const Schema = {
               "additionalProperties": false
             }
           ]
+        },
+        "AsyncCommand": {
+          "type": "object",
+          "properties": {
+            "command": {
+              "type": "string"
+            },
+            "params": {
+              "type": "object",
+              "additionalProperties": {
+                "type": [
+                  "boolean",
+                  "number",
+                  "string"
+                ]
+              }
+            }
+          },
+          "required": [
+            "command",
+            "params"
+          ],
+          "additionalProperties": false
+        },
+        "AsyncReponse": {
+          "type": "object",
+          "properties": {
+            "state": {},
+            "errorCode": {
+              "$ref": "#/definitions/ErrorCode"
+            }
+          },
+          "additionalProperties": false
         },
         "ErrorCode": {
           "type": "string",
@@ -674,48 +672,13 @@ export const Schema = {
             "commands": {
               "type": "object",
               "additionalProperties": {
-                "type": "object",
-                "properties": {
-                  "command": {
-                    "type": "string"
-                  },
-                  "params": {
-                    "type": "object",
-                    "additionalProperties": {
-                      "type": [
-                        "boolean",
-                        "number",
-                        "string"
-                      ]
-                    }
-                  },
-                  "timestamp": {
-                    "type": "number"
-                  }
-                },
-                "required": [
-                  "command",
-                  "params",
-                  "timestamp"
-                ],
-                "additionalProperties": false
+                "$ref": "#/definitions/AsyncCommand"
               }
             },
             "responses": {
               "type": "object",
               "additionalProperties": {
-                "type": "object",
-                "properties": {
-                  "updateState": {},
-                  "updateNoraSpecific": {},
-                  "skipSecondaryVerification": {
-                    "type": "boolean"
-                  },
-                  "errorCode": {
-                    "$ref": "#/definitions/ErrorCode"
-                  }
-                },
-                "additionalProperties": false
+                "$ref": "#/definitions/AsyncReponse"
               }
             }
           },
@@ -838,6 +801,39 @@ export const Schema = {
               "additionalProperties": false
             }
           ]
+        },
+        "AsyncCommand": {
+          "type": "object",
+          "properties": {
+            "command": {
+              "type": "string"
+            },
+            "params": {
+              "type": "object",
+              "additionalProperties": {
+                "type": [
+                  "boolean",
+                  "number",
+                  "string"
+                ]
+              }
+            }
+          },
+          "required": [
+            "command",
+            "params"
+          ],
+          "additionalProperties": false
+        },
+        "AsyncReponse": {
+          "type": "object",
+          "properties": {
+            "state": {},
+            "errorCode": {
+              "$ref": "#/definitions/ErrorCode"
+            }
+          },
+          "additionalProperties": false
         },
         "ErrorCode": {
           "type": "string",
@@ -1122,48 +1118,13 @@ export const Schema = {
             "commands": {
               "type": "object",
               "additionalProperties": {
-                "type": "object",
-                "properties": {
-                  "command": {
-                    "type": "string"
-                  },
-                  "params": {
-                    "type": "object",
-                    "additionalProperties": {
-                      "type": [
-                        "boolean",
-                        "number",
-                        "string"
-                      ]
-                    }
-                  },
-                  "timestamp": {
-                    "type": "number"
-                  }
-                },
-                "required": [
-                  "command",
-                  "params",
-                  "timestamp"
-                ],
-                "additionalProperties": false
+                "$ref": "#/definitions/AsyncCommand"
               }
             },
             "responses": {
               "type": "object",
               "additionalProperties": {
-                "type": "object",
-                "properties": {
-                  "updateState": {},
-                  "updateNoraSpecific": {},
-                  "skipSecondaryVerification": {
-                    "type": "boolean"
-                  },
-                  "errorCode": {
-                    "$ref": "#/definitions/ErrorCode"
-                  }
-                },
-                "additionalProperties": false
+                "$ref": "#/definitions/AsyncReponse"
               }
             }
           }
@@ -1379,6 +1340,39 @@ export const Schema = {
               "additionalProperties": false
             }
           ]
+        },
+        "AsyncCommand": {
+          "type": "object",
+          "properties": {
+            "command": {
+              "type": "string"
+            },
+            "params": {
+              "type": "object",
+              "additionalProperties": {
+                "type": [
+                  "boolean",
+                  "number",
+                  "string"
+                ]
+              }
+            }
+          },
+          "required": [
+            "command",
+            "params"
+          ],
+          "additionalProperties": false
+        },
+        "AsyncReponse": {
+          "type": "object",
+          "properties": {
+            "state": {},
+            "errorCode": {
+              "$ref": "#/definitions/ErrorCode"
+            }
+          },
+          "additionalProperties": false
         },
         "ErrorCode": {
           "type": "string",
@@ -1663,48 +1657,13 @@ export const Schema = {
             "commands": {
               "type": "object",
               "additionalProperties": {
-                "type": "object",
-                "properties": {
-                  "command": {
-                    "type": "string"
-                  },
-                  "params": {
-                    "type": "object",
-                    "additionalProperties": {
-                      "type": [
-                        "boolean",
-                        "number",
-                        "string"
-                      ]
-                    }
-                  },
-                  "timestamp": {
-                    "type": "number"
-                  }
-                },
-                "required": [
-                  "command",
-                  "params",
-                  "timestamp"
-                ],
-                "additionalProperties": false
+                "$ref": "#/definitions/AsyncCommand"
               }
             },
             "responses": {
               "type": "object",
               "additionalProperties": {
-                "type": "object",
-                "properties": {
-                  "updateState": {},
-                  "updateNoraSpecific": {},
-                  "skipSecondaryVerification": {
-                    "type": "boolean"
-                  },
-                  "errorCode": {
-                    "$ref": "#/definitions/ErrorCode"
-                  }
-                },
-                "additionalProperties": false
+                "$ref": "#/definitions/AsyncReponse"
               }
             }
           }
@@ -1827,6 +1786,39 @@ export const Schema = {
               "additionalProperties": false
             }
           ]
+        },
+        "AsyncCommand": {
+          "type": "object",
+          "properties": {
+            "command": {
+              "type": "string"
+            },
+            "params": {
+              "type": "object",
+              "additionalProperties": {
+                "type": [
+                  "boolean",
+                  "number",
+                  "string"
+                ]
+              }
+            }
+          },
+          "required": [
+            "command",
+            "params"
+          ],
+          "additionalProperties": false
+        },
+        "AsyncReponse": {
+          "type": "object",
+          "properties": {
+            "state": {},
+            "errorCode": {
+              "$ref": "#/definitions/ErrorCode"
+            }
+          },
+          "additionalProperties": false
         },
         "ErrorCode": {
           "type": "string",
@@ -2111,48 +2103,13 @@ export const Schema = {
             "commands": {
               "type": "object",
               "additionalProperties": {
-                "type": "object",
-                "properties": {
-                  "command": {
-                    "type": "string"
-                  },
-                  "params": {
-                    "type": "object",
-                    "additionalProperties": {
-                      "type": [
-                        "boolean",
-                        "number",
-                        "string"
-                      ]
-                    }
-                  },
-                  "timestamp": {
-                    "type": "number"
-                  }
-                },
-                "required": [
-                  "command",
-                  "params",
-                  "timestamp"
-                ],
-                "additionalProperties": false
+                "$ref": "#/definitions/AsyncCommand"
               }
             },
             "responses": {
               "type": "object",
               "additionalProperties": {
-                "type": "object",
-                "properties": {
-                  "updateState": {},
-                  "updateNoraSpecific": {},
-                  "skipSecondaryVerification": {
-                    "type": "boolean"
-                  },
-                  "errorCode": {
-                    "$ref": "#/definitions/ErrorCode"
-                  }
-                },
-                "additionalProperties": false
+                "$ref": "#/definitions/AsyncReponse"
               }
             }
           }
@@ -2271,6 +2228,39 @@ export const Schema = {
               "additionalProperties": false
             }
           ]
+        },
+        "AsyncCommand": {
+          "type": "object",
+          "properties": {
+            "command": {
+              "type": "string"
+            },
+            "params": {
+              "type": "object",
+              "additionalProperties": {
+                "type": [
+                  "boolean",
+                  "number",
+                  "string"
+                ]
+              }
+            }
+          },
+          "required": [
+            "command",
+            "params"
+          ],
+          "additionalProperties": false
+        },
+        "AsyncReponse": {
+          "type": "object",
+          "properties": {
+            "state": {},
+            "errorCode": {
+              "$ref": "#/definitions/ErrorCode"
+            }
+          },
+          "additionalProperties": false
         },
         "ErrorCode": {
           "type": "string",
@@ -2564,48 +2554,13 @@ export const Schema = {
             "commands": {
               "type": "object",
               "additionalProperties": {
-                "type": "object",
-                "properties": {
-                  "command": {
-                    "type": "string"
-                  },
-                  "params": {
-                    "type": "object",
-                    "additionalProperties": {
-                      "type": [
-                        "boolean",
-                        "number",
-                        "string"
-                      ]
-                    }
-                  },
-                  "timestamp": {
-                    "type": "number"
-                  }
-                },
-                "required": [
-                  "command",
-                  "params",
-                  "timestamp"
-                ],
-                "additionalProperties": false
+                "$ref": "#/definitions/AsyncCommand"
               }
             },
             "responses": {
               "type": "object",
               "additionalProperties": {
-                "type": "object",
-                "properties": {
-                  "updateState": {},
-                  "updateNoraSpecific": {},
-                  "skipSecondaryVerification": {
-                    "type": "boolean"
-                  },
-                  "errorCode": {
-                    "$ref": "#/definitions/ErrorCode"
-                  }
-                },
-                "additionalProperties": false
+                "$ref": "#/definitions/AsyncReponse"
               }
             }
           }
@@ -2721,6 +2676,39 @@ export const Schema = {
               "additionalProperties": false
             }
           ]
+        },
+        "AsyncCommand": {
+          "type": "object",
+          "properties": {
+            "command": {
+              "type": "string"
+            },
+            "params": {
+              "type": "object",
+              "additionalProperties": {
+                "type": [
+                  "boolean",
+                  "number",
+                  "string"
+                ]
+              }
+            }
+          },
+          "required": [
+            "command",
+            "params"
+          ],
+          "additionalProperties": false
+        },
+        "AsyncReponse": {
+          "type": "object",
+          "properties": {
+            "state": {},
+            "errorCode": {
+              "$ref": "#/definitions/ErrorCode"
+            }
+          },
+          "additionalProperties": false
         },
         "ErrorCode": {
           "type": "string",
@@ -3008,48 +2996,13 @@ export const Schema = {
             "commands": {
               "type": "object",
               "additionalProperties": {
-                "type": "object",
-                "properties": {
-                  "command": {
-                    "type": "string"
-                  },
-                  "params": {
-                    "type": "object",
-                    "additionalProperties": {
-                      "type": [
-                        "boolean",
-                        "number",
-                        "string"
-                      ]
-                    }
-                  },
-                  "timestamp": {
-                    "type": "number"
-                  }
-                },
-                "required": [
-                  "command",
-                  "params",
-                  "timestamp"
-                ],
-                "additionalProperties": false
+                "$ref": "#/definitions/AsyncCommand"
               }
             },
             "responses": {
               "type": "object",
               "additionalProperties": {
-                "type": "object",
-                "properties": {
-                  "updateState": {},
-                  "updateNoraSpecific": {},
-                  "skipSecondaryVerification": {
-                    "type": "boolean"
-                  },
-                  "errorCode": {
-                    "$ref": "#/definitions/ErrorCode"
-                  }
-                },
-                "additionalProperties": false
+                "$ref": "#/definitions/AsyncReponse"
               }
             }
           }
@@ -3246,6 +3199,39 @@ export const Schema = {
               "additionalProperties": false
             }
           ]
+        },
+        "AsyncCommand": {
+          "type": "object",
+          "properties": {
+            "command": {
+              "type": "string"
+            },
+            "params": {
+              "type": "object",
+              "additionalProperties": {
+                "type": [
+                  "boolean",
+                  "number",
+                  "string"
+                ]
+              }
+            }
+          },
+          "required": [
+            "command",
+            "params"
+          ],
+          "additionalProperties": false
+        },
+        "AsyncReponse": {
+          "type": "object",
+          "properties": {
+            "state": {},
+            "errorCode": {
+              "$ref": "#/definitions/ErrorCode"
+            }
+          },
+          "additionalProperties": false
         },
         "ErrorCode": {
           "type": "string",
@@ -3553,48 +3539,13 @@ export const Schema = {
             "commands": {
               "type": "object",
               "additionalProperties": {
-                "type": "object",
-                "properties": {
-                  "command": {
-                    "type": "string"
-                  },
-                  "params": {
-                    "type": "object",
-                    "additionalProperties": {
-                      "type": [
-                        "boolean",
-                        "number",
-                        "string"
-                      ]
-                    }
-                  },
-                  "timestamp": {
-                    "type": "number"
-                  }
-                },
-                "required": [
-                  "command",
-                  "params",
-                  "timestamp"
-                ],
-                "additionalProperties": false
+                "$ref": "#/definitions/AsyncCommand"
               }
             },
             "responses": {
               "type": "object",
               "additionalProperties": {
-                "type": "object",
-                "properties": {
-                  "updateState": {},
-                  "updateNoraSpecific": {},
-                  "skipSecondaryVerification": {
-                    "type": "boolean"
-                  },
-                  "errorCode": {
-                    "$ref": "#/definitions/ErrorCode"
-                  }
-                },
-                "additionalProperties": false
+                "$ref": "#/definitions/AsyncReponse"
               }
             }
           }
@@ -3733,6 +3684,39 @@ export const Schema = {
               "additionalProperties": false
             }
           ]
+        },
+        "AsyncCommand": {
+          "type": "object",
+          "properties": {
+            "command": {
+              "type": "string"
+            },
+            "params": {
+              "type": "object",
+              "additionalProperties": {
+                "type": [
+                  "boolean",
+                  "number",
+                  "string"
+                ]
+              }
+            }
+          },
+          "required": [
+            "command",
+            "params"
+          ],
+          "additionalProperties": false
+        },
+        "AsyncReponse": {
+          "type": "object",
+          "properties": {
+            "state": {},
+            "errorCode": {
+              "$ref": "#/definitions/ErrorCode"
+            }
+          },
+          "additionalProperties": false
         },
         "ErrorCode": {
           "type": "string",
@@ -4017,48 +4001,13 @@ export const Schema = {
             "commands": {
               "type": "object",
               "additionalProperties": {
-                "type": "object",
-                "properties": {
-                  "command": {
-                    "type": "string"
-                  },
-                  "params": {
-                    "type": "object",
-                    "additionalProperties": {
-                      "type": [
-                        "boolean",
-                        "number",
-                        "string"
-                      ]
-                    }
-                  },
-                  "timestamp": {
-                    "type": "number"
-                  }
-                },
-                "required": [
-                  "command",
-                  "params",
-                  "timestamp"
-                ],
-                "additionalProperties": false
+                "$ref": "#/definitions/AsyncCommand"
               }
             },
             "responses": {
               "type": "object",
               "additionalProperties": {
-                "type": "object",
-                "properties": {
-                  "updateState": {},
-                  "updateNoraSpecific": {},
-                  "skipSecondaryVerification": {
-                    "type": "boolean"
-                  },
-                  "errorCode": {
-                    "$ref": "#/definitions/ErrorCode"
-                  }
-                },
-                "additionalProperties": false
+                "$ref": "#/definitions/AsyncReponse"
               }
             }
           }
@@ -4230,6 +4179,39 @@ export const Schema = {
               "additionalProperties": false
             }
           ]
+        },
+        "AsyncCommand": {
+          "type": "object",
+          "properties": {
+            "command": {
+              "type": "string"
+            },
+            "params": {
+              "type": "object",
+              "additionalProperties": {
+                "type": [
+                  "boolean",
+                  "number",
+                  "string"
+                ]
+              }
+            }
+          },
+          "required": [
+            "command",
+            "params"
+          ],
+          "additionalProperties": false
+        },
+        "AsyncReponse": {
+          "type": "object",
+          "properties": {
+            "state": {},
+            "errorCode": {
+              "$ref": "#/definitions/ErrorCode"
+            }
+          },
+          "additionalProperties": false
         },
         "ErrorCode": {
           "type": "string",
@@ -4522,48 +4504,13 @@ export const Schema = {
             "commands": {
               "type": "object",
               "additionalProperties": {
-                "type": "object",
-                "properties": {
-                  "command": {
-                    "type": "string"
-                  },
-                  "params": {
-                    "type": "object",
-                    "additionalProperties": {
-                      "type": [
-                        "boolean",
-                        "number",
-                        "string"
-                      ]
-                    }
-                  },
-                  "timestamp": {
-                    "type": "number"
-                  }
-                },
-                "required": [
-                  "command",
-                  "params",
-                  "timestamp"
-                ],
-                "additionalProperties": false
+                "$ref": "#/definitions/AsyncCommand"
               }
             },
             "responses": {
               "type": "object",
               "additionalProperties": {
-                "type": "object",
-                "properties": {
-                  "updateState": {},
-                  "updateNoraSpecific": {},
-                  "skipSecondaryVerification": {
-                    "type": "boolean"
-                  },
-                  "errorCode": {
-                    "$ref": "#/definitions/ErrorCode"
-                  }
-                },
-                "additionalProperties": false
+                "$ref": "#/definitions/AsyncReponse"
               }
             }
           }
@@ -4701,6 +4648,39 @@ export const Schema = {
               "additionalProperties": false
             }
           ]
+        },
+        "AsyncCommand": {
+          "type": "object",
+          "properties": {
+            "command": {
+              "type": "string"
+            },
+            "params": {
+              "type": "object",
+              "additionalProperties": {
+                "type": [
+                  "boolean",
+                  "number",
+                  "string"
+                ]
+              }
+            }
+          },
+          "required": [
+            "command",
+            "params"
+          ],
+          "additionalProperties": false
+        },
+        "AsyncReponse": {
+          "type": "object",
+          "properties": {
+            "state": {},
+            "errorCode": {
+              "$ref": "#/definitions/ErrorCode"
+            }
+          },
+          "additionalProperties": false
         },
         "ErrorCode": {
           "type": "string",
@@ -4985,48 +4965,13 @@ export const Schema = {
             "commands": {
               "type": "object",
               "additionalProperties": {
-                "type": "object",
-                "properties": {
-                  "command": {
-                    "type": "string"
-                  },
-                  "params": {
-                    "type": "object",
-                    "additionalProperties": {
-                      "type": [
-                        "boolean",
-                        "number",
-                        "string"
-                      ]
-                    }
-                  },
-                  "timestamp": {
-                    "type": "number"
-                  }
-                },
-                "required": [
-                  "command",
-                  "params",
-                  "timestamp"
-                ],
-                "additionalProperties": false
+                "$ref": "#/definitions/AsyncCommand"
               }
             },
             "responses": {
               "type": "object",
               "additionalProperties": {
-                "type": "object",
-                "properties": {
-                  "updateState": {},
-                  "updateNoraSpecific": {},
-                  "skipSecondaryVerification": {
-                    "type": "boolean"
-                  },
-                  "errorCode": {
-                    "$ref": "#/definitions/ErrorCode"
-                  }
-                },
-                "additionalProperties": false
+                "$ref": "#/definitions/AsyncReponse"
               }
             }
           }
@@ -5317,6 +5262,39 @@ export const Schema = {
               "additionalProperties": false
             }
           ]
+        },
+        "AsyncCommand": {
+          "type": "object",
+          "properties": {
+            "command": {
+              "type": "string"
+            },
+            "params": {
+              "type": "object",
+              "additionalProperties": {
+                "type": [
+                  "boolean",
+                  "number",
+                  "string"
+                ]
+              }
+            }
+          },
+          "required": [
+            "command",
+            "params"
+          ],
+          "additionalProperties": false
+        },
+        "AsyncReponse": {
+          "type": "object",
+          "properties": {
+            "state": {},
+            "errorCode": {
+              "$ref": "#/definitions/ErrorCode"
+            }
+          },
+          "additionalProperties": false
         },
         "ErrorCode": {
           "type": "string",
@@ -5613,48 +5591,13 @@ export const Schema = {
             "commands": {
               "type": "object",
               "additionalProperties": {
-                "type": "object",
-                "properties": {
-                  "command": {
-                    "type": "string"
-                  },
-                  "params": {
-                    "type": "object",
-                    "additionalProperties": {
-                      "type": [
-                        "boolean",
-                        "number",
-                        "string"
-                      ]
-                    }
-                  },
-                  "timestamp": {
-                    "type": "number"
-                  }
-                },
-                "required": [
-                  "command",
-                  "params",
-                  "timestamp"
-                ],
-                "additionalProperties": false
+                "$ref": "#/definitions/AsyncCommand"
               }
             },
             "responses": {
               "type": "object",
               "additionalProperties": {
-                "type": "object",
-                "properties": {
-                  "updateState": {},
-                  "updateNoraSpecific": {},
-                  "skipSecondaryVerification": {
-                    "type": "boolean"
-                  },
-                  "errorCode": {
-                    "$ref": "#/definitions/ErrorCode"
-                  }
-                },
-                "additionalProperties": false
+                "$ref": "#/definitions/AsyncReponse"
               }
             }
           }
@@ -5818,6 +5761,39 @@ export const Schema = {
               "additionalProperties": false
             }
           ]
+        },
+        "AsyncCommand": {
+          "type": "object",
+          "properties": {
+            "command": {
+              "type": "string"
+            },
+            "params": {
+              "type": "object",
+              "additionalProperties": {
+                "type": [
+                  "boolean",
+                  "number",
+                  "string"
+                ]
+              }
+            }
+          },
+          "required": [
+            "command",
+            "params"
+          ],
+          "additionalProperties": false
+        },
+        "AsyncReponse": {
+          "type": "object",
+          "properties": {
+            "state": {},
+            "errorCode": {
+              "$ref": "#/definitions/ErrorCode"
+            }
+          },
+          "additionalProperties": false
         },
         "ErrorCode": {
           "type": "string",
@@ -6178,48 +6154,13 @@ export const Schema = {
             "commands": {
               "type": "object",
               "additionalProperties": {
-                "type": "object",
-                "properties": {
-                  "command": {
-                    "type": "string"
-                  },
-                  "params": {
-                    "type": "object",
-                    "additionalProperties": {
-                      "type": [
-                        "boolean",
-                        "number",
-                        "string"
-                      ]
-                    }
-                  },
-                  "timestamp": {
-                    "type": "number"
-                  }
-                },
-                "required": [
-                  "command",
-                  "params",
-                  "timestamp"
-                ],
-                "additionalProperties": false
+                "$ref": "#/definitions/AsyncCommand"
               }
             },
             "responses": {
               "type": "object",
               "additionalProperties": {
-                "type": "object",
-                "properties": {
-                  "updateState": {},
-                  "updateNoraSpecific": {},
-                  "skipSecondaryVerification": {
-                    "type": "boolean"
-                  },
-                  "errorCode": {
-                    "$ref": "#/definitions/ErrorCode"
-                  }
-                },
-                "additionalProperties": false
+                "$ref": "#/definitions/AsyncReponse"
               }
             }
           }
@@ -6363,6 +6304,39 @@ export const Schema = {
               "additionalProperties": false
             }
           ]
+        },
+        "AsyncCommand": {
+          "type": "object",
+          "properties": {
+            "command": {
+              "type": "string"
+            },
+            "params": {
+              "type": "object",
+              "additionalProperties": {
+                "type": [
+                  "boolean",
+                  "number",
+                  "string"
+                ]
+              }
+            }
+          },
+          "required": [
+            "command",
+            "params"
+          ],
+          "additionalProperties": false
+        },
+        "AsyncReponse": {
+          "type": "object",
+          "properties": {
+            "state": {},
+            "errorCode": {
+              "$ref": "#/definitions/ErrorCode"
+            }
+          },
+          "additionalProperties": false
         },
         "ErrorCode": {
           "type": "string",
@@ -6644,48 +6618,13 @@ export const Schema = {
             "commands": {
               "type": "object",
               "additionalProperties": {
-                "type": "object",
-                "properties": {
-                  "command": {
-                    "type": "string"
-                  },
-                  "params": {
-                    "type": "object",
-                    "additionalProperties": {
-                      "type": [
-                        "boolean",
-                        "number",
-                        "string"
-                      ]
-                    }
-                  },
-                  "timestamp": {
-                    "type": "number"
-                  }
-                },
-                "required": [
-                  "command",
-                  "params",
-                  "timestamp"
-                ],
-                "additionalProperties": false
+                "$ref": "#/definitions/AsyncCommand"
               }
             },
             "responses": {
               "type": "object",
               "additionalProperties": {
-                "type": "object",
-                "properties": {
-                  "updateState": {},
-                  "updateNoraSpecific": {},
-                  "skipSecondaryVerification": {
-                    "type": "boolean"
-                  },
-                  "errorCode": {
-                    "$ref": "#/definitions/ErrorCode"
-                  }
-                },
-                "additionalProperties": false
+                "$ref": "#/definitions/AsyncReponse"
               }
             }
           }
@@ -7503,6 +7442,39 @@ export const Schema = {
             }
           ]
         },
+        "AsyncCommand": {
+          "type": "object",
+          "properties": {
+            "command": {
+              "type": "string"
+            },
+            "params": {
+              "type": "object",
+              "additionalProperties": {
+                "type": [
+                  "boolean",
+                  "number",
+                  "string"
+                ]
+              }
+            }
+          },
+          "required": [
+            "command",
+            "params"
+          ],
+          "additionalProperties": false
+        },
+        "AsyncReponse": {
+          "type": "object",
+          "properties": {
+            "state": {},
+            "errorCode": {
+              "$ref": "#/definitions/ErrorCode"
+            }
+          },
+          "additionalProperties": false
+        },
         "ErrorCode": {
           "type": "string",
           "enum": [
@@ -7783,48 +7755,13 @@ export const Schema = {
             "commands": {
               "type": "object",
               "additionalProperties": {
-                "type": "object",
-                "properties": {
-                  "command": {
-                    "type": "string"
-                  },
-                  "params": {
-                    "type": "object",
-                    "additionalProperties": {
-                      "type": [
-                        "boolean",
-                        "number",
-                        "string"
-                      ]
-                    }
-                  },
-                  "timestamp": {
-                    "type": "number"
-                  }
-                },
-                "required": [
-                  "command",
-                  "params",
-                  "timestamp"
-                ],
-                "additionalProperties": false
+                "$ref": "#/definitions/AsyncCommand"
               }
             },
             "responses": {
               "type": "object",
               "additionalProperties": {
-                "type": "object",
-                "properties": {
-                  "updateState": {},
-                  "updateNoraSpecific": {},
-                  "skipSecondaryVerification": {
-                    "type": "boolean"
-                  },
-                  "errorCode": {
-                    "$ref": "#/definitions/ErrorCode"
-                  }
-                },
-                "additionalProperties": false
+                "$ref": "#/definitions/AsyncReponse"
               }
             }
           }
@@ -7979,6 +7916,39 @@ export const Schema = {
               "additionalProperties": false
             }
           ]
+        },
+        "AsyncCommand": {
+          "type": "object",
+          "properties": {
+            "command": {
+              "type": "string"
+            },
+            "params": {
+              "type": "object",
+              "additionalProperties": {
+                "type": [
+                  "boolean",
+                  "number",
+                  "string"
+                ]
+              }
+            }
+          },
+          "required": [
+            "command",
+            "params"
+          ],
+          "additionalProperties": false
+        },
+        "AsyncReponse": {
+          "type": "object",
+          "properties": {
+            "state": {},
+            "errorCode": {
+              "$ref": "#/definitions/ErrorCode"
+            }
+          },
+          "additionalProperties": false
         },
         "ErrorCode": {
           "type": "string",
@@ -8260,48 +8230,13 @@ export const Schema = {
             "commands": {
               "type": "object",
               "additionalProperties": {
-                "type": "object",
-                "properties": {
-                  "command": {
-                    "type": "string"
-                  },
-                  "params": {
-                    "type": "object",
-                    "additionalProperties": {
-                      "type": [
-                        "boolean",
-                        "number",
-                        "string"
-                      ]
-                    }
-                  },
-                  "timestamp": {
-                    "type": "number"
-                  }
-                },
-                "required": [
-                  "command",
-                  "params",
-                  "timestamp"
-                ],
-                "additionalProperties": false
+                "$ref": "#/definitions/AsyncCommand"
               }
             },
             "responses": {
               "type": "object",
               "additionalProperties": {
-                "type": "object",
-                "properties": {
-                  "updateState": {},
-                  "updateNoraSpecific": {},
-                  "skipSecondaryVerification": {
-                    "type": "boolean"
-                  },
-                  "errorCode": {
-                    "$ref": "#/definitions/ErrorCode"
-                  }
-                },
-                "additionalProperties": false
+                "$ref": "#/definitions/AsyncReponse"
               }
             }
           }
@@ -8450,6 +8385,39 @@ export const Schema = {
               "additionalProperties": false
             }
           ]
+        },
+        "AsyncCommand": {
+          "type": "object",
+          "properties": {
+            "command": {
+              "type": "string"
+            },
+            "params": {
+              "type": "object",
+              "additionalProperties": {
+                "type": [
+                  "boolean",
+                  "number",
+                  "string"
+                ]
+              }
+            }
+          },
+          "required": [
+            "command",
+            "params"
+          ],
+          "additionalProperties": false
+        },
+        "AsyncReponse": {
+          "type": "object",
+          "properties": {
+            "state": {},
+            "errorCode": {
+              "$ref": "#/definitions/ErrorCode"
+            }
+          },
+          "additionalProperties": false
         },
         "ErrorCode": {
           "type": "string",
@@ -8731,48 +8699,13 @@ export const Schema = {
             "commands": {
               "type": "object",
               "additionalProperties": {
-                "type": "object",
-                "properties": {
-                  "command": {
-                    "type": "string"
-                  },
-                  "params": {
-                    "type": "object",
-                    "additionalProperties": {
-                      "type": [
-                        "boolean",
-                        "number",
-                        "string"
-                      ]
-                    }
-                  },
-                  "timestamp": {
-                    "type": "number"
-                  }
-                },
-                "required": [
-                  "command",
-                  "params",
-                  "timestamp"
-                ],
-                "additionalProperties": false
+                "$ref": "#/definitions/AsyncCommand"
               }
             },
             "responses": {
               "type": "object",
               "additionalProperties": {
-                "type": "object",
-                "properties": {
-                  "updateState": {},
-                  "updateNoraSpecific": {},
-                  "skipSecondaryVerification": {
-                    "type": "boolean"
-                  },
-                  "errorCode": {
-                    "$ref": "#/definitions/ErrorCode"
-                  }
-                },
-                "additionalProperties": false
+                "$ref": "#/definitions/AsyncReponse"
               }
             }
           }
@@ -8998,6 +8931,39 @@ export const Schema = {
               "additionalProperties": false
             }
           ]
+        },
+        "AsyncCommand": {
+          "type": "object",
+          "properties": {
+            "command": {
+              "type": "string"
+            },
+            "params": {
+              "type": "object",
+              "additionalProperties": {
+                "type": [
+                  "boolean",
+                  "number",
+                  "string"
+                ]
+              }
+            }
+          },
+          "required": [
+            "command",
+            "params"
+          ],
+          "additionalProperties": false
+        },
+        "AsyncReponse": {
+          "type": "object",
+          "properties": {
+            "state": {},
+            "errorCode": {
+              "$ref": "#/definitions/ErrorCode"
+            }
+          },
+          "additionalProperties": false
         },
         "ErrorCode": {
           "type": "string",
@@ -9299,48 +9265,13 @@ export const Schema = {
             "commands": {
               "type": "object",
               "additionalProperties": {
-                "type": "object",
-                "properties": {
-                  "command": {
-                    "type": "string"
-                  },
-                  "params": {
-                    "type": "object",
-                    "additionalProperties": {
-                      "type": [
-                        "boolean",
-                        "number",
-                        "string"
-                      ]
-                    }
-                  },
-                  "timestamp": {
-                    "type": "number"
-                  }
-                },
-                "required": [
-                  "command",
-                  "params",
-                  "timestamp"
-                ],
-                "additionalProperties": false
+                "$ref": "#/definitions/AsyncCommand"
               }
             },
             "responses": {
               "type": "object",
               "additionalProperties": {
-                "type": "object",
-                "properties": {
-                  "updateState": {},
-                  "updateNoraSpecific": {},
-                  "skipSecondaryVerification": {
-                    "type": "boolean"
-                  },
-                  "errorCode": {
-                    "$ref": "#/definitions/ErrorCode"
-                  }
-                },
-                "additionalProperties": false
+                "$ref": "#/definitions/AsyncReponse"
               }
             }
           }
@@ -9479,6 +9410,39 @@ export const Schema = {
               "additionalProperties": false
             }
           ]
+        },
+        "AsyncCommand": {
+          "type": "object",
+          "properties": {
+            "command": {
+              "type": "string"
+            },
+            "params": {
+              "type": "object",
+              "additionalProperties": {
+                "type": [
+                  "boolean",
+                  "number",
+                  "string"
+                ]
+              }
+            }
+          },
+          "required": [
+            "command",
+            "params"
+          ],
+          "additionalProperties": false
+        },
+        "AsyncReponse": {
+          "type": "object",
+          "properties": {
+            "state": {},
+            "errorCode": {
+              "$ref": "#/definitions/ErrorCode"
+            }
+          },
+          "additionalProperties": false
         },
         "ErrorCode": {
           "type": "string",
