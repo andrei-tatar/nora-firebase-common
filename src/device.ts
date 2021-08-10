@@ -58,25 +58,26 @@ export interface Device<TState = {}, TAttributes = {}, TNora = {}> {
         };
         asyncCommandExecution?: boolean;
         commands?: {
-            [commandId: string]: {
-                command: string;
-                params: Record<string, boolean | number | string>;
-                timestamp: number;
-            };
+            [commandId: string]: AsyncCommand;
         };
         responses?: {
-            [commandId: string]: {
-                updateState?: any;
-                updateNoraSpecific?: any;
-                skipSecondaryVerification?: boolean;
-                errorCode?: ErrorCode;
-            };
+            [commandId: string]: AsyncReponse;
         };
     } & TNora;
     state: {
         online: boolean;
     } & TState;
     attributes: TAttributes;
+}
+
+export interface AsyncCommand {
+    command: string;
+    params: Record<string, boolean | number | string>;
+}
+
+export interface AsyncReponse {
+    state?: any;
+    errorCode?: ErrorCode;
 }
 
 export declare type ArmDisarmDevice = Device<{
