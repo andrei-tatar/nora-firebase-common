@@ -61,7 +61,7 @@ export interface Device<TState = {}, TAttributes = {}, TNora = {}> {
             [commandId: string]: AsyncCommand;
         };
         responses?: {
-            [commandId: string]: AsyncReponse;
+            [commandId: string]: AsyncResponse;
         };
     } & TNora;
     state: {
@@ -75,7 +75,7 @@ export interface AsyncCommand {
     params: Record<string, boolean | number | string>;
 }
 
-export interface AsyncReponse {
+export interface AsyncResponse {
     state?: any;
     errorCode?: ErrorCode;
 }

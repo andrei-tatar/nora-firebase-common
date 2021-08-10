@@ -156,7 +156,7 @@ export const Schema = {
             "responses": {
               "type": "object",
               "additionalProperties": {
-                "$ref": "#/definitions/AsyncReponse"
+                "$ref": "#/definitions/AsyncResponse"
               }
             }
           }
@@ -359,7 +359,7 @@ export const Schema = {
           ],
           "additionalProperties": false
         },
-        "AsyncReponse": {
+        "AsyncResponse": {
           "type": "object",
           "properties": {
             "state": {},
@@ -678,7 +678,7 @@ export const Schema = {
             "responses": {
               "type": "object",
               "additionalProperties": {
-                "$ref": "#/definitions/AsyncReponse"
+                "$ref": "#/definitions/AsyncResponse"
               }
             }
           },
@@ -825,7 +825,7 @@ export const Schema = {
           ],
           "additionalProperties": false
         },
-        "AsyncReponse": {
+        "AsyncResponse": {
           "type": "object",
           "properties": {
             "state": {},
@@ -1124,7 +1124,7 @@ export const Schema = {
             "responses": {
               "type": "object",
               "additionalProperties": {
-                "$ref": "#/definitions/AsyncReponse"
+                "$ref": "#/definitions/AsyncResponse"
               }
             }
           }
@@ -1364,7 +1364,7 @@ export const Schema = {
           ],
           "additionalProperties": false
         },
-        "AsyncReponse": {
+        "AsyncResponse": {
           "type": "object",
           "properties": {
             "state": {},
@@ -1663,7 +1663,7 @@ export const Schema = {
             "responses": {
               "type": "object",
               "additionalProperties": {
-                "$ref": "#/definitions/AsyncReponse"
+                "$ref": "#/definitions/AsyncResponse"
               }
             }
           }
@@ -1810,7 +1810,7 @@ export const Schema = {
           ],
           "additionalProperties": false
         },
-        "AsyncReponse": {
+        "AsyncResponse": {
           "type": "object",
           "properties": {
             "state": {},
@@ -2109,7 +2109,7 @@ export const Schema = {
             "responses": {
               "type": "object",
               "additionalProperties": {
-                "$ref": "#/definitions/AsyncReponse"
+                "$ref": "#/definitions/AsyncResponse"
               }
             }
           }
@@ -2252,7 +2252,7 @@ export const Schema = {
           ],
           "additionalProperties": false
         },
-        "AsyncReponse": {
+        "AsyncResponse": {
           "type": "object",
           "properties": {
             "state": {},
@@ -2560,7 +2560,7 @@ export const Schema = {
             "responses": {
               "type": "object",
               "additionalProperties": {
-                "$ref": "#/definitions/AsyncReponse"
+                "$ref": "#/definitions/AsyncResponse"
               }
             }
           }
@@ -2700,7 +2700,7 @@ export const Schema = {
           ],
           "additionalProperties": false
         },
-        "AsyncReponse": {
+        "AsyncResponse": {
           "type": "object",
           "properties": {
             "state": {},
@@ -3002,7 +3002,7 @@ export const Schema = {
             "responses": {
               "type": "object",
               "additionalProperties": {
-                "$ref": "#/definitions/AsyncReponse"
+                "$ref": "#/definitions/AsyncResponse"
               }
             }
           }
@@ -3223,7 +3223,7 @@ export const Schema = {
           ],
           "additionalProperties": false
         },
-        "AsyncReponse": {
+        "AsyncResponse": {
           "type": "object",
           "properties": {
             "state": {},
@@ -3545,7 +3545,7 @@ export const Schema = {
             "responses": {
               "type": "object",
               "additionalProperties": {
-                "$ref": "#/definitions/AsyncReponse"
+                "$ref": "#/definitions/AsyncResponse"
               }
             }
           }
@@ -3708,7 +3708,7 @@ export const Schema = {
           ],
           "additionalProperties": false
         },
-        "AsyncReponse": {
+        "AsyncResponse": {
           "type": "object",
           "properties": {
             "state": {},
@@ -4007,7 +4007,7 @@ export const Schema = {
             "responses": {
               "type": "object",
               "additionalProperties": {
-                "$ref": "#/definitions/AsyncReponse"
+                "$ref": "#/definitions/AsyncResponse"
               }
             }
           }
@@ -4203,7 +4203,7 @@ export const Schema = {
           ],
           "additionalProperties": false
         },
-        "AsyncReponse": {
+        "AsyncResponse": {
           "type": "object",
           "properties": {
             "state": {},
@@ -4510,7 +4510,7 @@ export const Schema = {
             "responses": {
               "type": "object",
               "additionalProperties": {
-                "$ref": "#/definitions/AsyncReponse"
+                "$ref": "#/definitions/AsyncResponse"
               }
             }
           }
@@ -4672,7 +4672,7 @@ export const Schema = {
           ],
           "additionalProperties": false
         },
-        "AsyncReponse": {
+        "AsyncResponse": {
           "type": "object",
           "properties": {
             "state": {},
@@ -4971,7 +4971,7 @@ export const Schema = {
             "responses": {
               "type": "object",
               "additionalProperties": {
-                "$ref": "#/definitions/AsyncReponse"
+                "$ref": "#/definitions/AsyncResponse"
               }
             }
           }
@@ -5286,7 +5286,7 @@ export const Schema = {
           ],
           "additionalProperties": false
         },
-        "AsyncReponse": {
+        "AsyncResponse": {
           "type": "object",
           "properties": {
             "state": {},
@@ -5597,7 +5597,7 @@ export const Schema = {
             "responses": {
               "type": "object",
               "additionalProperties": {
-                "$ref": "#/definitions/AsyncReponse"
+                "$ref": "#/definitions/AsyncResponse"
               }
             }
           }
@@ -5785,7 +5785,7 @@ export const Schema = {
           ],
           "additionalProperties": false
         },
-        "AsyncReponse": {
+        "AsyncResponse": {
           "type": "object",
           "properties": {
             "state": {},
@@ -6160,7 +6160,7 @@ export const Schema = {
             "responses": {
               "type": "object",
               "additionalProperties": {
-                "$ref": "#/definitions/AsyncReponse"
+                "$ref": "#/definitions/AsyncResponse"
               }
             }
           }
@@ -6328,7 +6328,7 @@ export const Schema = {
           ],
           "additionalProperties": false
         },
-        "AsyncReponse": {
+        "AsyncResponse": {
           "type": "object",
           "properties": {
             "state": {},
@@ -6624,7 +6624,7 @@ export const Schema = {
             "responses": {
               "type": "object",
               "additionalProperties": {
-                "$ref": "#/definitions/AsyncReponse"
+                "$ref": "#/definitions/AsyncResponse"
               }
             }
           }
@@ -7465,7 +7465,7 @@ export const Schema = {
           ],
           "additionalProperties": false
         },
-        "AsyncReponse": {
+        "AsyncResponse": {
           "type": "object",
           "properties": {
             "state": {},
@@ -7761,7 +7761,7 @@ export const Schema = {
             "responses": {
               "type": "object",
               "additionalProperties": {
-                "$ref": "#/definitions/AsyncReponse"
+                "$ref": "#/definitions/AsyncResponse"
               }
             }
           }
@@ -7940,7 +7940,7 @@ export const Schema = {
           ],
           "additionalProperties": false
         },
-        "AsyncReponse": {
+        "AsyncResponse": {
           "type": "object",
           "properties": {
             "state": {},
@@ -8236,7 +8236,7 @@ export const Schema = {
             "responses": {
               "type": "object",
               "additionalProperties": {
-                "$ref": "#/definitions/AsyncReponse"
+                "$ref": "#/definitions/AsyncResponse"
               }
             }
           }
@@ -8409,7 +8409,7 @@ export const Schema = {
           ],
           "additionalProperties": false
         },
-        "AsyncReponse": {
+        "AsyncResponse": {
           "type": "object",
           "properties": {
             "state": {},
@@ -8705,7 +8705,7 @@ export const Schema = {
             "responses": {
               "type": "object",
               "additionalProperties": {
-                "$ref": "#/definitions/AsyncReponse"
+                "$ref": "#/definitions/AsyncResponse"
               }
             }
           }
@@ -8955,7 +8955,7 @@ export const Schema = {
           ],
           "additionalProperties": false
         },
-        "AsyncReponse": {
+        "AsyncResponse": {
           "type": "object",
           "properties": {
             "state": {},
@@ -9271,7 +9271,7 @@ export const Schema = {
             "responses": {
               "type": "object",
               "additionalProperties": {
-                "$ref": "#/definitions/AsyncReponse"
+                "$ref": "#/definitions/AsyncResponse"
               }
             }
           }
@@ -9434,7 +9434,7 @@ export const Schema = {
           ],
           "additionalProperties": false
         },
-        "AsyncReponse": {
+        "AsyncResponse": {
           "type": "object",
           "properties": {
             "state": {},
