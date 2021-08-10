@@ -56,6 +56,22 @@ export interface Device<TState = {}, TAttributes = {}, TNora = {}> {
             msg: string;
             details?: any;
         };
+        asyncCommandExecution?: boolean;
+        commands?: {
+            [commandId: string]: {
+                command: string;
+                params: Record<string, boolean | number | string>;
+                timestamp: number;
+            };
+        };
+        responses?: {
+            [commandId: string]: {
+                updateState?: any;
+                updateNoraSpecific?: any;
+                skipSecondaryVerification?: boolean;
+                errorCode?: ErrorCode;
+            };
+        };
     } & TNora;
     state: {
         online: boolean;
