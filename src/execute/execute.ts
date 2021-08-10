@@ -1,4 +1,4 @@
-import { Device } from '../device';
+import { Device, ErrorCode } from '../device';
 import { HANDLERS } from './handlers';
 import { checkSecondaryVerification } from './secondary-verification';
 
@@ -17,14 +17,8 @@ export interface ExecuteCommandParams {
     challenge?: any;
 }
 
-export type ErrorCode =
-    'challengeNeeded' | 'deviceJammingDetected' | 'obstructionDetected' |
-    'lockedState' | 'notSupported' | 'alreadyLocked' | 'alreadyUnlocked' |
-    'deviceTurnedOff' | 'deviceOffline' | 'alreadyOpen' | 'alreadyClosed' |
-    'alreadyOn' | 'alreadyOff';
-
 export class ExecuteCommandError extends Error {
-    constructor(public readonly errorCode: ErrorCode) {
+    constructor(public readonly errorCode: 'challengeNeeded' | ErrorCode) {
         super();
     }
 }

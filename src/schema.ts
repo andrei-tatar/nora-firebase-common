@@ -5962,6 +5962,417 @@ export const Schema = {
           ]
         }
       }
+    },
+    "statusreport": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "traits": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Trait"
+          }
+        },
+        "id": {
+          "type": "string"
+        },
+        "type": {
+          "$ref": "#/definitions/DeviceType"
+        },
+        "name": {
+          "type": "object",
+          "properties": {
+            "defaultNames": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "name": {
+              "type": "string",
+              "maxLength": 40
+            },
+            "nicknames": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          "required": [
+            "name"
+          ],
+          "additionalProperties": false
+        },
+        "willReportState": {
+          "type": "boolean"
+        },
+        "notificationSupportedByAgent": {
+          "type": "boolean"
+        },
+        "structureHint": {
+          "type": "string",
+          "description": "Name of the home this device belongs to",
+          "maxLength": 40
+        },
+        "roomHint": {
+          "type": "string",
+          "description": "Name of the room this device belongs to",
+          "maxLength": 40
+        },
+        "deviceInfo": {
+          "type": "object",
+          "properties": {
+            "manufacturer": {
+              "type": "string"
+            },
+            "model": {
+              "type": "string"
+            },
+            "hwVersion": {
+              "type": "string"
+            },
+            "swVersion": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "manufacturer",
+            "model",
+            "hwVersion",
+            "swVersion"
+          ],
+          "additionalProperties": false
+        },
+        "otherDeviceIds": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "agentId": {
+                "type": "string"
+              },
+              "deviceId": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "deviceId"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "customData": {
+          "type": "object",
+          "properties": {
+            "proxyId": {
+              "type": "string",
+              "description": "Used for local execution to identity the instance responsible of this device",
+              "maxLength": 40
+            }
+          },
+          "additionalProperties": false
+        },
+        "noraSpecific": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "disabled": {
+              "type": "boolean"
+            },
+            "twoFactor": {
+              "$ref": "#/definitions/TwoFactor"
+            },
+            "error": {
+              "type": "object",
+              "properties": {
+                "msg": {
+                  "type": "string"
+                },
+                "details": {}
+              },
+              "required": [
+                "msg"
+              ],
+              "additionalProperties": false
+            }
+          }
+        },
+        "state": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "currentStatusReport": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "blocking": {
+                    "type": "boolean"
+                  },
+                  "deviceTarget": {
+                    "type": "string"
+                  },
+                  "priority": {
+                    "type": "number"
+                  },
+                  "statusCode": {
+                    "$ref": "#/definitions/ErrorCode"
+                  }
+                },
+                "required": [
+                  "blocking",
+                  "deviceTarget",
+                  "priority",
+                  "statusCode"
+                ],
+                "additionalProperties": false
+              }
+            },
+            "online": {
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "currentStatusReport",
+            "online"
+          ]
+        },
+        "attributes": {
+          "type": "object",
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "attributes",
+        "id",
+        "name",
+        "noraSpecific",
+        "state",
+        "traits",
+        "type",
+        "willReportState"
+      ],
+      "definitions": {
+        "Trait": {
+          "type": "string",
+          "enum": [
+            "action.devices.traits.StatusReport"
+          ]
+        },
+        "DeviceType": {
+          "type": "string",
+          "enum": [
+            "action.devices.types.LIGHT",
+            "action.devices.types.SWITCH",
+            "action.devices.types.SCENE",
+            "action.devices.types.OUTLET",
+            "action.devices.types.THERMOSTAT",
+            "action.devices.types.AC_UNIT",
+            "action.devices.types.LOCK",
+            "action.devices.types.SENSOR",
+            "action.devices.types.SMOKE_DETECTOR",
+            "action.devices.types.FAN",
+            "action.devices.types.SECURITYSYSTEM",
+            "action.devices.types.SPEAKER",
+            "action.devices.types.AUDIO_VIDEO_RECEIVER",
+            "action.devices.types.REMOTECONTROL",
+            "action.devices.types.SETTOP",
+            "action.devices.types.SOUNDBAR",
+            "action.devices.types.STREAMING_BOX",
+            "action.devices.types.STREAMING_SOUNDBAR",
+            "action.devices.types.STREAMING_STICK",
+            "action.devices.types.TV",
+            "action.devices.types.CLOSET",
+            "action.devices.types.AWNING",
+            "action.devices.types.CURTAIN",
+            "action.devices.types.DOOR",
+            "action.devices.types.DRAWER",
+            "action.devices.types.BLINDS",
+            "action.devices.types.GARAGE",
+            "action.devices.types.GATE",
+            "action.devices.types.PERGOLA",
+            "action.devices.types.SHUTTER",
+            "action.devices.types.VALVE",
+            "action.devices.types.WINDOW",
+            "action.devices.types.HUMIDIFIER"
+          ]
+        },
+        "TwoFactor": {
+          "anyOf": [
+            {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "type": "string",
+                  "const": "ack"
+                }
+              },
+              "required": [
+                "type"
+              ],
+              "additionalProperties": false
+            },
+            {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "type": "string",
+                  "const": "pin"
+                },
+                "pin": {
+                  "type": "string",
+                  "maxLength": 20
+                }
+              },
+              "required": [
+                "type",
+                "pin"
+              ],
+              "additionalProperties": false
+            }
+          ]
+        },
+        "ErrorCode": {
+          "type": "string",
+          "enum": [
+            "aboveMaximumLightEffectsDuration",
+            "aboveMaximumTimerDuration",
+            "actionNotAvailable",
+            "actionUnavailableWhileRunning",
+            "alreadyArmed",
+            "alreadyAtMax",
+            "alreadyAtMin",
+            "alreadyClosed",
+            "alreadyDisarmed",
+            "alreadyDocked",
+            "alreadyInState",
+            "alreadyLocked",
+            "alreadyOff",
+            "alreadyOn",
+            "alreadyOpen",
+            "alreadyPaused",
+            "alreadyStarted",
+            "alreadyStopped",
+            "alreadyUnlocked",
+            "ambiguousZoneName",
+            "amountAboveLimit",
+            "appLaunchFailed",
+            "armFailure",
+            "armLevelNeeded",
+            "authFailure",
+            "bagFull",
+            "belowMinimumLightEffectsDuration",
+            "belowMinimumTimerDuration",
+            "binFull",
+            "cancelArmingRestricted",
+            "cancelTooLate",
+            "channelSwitchFailed",
+            "chargerIssue",
+            "commandInsertFailed",
+            "deadBattery",
+            "degreesOutOfRange",
+            "deviceAlertNeedsAssistance",
+            "deviceAtExtremeTemperature",
+            "deviceBusy",
+            "deviceCharging",
+            "deviceClogged",
+            "deviceCurrentlyDispensing",
+            "deviceDoorOpen",
+            "deviceHandleClosed",
+            "deviceJammingDetected",
+            "deviceLidOpen",
+            "deviceNeedsRepair",
+            "deviceNotDocked",
+            "deviceNotFound",
+            "deviceNotMounted",
+            "deviceNotReady",
+            "deviceStuck",
+            "deviceTampered",
+            "deviceThermalShutdown",
+            "directResponseOnlyUnreachable",
+            "disarmFailure",
+            "discreteOnlyOpenClose",
+            "dispenseAmountAboveLimit",
+            "dispenseAmountBelowLimit",
+            "dispenseAmountRemainingExceeded",
+            "dispenseFractionalAmountNotSupported",
+            "dispenseFractionalUnitNotSupported",
+            "dispenseUnitNotSupported",
+            "doorClosedTooLong",
+            "emergencyHeatOn",
+            "faultyBattery",
+            "floorUnreachable",
+            "functionNotSupported",
+            "genericDispenseNotSupported",
+            "hardError",
+            "inAutoMode",
+            "inAwayMode",
+            "inDryMode",
+            "inEcoMode",
+            "inFanOnlyMode",
+            "inHeatOrCool",
+            "inHumidifierMode",
+            "inOffMode",
+            "inPurifierMode",
+            "inSleepMode",
+            "inSoftwareUpdate",
+            "lockFailure",
+            "lockedState",
+            "lockedToRange",
+            "lowBattery",
+            "maxSettingReached",
+            "maxSpeedReached",
+            "minSettingReached",
+            "minSpeedReached",
+            "monitoringServiceConnectionLost",
+            "needsAttachment",
+            "needsBin",
+            "needsPads",
+            "needsSoftwareUpdate",
+            "needsWater",
+            "networkProfileNotRecognized",
+            "networkSpeedTestInProgress",
+            "noAvailableApp",
+            "noAvailableChannel",
+            "noChannelSubscription",
+            "noTimerExists",
+            "notSupported",
+            "obstructionDetected",
+            "offline",
+            "onRequiresMode",
+            "passphraseIncorrect",
+            "percentOutOfRange",
+            "pinIncorrect",
+            "rainDetected",
+            "rangeTooClose",
+            "relinkRequired",
+            "roomsOnDifferentFloors",
+            "safetyShutOff",
+            "sceneCannotBeApplied",
+            "securityRestriction",
+            "softwareUpdateNotAvailable",
+            "startRequiresTime",
+            "stillCoolingDown",
+            "stillWarmingUp",
+            "streamUnavailable",
+            "streamUnplayable",
+            "tankEmpty",
+            "targetAlreadyReached",
+            "timerValueOutOfRange",
+            "tooManyFailedAttempts",
+            "transientError",
+            "turnedOff",
+            "unableToLocateDevice",
+            "unknownFoodPreset",
+            "unlockFailure",
+            "unpausableState",
+            "userCancelled",
+            "valueOutOfRange"
+          ]
+        }
+      }
     }
   },
   "state": {
@@ -6743,6 +7154,187 @@ export const Schema = {
         }
       ],
       "definitions": {}
+    },
+    "statusreport": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "currentStatusReport": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "blocking": {
+                "type": "boolean"
+              },
+              "deviceTarget": {
+                "type": "string"
+              },
+              "priority": {
+                "type": "number"
+              },
+              "statusCode": {
+                "$ref": "#/definitions/ErrorCode"
+              }
+            },
+            "required": [
+              "blocking",
+              "deviceTarget",
+              "priority",
+              "statusCode"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "online": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "currentStatusReport",
+        "online"
+      ],
+      "definitions": {
+        "ErrorCode": {
+          "type": "string",
+          "enum": [
+            "aboveMaximumLightEffectsDuration",
+            "aboveMaximumTimerDuration",
+            "actionNotAvailable",
+            "actionUnavailableWhileRunning",
+            "alreadyArmed",
+            "alreadyAtMax",
+            "alreadyAtMin",
+            "alreadyClosed",
+            "alreadyDisarmed",
+            "alreadyDocked",
+            "alreadyInState",
+            "alreadyLocked",
+            "alreadyOff",
+            "alreadyOn",
+            "alreadyOpen",
+            "alreadyPaused",
+            "alreadyStarted",
+            "alreadyStopped",
+            "alreadyUnlocked",
+            "ambiguousZoneName",
+            "amountAboveLimit",
+            "appLaunchFailed",
+            "armFailure",
+            "armLevelNeeded",
+            "authFailure",
+            "bagFull",
+            "belowMinimumLightEffectsDuration",
+            "belowMinimumTimerDuration",
+            "binFull",
+            "cancelArmingRestricted",
+            "cancelTooLate",
+            "channelSwitchFailed",
+            "chargerIssue",
+            "commandInsertFailed",
+            "deadBattery",
+            "degreesOutOfRange",
+            "deviceAlertNeedsAssistance",
+            "deviceAtExtremeTemperature",
+            "deviceBusy",
+            "deviceCharging",
+            "deviceClogged",
+            "deviceCurrentlyDispensing",
+            "deviceDoorOpen",
+            "deviceHandleClosed",
+            "deviceJammingDetected",
+            "deviceLidOpen",
+            "deviceNeedsRepair",
+            "deviceNotDocked",
+            "deviceNotFound",
+            "deviceNotMounted",
+            "deviceNotReady",
+            "deviceStuck",
+            "deviceTampered",
+            "deviceThermalShutdown",
+            "directResponseOnlyUnreachable",
+            "disarmFailure",
+            "discreteOnlyOpenClose",
+            "dispenseAmountAboveLimit",
+            "dispenseAmountBelowLimit",
+            "dispenseAmountRemainingExceeded",
+            "dispenseFractionalAmountNotSupported",
+            "dispenseFractionalUnitNotSupported",
+            "dispenseUnitNotSupported",
+            "doorClosedTooLong",
+            "emergencyHeatOn",
+            "faultyBattery",
+            "floorUnreachable",
+            "functionNotSupported",
+            "genericDispenseNotSupported",
+            "hardError",
+            "inAutoMode",
+            "inAwayMode",
+            "inDryMode",
+            "inEcoMode",
+            "inFanOnlyMode",
+            "inHeatOrCool",
+            "inHumidifierMode",
+            "inOffMode",
+            "inPurifierMode",
+            "inSleepMode",
+            "inSoftwareUpdate",
+            "lockFailure",
+            "lockedState",
+            "lockedToRange",
+            "lowBattery",
+            "maxSettingReached",
+            "maxSpeedReached",
+            "minSettingReached",
+            "minSpeedReached",
+            "monitoringServiceConnectionLost",
+            "needsAttachment",
+            "needsBin",
+            "needsPads",
+            "needsSoftwareUpdate",
+            "needsWater",
+            "networkProfileNotRecognized",
+            "networkSpeedTestInProgress",
+            "noAvailableApp",
+            "noAvailableChannel",
+            "noChannelSubscription",
+            "noTimerExists",
+            "notSupported",
+            "obstructionDetected",
+            "offline",
+            "onRequiresMode",
+            "passphraseIncorrect",
+            "percentOutOfRange",
+            "pinIncorrect",
+            "rainDetected",
+            "rangeTooClose",
+            "relinkRequired",
+            "roomsOnDifferentFloors",
+            "safetyShutOff",
+            "sceneCannotBeApplied",
+            "securityRestriction",
+            "softwareUpdateNotAvailable",
+            "startRequiresTime",
+            "stillCoolingDown",
+            "stillWarmingUp",
+            "streamUnavailable",
+            "streamUnplayable",
+            "tankEmpty",
+            "targetAlreadyReached",
+            "timerValueOutOfRange",
+            "tooManyFailedAttempts",
+            "transientError",
+            "turnedOff",
+            "unableToLocateDevice",
+            "unknownFoodPreset",
+            "unlockFailure",
+            "unpausableState",
+            "userCancelled",
+            "valueOutOfRange"
+          ]
+        }
+      }
     }
   },
   "state-update": {
@@ -7383,6 +7975,177 @@ export const Schema = {
         }
       ],
       "definitions": {}
+    },
+    "statusreport": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "currentStatusReport": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "blocking": {
+                "type": "boolean"
+              },
+              "deviceTarget": {
+                "type": "string"
+              },
+              "priority": {
+                "type": "number"
+              },
+              "statusCode": {
+                "$ref": "#/definitions/ErrorCode"
+              }
+            },
+            "additionalProperties": false
+          }
+        },
+        "online": {
+          "type": "boolean"
+        }
+      },
+      "definitions": {
+        "ErrorCode": {
+          "type": "string",
+          "enum": [
+            "aboveMaximumLightEffectsDuration",
+            "aboveMaximumTimerDuration",
+            "actionNotAvailable",
+            "actionUnavailableWhileRunning",
+            "alreadyArmed",
+            "alreadyAtMax",
+            "alreadyAtMin",
+            "alreadyClosed",
+            "alreadyDisarmed",
+            "alreadyDocked",
+            "alreadyInState",
+            "alreadyLocked",
+            "alreadyOff",
+            "alreadyOn",
+            "alreadyOpen",
+            "alreadyPaused",
+            "alreadyStarted",
+            "alreadyStopped",
+            "alreadyUnlocked",
+            "ambiguousZoneName",
+            "amountAboveLimit",
+            "appLaunchFailed",
+            "armFailure",
+            "armLevelNeeded",
+            "authFailure",
+            "bagFull",
+            "belowMinimumLightEffectsDuration",
+            "belowMinimumTimerDuration",
+            "binFull",
+            "cancelArmingRestricted",
+            "cancelTooLate",
+            "channelSwitchFailed",
+            "chargerIssue",
+            "commandInsertFailed",
+            "deadBattery",
+            "degreesOutOfRange",
+            "deviceAlertNeedsAssistance",
+            "deviceAtExtremeTemperature",
+            "deviceBusy",
+            "deviceCharging",
+            "deviceClogged",
+            "deviceCurrentlyDispensing",
+            "deviceDoorOpen",
+            "deviceHandleClosed",
+            "deviceJammingDetected",
+            "deviceLidOpen",
+            "deviceNeedsRepair",
+            "deviceNotDocked",
+            "deviceNotFound",
+            "deviceNotMounted",
+            "deviceNotReady",
+            "deviceStuck",
+            "deviceTampered",
+            "deviceThermalShutdown",
+            "directResponseOnlyUnreachable",
+            "disarmFailure",
+            "discreteOnlyOpenClose",
+            "dispenseAmountAboveLimit",
+            "dispenseAmountBelowLimit",
+            "dispenseAmountRemainingExceeded",
+            "dispenseFractionalAmountNotSupported",
+            "dispenseFractionalUnitNotSupported",
+            "dispenseUnitNotSupported",
+            "doorClosedTooLong",
+            "emergencyHeatOn",
+            "faultyBattery",
+            "floorUnreachable",
+            "functionNotSupported",
+            "genericDispenseNotSupported",
+            "hardError",
+            "inAutoMode",
+            "inAwayMode",
+            "inDryMode",
+            "inEcoMode",
+            "inFanOnlyMode",
+            "inHeatOrCool",
+            "inHumidifierMode",
+            "inOffMode",
+            "inPurifierMode",
+            "inSleepMode",
+            "inSoftwareUpdate",
+            "lockFailure",
+            "lockedState",
+            "lockedToRange",
+            "lowBattery",
+            "maxSettingReached",
+            "maxSpeedReached",
+            "minSettingReached",
+            "minSpeedReached",
+            "monitoringServiceConnectionLost",
+            "needsAttachment",
+            "needsBin",
+            "needsPads",
+            "needsSoftwareUpdate",
+            "needsWater",
+            "networkProfileNotRecognized",
+            "networkSpeedTestInProgress",
+            "noAvailableApp",
+            "noAvailableChannel",
+            "noChannelSubscription",
+            "noTimerExists",
+            "notSupported",
+            "obstructionDetected",
+            "offline",
+            "onRequiresMode",
+            "passphraseIncorrect",
+            "percentOutOfRange",
+            "pinIncorrect",
+            "rainDetected",
+            "rangeTooClose",
+            "relinkRequired",
+            "roomsOnDifferentFloors",
+            "safetyShutOff",
+            "sceneCannotBeApplied",
+            "securityRestriction",
+            "softwareUpdateNotAvailable",
+            "startRequiresTime",
+            "stillCoolingDown",
+            "stillWarmingUp",
+            "streamUnavailable",
+            "streamUnplayable",
+            "tankEmpty",
+            "targetAlreadyReached",
+            "timerValueOutOfRange",
+            "tooManyFailedAttempts",
+            "transientError",
+            "turnedOff",
+            "unableToLocateDevice",
+            "unknownFoodPreset",
+            "unlockFailure",
+            "unpausableState",
+            "userCancelled",
+            "valueOutOfRange"
+          ]
+        }
+      }
     }
   }
 } as const;

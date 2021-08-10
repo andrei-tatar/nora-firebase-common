@@ -495,6 +495,153 @@ export type ChannelDevice = Device<{}, {
     traits: ['action.devices.traits.Channel']
 };
 
+export type StatusReportDevice = Device<{
+    currentStatusReport: {
+        blocking: boolean;
+        deviceTarget: string;
+        priority: number;
+        statusCode: ErrorCode;
+    }[];
+}> & {
+    traits: ['action.devices.traits.StatusReport']
+};
+
+export type ErrorCode =
+    'aboveMaximumLightEffectsDuration' |
+    'aboveMaximumTimerDuration' |
+    'actionNotAvailable' |
+    'actionUnavailableWhileRunning' |
+    'alreadyArmed' |
+    'alreadyAtMax' |
+    'alreadyAtMin' |
+    'alreadyClosed' |
+    'alreadyDisarmed' |
+    'alreadyDocked' |
+    'alreadyInState' |
+    'alreadyLocked' |
+    'alreadyOff' |
+    'alreadyOn' |
+    'alreadyOpen' |
+    'alreadyPaused' |
+    'alreadyStarted' |
+    'alreadyStopped' |
+    'alreadyUnlocked' |
+    'ambiguousZoneName' |
+    'amountAboveLimit' |
+    'appLaunchFailed' |
+    'armFailure' |
+    'armLevelNeeded' |
+    'authFailure' |
+    'bagFull' |
+    'belowMinimumLightEffectsDuration' |
+    'belowMinimumTimerDuration' |
+    'binFull' |
+    'cancelArmingRestricted' |
+    'cancelTooLate' |
+    'channelSwitchFailed' |
+    'chargerIssue' |
+    'commandInsertFailed' |
+    'deadBattery' |
+    'degreesOutOfRange' |
+    'deviceAlertNeedsAssistance' |
+    'deviceAtExtremeTemperature' |
+    'deviceBusy' |
+    'deviceCharging' |
+    'deviceClogged' |
+    'deviceCurrentlyDispensing' |
+    'deviceDoorOpen' |
+    'deviceHandleClosed' |
+    'deviceJammingDetected' |
+    'deviceLidOpen' |
+    'deviceNeedsRepair' |
+    'deviceNotDocked' |
+    'deviceNotFound' |
+    'deviceNotMounted' |
+    'deviceNotReady' |
+    'deviceStuck' |
+    'deviceTampered' |
+    'deviceThermalShutdown' |
+    'directResponseOnlyUnreachable' |
+    'disarmFailure' |
+    'discreteOnlyOpenClose' |
+    'dispenseAmountAboveLimit' |
+    'dispenseAmountBelowLimit' |
+    'dispenseAmountRemainingExceeded' |
+    'dispenseFractionalAmountNotSupported' |
+    'dispenseFractionalUnitNotSupported' |
+    'dispenseUnitNotSupported' |
+    'doorClosedTooLong' |
+    'emergencyHeatOn' |
+    'faultyBattery' |
+    'floorUnreachable' |
+    'functionNotSupported' |
+    'genericDispenseNotSupported' |
+    'hardError' |
+    'hardError' |
+    'inAutoMode' |
+    'inAwayMode' |
+    'inDryMode' |
+    'inEcoMode' |
+    'inFanOnlyMode' |
+    'inHeatOrCool' |
+    'inHumidifierMode' |
+    'inOffMode' |
+    'inPurifierMode' |
+    'inSleepMode' |
+    'inSoftwareUpdate' |
+    'lockFailure' |
+    'lockedState' |
+    'lockedToRange' |
+    'lowBattery' |
+    'maxSettingReached' |
+    'maxSpeedReached' |
+    'minSettingReached' |
+    'minSpeedReached' |
+    'monitoringServiceConnectionLost' |
+    'needsAttachment' |
+    'needsBin' |
+    'needsPads' |
+    'needsSoftwareUpdate' |
+    'needsWater' |
+    'networkProfileNotRecognized' |
+    'networkSpeedTestInProgress' |
+    'noAvailableApp' |
+    'noAvailableChannel' |
+    'noChannelSubscription' |
+    'noTimerExists' |
+    'notSupported' |
+    'obstructionDetected' |
+    'offline' |
+    'onRequiresMode' |
+    'passphraseIncorrect' |
+    'percentOutOfRange' |
+    'pinIncorrect' |
+    'rainDetected' |
+    'rangeTooClose' |
+    'relinkRequired' |
+    'roomsOnDifferentFloors' |
+    'safetyShutOff' |
+    'sceneCannotBeApplied' |
+    'securityRestriction' |
+    'softwareUpdateNotAvailable' |
+    'startRequiresTime' |
+    'stillCoolingDown' |
+    'stillWarmingUp' |
+    'streamUnavailable' |
+    'streamUnplayable' |
+    'tankEmpty' |
+    'targetAlreadyReached' |
+    'timerValueOutOfRange' |
+    'tooManyFailedAttempts' |
+    'transientError' |
+    'turnedOff' |
+    'unableToLocateDevice' |
+    'unknownFoodPreset' |
+    'unlockFailure' |
+    'unpausableState' |
+    'userCancelled' |
+    'valueOutOfRange';
+
 export type DeviceType =
     'action.devices.types.LIGHT' |
     'action.devices.types.SWITCH' |
@@ -549,4 +696,5 @@ export type Trait =
     'action.devices.traits.SensorState' |
     'action.devices.traits.TemperatureControl' |
     'action.devices.traits.HumiditySetting' |
-    'action.devices.traits.FanSpeed';
+    'action.devices.traits.FanSpeed' |
+    'action.devices.traits.StatusReport';
