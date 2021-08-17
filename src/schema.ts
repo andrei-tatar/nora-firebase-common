@@ -239,9 +239,6 @@ export const Schema = {
               "additionalProperties": false
             }
           },
-          "required": [
-            "availableArmLevels"
-          ],
           "additionalProperties": false
         }
       },

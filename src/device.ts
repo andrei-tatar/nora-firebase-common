@@ -85,7 +85,7 @@ export declare type ArmDisarmDevice = Device<{
     currentArmLevel: string,
     exitAllowance?: number
 }, {
-    availableArmLevels: {
+    availableArmLevels?: {
         levels: {
             level_name: string;
             level_values: {
