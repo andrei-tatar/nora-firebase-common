@@ -77,13 +77,13 @@ export interface AsyncCommand {
 
 export interface AsyncResponse {
     state?: any;
-    errorCode?: ErrorCode;
+    errorCode?: string;
 }
 
 export declare type ArmDisarmDevice = Device<{
     isArmed: boolean;
     currentArmLevel: string,
-    exitAllowance: number
+    exitAllowance?: number
 }, {
     availableArmLevels: {
         levels: {
@@ -514,10 +514,16 @@ export type ChannelDevice = Device<{}, {
 
 export type StatusReportDevice = Device<{
     currentStatusReport: {
-        blocking: boolean;
-        deviceTarget: string;
-        priority: number;
-        statusCode: ErrorCode;
+        blocking?: boolean;
+        /**
+         * @maxLength 40
+         */
+        deviceTarget?: string;
+        /**
+         * @minimum 0
+         */
+        priority?: number;
+        statusCode?: ErrorCode;
     }[];
 }> & {
     traits: ['action.devices.traits.StatusReport']
@@ -629,6 +635,7 @@ export type ErrorCode =
     'notSupported' |
     'obstructionDetected' |
     'offline' |
+    'deviceOffline' |
     'onRequiresMode' |
     'passphraseIncorrect' |
     'percentOutOfRange' |
