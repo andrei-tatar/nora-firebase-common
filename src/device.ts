@@ -82,7 +82,7 @@ export interface AsyncResponse {
 
 export declare type ArmDisarmDevice = Device<{
     isArmed: boolean;
-    currentArmLevel: string,
+    currentArmLevel?: string,
     exitAllowance?: number
 }, {
     availableArmLevels?: {

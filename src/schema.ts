@@ -179,7 +179,6 @@ export const Schema = {
             }
           },
           "required": [
-            "currentArmLevel",
             "isArmed",
             "online"
           ]
@@ -7252,7 +7251,6 @@ export const Schema = {
         }
       },
       "required": [
-        "currentArmLevel",
         "isArmed",
         "online"
       ],
