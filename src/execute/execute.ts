@@ -17,14 +17,18 @@ export interface ExecuteCommandParams {
     challenge?: any;
 }
 
+export type ExecuteErrorCode = 'challengeNeeded' | ErrorCode;
+
 export class ExecuteCommandError extends Error {
-    constructor(public readonly errorCode: 'challengeNeeded' | ErrorCode) {
+    constructor(public readonly errorCode: ExecuteErrorCode) {
         super();
     }
 }
 
+export type ChallengeType = 'ackNeeded' | 'pinNeeded' | 'challengeFailedPinNeeded';
+
 export class TwoFactorError extends ExecuteCommandError {
-    constructor(public readonly challengeNeeded: 'ackNeeded' | 'pinNeeded' | 'challengeFailedPinNeeded') {
+    constructor(public readonly challengeNeeded: ChallengeType) {
         super('challengeNeeded');
     }
 }
