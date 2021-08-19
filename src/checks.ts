@@ -1,9 +1,23 @@
 import {
-    ArmDisarmDevice, BrightnessDevice, ChannelDevice, ColorSettingDevice, Device, FanSpeedDevice, HumiditySettingDevice,
-    InputSelectorDevice, LockUnlockDevice, MediaStateDevice, OnOffDevice, OpenCloseDevice, SceneDevice,
-    SensorStateDevice, StatusReportDevice, TemperatureControlDevice, TemperatureSettingDevice, TransportControlDevice,
-    VolumeDevice
+    ArmDisarmDevice, BrightnessDevice, ChannelDevice, ColorSettingDevice, Device, DeviceType, ErrorCode, FanSpeedDevice,
+    HumiditySettingDevice, InputSelectorDevice, LockUnlockDevice, MediaStateDevice, OnOffDevice, OpenCloseDevice,
+    OpenCloseDirection,
+    SceneDevice, SensorStateDevice, StatusReportDevice, TemperatureControlDevice, TemperatureSettingDevice,
+    TransportControlDevice, VolumeDevice
 } from './device';
+import { Schema } from './schema';
+
+export function isErrorCode(errorCode: any): errorCode is ErrorCode {
+    return Schema.device.statusreport.definitions.ErrorCode.enum.includes(errorCode);
+}
+
+export function isDeviceType(deviceType: any): deviceType is DeviceType {
+    return Schema.device.armdisarm.definitions.DeviceType.enum.includes(deviceType);
+}
+
+export function isOpenCloseDirection(value: any): value is OpenCloseDirection {
+    return Schema.device.openclose.definitions.OpenCloseDirection.enum.includes(value);
+}
 
 export function isArmDisarm(device: Pick<Device, 'traits'>): device is ArmDisarmDevice {
     return device.traits.includes('action.devices.traits.ArmDisarm');
