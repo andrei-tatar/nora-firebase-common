@@ -125,6 +125,9 @@ export const Schema = {
           "type": "object",
           "additionalProperties": false,
           "properties": {
+            "returnArmDisarmErrorCodeIfStateAlreadySet": {
+              "type": "boolean"
+            },
             "disabled": {
               "type": "boolean"
             },
@@ -269,9 +272,11 @@ export const Schema = {
             "action.devices.types.AC_UNIT",
             "action.devices.types.LOCK",
             "action.devices.types.SENSOR",
+            "action.devices.types.HUMIDIFIER",
             "action.devices.types.SMOKE_DETECTOR",
             "action.devices.types.FAN",
             "action.devices.types.SECURITYSYSTEM",
+            "action.devices.types.CAMERA",
             "action.devices.types.SPEAKER",
             "action.devices.types.AUDIO_VIDEO_RECEIVER",
             "action.devices.types.REMOTECONTROL",
@@ -292,8 +297,7 @@ export const Schema = {
             "action.devices.types.PERGOLA",
             "action.devices.types.SHUTTER",
             "action.devices.types.VALVE",
-            "action.devices.types.WINDOW",
-            "action.devices.types.HUMIDIFIER"
+            "action.devices.types.WINDOW"
           ]
         },
         "TwoFactor": {
@@ -597,9 +601,11 @@ export const Schema = {
             "action.devices.types.AC_UNIT",
             "action.devices.types.LOCK",
             "action.devices.types.SENSOR",
+            "action.devices.types.HUMIDIFIER",
             "action.devices.types.SMOKE_DETECTOR",
             "action.devices.types.FAN",
             "action.devices.types.SECURITYSYSTEM",
+            "action.devices.types.CAMERA",
             "action.devices.types.SPEAKER",
             "action.devices.types.AUDIO_VIDEO_RECEIVER",
             "action.devices.types.REMOTECONTROL",
@@ -620,8 +626,7 @@ export const Schema = {
             "action.devices.types.PERGOLA",
             "action.devices.types.SHUTTER",
             "action.devices.types.VALVE",
-            "action.devices.types.WINDOW",
-            "action.devices.types.HUMIDIFIER"
+            "action.devices.types.WINDOW"
           ]
         },
         "TwoFactor": {
@@ -998,9 +1003,11 @@ export const Schema = {
             "action.devices.types.AC_UNIT",
             "action.devices.types.LOCK",
             "action.devices.types.SENSOR",
+            "action.devices.types.HUMIDIFIER",
             "action.devices.types.SMOKE_DETECTOR",
             "action.devices.types.FAN",
             "action.devices.types.SECURITYSYSTEM",
+            "action.devices.types.CAMERA",
             "action.devices.types.SPEAKER",
             "action.devices.types.AUDIO_VIDEO_RECEIVER",
             "action.devices.types.REMOTECONTROL",
@@ -1021,8 +1028,7 @@ export const Schema = {
             "action.devices.types.PERGOLA",
             "action.devices.types.SHUTTER",
             "action.devices.types.VALVE",
-            "action.devices.types.WINDOW",
-            "action.devices.types.HUMIDIFIER"
+            "action.devices.types.WINDOW"
           ]
         },
         "TwoFactor": {
@@ -1306,9 +1312,11 @@ export const Schema = {
             "action.devices.types.AC_UNIT",
             "action.devices.types.LOCK",
             "action.devices.types.SENSOR",
+            "action.devices.types.HUMIDIFIER",
             "action.devices.types.SMOKE_DETECTOR",
             "action.devices.types.FAN",
             "action.devices.types.SECURITYSYSTEM",
+            "action.devices.types.CAMERA",
             "action.devices.types.SPEAKER",
             "action.devices.types.AUDIO_VIDEO_RECEIVER",
             "action.devices.types.REMOTECONTROL",
@@ -1329,8 +1337,7 @@ export const Schema = {
             "action.devices.types.PERGOLA",
             "action.devices.types.SHUTTER",
             "action.devices.types.VALVE",
-            "action.devices.types.WINDOW",
-            "action.devices.types.HUMIDIFIER"
+            "action.devices.types.WINDOW"
           ]
         },
         "TwoFactor": {
@@ -1610,9 +1617,11 @@ export const Schema = {
             "action.devices.types.AC_UNIT",
             "action.devices.types.LOCK",
             "action.devices.types.SENSOR",
+            "action.devices.types.HUMIDIFIER",
             "action.devices.types.SMOKE_DETECTOR",
             "action.devices.types.FAN",
             "action.devices.types.SECURITYSYSTEM",
+            "action.devices.types.CAMERA",
             "action.devices.types.SPEAKER",
             "action.devices.types.AUDIO_VIDEO_RECEIVER",
             "action.devices.types.REMOTECONTROL",
@@ -1633,8 +1642,7 @@ export const Schema = {
             "action.devices.types.PERGOLA",
             "action.devices.types.SHUTTER",
             "action.devices.types.VALVE",
-            "action.devices.types.WINDOW",
-            "action.devices.types.HUMIDIFIER"
+            "action.devices.types.WINDOW"
           ]
         },
         "TwoFactor": {
@@ -1920,9 +1928,11 @@ export const Schema = {
             "action.devices.types.AC_UNIT",
             "action.devices.types.LOCK",
             "action.devices.types.SENSOR",
+            "action.devices.types.HUMIDIFIER",
             "action.devices.types.SMOKE_DETECTOR",
             "action.devices.types.FAN",
             "action.devices.types.SECURITYSYSTEM",
+            "action.devices.types.CAMERA",
             "action.devices.types.SPEAKER",
             "action.devices.types.AUDIO_VIDEO_RECEIVER",
             "action.devices.types.REMOTECONTROL",
@@ -1943,8 +1953,7 @@ export const Schema = {
             "action.devices.types.PERGOLA",
             "action.devices.types.SHUTTER",
             "action.devices.types.VALVE",
-            "action.devices.types.WINDOW",
-            "action.devices.types.HUMIDIFIER"
+            "action.devices.types.WINDOW"
           ]
         },
         "TwoFactor": {
@@ -2292,9 +2301,11 @@ export const Schema = {
             "action.devices.types.AC_UNIT",
             "action.devices.types.LOCK",
             "action.devices.types.SENSOR",
+            "action.devices.types.HUMIDIFIER",
             "action.devices.types.SMOKE_DETECTOR",
             "action.devices.types.FAN",
             "action.devices.types.SECURITYSYSTEM",
+            "action.devices.types.CAMERA",
             "action.devices.types.SPEAKER",
             "action.devices.types.AUDIO_VIDEO_RECEIVER",
             "action.devices.types.REMOTECONTROL",
@@ -2315,8 +2326,7 @@ export const Schema = {
             "action.devices.types.PERGOLA",
             "action.devices.types.SHUTTER",
             "action.devices.types.VALVE",
-            "action.devices.types.WINDOW",
-            "action.devices.types.HUMIDIFIER"
+            "action.devices.types.WINDOW"
           ]
         },
         "PreviousMode": {
@@ -2652,9 +2662,11 @@ export const Schema = {
             "action.devices.types.AC_UNIT",
             "action.devices.types.LOCK",
             "action.devices.types.SENSOR",
+            "action.devices.types.HUMIDIFIER",
             "action.devices.types.SMOKE_DETECTOR",
             "action.devices.types.FAN",
             "action.devices.types.SECURITYSYSTEM",
+            "action.devices.types.CAMERA",
             "action.devices.types.SPEAKER",
             "action.devices.types.AUDIO_VIDEO_RECEIVER",
             "action.devices.types.REMOTECONTROL",
@@ -2675,8 +2687,7 @@ export const Schema = {
             "action.devices.types.PERGOLA",
             "action.devices.types.SHUTTER",
             "action.devices.types.VALVE",
-            "action.devices.types.WINDOW",
-            "action.devices.types.HUMIDIFIER"
+            "action.devices.types.WINDOW"
           ]
         },
         "TwoFactor": {
@@ -3009,9 +3020,11 @@ export const Schema = {
             "action.devices.types.AC_UNIT",
             "action.devices.types.LOCK",
             "action.devices.types.SENSOR",
+            "action.devices.types.HUMIDIFIER",
             "action.devices.types.SMOKE_DETECTOR",
             "action.devices.types.FAN",
             "action.devices.types.SECURITYSYSTEM",
+            "action.devices.types.CAMERA",
             "action.devices.types.SPEAKER",
             "action.devices.types.AUDIO_VIDEO_RECEIVER",
             "action.devices.types.REMOTECONTROL",
@@ -3032,8 +3045,7 @@ export const Schema = {
             "action.devices.types.PERGOLA",
             "action.devices.types.SHUTTER",
             "action.devices.types.VALVE",
-            "action.devices.types.WINDOW",
-            "action.devices.types.HUMIDIFIER"
+            "action.devices.types.WINDOW"
           ]
         },
         "TwoFactor": {
@@ -3340,9 +3352,11 @@ export const Schema = {
             "action.devices.types.AC_UNIT",
             "action.devices.types.LOCK",
             "action.devices.types.SENSOR",
+            "action.devices.types.HUMIDIFIER",
             "action.devices.types.SMOKE_DETECTOR",
             "action.devices.types.FAN",
             "action.devices.types.SECURITYSYSTEM",
+            "action.devices.types.CAMERA",
             "action.devices.types.SPEAKER",
             "action.devices.types.AUDIO_VIDEO_RECEIVER",
             "action.devices.types.REMOTECONTROL",
@@ -3363,8 +3377,7 @@ export const Schema = {
             "action.devices.types.PERGOLA",
             "action.devices.types.SHUTTER",
             "action.devices.types.VALVE",
-            "action.devices.types.WINDOW",
-            "action.devices.types.HUMIDIFIER"
+            "action.devices.types.WINDOW"
           ]
         },
         "TwoFactor": {
@@ -3648,9 +3661,11 @@ export const Schema = {
             "action.devices.types.AC_UNIT",
             "action.devices.types.LOCK",
             "action.devices.types.SENSOR",
+            "action.devices.types.HUMIDIFIER",
             "action.devices.types.SMOKE_DETECTOR",
             "action.devices.types.FAN",
             "action.devices.types.SECURITYSYSTEM",
+            "action.devices.types.CAMERA",
             "action.devices.types.SPEAKER",
             "action.devices.types.AUDIO_VIDEO_RECEIVER",
             "action.devices.types.REMOTECONTROL",
@@ -3671,8 +3686,7 @@ export const Schema = {
             "action.devices.types.PERGOLA",
             "action.devices.types.SHUTTER",
             "action.devices.types.VALVE",
-            "action.devices.types.WINDOW",
-            "action.devices.types.HUMIDIFIER"
+            "action.devices.types.WINDOW"
           ]
         },
         "TransportControlIncomingCommand": {
@@ -4177,9 +4191,11 @@ export const Schema = {
             "action.devices.types.AC_UNIT",
             "action.devices.types.LOCK",
             "action.devices.types.SENSOR",
+            "action.devices.types.HUMIDIFIER",
             "action.devices.types.SMOKE_DETECTOR",
             "action.devices.types.FAN",
             "action.devices.types.SECURITYSYSTEM",
+            "action.devices.types.CAMERA",
             "action.devices.types.SPEAKER",
             "action.devices.types.AUDIO_VIDEO_RECEIVER",
             "action.devices.types.REMOTECONTROL",
@@ -4200,8 +4216,7 @@ export const Schema = {
             "action.devices.types.PERGOLA",
             "action.devices.types.SHUTTER",
             "action.devices.types.VALVE",
-            "action.devices.types.WINDOW",
-            "action.devices.types.HUMIDIFIER"
+            "action.devices.types.WINDOW"
           ]
         },
         "TwoFactor": {
@@ -4582,9 +4597,11 @@ export const Schema = {
             "action.devices.types.AC_UNIT",
             "action.devices.types.LOCK",
             "action.devices.types.SENSOR",
+            "action.devices.types.HUMIDIFIER",
             "action.devices.types.SMOKE_DETECTOR",
             "action.devices.types.FAN",
             "action.devices.types.SECURITYSYSTEM",
+            "action.devices.types.CAMERA",
             "action.devices.types.SPEAKER",
             "action.devices.types.AUDIO_VIDEO_RECEIVER",
             "action.devices.types.REMOTECONTROL",
@@ -4605,8 +4622,7 @@ export const Schema = {
             "action.devices.types.PERGOLA",
             "action.devices.types.SHUTTER",
             "action.devices.types.VALVE",
-            "action.devices.types.WINDOW",
-            "action.devices.types.HUMIDIFIER"
+            "action.devices.types.WINDOW"
           ]
         },
         "TwoFactor": {
@@ -5581,9 +5597,11 @@ export const Schema = {
             "action.devices.types.AC_UNIT",
             "action.devices.types.LOCK",
             "action.devices.types.SENSOR",
+            "action.devices.types.HUMIDIFIER",
             "action.devices.types.SMOKE_DETECTOR",
             "action.devices.types.FAN",
             "action.devices.types.SECURITYSYSTEM",
+            "action.devices.types.CAMERA",
             "action.devices.types.SPEAKER",
             "action.devices.types.AUDIO_VIDEO_RECEIVER",
             "action.devices.types.REMOTECONTROL",
@@ -5604,8 +5622,7 @@ export const Schema = {
             "action.devices.types.PERGOLA",
             "action.devices.types.SHUTTER",
             "action.devices.types.VALVE",
-            "action.devices.types.WINDOW",
-            "action.devices.types.HUMIDIFIER"
+            "action.devices.types.WINDOW"
           ]
         },
         "TwoFactor": {
@@ -5918,9 +5935,11 @@ export const Schema = {
             "action.devices.types.AC_UNIT",
             "action.devices.types.LOCK",
             "action.devices.types.SENSOR",
+            "action.devices.types.HUMIDIFIER",
             "action.devices.types.SMOKE_DETECTOR",
             "action.devices.types.FAN",
             "action.devices.types.SECURITYSYSTEM",
+            "action.devices.types.CAMERA",
             "action.devices.types.SPEAKER",
             "action.devices.types.AUDIO_VIDEO_RECEIVER",
             "action.devices.types.REMOTECONTROL",
@@ -5941,8 +5960,7 @@ export const Schema = {
             "action.devices.types.PERGOLA",
             "action.devices.types.SHUTTER",
             "action.devices.types.VALVE",
-            "action.devices.types.WINDOW",
-            "action.devices.types.HUMIDIFIER"
+            "action.devices.types.WINDOW"
           ]
         },
         "TwoFactor": {
@@ -6249,9 +6267,11 @@ export const Schema = {
             "action.devices.types.AC_UNIT",
             "action.devices.types.LOCK",
             "action.devices.types.SENSOR",
+            "action.devices.types.HUMIDIFIER",
             "action.devices.types.SMOKE_DETECTOR",
             "action.devices.types.FAN",
             "action.devices.types.SECURITYSYSTEM",
+            "action.devices.types.CAMERA",
             "action.devices.types.SPEAKER",
             "action.devices.types.AUDIO_VIDEO_RECEIVER",
             "action.devices.types.REMOTECONTROL",
@@ -6272,8 +6292,7 @@ export const Schema = {
             "action.devices.types.PERGOLA",
             "action.devices.types.SHUTTER",
             "action.devices.types.VALVE",
-            "action.devices.types.WINDOW",
-            "action.devices.types.HUMIDIFIER"
+            "action.devices.types.WINDOW"
           ]
         },
         "TwoFactor": {
@@ -6657,9 +6676,11 @@ export const Schema = {
             "action.devices.types.AC_UNIT",
             "action.devices.types.LOCK",
             "action.devices.types.SENSOR",
+            "action.devices.types.HUMIDIFIER",
             "action.devices.types.SMOKE_DETECTOR",
             "action.devices.types.FAN",
             "action.devices.types.SECURITYSYSTEM",
+            "action.devices.types.CAMERA",
             "action.devices.types.SPEAKER",
             "action.devices.types.AUDIO_VIDEO_RECEIVER",
             "action.devices.types.REMOTECONTROL",
@@ -6680,8 +6701,7 @@ export const Schema = {
             "action.devices.types.PERGOLA",
             "action.devices.types.SHUTTER",
             "action.devices.types.VALVE",
-            "action.devices.types.WINDOW",
-            "action.devices.types.HUMIDIFIER"
+            "action.devices.types.WINDOW"
           ]
         },
         "TwoFactor": {
@@ -6994,9 +7014,11 @@ export const Schema = {
             "action.devices.types.AC_UNIT",
             "action.devices.types.LOCK",
             "action.devices.types.SENSOR",
+            "action.devices.types.HUMIDIFIER",
             "action.devices.types.SMOKE_DETECTOR",
             "action.devices.types.FAN",
             "action.devices.types.SECURITYSYSTEM",
+            "action.devices.types.CAMERA",
             "action.devices.types.SPEAKER",
             "action.devices.types.AUDIO_VIDEO_RECEIVER",
             "action.devices.types.REMOTECONTROL",
@@ -7017,8 +7039,7 @@ export const Schema = {
             "action.devices.types.PERGOLA",
             "action.devices.types.SHUTTER",
             "action.devices.types.VALVE",
-            "action.devices.types.WINDOW",
-            "action.devices.types.HUMIDIFIER"
+            "action.devices.types.WINDOW"
           ]
         },
         "TwoFactor": {
@@ -7226,6 +7247,359 @@ export const Schema = {
             "unpausableState",
             "userCancelled",
             "valueOutOfRange"
+          ]
+        }
+      }
+    },
+    "camerastream": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "traits": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Trait"
+          }
+        },
+        "id": {
+          "type": "string"
+        },
+        "type": {
+          "$ref": "#/definitions/DeviceType"
+        },
+        "name": {
+          "type": "object",
+          "properties": {
+            "defaultNames": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "name": {
+              "type": "string",
+              "maxLength": 40
+            },
+            "nicknames": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          "required": [
+            "name"
+          ],
+          "additionalProperties": false
+        },
+        "willReportState": {
+          "type": "boolean"
+        },
+        "notificationSupportedByAgent": {
+          "type": "boolean"
+        },
+        "structureHint": {
+          "type": "string",
+          "description": "Name of the home this device belongs to",
+          "maxLength": 40
+        },
+        "roomHint": {
+          "type": "string",
+          "description": "Name of the room this device belongs to",
+          "maxLength": 40
+        },
+        "deviceInfo": {
+          "type": "object",
+          "properties": {
+            "manufacturer": {
+              "type": "string"
+            },
+            "model": {
+              "type": "string"
+            },
+            "hwVersion": {
+              "type": "string"
+            },
+            "swVersion": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "manufacturer",
+            "model",
+            "hwVersion",
+            "swVersion"
+          ],
+          "additionalProperties": false
+        },
+        "otherDeviceIds": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "agentId": {
+                "type": "string"
+              },
+              "deviceId": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "deviceId"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "customData": {
+          "type": "object",
+          "properties": {
+            "proxyId": {
+              "type": "string",
+              "description": "Used for local execution to identity the instance responsible of this device",
+              "maxLength": 40
+            }
+          },
+          "additionalProperties": false
+        },
+        "noraSpecific": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "fixedValues": {
+              "type": "object",
+              "properties": {
+                "hls": {
+                  "type": "object",
+                  "additionalProperties": false
+                },
+                "dash": {
+                  "type": "object",
+                  "additionalProperties": false
+                },
+                "smooth_stream": {
+                  "type": "object",
+                  "additionalProperties": false
+                },
+                "progressive_mp4": {
+                  "type": "object",
+                  "additionalProperties": false
+                },
+                "webrtc": {
+                  "type": "object",
+                  "additionalProperties": false
+                }
+              },
+              "required": [
+                "hls",
+                "dash",
+                "smooth_stream",
+                "progressive_mp4",
+                "webrtc"
+              ],
+              "additionalProperties": false
+            },
+            "disabled": {
+              "type": "boolean"
+            },
+            "twoFactor": {
+              "$ref": "#/definitions/TwoFactor"
+            },
+            "error": {
+              "type": "object",
+              "properties": {
+                "msg": {
+                  "type": "string"
+                },
+                "details": {}
+              },
+              "required": [
+                "msg"
+              ],
+              "additionalProperties": false
+            },
+            "asyncCommandExecution": {
+              "type": "boolean"
+            },
+            "commands": {
+              "type": "object",
+              "additionalProperties": {
+                "$ref": "#/definitions/AsyncCommand"
+              }
+            },
+            "responses": {
+              "type": "object",
+              "additionalProperties": {
+                "$ref": "#/definitions/AsyncResponse"
+              }
+            }
+          }
+        },
+        "state": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "online": {
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "online"
+          ]
+        },
+        "attributes": {
+          "type": "object",
+          "properties": {
+            "cameraStreamSupportedProtocols": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/CameraStreamProtocol"
+              },
+              "minItems": 1
+            },
+            "cameraStreamNeedAuthToken": {
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "cameraStreamSupportedProtocols",
+            "cameraStreamNeedAuthToken"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "attributes",
+        "id",
+        "name",
+        "noraSpecific",
+        "state",
+        "traits",
+        "type",
+        "willReportState"
+      ],
+      "definitions": {
+        "Trait": {
+          "type": "string",
+          "enum": [
+            "action.devices.traits.CameraStream"
+          ]
+        },
+        "DeviceType": {
+          "type": "string",
+          "enum": [
+            "action.devices.types.LIGHT",
+            "action.devices.types.SWITCH",
+            "action.devices.types.SCENE",
+            "action.devices.types.OUTLET",
+            "action.devices.types.THERMOSTAT",
+            "action.devices.types.AC_UNIT",
+            "action.devices.types.LOCK",
+            "action.devices.types.SENSOR",
+            "action.devices.types.HUMIDIFIER",
+            "action.devices.types.SMOKE_DETECTOR",
+            "action.devices.types.FAN",
+            "action.devices.types.SECURITYSYSTEM",
+            "action.devices.types.CAMERA",
+            "action.devices.types.SPEAKER",
+            "action.devices.types.AUDIO_VIDEO_RECEIVER",
+            "action.devices.types.REMOTECONTROL",
+            "action.devices.types.SETTOP",
+            "action.devices.types.SOUNDBAR",
+            "action.devices.types.STREAMING_BOX",
+            "action.devices.types.STREAMING_SOUNDBAR",
+            "action.devices.types.STREAMING_STICK",
+            "action.devices.types.TV",
+            "action.devices.types.CLOSET",
+            "action.devices.types.AWNING",
+            "action.devices.types.CURTAIN",
+            "action.devices.types.DOOR",
+            "action.devices.types.DRAWER",
+            "action.devices.types.BLINDS",
+            "action.devices.types.GARAGE",
+            "action.devices.types.GATE",
+            "action.devices.types.PERGOLA",
+            "action.devices.types.SHUTTER",
+            "action.devices.types.VALVE",
+            "action.devices.types.WINDOW"
+          ]
+        },
+        "TwoFactor": {
+          "anyOf": [
+            {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "type": "string",
+                  "const": "ack"
+                }
+              },
+              "required": [
+                "type"
+              ],
+              "additionalProperties": false
+            },
+            {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "type": "string",
+                  "const": "pin"
+                },
+                "pin": {
+                  "type": "string",
+                  "maxLength": 20
+                }
+              },
+              "required": [
+                "type",
+                "pin"
+              ],
+              "additionalProperties": false
+            }
+          ]
+        },
+        "AsyncCommand": {
+          "type": "object",
+          "properties": {
+            "command": {
+              "type": "string"
+            },
+            "params": {
+              "type": "object",
+              "additionalProperties": {
+                "type": [
+                  "boolean",
+                  "number",
+                  "string"
+                ]
+              }
+            }
+          },
+          "required": [
+            "command",
+            "params"
+          ],
+          "additionalProperties": false
+        },
+        "AsyncResponse": {
+          "type": "object",
+          "properties": {
+            "state": {},
+            "errorCode": {
+              "type": "string"
+            }
+          },
+          "additionalProperties": false
+        },
+        "CameraStreamProtocol": {
+          "type": "string",
+          "enum": [
+            "hls",
+            "dash",
+            "smooth_stream",
+            "progressive_mp4",
+            "webrtc"
           ]
         }
       }
@@ -8186,6 +8560,20 @@ export const Schema = {
           ]
         }
       }
+    },
+    "camerastream": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "online": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "online"
+      ],
+      "definitions": {}
     }
   },
   "state-update": {
@@ -9000,6 +9388,17 @@ export const Schema = {
           ]
         }
       }
+    },
+    "camerastream": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "online": {
+          "type": "boolean"
+        }
+      },
+      "definitions": {}
     }
   }
 } as const;
