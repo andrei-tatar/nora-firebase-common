@@ -95,6 +95,8 @@ export declare type ArmDisarmDevice = Device<{
         }[];
         ordered: boolean;
     };
+}, {
+    returnArmDisarmErrorCodeIfStateAlreadySet?: boolean;
 }> & {
     traits: ['action.devices.traits.ArmDisarm'];
 };
@@ -529,6 +531,22 @@ export type StatusReportDevice = Device<{
     traits: ['action.devices.traits.StatusReport']
 };
 
+export type CameraStreamProtocol = 'hls' | 'dash' | 'smooth_stream' | 'progressive_mp4' | 'webrtc';
+
+export type CameraStreamDevice = Device<{
+    // no state
+}, {
+    /**
+     * @minItems 1
+     */
+    cameraStreamSupportedProtocols: CameraStreamProtocol[];
+    cameraStreamNeedAuthToken: boolean;
+}, {
+    fixedValues?: Record<CameraStreamProtocol, {}>
+}> & {
+    traits: ['action.devices.traits.CameraStream']
+};
+
 export type ErrorCode =
     'aboveMaximumLightEffectsDuration' |
     'aboveMaximumTimerDuration' |
@@ -675,9 +693,11 @@ export type DeviceType =
     'action.devices.types.AC_UNIT' |
     'action.devices.types.LOCK' |
     'action.devices.types.SENSOR' |
+    'action.devices.types.HUMIDIFIER' |
     'action.devices.types.SMOKE_DETECTOR' |
     'action.devices.types.FAN' |
     'action.devices.types.SECURITYSYSTEM' |
+    'action.devices.types.CAMERA' |
 
     'action.devices.types.SPEAKER' |
     'action.devices.types.AUDIO_VIDEO_RECEIVER' |
@@ -700,8 +720,7 @@ export type DeviceType =
     'action.devices.types.PERGOLA' |
     'action.devices.types.SHUTTER' |
     'action.devices.types.VALVE' |
-    'action.devices.types.WINDOW' |
-    'action.devices.types.HUMIDIFIER';
+    'action.devices.types.WINDOW';
 
 export type Trait =
     'action.devices.traits.ArmDisarm' |
@@ -721,4 +740,5 @@ export type Trait =
     'action.devices.traits.TemperatureControl' |
     'action.devices.traits.HumiditySetting' |
     'action.devices.traits.FanSpeed' |
-    'action.devices.traits.StatusReport';
+    'action.devices.traits.StatusReport' |
+    'action.devices.traits.CameraStream';
