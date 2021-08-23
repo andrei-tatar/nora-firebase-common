@@ -533,6 +533,19 @@ export type StatusReportDevice = Device<{
 
 export type CameraStreamProtocol = 'hls' | 'dash' | 'smooth_stream' | 'progressive_mp4' | 'webrtc';
 
+export type CameraStreamResult = {
+    cameraStreamAuthToken?: string;
+} & ({
+    cameraStreamProtocol: 'webrtc';
+    cameraStreamSignalingUrl: string;
+    cameraStreamOffer?: string;
+    cameraStreamIceServers?: string;
+} | {
+    cameraStreamProtocol: Exclude<CameraStreamProtocol, 'webrtc'>;
+    cameraStreamAccessUrl: string;
+    cameraStreamReceiverAppId?: string;
+});
+
 export type CameraStreamDevice = Device<{
     // no state
 }, {
@@ -542,7 +555,10 @@ export type CameraStreamDevice = Device<{
     cameraStreamSupportedProtocols: CameraStreamProtocol[];
     cameraStreamNeedAuthToken: boolean;
 }, {
-    fixedValues?: Record<CameraStreamProtocol, {}>
+    /**
+    * @minItems 1
+    */
+    cameraStreamProtocols?: CameraStreamResult[];
 }> & {
     traits: ['action.devices.traits.CameraStream']
 };

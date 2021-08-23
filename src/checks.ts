@@ -1,5 +1,5 @@
 import {
-    ArmDisarmDevice, BrightnessDevice, ChannelDevice, ColorSettingDevice, Device, DeviceType, ErrorCode, FanSpeedDevice,
+    ArmDisarmDevice, BrightnessDevice, CameraStreamDevice, ChannelDevice, ColorSettingDevice, Device, DeviceType, ErrorCode, FanSpeedDevice,
     HumiditySettingDevice, InputSelectorDevice, LockUnlockDevice, MediaStateDevice, OnOffDevice, OpenCloseDevice,
     OpenCloseDirection,
     SceneDevice, SensorStateDevice, StatusReportDevice, TemperatureControlDevice, TemperatureSettingDevice,
@@ -89,4 +89,8 @@ export function isChannelDevice(device: Pick<Device, 'traits'>): device is Chann
 
 export function isStatusReportDevice(device: Pick<Device, 'traits'>): device is StatusReportDevice {
     return device.traits.includes('action.devices.traits.StatusReport');
+}
+
+export function isCameraStreamDevice(device: Pick<Device, 'traits'>): device is CameraStreamDevice {
+    return device.traits.includes('action.devices.traits.CameraStream');
 }

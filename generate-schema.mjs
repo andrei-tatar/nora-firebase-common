@@ -9,6 +9,10 @@ const individualSchemas = {
         type: 'WebpushNotification',
         path: './src/notification.ts',
     },
+    'camera-result': {
+        type: 'CameraStreamResult',
+        path: './src/device.ts',
+    },
 };
 
 console.log(`loading all traits`);

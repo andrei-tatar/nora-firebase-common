@@ -1,15 +1,8 @@
-import {
-    isArmDisarm, isBrightness, isChannelDevice, isColorSetting, isFanSpeedDevice, isHumiditySetting,
-    isInputSelectorDevice, isLockUnlock, isOnOff, isOpenClose, isScene, isTemperatureControl,
-    isTemperatureSetting, isTransportControlDevice, isVolumeDevice
-} from '../checks';
-import {
-    ArmDisarmDevice, BrightnessDevice, ChannelDevice, Device, FanSpeedDevice, InputSelectorDevice, LockUnlockDevice, OnOffDevice,
-    SceneDevice, TemperatureSettingDevice, TransportControlDevice, VolumeDevice
-} from '../device';
+import * as checks from '../checks';
+import * as devices from '../device';
 import { Changes, ExecuteCommandError } from './execute';
 
-export type CommandHandler = (device: Device, params: any) => Changes | null;
+export type CommandHandler = (device: devices.Device, params: any) => Changes | null;
 
 export const HANDLERS = new Map<string, CommandHandler>();
 
@@ -21,8 +14,8 @@ const COPY_PARAMS_HANDLER: CommandHandler = (_, params) => {
 };
 
 HANDLERS.set('action.devices.commands.ArmDisarm', (device, params) => {
-    if (isArmDisarm(device)) {
-        const updateState: Partial<ArmDisarmDevice['state']> = {};
+    if (checks.isArmDisarm(device)) {
+        const updateState: Partial<devices.ArmDisarmDevice['state']> = {};
 
         if (updateState.isArmed === params.arm && device.noraSpecific.returnArmDisarmErrorCodeIfStateAlreadySet) {
             if (updateState.isArmed) {
@@ -47,11 +40,11 @@ HANDLERS.set('action.devices.commands.ArmDisarm', (device, params) => {
 });
 
 HANDLERS.set('action.devices.commands.BrightnessAbsolute', (device, params) => {
-    if (isBrightness(device)) {
-        const updates: Partial<BrightnessDevice['state'] & OnOffDevice['state']> = {};
+    if (checks.isBrightness(device)) {
+        const updates: Partial<devices.BrightnessDevice['state'] & devices.OnOffDevice['state']> = {};
 
         updates.brightness = params.brightness;
-        if (isOnOff(device) && device.noraSpecific?.turnOnWhenBrightnessChanges) {
+        if (checks.isOnOff(device) && device.noraSpecific?.turnOnWhenBrightnessChanges) {
             updates.on = true;
         }
         return {
@@ -62,8 +55,8 @@ HANDLERS.set('action.devices.commands.BrightnessAbsolute', (device, params) => {
     return null;
 });
 HANDLERS.set('action.devices.commands.OnOff', (device, params) => {
-    if (isOnOff(device)) {
-        const update: Partial<OnOffDevice['state']> = { ...params };
+    if (checks.isOnOff(device)) {
+        const update: Partial<devices.OnOffDevice['state']> = { ...params };
 
         if (device.noraSpecific?.returnOnOffErrorCodeIfStateAlreadySet &&
             device.state.on === update.on) {
@@ -84,7 +77,7 @@ HANDLERS.set('action.devices.commands.OnOff', (device, params) => {
 HANDLERS.set('action.devices.commands.ThermostatTemperatureSetpoint', COPY_PARAMS_HANDLER);
 HANDLERS.set('action.devices.commands.ThermostatTemperatureSetRange', COPY_PARAMS_HANDLER);
 HANDLERS.set('action.devices.commands.ThermostatSetMode', (device, params) => {
-    if (!isTemperatureSetting(device)) {
+    if (!checks.isTemperatureSetting(device)) {
         return null;
     }
 
@@ -110,10 +103,10 @@ HANDLERS.set('action.devices.commands.ThermostatSetMode', (device, params) => {
     };
 });
 HANDLERS.set('action.devices.commands.TemperatureRelative', (device, params) => {
-    if (isTemperatureSetting(device)) {
+    if (checks.isTemperatureSetting(device)) {
         const { thermostatTemperatureRelativeDegree, thermostatTemperatureRelativeWeight } = params;
         const change = thermostatTemperatureRelativeDegree || (thermostatTemperatureRelativeWeight / 2);
-        const updates: Partial<TemperatureSettingDevice['state']> = {
+        const updates: Partial<devices.TemperatureSettingDevice['state']> = {
             thermostatTemperatureSetpoint: device.state.thermostatTemperatureSetpoint + change
         };
         return {
@@ -124,7 +117,7 @@ HANDLERS.set('action.devices.commands.TemperatureRelative', (device, params) => 
     return null;
 });
 HANDLERS.set('action.devices.commands.SetTemperature', (device, params) => {
-    if (isTemperatureControl(device)) {
+    if (checks.isTemperatureControl(device)) {
         return {
             updateState: {
                 temperatureSetpointCelsius: params.temperature,
@@ -135,7 +128,7 @@ HANDLERS.set('action.devices.commands.SetTemperature', (device, params) => {
     return null;
 });
 HANDLERS.set('action.devices.commands.SetHumidity', (device, params) => {
-    if (isHumiditySetting(device)) {
+    if (checks.isHumiditySetting(device)) {
         return {
             updateState: {
                 humiditySetpointPercent: params.humidity,
@@ -145,7 +138,7 @@ HANDLERS.set('action.devices.commands.SetHumidity', (device, params) => {
     return null;
 });
 HANDLERS.set('action.devices.commands.HumidityRelative', (device, params) => {
-    if (isHumiditySetting(device)) {
+    if (checks.isHumiditySetting(device)) {
         let newHumidity: number;
         const currentHumidity = device.state.humiditySetpointPercent ?? 0;
         if ('humidityRelativePercent' in params) {
@@ -162,12 +155,12 @@ HANDLERS.set('action.devices.commands.HumidityRelative', (device, params) => {
     return null;
 });
 HANDLERS.set('action.devices.commands.LockUnlock', (device, params) => {
-    if (isLockUnlock(device)) {
+    if (checks.isLockUnlock(device)) {
         if (device.state.isJammed) {
             throw new ExecuteCommandError('deviceJammingDetected');
         }
 
-        const updates: Partial<LockUnlockDevice['state']> = {
+        const updates: Partial<devices.LockUnlockDevice['state']> = {
             isLocked: params.lock,
         };
 
@@ -188,8 +181,8 @@ HANDLERS.set('action.devices.commands.LockUnlock', (device, params) => {
     return null;
 });
 HANDLERS.set('action.devices.commands.ActivateScene', (device, params) => {
-    if (isScene(device)) {
-        const noraSpecific: Partial<SceneDevice['noraSpecific']> = {
+    if (checks.isScene(device)) {
+        const noraSpecific: Partial<devices.SceneDevice['noraSpecific']> = {
             pendingScene: {
                 deactivate: params?.deactivate ?? false,
             },
@@ -199,7 +192,7 @@ HANDLERS.set('action.devices.commands.ActivateScene', (device, params) => {
     return null;
 });
 HANDLERS.set('action.devices.commands.OpenClose', (device, params) => {
-    if (isOpenClose(device)) {
+    if (checks.isOpenClose(device)) {
         if (device.attributes?.openDirection?.length) {
             if ('openState' in device.state) {
                 return {
@@ -238,7 +231,7 @@ HANDLERS.set('action.devices.commands.OpenClose', (device, params) => {
     return null;
 });
 HANDLERS.set('action.devices.commands.OpenCloseRelative', (device, params) => {
-    if (isOpenClose(device)) {
+    if (checks.isOpenClose(device)) {
         if ('openPercent' in device.state) {
             return {
                 updateState: {
@@ -264,7 +257,7 @@ HANDLERS.set('action.devices.commands.OpenCloseRelative', (device, params) => {
     return null;
 });
 HANDLERS.set('action.devices.commands.ColorAbsolute', (device, params) => {
-    if (isColorSetting(device)) {
+    if (checks.isColorSetting(device)) {
         const changes: Changes = {
             updateState: {
                 color: {
@@ -288,8 +281,8 @@ HANDLERS.set('action.devices.commands.ColorAbsolute', (device, params) => {
     return null;
 });
 HANDLERS.set('action.devices.commands.setVolume', (device, params) => {
-    if (isVolumeDevice(device)) {
-        const updateState: Partial<VolumeDevice['state']> = {
+    if (checks.isVolumeDevice(device)) {
+        const updateState: Partial<devices.VolumeDevice['state']> = {
             currentVolume: params.volumeLevel,
         };
         return { updateState };
@@ -297,8 +290,8 @@ HANDLERS.set('action.devices.commands.setVolume', (device, params) => {
     return null;
 });
 HANDLERS.set('action.devices.commands.mute', (device, params) => {
-    if (isVolumeDevice(device)) {
-        const updateState: Partial<VolumeDevice['state']> = {
+    if (checks.isVolumeDevice(device)) {
+        const updateState: Partial<devices.VolumeDevice['state']> = {
             isMuted: params.mute,
         };
         return { updateState };
@@ -306,7 +299,7 @@ HANDLERS.set('action.devices.commands.mute', (device, params) => {
     return null;
 });
 HANDLERS.set('action.devices.commands.volumeRelative', (device, params) => {
-    if (isVolumeDevice(device)) {
+    if (checks.isVolumeDevice(device)) {
         let newVolume = device.state.currentVolume + params.relativeSteps;
         newVolume = Math.min(device.attributes.volumeMaxLevel, Math.max(0, newVolume));
         if (isFinite(newVolume)) {
@@ -320,8 +313,8 @@ HANDLERS.set('action.devices.commands.volumeRelative', (device, params) => {
     return null;
 });
 HANDLERS.set('action.devices.commands.SetFanSpeed', (device, params) => {
-    if (isFanSpeedDevice(device)) {
-        let updateState: Partial<(FanSpeedDevice & OnOffDevice)['state']> | undefined;
+    if (checks.isFanSpeedDevice(device)) {
+        let updateState: Partial<(devices.FanSpeedDevice & devices.OnOffDevice)['state']> | undefined;
         if ('supportsFanSpeedPercent' in device.attributes && typeof params.fanSpeedPercent === 'number') {
             updateState = {
                 on: true,
@@ -340,8 +333,8 @@ HANDLERS.set('action.devices.commands.SetFanSpeed', (device, params) => {
     return null;
 });
 HANDLERS.set('action.devices.commands.SetFanSpeedRelative', (device, params) => {
-    if (isFanSpeedDevice(device)) {
-        let updateState: Partial<(FanSpeedDevice & OnOffDevice)['state']> | undefined;
+    if (checks.isFanSpeedDevice(device)) {
+        let updateState: Partial<(devices.FanSpeedDevice & devices.OnOffDevice)['state']> | undefined;
         if ('supportsFanSpeedPercent' in device.attributes &&
             'currentFanSpeedPercent' in device.state) {
             if (typeof params.fanSpeedRelativePercent === 'number') {
@@ -374,8 +367,8 @@ HANDLERS.set('action.devices.commands.SetFanSpeedRelative', (device, params) => 
     return null;
 });
 HANDLERS.set('action.devices.commands.SetInput', (device, params) => {
-    if (isInputSelectorDevice(device)) {
-        const updateState: Partial<InputSelectorDevice['state']> = {
+    if (checks.isInputSelectorDevice(device)) {
+        const updateState: Partial<devices.InputSelectorDevice['state']> = {
             currentInput: params.newInput,
         };
         return {
@@ -385,10 +378,10 @@ HANDLERS.set('action.devices.commands.SetInput', (device, params) => {
     return null;
 });
 HANDLERS.set('action.devices.commands.NextInput', (device) => {
-    if (isInputSelectorDevice(device)) {
+    if (checks.isInputSelectorDevice(device)) {
         const index = device.attributes.availableInputs.findIndex(i => i.key === device.state.currentInput);
         const nextIndex = (index + 1) % device.attributes.availableInputs.length;
-        const updateState: Partial<InputSelectorDevice['state']> = {
+        const updateState: Partial<devices.InputSelectorDevice['state']> = {
             currentInput: device.attributes.availableInputs[nextIndex].key,
         };
         return {
@@ -398,12 +391,12 @@ HANDLERS.set('action.devices.commands.NextInput', (device) => {
     return null;
 });
 HANDLERS.set('action.devices.commands.PreviousInput', (device) => {
-    if (isInputSelectorDevice(device)) {
+    if (checks.isInputSelectorDevice(device)) {
         const index = device.attributes.availableInputs.findIndex(i => i.key === device.state.currentInput);
         const nextIndex = index === 0
             ? device.attributes.availableInputs.length - 1
             : index - 1;
-        const updateState: Partial<InputSelectorDevice['state']> = {
+        const updateState: Partial<devices.InputSelectorDevice['state']> = {
             currentInput: device.attributes.availableInputs[nextIndex].key,
         };
         return {
@@ -413,8 +406,8 @@ HANDLERS.set('action.devices.commands.PreviousInput', (device) => {
     return null;
 });
 HANDLERS.set('action.devices.commands.selectChannel', (device, params) => {
-    if (isChannelDevice(device)) {
-        const updateNoraSpecific: Partial<ChannelDevice['noraSpecific']> = {
+    if (checks.isChannelDevice(device)) {
+        const updateNoraSpecific: Partial<devices.ChannelDevice['noraSpecific']> = {
             pendingChannelChangeCommand: {
                 command: 'SelectChannel',
                 channelCode: params?.channelCode,
@@ -427,8 +420,8 @@ HANDLERS.set('action.devices.commands.selectChannel', (device, params) => {
     return null;
 });
 HANDLERS.set('action.devices.commands.relativeChannel', (device, params) => {
-    if (isChannelDevice(device)) {
-        const updateNoraSpecific: Partial<ChannelDevice['noraSpecific']> = {
+    if (checks.isChannelDevice(device)) {
+        const updateNoraSpecific: Partial<devices.ChannelDevice['noraSpecific']> = {
             pendingChannelChangeCommand: {
                 command: 'RelativeChannel',
                 relativeChannelChange: params?.relativeChannelChange,
@@ -439,13 +432,32 @@ HANDLERS.set('action.devices.commands.relativeChannel', (device, params) => {
     return null;
 });
 HANDLERS.set('action.devices.commands.returnChannel', (device) => {
-    if (isChannelDevice(device)) {
-        const updateNoraSpecific: Partial<ChannelDevice['noraSpecific']> = {
+    if (checks.isChannelDevice(device)) {
+        const updateNoraSpecific: Partial<devices.ChannelDevice['noraSpecific']> = {
             pendingChannelChangeCommand: {
                 command: 'ReturnChannel',
             },
         };
         return { updateNoraSpecific };
+    }
+    return null;
+});
+HANDLERS.set('action.devices.commands.GetCameraStream', (device, params: {
+    StreamToChromecast: boolean;
+    SupportedStreamProtocols: devices.CameraStreamProtocol[];
+}) => {
+    if (checks.isCameraStreamDevice(device)) {
+        const staticParams = device.noraSpecific
+            ?.cameraStreamProtocols
+            ?.find(f => params.SupportedStreamProtocols.includes(f.cameraStreamProtocol));
+
+        if (!staticParams) {
+            throw new ExecuteCommandError('notSupported');
+        }
+
+        return {
+            result: staticParams,
+        };
     }
     return null;
 });
@@ -455,8 +467,8 @@ HANDLERS.set('action.devices.commands.returnChannel', (device) => {
     'RepeatMode', 'Shuffle', 'ClosedCaptioningOn', 'ClosedCaptioningOff',
 ] as const).forEach(suffix => {
     HANDLERS.set(`action.devices.commands.media${suffix}`, (device, params) => {
-        if (isTransportControlDevice(device)) {
-            const updateNoraSpecific: Partial<TransportControlDevice['noraSpecific']> = {
+        if (checks.isTransportControlDevice(device)) {
+            const updateNoraSpecific: Partial<devices.TransportControlDevice['noraSpecific']> = {
                 pendingTransportControlCommand: {
                     command: suffix,
                     ...params,

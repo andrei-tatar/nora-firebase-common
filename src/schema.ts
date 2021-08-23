@@ -7366,38 +7366,12 @@ export const Schema = {
           "type": "object",
           "additionalProperties": false,
           "properties": {
-            "fixedValues": {
-              "type": "object",
-              "properties": {
-                "hls": {
-                  "type": "object",
-                  "additionalProperties": false
-                },
-                "dash": {
-                  "type": "object",
-                  "additionalProperties": false
-                },
-                "smooth_stream": {
-                  "type": "object",
-                  "additionalProperties": false
-                },
-                "progressive_mp4": {
-                  "type": "object",
-                  "additionalProperties": false
-                },
-                "webrtc": {
-                  "type": "object",
-                  "additionalProperties": false
-                }
+            "cameraStreamProtocols": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/CameraStreamResult"
               },
-              "required": [
-                "hls",
-                "dash",
-                "smooth_stream",
-                "progressive_mp4",
-                "webrtc"
-              ],
-              "additionalProperties": false
+              "minItems": 1
             },
             "disabled": {
               "type": "boolean"
@@ -7522,6 +7496,64 @@ export const Schema = {
             "action.devices.types.SHUTTER",
             "action.devices.types.VALVE",
             "action.devices.types.WINDOW"
+          ]
+        },
+        "CameraStreamResult": {
+          "anyOf": [
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "cameraStreamProtocol": {
+                  "type": "string",
+                  "const": "webrtc"
+                },
+                "cameraStreamSignalingUrl": {
+                  "type": "string"
+                },
+                "cameraStreamOffer": {
+                  "type": "string"
+                },
+                "cameraStreamIceServers": {
+                  "type": "string"
+                },
+                "cameraStreamAuthToken": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "cameraStreamProtocol",
+                "cameraStreamSignalingUrl"
+              ]
+            },
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "cameraStreamProtocol": {
+                  "type": "string",
+                  "enum": [
+                    "hls",
+                    "dash",
+                    "smooth_stream",
+                    "progressive_mp4"
+                  ]
+                },
+                "cameraStreamAccessUrl": {
+                  "type": "string"
+                },
+                "cameraStreamReceiverAppId": {
+                  "type": "string"
+                },
+                "cameraStreamAuthToken": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "cameraStreamAccessUrl",
+                "cameraStreamProtocol"
+              ]
+            }
           ]
         },
         "TwoFactor": {
@@ -9517,6 +9549,66 @@ export const IndividualSchema = {
       }
     },
     "additionalProperties": false,
+    "definitions": {}
+  },
+  "camera-result": {
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "anyOf": [
+      {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "cameraStreamProtocol": {
+            "type": "string",
+            "const": "webrtc"
+          },
+          "cameraStreamSignalingUrl": {
+            "type": "string"
+          },
+          "cameraStreamOffer": {
+            "type": "string"
+          },
+          "cameraStreamIceServers": {
+            "type": "string"
+          },
+          "cameraStreamAuthToken": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "cameraStreamProtocol",
+          "cameraStreamSignalingUrl"
+        ]
+      },
+      {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "cameraStreamProtocol": {
+            "type": "string",
+            "enum": [
+              "hls",
+              "dash",
+              "smooth_stream",
+              "progressive_mp4"
+            ]
+          },
+          "cameraStreamAccessUrl": {
+            "type": "string"
+          },
+          "cameraStreamReceiverAppId": {
+            "type": "string"
+          },
+          "cameraStreamAuthToken": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "cameraStreamAccessUrl",
+          "cameraStreamProtocol"
+        ]
+      }
+    ],
     "definitions": {}
   }
 } as const;

@@ -8,6 +8,7 @@ export interface Changes {
     updateState?: { [key: string]: any };
     updateNoraSpecific?: { [key: string]: any };
     skipSecondaryVerification?: boolean;
+    result?: Record<string, any>;
 }
 
 export interface ExecuteCommandParams {
