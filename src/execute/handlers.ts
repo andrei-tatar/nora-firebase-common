@@ -17,7 +17,7 @@ HANDLERS.set('action.devices.commands.ArmDisarm', (device, params) => {
     if (checks.isArmDisarm(device)) {
         const updateState: Partial<devices.ArmDisarmDevice['state']> = {};
 
-        if (updateState.isArmed === params.arm && device.noraSpecific.returnArmDisarmErrorCodeIfStateAlreadySet) {
+        if (device.state.isArmed === params.arm && device.noraSpecific.returnArmDisarmErrorCodeIfStateAlreadySet) {
             if (updateState.isArmed) {
                 throw new ExecuteCommandError('alreadyArmed');
             } else {

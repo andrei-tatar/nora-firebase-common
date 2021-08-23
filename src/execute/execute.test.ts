@@ -1,6 +1,7 @@
 import * as chai from 'chai';
 import { TemperatureSettingDevice, ArmDisarmDevice } from '../device';
 import { executeCommand } from '.';
+import { ExecuteCommandError } from './execute';
 
 const expect = chai.expect;
 describe('executeCommand', () => {
@@ -49,30 +50,30 @@ describe('executeCommand', () => {
             id: 'some-id',
             traits: ['action.devices.traits.ArmDisarm'] as never,
             name: {
-              name: 'test'
+                name: 'test'
             },
             noraSpecific: {},
             attributes: {
-              availableArmLevels: {
-                levels: [
-                  {
-                    level_name: 'L1',
-                    level_values: [
-                      {
-                        level_synonym: ['L1'],
-                        lang: 'de'
-                      }
-                    ]
-                  }
-                ],
-                ordered: true
-              }
+                availableArmLevels: {
+                    levels: [
+                        {
+                            level_name: 'L1',
+                            level_values: [
+                                {
+                                    level_synonym: ['L1'],
+                                    lang: 'de'
+                                }
+                            ]
+                        }
+                    ],
+                    ordered: true
+                }
             },
             state: {
-              isArmed: false,
-              currentArmLevel: 'L0',
-              exitAllowance: 10,
-              online: true
+                isArmed: false,
+                currentArmLevel: 'L0',
+                exitAllowance: 10,
+                online: true
             },
             type: 'action.devices.types.SECURITYSYSTEM',
             willReportState: true,
@@ -101,6 +102,26 @@ describe('executeCommand', () => {
             });
 
             expect(changes?.updateState?.currentArmLevel).to.be.equal('L1');
+        });
+
+        it('should throw when already disarmed', () => {
+            armdisarm.noraSpecific.returnArmDisarmErrorCodeIfStateAlreadySet = true;
+            try {
+                executeCommand({
+                    command: 'action.devices.commands.ArmDisarm',
+                    device: armdisarm,
+                    params: {
+                        arm: false,
+                    },
+                });
+                expect.fail('should throw');
+            } catch (err) {
+                if (err instanceof ExecuteCommandError) {
+                    expect(err.errorCode).to.eq('alreadyDisarmed');
+                } else {
+                    throw err;
+                }
+            }
         });
     });
 });
