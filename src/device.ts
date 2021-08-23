@@ -76,6 +76,7 @@ export interface AsyncCommand {
 }
 
 export interface AsyncResponse {
+    result?: any;
     state?: any;
     errorCode?: string;
 }
