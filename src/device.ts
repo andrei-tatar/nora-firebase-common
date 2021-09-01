@@ -564,6 +564,30 @@ export type CameraStreamDevice = Device<{
     traits: ['action.devices.traits.CameraStream']
 };
 
+export type AppSelectorDevice = Device<{
+    currentApplication: string
+}, {
+    availableApplications: {
+        key: string;
+        names: {
+            name_synonym: string[];
+            lang: Language;
+        }[];
+    }[];
+}, {
+    pendingAppSelectorCommand?: {
+        command: 'AppInstall';
+        newApplication: string;
+        newApplicationName: string,
+    } | {
+        command: 'AppSearch';
+        newApplication: string;
+        newApplicationName: string,
+    };
+}> & {
+    traits: ['action.devices.traits.AppSelector']
+};
+
 export type ErrorCode =
     'aboveMaximumLightEffectsDuration' |
     'aboveMaximumTimerDuration' |
@@ -575,6 +599,7 @@ export type ErrorCode =
     'alreadyClosed' |
     'alreadyDisarmed' |
     'alreadyDocked' |
+    'alreadyInstalledApp' |
     'alreadyInState' |
     'alreadyLocked' |
     'alreadyOff' |
@@ -634,7 +659,6 @@ export type ErrorCode =
     'floorUnreachable' |
     'functionNotSupported' |
     'genericDispenseNotSupported' |
-    'hardError' |
     'hardError' |
     'inAutoMode' |
     'inAwayMode' |
@@ -758,4 +782,5 @@ export type Trait =
     'action.devices.traits.HumiditySetting' |
     'action.devices.traits.FanSpeed' |
     'action.devices.traits.StatusReport' |
-    'action.devices.traits.CameraStream';
+    'action.devices.traits.CameraStream' |
+    'action.devices.traits.AppSelector';

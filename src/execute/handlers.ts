@@ -461,6 +461,49 @@ HANDLERS.set('action.devices.commands.GetCameraStream', (device, params: {
     }
     return null;
 });
+HANDLERS.set('action.devices.commands.appInstall', (device, params) => {
+    if (checks.isAppSelectorDevice(device)) {
+        const updateNoraSpecific: Partial<devices.AppSelectorDevice['noraSpecific']> = {
+            pendingAppSelectorCommand: {
+                command: 'AppInstall',
+                newApplication: params?.newApplication,
+                newApplicationName: params?.newApplicationName,
+            },
+        };
+        return { updateNoraSpecific };
+    }
+    return null;
+});
+HANDLERS.set('action.devices.commands.appSearch', (device, params) => {
+    if (checks.isAppSelectorDevice(device)) {
+        const updateNoraSpecific: Partial<devices.AppSelectorDevice['noraSpecific']> = {
+            pendingAppSelectorCommand: {
+                command: 'AppSearch',
+                newApplication: params?.newApplication,
+                newApplicationName: params?.newApplicationName,
+            },
+        };
+        return { updateNoraSpecific };
+    }
+    return null;
+});
+HANDLERS.set('action.devices.commands.appSelect', (device, params) => {
+    if (checks.isAppSelectorDevice(device)) {
+        const newApplication = params.newApplication ??
+            device.attributes.availableApplications
+                .find(app => app.names.some(name => name.name_synonym.includes(params.newApplicationName)))?.key;
+        if (!newApplication) {
+            throw new ExecuteCommandError('noAvailableApp');
+        }
+        const updateState: Partial<devices.AppSelectorDevice['state']> = {
+            currentApplication: newApplication,
+        };
+        return {
+            updateState
+        };
+    }
+    return null;
+});
 
 ([
     'Stop', 'Next', 'Previous', 'Pause', 'Resume', 'SeekRelative', 'SeekToPosition',
