@@ -4589,8 +4589,23 @@ export const Schema = {
                   },
                   "required": [
                     "command",
-                    "channelCode",
-                    "channelName",
+                    "channelCode"
+                  ],
+                  "additionalProperties": false
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "command": {
+                      "type": "string",
+                      "const": "SelectChannel"
+                    },
+                    "channelNumber": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "command",
                     "channelNumber"
                   ],
                   "additionalProperties": false

@@ -503,7 +503,10 @@ export type ChannelDevice = Device<{}, {
     pendingChannelChangeCommand?: {
         command: 'SelectChannel';
         channelCode: string;
-        channelName: string;
+        channelName?: string;
+        channelNumber?: string;
+    } | {
+        command: 'SelectChannel';
         channelNumber: string;
     } | {
         command: 'RelativeChannel';
