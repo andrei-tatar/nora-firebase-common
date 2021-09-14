@@ -56,7 +56,7 @@ export interface Device<TState = {}, TAttributes = {}, TNora = {}> {
             msg: string;
             details?: any;
         };
-        asyncCommandExecution?: boolean;
+        asyncCommandExecution?: boolean | string[];
         commands?: {
             [commandId: string]: AsyncCommand;
         };

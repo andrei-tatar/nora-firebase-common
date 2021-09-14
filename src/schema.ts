@@ -148,7 +148,17 @@ export const Schema = {
               "additionalProperties": false
             },
             "asyncCommandExecution": {
-              "type": "boolean"
+              "anyOf": [
+                {
+                  "type": "boolean"
+                },
+                {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              ]
             },
             "commands": {
               "type": "object",
@@ -530,7 +540,17 @@ export const Schema = {
               "additionalProperties": false
             },
             "asyncCommandExecution": {
-              "type": "boolean"
+              "anyOf": [
+                {
+                  "type": "boolean"
+                },
+                {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              ]
             },
             "commands": {
               "type": "object",
@@ -841,7 +861,17 @@ export const Schema = {
               "additionalProperties": false
             },
             "asyncCommandExecution": {
-              "type": "boolean"
+              "anyOf": [
+                {
+                  "type": "boolean"
+                },
+                {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              ]
             },
             "commands": {
               "type": "object",
@@ -1245,7 +1275,17 @@ export const Schema = {
               "additionalProperties": false
             },
             "asyncCommandExecution": {
-              "type": "boolean"
+              "anyOf": [
+                {
+                  "type": "boolean"
+                },
+                {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              ]
             },
             "commands": {
               "type": "object",
@@ -1556,7 +1596,17 @@ export const Schema = {
               "additionalProperties": false
             },
             "asyncCommandExecution": {
-              "type": "boolean"
+              "anyOf": [
+                {
+                  "type": "boolean"
+                },
+                {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              ]
             },
             "commands": {
               "type": "object",
@@ -1872,7 +1922,17 @@ export const Schema = {
               "additionalProperties": false
             },
             "asyncCommandExecution": {
-              "type": "boolean"
+              "anyOf": [
+                {
+                  "type": "boolean"
+                },
+                {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              ]
             },
             "commands": {
               "type": "object",
@@ -2179,7 +2239,17 @@ export const Schema = {
               "additionalProperties": false
             },
             "asyncCommandExecution": {
-              "type": "boolean"
+              "anyOf": [
+                {
+                  "type": "boolean"
+                },
+                {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              ]
             },
             "commands": {
               "type": "object",
@@ -2587,7 +2657,17 @@ export const Schema = {
               "additionalProperties": false
             },
             "asyncCommandExecution": {
-              "type": "boolean"
+              "anyOf": [
+                {
+                  "type": "boolean"
+                },
+                {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              ]
             },
             "commands": {
               "type": "object",
@@ -2914,7 +2994,17 @@ export const Schema = {
               "additionalProperties": false
             },
             "asyncCommandExecution": {
-              "type": "boolean"
+              "anyOf": [
+                {
+                  "type": "boolean"
+                },
+                {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              ]
             },
             "commands": {
               "type": "object",
@@ -3282,7 +3372,17 @@ export const Schema = {
               "additionalProperties": false
             },
             "asyncCommandExecution": {
-              "type": "boolean"
+              "anyOf": [
+                {
+                  "type": "boolean"
+                },
+                {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              ]
             },
             "commands": {
               "type": "object",
@@ -3608,7 +3708,17 @@ export const Schema = {
               "additionalProperties": false
             },
             "asyncCommandExecution": {
-              "type": "boolean"
+              "anyOf": [
+                {
+                  "type": "boolean"
+                },
+                {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              ]
             },
             "commands": {
               "type": "object",
@@ -4099,7 +4209,17 @@ export const Schema = {
               "additionalProperties": false
             },
             "asyncCommandExecution": {
-              "type": "boolean"
+              "anyOf": [
+                {
+                  "type": "boolean"
+                },
+                {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              ]
             },
             "commands": {
               "type": "object",
@@ -4527,7 +4647,17 @@ export const Schema = {
               "additionalProperties": false
             },
             "asyncCommandExecution": {
-              "type": "boolean"
+              "anyOf": [
+                {
+                  "type": "boolean"
+                },
+                {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              ]
             },
             "commands": {
               "type": "object",
@@ -4856,7 +4986,17 @@ export const Schema = {
               "additionalProperties": false
             },
             "asyncCommandExecution": {
-              "type": "boolean"
+              "anyOf": [
+                {
+                  "type": "boolean"
+                },
+                {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              ]
             },
             "commands": {
               "type": "object",
@@ -5858,7 +5998,17 @@ export const Schema = {
               "additionalProperties": false
             },
             "asyncCommandExecution": {
-              "type": "boolean"
+              "anyOf": [
+                {
+                  "type": "boolean"
+                },
+                {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              ]
             },
             "commands": {
               "type": "object",
@@ -6198,7 +6348,17 @@ export const Schema = {
               "additionalProperties": false
             },
             "asyncCommandExecution": {
-              "type": "boolean"
+              "anyOf": [
+                {
+                  "type": "boolean"
+                },
+                {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              ]
             },
             "commands": {
               "type": "object",
@@ -6532,7 +6692,17 @@ export const Schema = {
               "additionalProperties": false
             },
             "asyncCommandExecution": {
-              "type": "boolean"
+              "anyOf": [
+                {
+                  "type": "boolean"
+                },
+                {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              ]
             },
             "commands": {
               "type": "object",
@@ -6963,7 +7133,17 @@ export const Schema = {
               "additionalProperties": false
             },
             "asyncCommandExecution": {
-              "type": "boolean"
+              "anyOf": [
+                {
+                  "type": "boolean"
+                },
+                {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              ]
             },
             "commands": {
               "type": "object",
@@ -7430,7 +7610,17 @@ export const Schema = {
               "additionalProperties": false
             },
             "asyncCommandExecution": {
-              "type": "boolean"
+              "anyOf": [
+                {
+                  "type": "boolean"
+                },
+                {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              ]
             },
             "commands": {
               "type": "object",
@@ -7856,7 +8046,17 @@ export const Schema = {
               "additionalProperties": false
             },
             "asyncCommandExecution": {
-              "type": "boolean"
+              "anyOf": [
+                {
+                  "type": "boolean"
+                },
+                {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              ]
             },
             "commands": {
               "type": "object",
