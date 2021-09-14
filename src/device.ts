@@ -739,6 +739,7 @@ export type DeviceType =
     'action.devices.types.FAN' |
     'action.devices.types.SECURITYSYSTEM' |
     'action.devices.types.CAMERA' |
+    'action.devices.types.AIRPURIFIER' |
 
     'action.devices.types.SPEAKER' |
     'action.devices.types.AUDIO_VIDEO_RECEIVER' |
