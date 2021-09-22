@@ -7,7 +7,7 @@ export function updateState(update: any, state: any) {
     };
 }
 
-export function deepClone(o: any) {
+export function deepClone<T>(o: T): T {
     return JSON.parse(JSON.stringify(o));
 }
 
