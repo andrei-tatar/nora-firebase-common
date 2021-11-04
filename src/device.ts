@@ -322,9 +322,15 @@ type NumericCapabilitites<T> = T extends 'PERCENTAGE' ? {
     * @minimum 0
     * @maximum 100
     */
-    rawValue: number;
+    rawValue?: number;
+} : T extends 'AQI' ? {
+    /**
+    * @minimum 0
+    * @maximum 500
+    */
+    rawValue?: number;
 } : {
-    rawValue: number;
+    rawValue?: number;
 };
 
 export interface SensorSupport<TName, TDescriptiveCapabilities, TNumbericCapabilities> {
@@ -332,6 +338,9 @@ export interface SensorSupport<TName, TDescriptiveCapabilities, TNumbericCapabil
         name: TName;
     } & ([TDescriptiveCapabilities] extends [never] ? {} : {
         descriptiveCapabilities: {
+            /**
+             * @minItems 1
+             */
             availableStates: TDescriptiveCapabilities[];
         };
     }) & ([TNumbericCapabilities] extends [never] ? {} : {
@@ -342,7 +351,7 @@ export interface SensorSupport<TName, TDescriptiveCapabilities, TNumbericCapabil
     state: {
         name: TName;
     } & ([TDescriptiveCapabilities] extends [never] ? {} : {
-        currentSensorState: TDescriptiveCapabilities;
+        currentSensorState?: TDescriptiveCapabilities;
     }) & ([TNumbericCapabilities] extends [never] ? {} : NumericCapabilitites<TNumbericCapabilities>);
 }
 
@@ -410,6 +419,9 @@ export type AnySensorSupport = AirQualitySensorSupport | CarbonMonoxideSensorSup
 export type SensorStateDevice = Device<{
     currentSensorStateData: AnySensorSupport['state'][];
 }, {
+    /**
+     * @minItems 1
+     */
     sensorStatesSupported: AnySensorSupport['attributes'][];
 }> & {
     traits: ['action.devices.traits.SensorState']

@@ -5040,7 +5040,9 @@ export const Schema = {
                     "additionalProperties": false,
                     "properties": {
                       "rawValue": {
-                        "type": "number"
+                        "type": "number",
+                        "minimum": 0,
+                        "maximum": 500
                       },
                       "currentSensorState": {
                         "type": "string",
@@ -5065,9 +5067,7 @@ export const Schema = {
                       }
                     },
                     "required": [
-                      "currentSensorState",
-                      "name",
-                      "rawValue"
+                      "name"
                     ]
                   },
                   {
@@ -5092,9 +5092,7 @@ export const Schema = {
                       }
                     },
                     "required": [
-                      "currentSensorState",
-                      "name",
-                      "rawValue"
+                      "name"
                     ]
                   },
                   {
@@ -5119,9 +5117,7 @@ export const Schema = {
                       }
                     },
                     "required": [
-                      "currentSensorState",
-                      "name",
-                      "rawValue"
+                      "name"
                     ]
                   },
                   {
@@ -5143,7 +5139,6 @@ export const Schema = {
                       }
                     },
                     "required": [
-                      "currentSensorState",
                       "name"
                     ]
                   },
@@ -5165,7 +5160,6 @@ export const Schema = {
                       }
                     },
                     "required": [
-                      "currentSensorState",
                       "name"
                     ]
                   },
@@ -5187,7 +5181,6 @@ export const Schema = {
                       }
                     },
                     "required": [
-                      "currentSensorState",
                       "name"
                     ]
                   },
@@ -5216,9 +5209,7 @@ export const Schema = {
                       }
                     },
                     "required": [
-                      "currentSensorState",
-                      "name",
-                      "rawValue"
+                      "name"
                     ]
                   },
                   {
@@ -5240,8 +5231,7 @@ export const Schema = {
                       }
                     },
                     "required": [
-                      "name",
-                      "rawValue"
+                      "name"
                     ]
                   },
                   {
@@ -5257,8 +5247,7 @@ export const Schema = {
                       }
                     },
                     "required": [
-                      "name",
-                      "rawValue"
+                      "name"
                     ]
                   },
                   {
@@ -5277,8 +5266,7 @@ export const Schema = {
                       }
                     },
                     "required": [
-                      "name",
-                      "rawValue"
+                      "name"
                     ]
                   },
                   {
@@ -5294,8 +5282,7 @@ export const Schema = {
                       }
                     },
                     "required": [
-                      "name",
-                      "rawValue"
+                      "name"
                     ]
                   }
                 ]
@@ -5355,7 +5342,8 @@ export const Schema = {
                                 "severe",
                                 "unknown"
                               ]
-                            }
+                            },
+                            "minItems": 1
                           }
                         },
                         "required": [
@@ -5404,7 +5392,8 @@ export const Schema = {
                                 "no carbon monoxide detected",
                                 "unknown"
                               ]
-                            }
+                            },
+                            "minItems": 1
                           }
                         },
                         "required": [
@@ -5453,7 +5442,8 @@ export const Schema = {
                                 "no smoke detected",
                                 "unknown"
                               ]
-                            }
+                            },
+                            "minItems": 1
                           }
                         },
                         "required": [
@@ -5489,7 +5479,8 @@ export const Schema = {
                                 "needs replacement",
                                 "unknown"
                               ]
-                            }
+                            },
+                            "minItems": 1
                           }
                         },
                         "required": [
@@ -5523,7 +5514,8 @@ export const Schema = {
                                 "no leak",
                                 "unknown"
                               ]
-                            }
+                            },
+                            "minItems": 1
                           }
                         },
                         "required": [
@@ -5557,7 +5549,8 @@ export const Schema = {
                                 "no rain detected",
                                 "unknown"
                               ]
-                            }
+                            },
+                            "minItems": 1
                           }
                         },
                         "required": [
@@ -5606,7 +5599,8 @@ export const Schema = {
                                 "replace now",
                                 "unknown"
                               ]
-                            }
+                            },
+                            "minItems": 1
                           }
                         },
                         "required": [
@@ -5741,7 +5735,8 @@ export const Schema = {
                     ]
                   }
                 ]
-              }
+              },
+              "minItems": 1
             }
           },
           "required": [
@@ -8723,7 +8718,9 @@ export const Schema = {
                 "additionalProperties": false,
                 "properties": {
                   "rawValue": {
-                    "type": "number"
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 500
                   },
                   "currentSensorState": {
                     "type": "string",
@@ -8748,9 +8745,7 @@ export const Schema = {
                   }
                 },
                 "required": [
-                  "currentSensorState",
-                  "name",
-                  "rawValue"
+                  "name"
                 ]
               },
               {
@@ -8775,9 +8770,7 @@ export const Schema = {
                   }
                 },
                 "required": [
-                  "currentSensorState",
-                  "name",
-                  "rawValue"
+                  "name"
                 ]
               },
               {
@@ -8802,9 +8795,7 @@ export const Schema = {
                   }
                 },
                 "required": [
-                  "currentSensorState",
-                  "name",
-                  "rawValue"
+                  "name"
                 ]
               },
               {
@@ -8826,7 +8817,6 @@ export const Schema = {
                   }
                 },
                 "required": [
-                  "currentSensorState",
                   "name"
                 ]
               },
@@ -8848,7 +8838,6 @@ export const Schema = {
                   }
                 },
                 "required": [
-                  "currentSensorState",
                   "name"
                 ]
               },
@@ -8870,7 +8859,6 @@ export const Schema = {
                   }
                 },
                 "required": [
-                  "currentSensorState",
                   "name"
                 ]
               },
@@ -8899,9 +8887,7 @@ export const Schema = {
                   }
                 },
                 "required": [
-                  "currentSensorState",
-                  "name",
-                  "rawValue"
+                  "name"
                 ]
               },
               {
@@ -8923,8 +8909,7 @@ export const Schema = {
                   }
                 },
                 "required": [
-                  "name",
-                  "rawValue"
+                  "name"
                 ]
               },
               {
@@ -8940,8 +8925,7 @@ export const Schema = {
                   }
                 },
                 "required": [
-                  "name",
-                  "rawValue"
+                  "name"
                 ]
               },
               {
@@ -8960,8 +8944,7 @@ export const Schema = {
                   }
                 },
                 "required": [
-                  "name",
-                  "rawValue"
+                  "name"
                 ]
               },
               {
@@ -8977,8 +8960,7 @@ export const Schema = {
                   }
                 },
                 "required": [
-                  "name",
-                  "rawValue"
+                  "name"
                 ]
               }
             ]
@@ -9640,7 +9622,9 @@ export const Schema = {
                 "additionalProperties": false,
                 "properties": {
                   "rawValue": {
-                    "type": "number"
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 500
                   },
                   "currentSensorState": {
                     "type": "string",
