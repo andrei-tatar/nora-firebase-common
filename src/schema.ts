@@ -5351,8 +5351,7 @@ export const Schema = {
                                 "fair",
                                 "poor",
                                 "very poor",
-                                "severe",
-                                "unknown"
+                                "severe"
                               ]
                             },
                             "minItems": 1
@@ -5400,8 +5399,7 @@ export const Schema = {
                               "enum": [
                                 "carbon monoxide detected",
                                 "high",
-                                "no carbon monoxide detected",
-                                "unknown"
+                                "no carbon monoxide detected"
                               ]
                             },
                             "minItems": 1
@@ -5449,8 +5447,7 @@ export const Schema = {
                               "enum": [
                                 "smoke detected",
                                 "high",
-                                "no smoke detected",
-                                "unknown"
+                                "no smoke detected"
                               ]
                             },
                             "minItems": 1
@@ -5485,8 +5482,7 @@ export const Schema = {
                               "enum": [
                                 "clean",
                                 "dirty",
-                                "needs replacement",
-                                "unknown"
+                                "needs replacement"
                               ]
                             },
                             "minItems": 1
@@ -5520,8 +5516,7 @@ export const Schema = {
                               "type": "string",
                               "enum": [
                                 "leak",
-                                "no leak",
-                                "unknown"
+                                "no leak"
                               ]
                             },
                             "minItems": 1
@@ -5555,8 +5550,7 @@ export const Schema = {
                               "type": "string",
                               "enum": [
                                 "rain detected",
-                                "no rain detected",
-                                "unknown"
+                                "no rain detected"
                               ]
                             },
                             "minItems": 1
@@ -5605,8 +5599,7 @@ export const Schema = {
                                 "new",
                                 "good",
                                 "replace soon",
-                                "replace now",
-                                "unknown"
+                                "replace now"
                               ]
                             },
                             "minItems": 1

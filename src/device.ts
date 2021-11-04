@@ -344,7 +344,7 @@ export interface SensorSupport<TName, TDescriptiveCapabilities, TNumbericCapabil
             /**
              * @minItems 1
              */
-            availableStates: TDescriptiveCapabilities[];
+            availableStates: Exclude<TDescriptiveCapabilities, 'unknown'>[];
         };
     }) & ([TNumbericCapabilities] extends [never] ? {} : {
         numericCapabilities?: {
