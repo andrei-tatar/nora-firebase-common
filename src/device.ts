@@ -334,20 +334,26 @@ type NumericCapabilitites<T> = T extends 'PERCENTAGE' ? {
 };
 
 export interface SensorSupport<TName, TDescriptiveCapabilities, TNumbericCapabilities> {
+    /**
+     * @minProperties 2
+     */
     attributes: {
         name: TName;
     } & ([TDescriptiveCapabilities] extends [never] ? {} : {
-        descriptiveCapabilities: {
+        descriptiveCapabilities?: {
             /**
              * @minItems 1
              */
             availableStates: TDescriptiveCapabilities[];
         };
     }) & ([TNumbericCapabilities] extends [never] ? {} : {
-        numericCapabilities: {
+        numericCapabilities?: {
             rawValueUnit: TNumbericCapabilities;
         };
     });
+    /**
+     * @minProperties 2
+     */
     state: {
         name: TName;
     } & ([TDescriptiveCapabilities] extends [never] ? {} : {

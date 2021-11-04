@@ -5068,7 +5068,8 @@ export const Schema = {
                     },
                     "required": [
                       "name"
-                    ]
+                    ],
+                    "minProperties": 2
                   },
                   {
                     "type": "object",
@@ -5093,7 +5094,8 @@ export const Schema = {
                     },
                     "required": [
                       "name"
-                    ]
+                    ],
+                    "minProperties": 2
                   },
                   {
                     "type": "object",
@@ -5118,7 +5120,8 @@ export const Schema = {
                     },
                     "required": [
                       "name"
-                    ]
+                    ],
+                    "minProperties": 2
                   },
                   {
                     "type": "object",
@@ -5140,7 +5143,8 @@ export const Schema = {
                     },
                     "required": [
                       "name"
-                    ]
+                    ],
+                    "minProperties": 2
                   },
                   {
                     "type": "object",
@@ -5161,7 +5165,8 @@ export const Schema = {
                     },
                     "required": [
                       "name"
-                    ]
+                    ],
+                    "minProperties": 2
                   },
                   {
                     "type": "object",
@@ -5182,7 +5187,8 @@ export const Schema = {
                     },
                     "required": [
                       "name"
-                    ]
+                    ],
+                    "minProperties": 2
                   },
                   {
                     "type": "object",
@@ -5210,7 +5216,8 @@ export const Schema = {
                     },
                     "required": [
                       "name"
-                    ]
+                    ],
+                    "minProperties": 2
                   },
                   {
                     "type": "object",
@@ -5232,7 +5239,8 @@ export const Schema = {
                     },
                     "required": [
                       "name"
-                    ]
+                    ],
+                    "minProperties": 2
                   },
                   {
                     "type": "object",
@@ -5248,7 +5256,8 @@ export const Schema = {
                     },
                     "required": [
                       "name"
-                    ]
+                    ],
+                    "minProperties": 2
                   },
                   {
                     "type": "object",
@@ -5267,7 +5276,8 @@ export const Schema = {
                     },
                     "required": [
                       "name"
-                    ]
+                    ],
+                    "minProperties": 2
                   },
                   {
                     "type": "object",
@@ -5283,9 +5293,11 @@ export const Schema = {
                     },
                     "required": [
                       "name"
-                    ]
+                    ],
+                    "minProperties": 2
                   }
-                ]
+                ],
+                "minProperties": 2
               }
             },
             "online": {
@@ -5357,10 +5369,9 @@ export const Schema = {
                       }
                     },
                     "required": [
-                      "descriptiveCapabilities",
-                      "name",
-                      "numericCapabilities"
-                    ]
+                      "name"
+                    ],
+                    "minProperties": 2
                   },
                   {
                     "type": "object",
@@ -5407,10 +5418,9 @@ export const Schema = {
                       }
                     },
                     "required": [
-                      "descriptiveCapabilities",
-                      "name",
-                      "numericCapabilities"
-                    ]
+                      "name"
+                    ],
+                    "minProperties": 2
                   },
                   {
                     "type": "object",
@@ -5457,10 +5467,9 @@ export const Schema = {
                       }
                     },
                     "required": [
-                      "descriptiveCapabilities",
-                      "name",
-                      "numericCapabilities"
-                    ]
+                      "name"
+                    ],
+                    "minProperties": 2
                   },
                   {
                     "type": "object",
@@ -5494,9 +5503,9 @@ export const Schema = {
                       }
                     },
                     "required": [
-                      "descriptiveCapabilities",
                       "name"
-                    ]
+                    ],
+                    "minProperties": 2
                   },
                   {
                     "type": "object",
@@ -5529,9 +5538,9 @@ export const Schema = {
                       }
                     },
                     "required": [
-                      "descriptiveCapabilities",
                       "name"
-                    ]
+                    ],
+                    "minProperties": 2
                   },
                   {
                     "type": "object",
@@ -5564,9 +5573,9 @@ export const Schema = {
                       }
                     },
                     "required": [
-                      "descriptiveCapabilities",
                       "name"
-                    ]
+                    ],
+                    "minProperties": 2
                   },
                   {
                     "type": "object",
@@ -5614,10 +5623,9 @@ export const Schema = {
                       }
                     },
                     "required": [
-                      "descriptiveCapabilities",
-                      "name",
-                      "numericCapabilities"
-                    ]
+                      "name"
+                    ],
+                    "minProperties": 2
                   },
                   {
                     "type": "object",
@@ -5646,9 +5654,9 @@ export const Schema = {
                       }
                     },
                     "required": [
-                      "name",
-                      "numericCapabilities"
-                    ]
+                      "name"
+                    ],
+                    "minProperties": 2
                   },
                   {
                     "type": "object",
@@ -5673,9 +5681,9 @@ export const Schema = {
                       }
                     },
                     "required": [
-                      "name",
-                      "numericCapabilities"
-                    ]
+                      "name"
+                    ],
+                    "minProperties": 2
                   },
                   {
                     "type": "object",
@@ -5703,9 +5711,9 @@ export const Schema = {
                       }
                     },
                     "required": [
-                      "name",
-                      "numericCapabilities"
-                    ]
+                      "name"
+                    ],
+                    "minProperties": 2
                   },
                   {
                     "type": "object",
@@ -5730,11 +5738,12 @@ export const Schema = {
                       }
                     },
                     "required": [
-                      "name",
-                      "numericCapabilities"
-                    ]
+                      "name"
+                    ],
+                    "minProperties": 2
                   }
-                ]
+                ],
+                "minProperties": 2
               },
               "minItems": 1
             }
@@ -8746,7 +8755,8 @@ export const Schema = {
                 },
                 "required": [
                   "name"
-                ]
+                ],
+                "minProperties": 2
               },
               {
                 "type": "object",
@@ -8771,7 +8781,8 @@ export const Schema = {
                 },
                 "required": [
                   "name"
-                ]
+                ],
+                "minProperties": 2
               },
               {
                 "type": "object",
@@ -8796,7 +8807,8 @@ export const Schema = {
                 },
                 "required": [
                   "name"
-                ]
+                ],
+                "minProperties": 2
               },
               {
                 "type": "object",
@@ -8818,7 +8830,8 @@ export const Schema = {
                 },
                 "required": [
                   "name"
-                ]
+                ],
+                "minProperties": 2
               },
               {
                 "type": "object",
@@ -8839,7 +8852,8 @@ export const Schema = {
                 },
                 "required": [
                   "name"
-                ]
+                ],
+                "minProperties": 2
               },
               {
                 "type": "object",
@@ -8860,7 +8874,8 @@ export const Schema = {
                 },
                 "required": [
                   "name"
-                ]
+                ],
+                "minProperties": 2
               },
               {
                 "type": "object",
@@ -8888,7 +8903,8 @@ export const Schema = {
                 },
                 "required": [
                   "name"
-                ]
+                ],
+                "minProperties": 2
               },
               {
                 "type": "object",
@@ -8910,7 +8926,8 @@ export const Schema = {
                 },
                 "required": [
                   "name"
-                ]
+                ],
+                "minProperties": 2
               },
               {
                 "type": "object",
@@ -8926,7 +8943,8 @@ export const Schema = {
                 },
                 "required": [
                   "name"
-                ]
+                ],
+                "minProperties": 2
               },
               {
                 "type": "object",
@@ -8945,7 +8963,8 @@ export const Schema = {
                 },
                 "required": [
                   "name"
-                ]
+                ],
+                "minProperties": 2
               },
               {
                 "type": "object",
@@ -8961,9 +8980,11 @@ export const Schema = {
                 },
                 "required": [
                   "name"
-                ]
+                ],
+                "minProperties": 2
               }
-            ]
+            ],
+            "minProperties": 2
           }
         },
         "online": {
@@ -9647,7 +9668,8 @@ export const Schema = {
                     "type": "string",
                     "const": "AirQuality"
                   }
-                }
+                },
+                "minProperties": 2
               },
               {
                 "type": "object",
@@ -9669,7 +9691,8 @@ export const Schema = {
                     "type": "string",
                     "const": "CarbonMonoxideLevel"
                   }
-                }
+                },
+                "minProperties": 2
               },
               {
                 "type": "object",
@@ -9691,7 +9714,8 @@ export const Schema = {
                     "type": "string",
                     "const": "SmokeLevel"
                   }
-                }
+                },
+                "minProperties": 2
               },
               {
                 "type": "object",
@@ -9710,7 +9734,8 @@ export const Schema = {
                     "type": "string",
                     "const": "FilterCleanliness"
                   }
-                }
+                },
+                "minProperties": 2
               },
               {
                 "type": "object",
@@ -9728,7 +9753,8 @@ export const Schema = {
                     "type": "string",
                     "const": "WaterLeak"
                   }
-                }
+                },
+                "minProperties": 2
               },
               {
                 "type": "object",
@@ -9746,7 +9772,8 @@ export const Schema = {
                     "type": "string",
                     "const": "RainDetection"
                   }
-                }
+                },
+                "minProperties": 2
               },
               {
                 "type": "object",
@@ -9771,7 +9798,8 @@ export const Schema = {
                     "type": "string",
                     "const": "FilterLifeTime"
                   }
-                }
+                },
+                "minProperties": 2
               },
               {
                 "type": "object",
@@ -9790,7 +9818,8 @@ export const Schema = {
                       "Max2FilterLifeTime"
                     ]
                   }
-                }
+                },
+                "minProperties": 2
               },
               {
                 "type": "object",
@@ -9803,7 +9832,8 @@ export const Schema = {
                     "type": "string",
                     "const": "CarbonDioxideLevel"
                   }
-                }
+                },
+                "minProperties": 2
               },
               {
                 "type": "object",
@@ -9819,7 +9849,8 @@ export const Schema = {
                       "PM10"
                     ]
                   }
-                }
+                },
+                "minProperties": 2
               },
               {
                 "type": "object",
@@ -9832,9 +9863,11 @@ export const Schema = {
                     "type": "string",
                     "const": "VolatileOrganicCompounds"
                   }
-                }
+                },
+                "minProperties": 2
               }
-            ]
+            ],
+            "minProperties": 2
           }
         },
         "online": {
