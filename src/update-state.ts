@@ -11,19 +11,19 @@ export function deepClone<T>(o: T): T {
     return JSON.parse(JSON.stringify(o));
 }
 
-const keyResolvers = new Map<string, (item: any, index: number) => any>([
-    ['openState', (item) => item.openDirection.toUpperCase().trim()],
-    ['currentSensorStateData', (item) => item.name],
+const arrayItemKeyMap = new Map<string, string>([
+    ['openState', 'openDirection'],
+    ['currentSensorStateData', 'name'],
 ]);
 
 function updateArrayState(update: any[], state: any[], path = ''): boolean {
     let hasChanges = false;
 
-    const keyResolver = keyResolvers.get(path);
-    if (keyResolver) {
+    const key = arrayItemKeyMap.get(path);
+    if (key) {
         for (const [index, item] of update.entries()) {
-            const key = keyResolver(item, index);
-            const stateItem = state.find((stateChild, stateIndex) => keyResolver(stateChild, stateIndex) === key);
+            const keyValue = item[key];
+            const stateItem = state.find(stateChild => stateChild[key] === keyValue);
             if (stateItem) {
                 if (updateStateInternal(item, stateItem, `${path}[${index}]`)) {
                     hasChanges = true;
