@@ -15,6 +15,8 @@ const individualSchemas = {
     },
 };
 
+const PROPS_TO_REMOVE = ['required', 'minProperties'];
+
 console.log(`loading all traits`);
 const traitSchema = tjs.createGenerator({ path: deviceFile }).createSchema('Trait');
 const traitNames = traitSchema.definitions['Trait'].enum.map(trait => trait.substr(trait.lastIndexOf('.') + 1));
@@ -36,7 +38,7 @@ try {
         deviceSchema.definitions['Trait'].enum = deviceSchema.definitions['Trait'].enum.filter(f => f.endsWith(traitName));
         schemas.device[traitName.toLowerCase()] = deviceSchema;
         schemas.state[traitName.toLowerCase()] = stateSchema;
-        const updateStateSchema = removeRequired(deepClone(stateSchema));
+        const updateStateSchema = removePropertiesFromStateUpdateSchema(deepClone(stateSchema));
         schemas["state-update"][traitName.toLowerCase()] = updateStateSchema;
     }
 
@@ -71,18 +73,20 @@ function deepClone(obj) {
     return JSON.parse(JSON.stringify(obj));
 }
 
-function removeRequired(obj) {
+function removePropertiesFromStateUpdateSchema(obj) {
     if (typeof obj === 'object') {
         if (Array.isArray(obj)) {
             for (const child of obj) {
-                removeRequired(child);
+                removePropertiesFromStateUpdateSchema(child);
             }
         } else {
-            if ('required' in obj) {
-                delete obj.required;
+            for (const toRemove of PROPS_TO_REMOVE) {
+                if (toRemove in obj) {
+                    delete obj[toRemove];
+                }
             }
             for (const [_, child] of Object.entries(obj)) {
-                removeRequired(child);
+                removePropertiesFromStateUpdateSchema(child);
             }
         }
     }

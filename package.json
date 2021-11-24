@@ -32,6 +32,6 @@
   },
   "homepage": "https://github.com/andrei-tatar/nora-firebase-common#readme",
   "dependencies": {
-    "ajv": "^8.6.2"
+    "ajv": "^8.8.2"
   }
 }
