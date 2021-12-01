@@ -10238,6 +10238,10 @@ export const IndividualSchema = {
           "defaultAction": {
             "type": "string",
             "description": "Used to set a default action for clicking this notification."
+          },
+          "close": {
+            "type": "boolean",
+            "description": "Used by NORA to identify if this is a close command"
           }
         },
         "additionalProperties": false

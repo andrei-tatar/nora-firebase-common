@@ -88,5 +88,9 @@ export interface WebpushNotification {
          * Used to set a default action for clicking this notification.
          */
         defaultAction?: string;
+        /**
+         * Used by NORA to identify if this is a close command
+         */
+        close?: boolean;
     };
 }
