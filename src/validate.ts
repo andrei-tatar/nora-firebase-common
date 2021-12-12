@@ -16,7 +16,7 @@ export function validate(traits: Trait[], schemaType: SchemaType, object: any) {
     }
 
     try {
-        const traitNames = traits.map(t => t.substr(t.lastIndexOf('.') + 1).toLowerCase() as TraitName);
+        const traitNames = traits.map(t => t.substring(t.lastIndexOf('.') + 1).toLowerCase() as TraitName);
         const key = `${schemaType}:${traitNames.sort().join(':')}`;
 
         let validator = cachedValidators[key];
@@ -29,9 +29,16 @@ export function validate(traits: Trait[], schemaType: SchemaType, object: any) {
         const valid = validator(object);
         return { valid, errors: validator.errors };
     } catch (err) {
+        if (err instanceof Error) {
+            return {
+                valid: false,
+                errors: [{ description: err.message, stack: err.stack }],
+            };
+        }
+
         return {
             valid: false,
-            errors: [{ description: err.message, stack: err.stack }],
+            errors: [err],
         };
     }
 }
@@ -74,10 +81,10 @@ function mergeSchemas(objects: any[], level = 0): any {
                     anyOf.push(mergeSchemas([aAnyOf, bAnyOf], level + 1));
                 }
             }
-            delete a.anyOf;
-            delete b.anyOf;
+            const { anyOf: _anyOfB, ...restA } = a;
+            const { anyOf: _anyOfA, ...restB } = b;
             return {
-                ...mergeSchemas([a, b]),
+                ...mergeSchemas([restA, restB]),
                 anyOf,
             };
         } else if (isAnyA) {
@@ -126,6 +133,6 @@ function isObject(obj: any) {
     return obj && typeof obj === 'object';
 }
 
-function isAnyOfSchema(s: any): s is { anyOf: any[] } {
+function isAnyOfSchema(s: any): s is { anyOf: any[], definitions?: Record<string, any> } {
     return 'anyOf' in s && Array.isArray(s.anyOf);
 }
