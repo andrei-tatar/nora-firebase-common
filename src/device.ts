@@ -429,6 +429,8 @@ export type SensorStateDevice = Device<{
      * @minItems 1
      */
     sensorStatesSupported: AnySensorSupport['attributes'][];
+}, {
+    sensorCapabilitiesThatReportNotifications?: string[];
 }> & {
     traits: ['action.devices.traits.SensorState']
 };

@@ -4981,6 +4981,12 @@ export const Schema = {
           "type": "object",
           "additionalProperties": false,
           "properties": {
+            "sensorCapabilitiesThatReportNotifications": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
             "disabled": {
               "type": "boolean"
             },
