@@ -22,7 +22,7 @@ export function validate(traits: Trait[], schemaType: SchemaType, object: any) {
         let validator = cachedValidators[key];
         if (!validator) {
             const schema = loadSchema(schemaType, traitNames, key);
-            const ajv = new Ajv();
+            const ajv = new Ajv({ allowUnionTypes: true });
             cachedValidators[key] = validator = ajv.compile(schema);
         }
 
@@ -75,7 +75,12 @@ function mergeSchemas(objects: any[], level = 0): any {
         const isAnyA = isAnyOfSchema(a);
         const isAnyB = isAnyOfSchema(b);
         if (isAnyA && isAnyB) {
+            if (deepEqual(a, b)) {
+                return a;
+            }
+
             const anyOf = [];
+
             for (const aAnyOf of a.anyOf) {
                 for (const bAnyOf of b.anyOf) {
                     anyOf.push(mergeSchemas([aAnyOf, bAnyOf], level + 1));
@@ -135,4 +140,28 @@ function isObject(obj: any) {
 
 function isAnyOfSchema(s: any): s is { anyOf: any[], definitions?: Record<string, any> } {
     return 'anyOf' in s && Array.isArray(s.anyOf);
+}
+
+function deepEqual(x: any, y: any) {
+    if (x === y) {
+        return true;
+    } else if ((typeof x === 'object' && x != null) && (typeof y === 'object' && y != null)) {
+        if (Object.keys(x).length !== Object.keys(y).length) {
+            return false;
+        }
+
+        for (const prop in x) {
+            if (y.hasOwnProperty(prop)) {
+                if (!deepEqual(x[prop], y[prop])) {
+                    return false;
+                }
+            } else {
+                return false;
+            }
+        }
+
+        return true;
+    } else {
+        return false;
+    }
 }

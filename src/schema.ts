@@ -5302,8 +5302,7 @@ export const Schema = {
                     ],
                     "minProperties": 2
                   }
-                ],
-                "minProperties": 2
+                ]
               }
             },
             "online": {
@@ -5741,8 +5740,7 @@ export const Schema = {
                     ],
                     "minProperties": 2
                   }
-                ],
-                "minProperties": 2
+                ]
               },
               "minItems": 1
             }
@@ -8982,8 +8980,7 @@ export const Schema = {
                 ],
                 "minProperties": 2
               }
-            ],
-            "minProperties": 2
+            ]
           }
         },
         "online": {

@@ -34,11 +34,12 @@ try {
     for (const traitName of traitNames) {
         console.log(`generating schema for trait: ${traitName}`)
         const deviceSchema = deepClone(generator.createSchema(`${traitName}Device`));
-        const stateSchema = deepClone(generator.createSchema(`${traitName}State`));
         deviceSchema.definitions['Trait'].enum = deviceSchema.definitions['Trait'].enum.filter(f => f.endsWith(traitName));
-        schemas.device[traitName.toLowerCase()] = deviceSchema;
-        schemas.state[traitName.toLowerCase()] = stateSchema;
+        schemas.device[traitName.toLowerCase()] = removePropertiesFromSchema(deviceSchema);
+
+        const stateSchema = deepClone(generator.createSchema(`${traitName}State`));
         const updateStateSchema = removePropertiesFromStateUpdateSchema(deepClone(stateSchema));
+        schemas.state[traitName.toLowerCase()] = removePropertiesFromSchema(stateSchema);
         schemas["state-update"][traitName.toLowerCase()] = updateStateSchema;
     }
 
@@ -73,22 +74,37 @@ function deepClone(obj) {
     return JSON.parse(JSON.stringify(obj));
 }
 
-function removePropertiesFromStateUpdateSchema(obj) {
+function removeRecursive(obj, remover) {
     if (typeof obj === 'object') {
         if (Array.isArray(obj)) {
             for (const child of obj) {
-                removePropertiesFromStateUpdateSchema(child);
+                removeRecursive(child, remover);
             }
         } else {
-            for (const toRemove of PROPS_TO_REMOVE) {
-                if (toRemove in obj) {
-                    delete obj[toRemove];
-                }
-            }
+            remover(obj);
+
             for (const [_, child] of Object.entries(obj)) {
-                removePropertiesFromStateUpdateSchema(child);
+                removeRecursive(child, remover);
             }
         }
     }
     return obj;
+}
+
+function removePropertiesFromSchema(obj) {
+    return removeRecursive(obj, item => {
+        if (item.type !== 'object' && 'minProperties' in item) {
+            delete item.minProperties;
+        }
+    });
+}
+
+function removePropertiesFromStateUpdateSchema(obj) {
+    return removeRecursive(obj, item => {
+        for (const toRemove of PROPS_TO_REMOVE) {
+            if (toRemove in item) {
+                delete item[toRemove];
+            }
+        }
+    });
 }
