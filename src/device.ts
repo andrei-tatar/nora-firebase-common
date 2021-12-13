@@ -785,7 +785,8 @@ export type DeviceType =
     'action.devices.types.PERGOLA' |
     'action.devices.types.SHUTTER' |
     'action.devices.types.VALVE' |
-    'action.devices.types.WINDOW';
+    'action.devices.types.WINDOW' |
+    'action.devices.types.SOUS_VIDE';
 
 export type Trait =
     'action.devices.traits.ArmDisarm' |
