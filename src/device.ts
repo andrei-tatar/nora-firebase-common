@@ -625,7 +625,7 @@ export type StartStopDevice = Device<{
     isRunning: boolean;
     isPaused?: boolean;
     activeZones?: string[];
-},{
+}, {
     pausable?: boolean;
     availableZones?: string[];
 }> & {
@@ -831,5 +831,5 @@ export type Trait =
     'action.devices.traits.CameraStream' |
     'action.devices.traits.AppSelector' |
     'action.devices.traits.Timer' |
-    'action.devices.traits.StartStop'    ;
+    'action.devices.traits.StartStop';
 

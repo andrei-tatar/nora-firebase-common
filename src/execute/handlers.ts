@@ -593,7 +593,7 @@ HANDLERS.set('action.devices.commands.PauseUnpause', (device, params) => {
         if (!device.state.isRunning || !device.attributes.pausable) {
             throw new ExecuteCommandError('unpausableState');
         }
-        
+
         updateState.isPaused = params.pause;
         return {
             updateState
