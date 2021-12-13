@@ -97,3 +97,11 @@ export function isCameraStreamDevice(device: Pick<dev.Device, 'traits'>): device
 export function isAppSelectorDevice(device: Pick<dev.Device, 'traits'>): device is dev.AppSelectorDevice {
     return device.traits.includes('action.devices.traits.AppSelector');
 }
+
+export function isTimerDevice(device: Pick<dev.Device, 'traits'>): device is dev.TimerDevice {
+    return device.traits.includes('action.devices.traits.Timer');
+}
+
+export function isStartStopDevice(device: Pick<dev.Device, 'traits'>): device is dev.StartStopDevice {
+    return device.traits.includes('action.devices.traits.StartStop');
+}

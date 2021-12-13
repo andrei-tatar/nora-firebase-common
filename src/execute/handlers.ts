@@ -504,6 +504,103 @@ HANDLERS.set('action.devices.commands.appSelect', (device, params) => {
     }
     return null;
 });
+HANDLERS.set('action.devices.commands.TimerStart', (device, params) => {
+    if (checks.isTimerDevice(device)) {
+        const updateState: Partial<devices.TimerDevice['state']> = {};
+
+        if (params.timerTimeSec > device.attributes.maxTimerLimitSec) {
+            throw new ExecuteCommandError('aboveMaximumTimerDuration');
+        }
+
+        updateState.timerRemainingSec = params.timerTimeSec;
+        updateState.timerPaused = false;
+        return {
+            updateState
+        };
+    }
+    return null;
+});
+HANDLERS.set('action.devices.commands.TimerAdjust', (device, params) => {
+    if (checks.isTimerDevice(device)) {
+        const updateState: Partial<devices.TimerDevice['state']> = {};
+        let newTimeRemaining: Number;
+
+        if (device.state.timerRemainingSec === -1) {
+            throw new ExecuteCommandError('noTimerExists');
+        }
+        if (params.timerTimeSec > Math.abs(device.attributes.maxTimerLimitSec)) {
+            throw new ExecuteCommandError('timerValueOutOfRange');
+        }
+        newTimeRemaining = device.state.timerRemainingSec + params.timerTimeSec;
+        if (newTimeRemaining > device.attributes.maxTimerLimitSec) {
+            throw new ExecuteCommandError('timerValueOutOfRange');
+        }
+        if (newTimeRemaining < -1) {
+            newTimeRemaining = -1;
+        }
+        return {
+            updateState
+        };
+    }
+    return null;
+});
+HANDLERS.set('action.devices.commands.TimerResume', (device, params) => {
+    if (checks.isTimerDevice(device)) {
+        const updateState: Partial<devices.TimerDevice['state']> = {};
+
+        if (device.state.timerRemainingSec === -1) {
+            throw new ExecuteCommandError('noTimerExists');
+        }
+
+        updateState.timerPaused = false;
+        return {
+            updateState
+        };
+    }
+    return null;
+});
+HANDLERS.set('action.devices.commands.TimerCancel', (device, params) => {
+    if (checks.isTimerDevice(device)) {
+        const updateState: Partial<devices.TimerDevice['state']> = {};
+
+        if (device.state.timerRemainingSec === -1) {
+            throw new ExecuteCommandError('noTimerExists');
+        }
+
+        updateState.timerRemainingSec = -1;
+        updateState.timerPaused = false;
+        return {
+            updateState
+        };
+    }
+    return null;
+});
+HANDLERS.set('action.devices.commands.StartStop', (device, params) => {
+    if (checks.isStartStopDevice(device)) {
+        const updateState: Partial<devices.StartStopDevice['state']> = {};
+
+        updateState.isRunning = params.start;
+        return {
+            updateState
+        };
+    }
+    return null;
+});
+HANDLERS.set('action.devices.commands.PauseUnpause', (device, params) => {
+    if (checks.isStartStopDevice(device)) {
+        const updateState: Partial<devices.StartStopDevice['state']> = {};
+
+        if (!device.state.isRunning || !device.attributes.pausable) {
+            throw new ExecuteCommandError('unpausableState');
+        }
+        
+        updateState.isPaused = params.pause;
+        return {
+            updateState
+        };
+    }
+    return null;
+});
 
 ([
     'Stop', 'Next', 'Previous', 'Pause', 'Resume', 'SeekRelative', 'SeekToPosition',
