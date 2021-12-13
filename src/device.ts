@@ -611,6 +611,27 @@ export type AppSelectorDevice = Device<{
     traits: ['action.devices.traits.AppSelector']
 };
 
+export type TimerDevice = Device<{
+    timerRemainingSec: number;
+    timerPaused?: boolean;
+}, {
+    maxTimerLimitSec: number;
+    commandOnlyTimer?: boolean;
+}> & {
+    traits: ['action.devices.traits.Timer']
+};
+
+export type StartStopDevice = Device<{
+    isRunning: boolean;
+    isPaused?: boolean;
+    activeZones?: string[];
+},{
+    pausable?: boolean;
+    availableZones?: string[];
+}> & {
+    traits: ['action.devices.traits.StartStop']
+};
+
 export type ErrorCode =
     'aboveMaximumLightEffectsDuration' |
     'aboveMaximumTimerDuration' |
@@ -808,4 +829,7 @@ export type Trait =
     'action.devices.traits.FanSpeed' |
     'action.devices.traits.StatusReport' |
     'action.devices.traits.CameraStream' |
-    'action.devices.traits.AppSelector';
+    'action.devices.traits.AppSelector' |
+    'action.devices.traits.Timer' |
+    'action.devices.traits.StartStop'    ;
+
