@@ -580,6 +580,12 @@ HANDLERS.set('action.devices.commands.StartStop', (device, params) => {
         const updateState: Partial<devices.StartStopDevice['state']> = {};
 
         updateState.isRunning = params.start;
+        if(params.zone){
+            updateState.activeZones = [params.zone];
+        }else if(params.multipleZones){
+            updateState.activeZones = params.multipleZones;
+        }
+        
         return {
             updateState
         };
