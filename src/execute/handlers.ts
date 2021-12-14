@@ -549,7 +549,6 @@ HANDLERS.set('action.devices.commands.TimerAdjust', (device, params) => {
 HANDLERS.set('action.devices.commands.TimerPause', (device) => {
     if (checks.isTimerDevice(device)) {
         const updateState: Partial<devices.TimerDevice['state']> = {};
-        let newTimeRemaining: Number;
 
         if (device.state.timerRemainingSec === -1) {
             throw new ExecuteCommandError('noTimerExists');
@@ -598,12 +597,12 @@ HANDLERS.set('action.devices.commands.StartStop', (device, params) => {
         const updateState: Partial<devices.StartStopDevice['state']> = {};
 
         updateState.isRunning = params.start;
-        if(params.zone){
+        if (params.zone) {
             updateState.activeZones = [params.zone];
-        }else if(params.multipleZones){
+        } else if (params.multipleZones) {
             updateState.activeZones = params.multipleZones;
         }
-        
+
         return {
             updateState
         };
