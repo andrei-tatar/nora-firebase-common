@@ -523,7 +523,7 @@ HANDLERS.set('action.devices.commands.TimerStart', (device, params) => {
 HANDLERS.set('action.devices.commands.TimerAdjust', (device, params) => {
     if (checks.isTimerDevice(device)) {
         const updateState: Partial<devices.TimerDevice['state']> = {};
-        let newTimeRemaining: Number;
+        let newTimeRemaining: number;
 
         if (device.state.timerRemainingSec === -1) {
             throw new ExecuteCommandError('noTimerExists');
@@ -538,6 +538,8 @@ HANDLERS.set('action.devices.commands.TimerAdjust', (device, params) => {
         if (newTimeRemaining < -1) {
             newTimeRemaining = -1;
         }
+        updateState.timerRemainingSec = newTimeRemaining;
+
         return {
             updateState
         };
