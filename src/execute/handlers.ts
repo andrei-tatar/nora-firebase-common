@@ -544,6 +544,22 @@ HANDLERS.set('action.devices.commands.TimerAdjust', (device, params) => {
     }
     return null;
 });
+HANDLERS.set('action.devices.commands.TimerPause', (device) => {
+    if (checks.isTimerDevice(device)) {
+        const updateState: Partial<devices.TimerDevice['state']> = {};
+        let newTimeRemaining: Number;
+
+        if (device.state.timerRemainingSec === -1) {
+            throw new ExecuteCommandError('noTimerExists');
+        }
+
+        updateState.timerPaused = true;
+        return {
+            updateState
+        };
+    }
+    return null;
+});
 HANDLERS.set('action.devices.commands.TimerResume', (device, params) => {
     if (checks.isTimerDevice(device)) {
         const updateState: Partial<devices.TimerDevice['state']> = {};
