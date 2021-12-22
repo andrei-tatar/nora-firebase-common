@@ -807,7 +807,7 @@ export type DeviceType =
     'action.devices.types.SHUTTER' |
     'action.devices.types.VALVE' |
     'action.devices.types.WINDOW' |
-    'action.devices.types.SOUS_VIDE';
+    'action.devices.types.SOUSVIDE';
 
 export type Trait =
     'action.devices.traits.ArmDisarm' |
