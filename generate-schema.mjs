@@ -19,7 +19,7 @@ const PROPS_TO_REMOVE = ['required', 'minProperties'];
 
 console.log(`loading all traits`);
 const traitSchema = tjs.createGenerator({ path: deviceFile }).createSchema('Trait');
-const traitNames = traitSchema.definitions['Trait'].enum.map(trait => trait.substr(trait.lastIndexOf('.') + 1));
+const traitNames = traitSchema.definitions['Trait'].enum.map(trait => trait.substring(trait.lastIndexOf('.') + 1));
 console.log(`${traitNames.join(', ')}`);
 
 console.log(`creating temp source file`);
