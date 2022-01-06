@@ -309,7 +309,8 @@ export const Schema = {
             "action.devices.types.SHUTTER",
             "action.devices.types.VALVE",
             "action.devices.types.WINDOW",
-            "action.devices.types.SOUSVIDE"
+            "action.devices.types.SOUSVIDE",
+            "action.devices.types.SPRINKLER"
           ]
         },
         "TwoFactor": {
@@ -651,7 +652,8 @@ export const Schema = {
             "action.devices.types.SHUTTER",
             "action.devices.types.VALVE",
             "action.devices.types.WINDOW",
-            "action.devices.types.SOUSVIDE"
+            "action.devices.types.SOUSVIDE",
+            "action.devices.types.SPRINKLER"
           ]
         },
         "TwoFactor": {
@@ -1066,7 +1068,8 @@ export const Schema = {
             "action.devices.types.SHUTTER",
             "action.devices.types.VALVE",
             "action.devices.types.WINDOW",
-            "action.devices.types.SOUSVIDE"
+            "action.devices.types.SOUSVIDE",
+            "action.devices.types.SPRINKLER"
           ]
         },
         "TwoFactor": {
@@ -1388,7 +1391,8 @@ export const Schema = {
             "action.devices.types.SHUTTER",
             "action.devices.types.VALVE",
             "action.devices.types.WINDOW",
-            "action.devices.types.SOUSVIDE"
+            "action.devices.types.SOUSVIDE",
+            "action.devices.types.SPRINKLER"
           ]
         },
         "TwoFactor": {
@@ -1706,7 +1710,8 @@ export const Schema = {
             "action.devices.types.SHUTTER",
             "action.devices.types.VALVE",
             "action.devices.types.WINDOW",
-            "action.devices.types.SOUSVIDE"
+            "action.devices.types.SOUSVIDE",
+            "action.devices.types.SPRINKLER"
           ]
         },
         "TwoFactor": {
@@ -2030,7 +2035,8 @@ export const Schema = {
             "action.devices.types.SHUTTER",
             "action.devices.types.VALVE",
             "action.devices.types.WINDOW",
-            "action.devices.types.SOUSVIDE"
+            "action.devices.types.SOUSVIDE",
+            "action.devices.types.SPRINKLER"
           ]
         },
         "TwoFactor": {
@@ -2416,7 +2422,8 @@ export const Schema = {
             "action.devices.types.SHUTTER",
             "action.devices.types.VALVE",
             "action.devices.types.WINDOW",
-            "action.devices.types.SOUSVIDE"
+            "action.devices.types.SOUSVIDE",
+            "action.devices.types.SPRINKLER"
           ]
         },
         "PreviousMode": {
@@ -2790,7 +2797,8 @@ export const Schema = {
             "action.devices.types.SHUTTER",
             "action.devices.types.VALVE",
             "action.devices.types.WINDOW",
-            "action.devices.types.SOUSVIDE"
+            "action.devices.types.SOUSVIDE",
+            "action.devices.types.SPRINKLER"
           ]
         },
         "TwoFactor": {
@@ -3161,7 +3169,8 @@ export const Schema = {
             "action.devices.types.SHUTTER",
             "action.devices.types.VALVE",
             "action.devices.types.WINDOW",
-            "action.devices.types.SOUSVIDE"
+            "action.devices.types.SOUSVIDE",
+            "action.devices.types.SPRINKLER"
           ]
         },
         "TwoFactor": {
@@ -3506,7 +3515,8 @@ export const Schema = {
             "action.devices.types.SHUTTER",
             "action.devices.types.VALVE",
             "action.devices.types.WINDOW",
-            "action.devices.types.SOUSVIDE"
+            "action.devices.types.SOUSVIDE",
+            "action.devices.types.SPRINKLER"
           ]
         },
         "TwoFactor": {
@@ -3828,7 +3838,8 @@ export const Schema = {
             "action.devices.types.SHUTTER",
             "action.devices.types.VALVE",
             "action.devices.types.WINDOW",
-            "action.devices.types.SOUSVIDE"
+            "action.devices.types.SOUSVIDE",
+            "action.devices.types.SPRINKLER"
           ]
         },
         "TransportControlIncomingCommand": {
@@ -4371,7 +4382,8 @@ export const Schema = {
             "action.devices.types.SHUTTER",
             "action.devices.types.VALVE",
             "action.devices.types.WINDOW",
-            "action.devices.types.SOUSVIDE"
+            "action.devices.types.SOUSVIDE",
+            "action.devices.types.SPRINKLER"
           ]
         },
         "TwoFactor": {
@@ -4805,7 +4817,8 @@ export const Schema = {
             "action.devices.types.SHUTTER",
             "action.devices.types.VALVE",
             "action.devices.types.WINDOW",
-            "action.devices.types.SOUSVIDE"
+            "action.devices.types.SOUSVIDE",
+            "action.devices.types.SPRINKLER"
           ]
         },
         "TwoFactor": {
@@ -5819,7 +5832,8 @@ export const Schema = {
             "action.devices.types.SHUTTER",
             "action.devices.types.VALVE",
             "action.devices.types.WINDOW",
-            "action.devices.types.SOUSVIDE"
+            "action.devices.types.SOUSVIDE",
+            "action.devices.types.SPRINKLER"
           ]
         },
         "TwoFactor": {
@@ -6170,7 +6184,8 @@ export const Schema = {
             "action.devices.types.SHUTTER",
             "action.devices.types.VALVE",
             "action.devices.types.WINDOW",
-            "action.devices.types.SOUSVIDE"
+            "action.devices.types.SOUSVIDE",
+            "action.devices.types.SPRINKLER"
           ]
         },
         "TwoFactor": {
@@ -6515,7 +6530,8 @@ export const Schema = {
             "action.devices.types.SHUTTER",
             "action.devices.types.VALVE",
             "action.devices.types.WINDOW",
-            "action.devices.types.SOUSVIDE"
+            "action.devices.types.SOUSVIDE",
+            "action.devices.types.SPRINKLER"
           ]
         },
         "TwoFactor": {
@@ -6937,7 +6953,8 @@ export const Schema = {
             "action.devices.types.SHUTTER",
             "action.devices.types.VALVE",
             "action.devices.types.WINDOW",
-            "action.devices.types.SOUSVIDE"
+            "action.devices.types.SOUSVIDE",
+            "action.devices.types.SPRINKLER"
           ]
         },
         "TwoFactor": {
@@ -7288,7 +7305,8 @@ export const Schema = {
             "action.devices.types.SHUTTER",
             "action.devices.types.VALVE",
             "action.devices.types.WINDOW",
-            "action.devices.types.SOUSVIDE"
+            "action.devices.types.SOUSVIDE",
+            "action.devices.types.SPRINKLER"
           ]
         },
         "TwoFactor": {
@@ -7758,7 +7776,8 @@ export const Schema = {
             "action.devices.types.SHUTTER",
             "action.devices.types.VALVE",
             "action.devices.types.WINDOW",
-            "action.devices.types.SOUSVIDE"
+            "action.devices.types.SOUSVIDE",
+            "action.devices.types.SPRINKLER"
           ]
         },
         "CameraStreamResult": {
@@ -8226,7 +8245,8 @@ export const Schema = {
             "action.devices.types.SHUTTER",
             "action.devices.types.VALVE",
             "action.devices.types.WINDOW",
-            "action.devices.types.SOUSVIDE"
+            "action.devices.types.SOUSVIDE",
+            "action.devices.types.SPRINKLER"
           ]
         },
         "TwoFactor": {
@@ -8571,7 +8591,8 @@ export const Schema = {
             "action.devices.types.SHUTTER",
             "action.devices.types.VALVE",
             "action.devices.types.WINDOW",
-            "action.devices.types.SOUSVIDE"
+            "action.devices.types.SOUSVIDE",
+            "action.devices.types.SPRINKLER"
           ]
         },
         "TwoFactor": {
@@ -8902,7 +8923,8 @@ export const Schema = {
             "action.devices.types.SHUTTER",
             "action.devices.types.VALVE",
             "action.devices.types.WINDOW",
-            "action.devices.types.SOUSVIDE"
+            "action.devices.types.SOUSVIDE",
+            "action.devices.types.SPRINKLER"
           ]
         },
         "TwoFactor": {
