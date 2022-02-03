@@ -632,6 +632,25 @@ export type StartStopDevice = Device<{
     traits: ['action.devices.traits.StartStop']
 };
 
+export interface EneryStorageCapacity {
+    rawValue: number;
+    unit: 'SECONDS' | 'MILES' | 'KILOMETERS' | 'PERCENTAGE' | 'KILOWATT_HOURS';
+}
+
+export type EnergyStorageDevice = Device<{
+    descriptiveCapacityRemaining: 'CRITICALLY_LOW' | 'LOW' | 'MEDIUM' | 'HIGH' | 'FULL';
+    capacityRemaining?: EneryStorageCapacity[];
+    capacityUntilFull?: EneryStorageCapacity[];
+    isCharging?: boolean;
+    isPluggedIn?: boolean;
+}, {
+    queryOnlyEnergyStorage: boolean;
+    energyStorageDistanceUnitForUX?: 'KILOMETERS' | 'MILES';
+    isRechargeable?: boolean;
+}> & {
+    traits: ['action.devices.traits.EnergyStorage']
+};
+
 export type ErrorCode =
     'aboveMaximumLightEffectsDuration' |
     'aboveMaximumTimerDuration' |
@@ -688,6 +707,7 @@ export type ErrorCode =
     'deviceStuck' |
     'deviceTampered' |
     'deviceThermalShutdown' |
+    'deviceUnplugged' |
     'directResponseOnlyUnreachable' |
     'disarmFailure' |
     'discreteOnlyOpenClose' |
@@ -784,6 +804,7 @@ export type DeviceType =
     'action.devices.types.SECURITYSYSTEM' |
     'action.devices.types.CAMERA' |
     'action.devices.types.AIRPURIFIER' |
+    'action.devices.types.CHARGER' |
 
     'action.devices.types.SPEAKER' |
     'action.devices.types.AUDIO_VIDEO_RECEIVER' |
@@ -832,5 +853,6 @@ export type Trait =
     'action.devices.traits.CameraStream' |
     'action.devices.traits.AppSelector' |
     'action.devices.traits.Timer' |
-    'action.devices.traits.StartStop';
+    'action.devices.traits.StartStop' |
+    'action.devices.traits.EnergyStorage';
 

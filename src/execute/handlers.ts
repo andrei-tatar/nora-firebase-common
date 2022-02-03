@@ -645,6 +645,22 @@ HANDLERS.set('action.devices.commands.PauseUnpause', (device, params) => {
     });
 });
 
+HANDLERS.set('action.devices.commands.Charge', (device, params) => {
+    if (checks.isEnergyStorageDevice(device)) {
+        const updateState: Partial<devices.EnergyStorageDevice['state']> = {};
+
+        if (!device.state.isPluggedIn) {
+            throw new ExecuteCommandError('deviceUnplugged');
+        }
+
+        updateState.isCharging = params.charge;
+        return {
+            updateState
+        };
+    }
+    return null;
+});
+
 function limit(n: number, minimum = 0, maximum = 100) {
     return Math.min(maximum, Math.max(minimum, n));
 }
