@@ -13,9 +13,9 @@ const individualSchemas = {
         type: 'CameraStreamResult',
         path: './src/device.ts',
     },
-    'object-detection': {
-        type: 'ObjectDetection',
-        path: './src/object-detection.ts',
+    'object-detection-notification': {
+        type: 'ObjectDetectionNotification',
+        path: './src/object-detection-notification.ts',
     },
 };
 

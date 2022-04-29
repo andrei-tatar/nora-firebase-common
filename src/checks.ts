@@ -109,3 +109,7 @@ export function isStartStopDevice(device: Pick<dev.Device, 'traits'>): device is
 export function isEnergyStorageDevice(device: Pick<dev.Device, 'traits'>): device is dev.EnergyStorageDevice {
     return device.traits.includes('action.devices.traits.EnergyStorage');
 }
+
+export function isObjectDetectionDevice(device: Pick<dev.Device, 'traits'>): device is dev.ObjectDetectionDevice {
+    return device.traits.includes('action.devices.traits.ObjectDetection');
+}

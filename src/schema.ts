@@ -11987,43 +11987,52 @@ export const IndividualSchema = {
     ],
     "definitions": {}
   },
-  "object-detection": {
+  "object-detection-notification": {
     "$schema": "http://json-schema.org/draft-07/schema#",
     "type": "object",
     "properties": {
-      "priority": {
-        "type": "number",
-        "const": 0
-      },
-      "detectionTimestamp": {
-        "type": "number"
-      },
-      "objects": {
+      "ObjectDetection": {
         "type": "object",
         "properties": {
-          "named": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            }
+          "priority": {
+            "type": "number",
+            "const": 0
           },
-          "familiar": {
+          "detectionTimestamp": {
             "type": "number"
           },
-          "unfamiliar": {
-            "type": "number"
-          },
-          "unclassified": {
-            "type": "number"
+          "objects": {
+            "type": "object",
+            "properties": {
+              "named": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "familiar": {
+                "type": "number"
+              },
+              "unfamiliar": {
+                "type": "number"
+              },
+              "unclassified": {
+                "type": "number"
+              }
+            },
+            "additionalProperties": false
           }
         },
+        "required": [
+          "priority",
+          "detectionTimestamp",
+          "objects"
+        ],
         "additionalProperties": false
       }
     },
     "required": [
-      "priority",
-      "detectionTimestamp",
-      "objects"
+      "ObjectDetection"
     ],
     "additionalProperties": false,
     "definitions": {}
