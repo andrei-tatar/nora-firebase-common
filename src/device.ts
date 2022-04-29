@@ -651,6 +651,11 @@ export type EnergyStorageDevice = Device<{
     traits: ['action.devices.traits.EnergyStorage']
 };
 
+export type ObjectDetectionDevice = Device<{
+}> & {
+    traits: ['action.devices.traits.ObjectDetection']
+};
+
 export type ErrorCode =
     'aboveMaximumLightEffectsDuration' |
     'aboveMaximumTimerDuration' |
@@ -805,6 +810,7 @@ export type DeviceType =
     'action.devices.types.CAMERA' |
     'action.devices.types.AIRPURIFIER' |
     'action.devices.types.CHARGER' |
+    'action.devices.types.DOORBELL' |
 
     'action.devices.types.SPEAKER' |
     'action.devices.types.AUDIO_VIDEO_RECEIVER' |
@@ -854,5 +860,6 @@ export type Trait =
     'action.devices.traits.AppSelector' |
     'action.devices.traits.Timer' |
     'action.devices.traits.StartStop' |
-    'action.devices.traits.EnergyStorage';
+    'action.devices.traits.EnergyStorage' |
+    'action.devices.traits.ObjectDetection';
 

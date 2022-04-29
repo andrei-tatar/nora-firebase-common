@@ -13,6 +13,10 @@ const individualSchemas = {
         type: 'CameraStreamResult',
         path: './src/device.ts',
     },
+    'object-detection': {
+        type: 'ObjectDetection',
+        path: './src/object-detection.ts',
+    },
 };
 
 const PROPS_TO_REMOVE = ['required', 'minProperties'];
