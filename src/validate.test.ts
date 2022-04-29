@@ -1,7 +1,7 @@
 import * as chai from 'chai';
 import {
-  ArmDisarmDevice, FanSpeedDevice, OnOffDevice, SensorStateDevice,
-  TemperatureSettingDevice, Trait
+  ArmDisarmDevice, FanSpeedDevice, ObjectDetectionDevice, OnOffDevice,
+  SensorStateDevice, TemperatureSettingDevice, Trait
 } from './device';
 import { validate } from './validate';
 
@@ -263,6 +263,30 @@ describe('validate', () => {
       'action.devices.traits.FanSpeed',
     ], 'state-update', update);
 
+    expect(result.valid).to.be.true;
+  });
+
+  it('should validate ObjectDetection device', () => {
+    const device: ObjectDetectionDevice = {
+      id: 'some-id',
+      type: 'action.devices.types.DOORBELL',
+      traits: ['action.devices.traits.ObjectDetection'],
+      name: {
+        name: 'Test Device',
+      },
+      roomHint: 'My Room',
+      willReportState: true,
+      notificationSupportedByAgent: true,
+      state: {
+        online: true,
+      },
+      attributes: {
+      },
+      noraSpecific: {
+      },
+    };
+
+    const result = validate(['action.devices.traits.ObjectDetection'], 'device', device);
     expect(result.valid).to.be.true;
   });
 });
