@@ -656,6 +656,18 @@ export type ObjectDetectionDevice = Device<{
     traits: ['action.devices.traits.ObjectDetection']
 };
 
+export type RunCycleDevice = Device<{
+    currentRunCycle: {
+        currentCycle: string;
+        nextCycle?: string;
+        lang: Language;
+    }[];
+    currentTotalRemainingTime: number;
+    currentCycleRemainingTime: number;
+}> & {
+    traits: ['action.devices.traits.RunCycle']
+};
+
 export type ErrorCode =
     'aboveMaximumLightEffectsDuration' |
     'aboveMaximumTimerDuration' |
@@ -835,7 +847,10 @@ export type DeviceType =
     'action.devices.types.VALVE' |
     'action.devices.types.WINDOW' |
     'action.devices.types.SOUSVIDE' |
-    'action.devices.types.SPRINKLER';
+    'action.devices.types.SPRINKLER' |
+    'action.devices.types.DISHWASHER' |
+    'action.devices.types.WASHER' |
+    'action.devices.types.DRYER';
 
 export type Trait =
     'action.devices.traits.ArmDisarm' |
@@ -861,5 +876,6 @@ export type Trait =
     'action.devices.traits.Timer' |
     'action.devices.traits.StartStop' |
     'action.devices.traits.EnergyStorage' |
-    'action.devices.traits.ObjectDetection';
+    'action.devices.traits.ObjectDetection' |
+    'action.devices.traits.RunCycle';
 

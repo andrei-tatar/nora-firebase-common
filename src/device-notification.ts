@@ -1,3 +1,5 @@
+import { ErrorCode } from './device';
+
 export interface ObjectDetectionNotification {
     ObjectDetection: {
         priority: 0;
@@ -8,5 +10,17 @@ export interface ObjectDetectionNotification {
             unfamiliar?: number;
             unclassified?: number;
         };
+    };
+}
+
+export interface RunCycleNotification {
+    RunCycle: {
+        priority: 0;
+        status: 'SUCCESS';
+        currentCycleRemainingTime: number;
+    } | {
+        priority: 0;
+        status: 'FAILURE';
+        errorCode: ErrorCode;
     };
 }

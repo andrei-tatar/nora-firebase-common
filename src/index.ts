@@ -4,6 +4,6 @@ export * from './checks';
 export * from './validate';
 export * from './update-state';
 export * from './notification';
-export * from './object-detection-notification';
+export * from './device-notification';
 export * from './local-execution';
 export * from './constants';

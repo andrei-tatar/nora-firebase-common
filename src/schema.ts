@@ -1,4 +1,3 @@
-
 /* This file is auto-generated during build. Don't modify it! any changes will be overwritten. */
 /* tslint:disable */
 
@@ -312,7 +311,10 @@ export const Schema = {
             "action.devices.types.VALVE",
             "action.devices.types.WINDOW",
             "action.devices.types.SOUSVIDE",
-            "action.devices.types.SPRINKLER"
+            "action.devices.types.SPRINKLER",
+            "action.devices.types.DISHWASHER",
+            "action.devices.types.WASHER",
+            "action.devices.types.DRYER"
           ]
         },
         "TwoFactor": {
@@ -657,7 +659,10 @@ export const Schema = {
             "action.devices.types.VALVE",
             "action.devices.types.WINDOW",
             "action.devices.types.SOUSVIDE",
-            "action.devices.types.SPRINKLER"
+            "action.devices.types.SPRINKLER",
+            "action.devices.types.DISHWASHER",
+            "action.devices.types.WASHER",
+            "action.devices.types.DRYER"
           ]
         },
         "TwoFactor": {
@@ -1075,7 +1080,10 @@ export const Schema = {
             "action.devices.types.VALVE",
             "action.devices.types.WINDOW",
             "action.devices.types.SOUSVIDE",
-            "action.devices.types.SPRINKLER"
+            "action.devices.types.SPRINKLER",
+            "action.devices.types.DISHWASHER",
+            "action.devices.types.WASHER",
+            "action.devices.types.DRYER"
           ]
         },
         "TwoFactor": {
@@ -1400,7 +1408,10 @@ export const Schema = {
             "action.devices.types.VALVE",
             "action.devices.types.WINDOW",
             "action.devices.types.SOUSVIDE",
-            "action.devices.types.SPRINKLER"
+            "action.devices.types.SPRINKLER",
+            "action.devices.types.DISHWASHER",
+            "action.devices.types.WASHER",
+            "action.devices.types.DRYER"
           ]
         },
         "TwoFactor": {
@@ -1721,7 +1732,10 @@ export const Schema = {
             "action.devices.types.VALVE",
             "action.devices.types.WINDOW",
             "action.devices.types.SOUSVIDE",
-            "action.devices.types.SPRINKLER"
+            "action.devices.types.SPRINKLER",
+            "action.devices.types.DISHWASHER",
+            "action.devices.types.WASHER",
+            "action.devices.types.DRYER"
           ]
         },
         "TwoFactor": {
@@ -2048,7 +2062,10 @@ export const Schema = {
             "action.devices.types.VALVE",
             "action.devices.types.WINDOW",
             "action.devices.types.SOUSVIDE",
-            "action.devices.types.SPRINKLER"
+            "action.devices.types.SPRINKLER",
+            "action.devices.types.DISHWASHER",
+            "action.devices.types.WASHER",
+            "action.devices.types.DRYER"
           ]
         },
         "TwoFactor": {
@@ -2437,7 +2454,10 @@ export const Schema = {
             "action.devices.types.VALVE",
             "action.devices.types.WINDOW",
             "action.devices.types.SOUSVIDE",
-            "action.devices.types.SPRINKLER"
+            "action.devices.types.SPRINKLER",
+            "action.devices.types.DISHWASHER",
+            "action.devices.types.WASHER",
+            "action.devices.types.DRYER"
           ]
         },
         "PreviousMode": {
@@ -2814,7 +2834,10 @@ export const Schema = {
             "action.devices.types.VALVE",
             "action.devices.types.WINDOW",
             "action.devices.types.SOUSVIDE",
-            "action.devices.types.SPRINKLER"
+            "action.devices.types.SPRINKLER",
+            "action.devices.types.DISHWASHER",
+            "action.devices.types.WASHER",
+            "action.devices.types.DRYER"
           ]
         },
         "TwoFactor": {
@@ -3188,7 +3211,10 @@ export const Schema = {
             "action.devices.types.VALVE",
             "action.devices.types.WINDOW",
             "action.devices.types.SOUSVIDE",
-            "action.devices.types.SPRINKLER"
+            "action.devices.types.SPRINKLER",
+            "action.devices.types.DISHWASHER",
+            "action.devices.types.WASHER",
+            "action.devices.types.DRYER"
           ]
         },
         "TwoFactor": {
@@ -3536,7 +3562,10 @@ export const Schema = {
             "action.devices.types.VALVE",
             "action.devices.types.WINDOW",
             "action.devices.types.SOUSVIDE",
-            "action.devices.types.SPRINKLER"
+            "action.devices.types.SPRINKLER",
+            "action.devices.types.DISHWASHER",
+            "action.devices.types.WASHER",
+            "action.devices.types.DRYER"
           ]
         },
         "TwoFactor": {
@@ -3861,7 +3890,10 @@ export const Schema = {
             "action.devices.types.VALVE",
             "action.devices.types.WINDOW",
             "action.devices.types.SOUSVIDE",
-            "action.devices.types.SPRINKLER"
+            "action.devices.types.SPRINKLER",
+            "action.devices.types.DISHWASHER",
+            "action.devices.types.WASHER",
+            "action.devices.types.DRYER"
           ]
         },
         "TransportControlIncomingCommand": {
@@ -4407,7 +4439,10 @@ export const Schema = {
             "action.devices.types.VALVE",
             "action.devices.types.WINDOW",
             "action.devices.types.SOUSVIDE",
-            "action.devices.types.SPRINKLER"
+            "action.devices.types.SPRINKLER",
+            "action.devices.types.DISHWASHER",
+            "action.devices.types.WASHER",
+            "action.devices.types.DRYER"
           ]
         },
         "TwoFactor": {
@@ -4844,7 +4879,10 @@ export const Schema = {
             "action.devices.types.VALVE",
             "action.devices.types.WINDOW",
             "action.devices.types.SOUSVIDE",
-            "action.devices.types.SPRINKLER"
+            "action.devices.types.SPRINKLER",
+            "action.devices.types.DISHWASHER",
+            "action.devices.types.WASHER",
+            "action.devices.types.DRYER"
           ]
         },
         "TwoFactor": {
@@ -5861,7 +5899,10 @@ export const Schema = {
             "action.devices.types.VALVE",
             "action.devices.types.WINDOW",
             "action.devices.types.SOUSVIDE",
-            "action.devices.types.SPRINKLER"
+            "action.devices.types.SPRINKLER",
+            "action.devices.types.DISHWASHER",
+            "action.devices.types.WASHER",
+            "action.devices.types.DRYER"
           ]
         },
         "TwoFactor": {
@@ -6215,7 +6256,10 @@ export const Schema = {
             "action.devices.types.VALVE",
             "action.devices.types.WINDOW",
             "action.devices.types.SOUSVIDE",
-            "action.devices.types.SPRINKLER"
+            "action.devices.types.SPRINKLER",
+            "action.devices.types.DISHWASHER",
+            "action.devices.types.WASHER",
+            "action.devices.types.DRYER"
           ]
         },
         "TwoFactor": {
@@ -6563,7 +6607,10 @@ export const Schema = {
             "action.devices.types.VALVE",
             "action.devices.types.WINDOW",
             "action.devices.types.SOUSVIDE",
-            "action.devices.types.SPRINKLER"
+            "action.devices.types.SPRINKLER",
+            "action.devices.types.DISHWASHER",
+            "action.devices.types.WASHER",
+            "action.devices.types.DRYER"
           ]
         },
         "TwoFactor": {
@@ -6988,7 +7035,10 @@ export const Schema = {
             "action.devices.types.VALVE",
             "action.devices.types.WINDOW",
             "action.devices.types.SOUSVIDE",
-            "action.devices.types.SPRINKLER"
+            "action.devices.types.SPRINKLER",
+            "action.devices.types.DISHWASHER",
+            "action.devices.types.WASHER",
+            "action.devices.types.DRYER"
           ]
         },
         "TwoFactor": {
@@ -7342,7 +7392,10 @@ export const Schema = {
             "action.devices.types.VALVE",
             "action.devices.types.WINDOW",
             "action.devices.types.SOUSVIDE",
-            "action.devices.types.SPRINKLER"
+            "action.devices.types.SPRINKLER",
+            "action.devices.types.DISHWASHER",
+            "action.devices.types.WASHER",
+            "action.devices.types.DRYER"
           ]
         },
         "TwoFactor": {
@@ -7816,7 +7869,10 @@ export const Schema = {
             "action.devices.types.VALVE",
             "action.devices.types.WINDOW",
             "action.devices.types.SOUSVIDE",
-            "action.devices.types.SPRINKLER"
+            "action.devices.types.SPRINKLER",
+            "action.devices.types.DISHWASHER",
+            "action.devices.types.WASHER",
+            "action.devices.types.DRYER"
           ]
         },
         "CameraStreamResult": {
@@ -8287,7 +8343,10 @@ export const Schema = {
             "action.devices.types.VALVE",
             "action.devices.types.WINDOW",
             "action.devices.types.SOUSVIDE",
-            "action.devices.types.SPRINKLER"
+            "action.devices.types.SPRINKLER",
+            "action.devices.types.DISHWASHER",
+            "action.devices.types.WASHER",
+            "action.devices.types.DRYER"
           ]
         },
         "TwoFactor": {
@@ -8635,7 +8694,10 @@ export const Schema = {
             "action.devices.types.VALVE",
             "action.devices.types.WINDOW",
             "action.devices.types.SOUSVIDE",
-            "action.devices.types.SPRINKLER"
+            "action.devices.types.SPRINKLER",
+            "action.devices.types.DISHWASHER",
+            "action.devices.types.WASHER",
+            "action.devices.types.DRYER"
           ]
         },
         "TwoFactor": {
@@ -8969,7 +9031,10 @@ export const Schema = {
             "action.devices.types.VALVE",
             "action.devices.types.WINDOW",
             "action.devices.types.SOUSVIDE",
-            "action.devices.types.SPRINKLER"
+            "action.devices.types.SPRINKLER",
+            "action.devices.types.DISHWASHER",
+            "action.devices.types.WASHER",
+            "action.devices.types.DRYER"
           ]
         },
         "TwoFactor": {
@@ -9326,7 +9391,10 @@ export const Schema = {
             "action.devices.types.VALVE",
             "action.devices.types.WINDOW",
             "action.devices.types.SOUSVIDE",
-            "action.devices.types.SPRINKLER"
+            "action.devices.types.SPRINKLER",
+            "action.devices.types.DISHWASHER",
+            "action.devices.types.WASHER",
+            "action.devices.types.DRYER"
           ]
         },
         "TwoFactor": {
@@ -9659,7 +9727,10 @@ export const Schema = {
             "action.devices.types.VALVE",
             "action.devices.types.WINDOW",
             "action.devices.types.SOUSVIDE",
-            "action.devices.types.SPRINKLER"
+            "action.devices.types.SPRINKLER",
+            "action.devices.types.DISHWASHER",
+            "action.devices.types.WASHER",
+            "action.devices.types.DRYER"
           ]
         },
         "TwoFactor": {
@@ -9730,6 +9801,370 @@ export const Schema = {
             }
           },
           "additionalProperties": false
+        }
+      }
+    },
+    "runcycle": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "traits": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Trait"
+          }
+        },
+        "id": {
+          "type": "string"
+        },
+        "type": {
+          "$ref": "#/definitions/DeviceType"
+        },
+        "name": {
+          "type": "object",
+          "properties": {
+            "defaultNames": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "name": {
+              "type": "string",
+              "maxLength": 40
+            },
+            "nicknames": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          "required": [
+            "name"
+          ],
+          "additionalProperties": false
+        },
+        "willReportState": {
+          "type": "boolean"
+        },
+        "notificationSupportedByAgent": {
+          "type": "boolean"
+        },
+        "structureHint": {
+          "type": "string",
+          "description": "Name of the home this device belongs to",
+          "maxLength": 40
+        },
+        "roomHint": {
+          "type": "string",
+          "description": "Name of the room this device belongs to",
+          "maxLength": 40
+        },
+        "deviceInfo": {
+          "type": "object",
+          "properties": {
+            "manufacturer": {
+              "type": "string"
+            },
+            "model": {
+              "type": "string"
+            },
+            "hwVersion": {
+              "type": "string"
+            },
+            "swVersion": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "manufacturer",
+            "model",
+            "hwVersion",
+            "swVersion"
+          ],
+          "additionalProperties": false
+        },
+        "otherDeviceIds": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "agentId": {
+                "type": "string"
+              },
+              "deviceId": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "deviceId"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "customData": {
+          "type": "object",
+          "properties": {
+            "proxyId": {
+              "type": "string",
+              "description": "Used for local execution to identity the instance responsible of this device",
+              "maxLength": 40
+            }
+          },
+          "additionalProperties": false
+        },
+        "noraSpecific": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "disabled": {
+              "type": "boolean"
+            },
+            "twoFactor": {
+              "$ref": "#/definitions/TwoFactor"
+            },
+            "error": {
+              "type": "object",
+              "properties": {
+                "msg": {
+                  "type": "string"
+                },
+                "details": {}
+              },
+              "required": [
+                "msg"
+              ],
+              "additionalProperties": false
+            },
+            "asyncCommandExecution": {
+              "anyOf": [
+                {
+                  "type": "boolean"
+                },
+                {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              ]
+            },
+            "commands": {
+              "type": "object",
+              "additionalProperties": {
+                "$ref": "#/definitions/AsyncCommand"
+              }
+            },
+            "responses": {
+              "type": "object",
+              "additionalProperties": {
+                "$ref": "#/definitions/AsyncResponse"
+              }
+            }
+          }
+        },
+        "state": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "currentRunCycle": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "currentCycle": {
+                    "type": "string"
+                  },
+                  "nextCycle": {
+                    "type": "string"
+                  },
+                  "lang": {
+                    "$ref": "#/definitions/Language"
+                  }
+                },
+                "required": [
+                  "currentCycle",
+                  "lang"
+                ],
+                "additionalProperties": false
+              }
+            },
+            "currentTotalRemainingTime": {
+              "type": "number"
+            },
+            "currentCycleRemainingTime": {
+              "type": "number"
+            },
+            "online": {
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "currentCycleRemainingTime",
+            "currentRunCycle",
+            "currentTotalRemainingTime",
+            "online"
+          ]
+        },
+        "attributes": {
+          "type": "object",
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "attributes",
+        "id",
+        "name",
+        "noraSpecific",
+        "state",
+        "traits",
+        "type",
+        "willReportState"
+      ],
+      "definitions": {
+        "Trait": {
+          "type": "string",
+          "enum": [
+            "action.devices.traits.RunCycle"
+          ]
+        },
+        "DeviceType": {
+          "type": "string",
+          "enum": [
+            "action.devices.types.LIGHT",
+            "action.devices.types.SWITCH",
+            "action.devices.types.SCENE",
+            "action.devices.types.OUTLET",
+            "action.devices.types.THERMOSTAT",
+            "action.devices.types.AC_UNIT",
+            "action.devices.types.LOCK",
+            "action.devices.types.SENSOR",
+            "action.devices.types.HUMIDIFIER",
+            "action.devices.types.SMOKE_DETECTOR",
+            "action.devices.types.FAN",
+            "action.devices.types.SECURITYSYSTEM",
+            "action.devices.types.CAMERA",
+            "action.devices.types.AIRPURIFIER",
+            "action.devices.types.CHARGER",
+            "action.devices.types.DOORBELL",
+            "action.devices.types.SPEAKER",
+            "action.devices.types.AUDIO_VIDEO_RECEIVER",
+            "action.devices.types.REMOTECONTROL",
+            "action.devices.types.SETTOP",
+            "action.devices.types.SOUNDBAR",
+            "action.devices.types.STREAMING_BOX",
+            "action.devices.types.STREAMING_SOUNDBAR",
+            "action.devices.types.STREAMING_STICK",
+            "action.devices.types.TV",
+            "action.devices.types.CLOSET",
+            "action.devices.types.AWNING",
+            "action.devices.types.CURTAIN",
+            "action.devices.types.DOOR",
+            "action.devices.types.DRAWER",
+            "action.devices.types.BLINDS",
+            "action.devices.types.GARAGE",
+            "action.devices.types.GATE",
+            "action.devices.types.PERGOLA",
+            "action.devices.types.SHUTTER",
+            "action.devices.types.VALVE",
+            "action.devices.types.WINDOW",
+            "action.devices.types.SOUSVIDE",
+            "action.devices.types.SPRINKLER",
+            "action.devices.types.DISHWASHER",
+            "action.devices.types.WASHER",
+            "action.devices.types.DRYER"
+          ]
+        },
+        "TwoFactor": {
+          "anyOf": [
+            {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "type": "string",
+                  "const": "ack"
+                }
+              },
+              "required": [
+                "type"
+              ],
+              "additionalProperties": false
+            },
+            {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "type": "string",
+                  "const": "pin"
+                },
+                "pin": {
+                  "type": "string",
+                  "maxLength": 20
+                }
+              },
+              "required": [
+                "type",
+                "pin"
+              ],
+              "additionalProperties": false
+            }
+          ]
+        },
+        "AsyncCommand": {
+          "type": "object",
+          "properties": {
+            "command": {
+              "type": "string"
+            },
+            "params": {
+              "type": "object",
+              "additionalProperties": {
+                "type": [
+                  "boolean",
+                  "number",
+                  "string"
+                ]
+              }
+            }
+          },
+          "required": [
+            "command",
+            "params"
+          ],
+          "additionalProperties": false
+        },
+        "AsyncResponse": {
+          "type": "object",
+          "properties": {
+            "result": {},
+            "state": {},
+            "errorCode": {
+              "type": "string"
+            }
+          },
+          "additionalProperties": false
+        },
+        "Language": {
+          "type": "string",
+          "enum": [
+            "da",
+            "nl",
+            "en",
+            "fr",
+            "de",
+            "hi",
+            "id",
+            "it",
+            "ja",
+            "ko",
+            "no",
+            "pt-BR",
+            "es",
+            "sv",
+            "th"
+          ]
         }
       }
     }
@@ -10850,6 +11285,72 @@ export const Schema = {
         "online"
       ],
       "definitions": {}
+    },
+    "runcycle": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "currentRunCycle": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "currentCycle": {
+                "type": "string"
+              },
+              "nextCycle": {
+                "type": "string"
+              },
+              "lang": {
+                "$ref": "#/definitions/Language"
+              }
+            },
+            "required": [
+              "currentCycle",
+              "lang"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "currentTotalRemainingTime": {
+          "type": "number"
+        },
+        "currentCycleRemainingTime": {
+          "type": "number"
+        },
+        "online": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "currentCycleRemainingTime",
+        "currentRunCycle",
+        "currentTotalRemainingTime",
+        "online"
+      ],
+      "definitions": {
+        "Language": {
+          "type": "string",
+          "enum": [
+            "da",
+            "nl",
+            "en",
+            "fr",
+            "de",
+            "hi",
+            "id",
+            "it",
+            "ja",
+            "ko",
+            "no",
+            "pt-BR",
+            "es",
+            "sv",
+            "th"
+          ]
+        }
+      }
     }
   },
   "state-update": {
@@ -11803,6 +12304,62 @@ export const Schema = {
         }
       },
       "definitions": {}
+    },
+    "runcycle": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "currentRunCycle": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "currentCycle": {
+                "type": "string"
+              },
+              "nextCycle": {
+                "type": "string"
+              },
+              "lang": {
+                "$ref": "#/definitions/Language"
+              }
+            },
+            "additionalProperties": false
+          }
+        },
+        "currentTotalRemainingTime": {
+          "type": "number"
+        },
+        "currentCycleRemainingTime": {
+          "type": "number"
+        },
+        "online": {
+          "type": "boolean"
+        }
+      },
+      "definitions": {
+        "Language": {
+          "type": "string",
+          "enum": [
+            "da",
+            "nl",
+            "en",
+            "fr",
+            "de",
+            "hi",
+            "id",
+            "it",
+            "ja",
+            "ko",
+            "no",
+            "pt-BR",
+            "es",
+            "sv",
+            "th"
+          ]
+        }
+      }
     }
   }
 } as const;
@@ -12036,5 +12593,206 @@ export const IndividualSchema = {
     ],
     "additionalProperties": false,
     "definitions": {}
+  },
+  "runcycle-notification": {
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "type": "object",
+    "properties": {
+      "RunCycle": {
+        "anyOf": [
+          {
+            "type": "object",
+            "properties": {
+              "priority": {
+                "type": "number",
+                "const": 0
+              },
+              "status": {
+                "type": "string",
+                "const": "SUCCESS"
+              },
+              "currentCycleRemainingTime": {
+                "type": "number"
+              }
+            },
+            "required": [
+              "priority",
+              "status",
+              "currentCycleRemainingTime"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "priority": {
+                "type": "number",
+                "const": 0
+              },
+              "status": {
+                "type": "string",
+                "const": "FAILURE"
+              },
+              "errorCode": {
+                "$ref": "#/definitions/ErrorCode"
+              }
+            },
+            "required": [
+              "priority",
+              "status",
+              "errorCode"
+            ],
+            "additionalProperties": false
+          }
+        ]
+      }
+    },
+    "required": [
+      "RunCycle"
+    ],
+    "additionalProperties": false,
+    "definitions": {
+      "ErrorCode": {
+        "type": "string",
+        "enum": [
+          "aboveMaximumLightEffectsDuration",
+          "aboveMaximumTimerDuration",
+          "actionNotAvailable",
+          "actionUnavailableWhileRunning",
+          "alreadyArmed",
+          "alreadyAtMax",
+          "alreadyAtMin",
+          "alreadyClosed",
+          "alreadyDisarmed",
+          "alreadyDocked",
+          "alreadyInstalledApp",
+          "alreadyInState",
+          "alreadyLocked",
+          "alreadyOff",
+          "alreadyOn",
+          "alreadyOpen",
+          "alreadyPaused",
+          "alreadyStarted",
+          "alreadyStopped",
+          "alreadyUnlocked",
+          "ambiguousZoneName",
+          "amountAboveLimit",
+          "appLaunchFailed",
+          "armFailure",
+          "armLevelNeeded",
+          "authFailure",
+          "bagFull",
+          "belowMinimumLightEffectsDuration",
+          "belowMinimumTimerDuration",
+          "binFull",
+          "cancelArmingRestricted",
+          "cancelTooLate",
+          "channelSwitchFailed",
+          "chargerIssue",
+          "commandInsertFailed",
+          "deadBattery",
+          "degreesOutOfRange",
+          "deviceAlertNeedsAssistance",
+          "deviceAtExtremeTemperature",
+          "deviceBusy",
+          "deviceCharging",
+          "deviceClogged",
+          "deviceCurrentlyDispensing",
+          "deviceDoorOpen",
+          "deviceHandleClosed",
+          "deviceJammingDetected",
+          "deviceLidOpen",
+          "deviceNeedsRepair",
+          "deviceNotDocked",
+          "deviceNotFound",
+          "deviceNotMounted",
+          "deviceNotReady",
+          "deviceStuck",
+          "deviceTampered",
+          "deviceThermalShutdown",
+          "deviceUnplugged",
+          "directResponseOnlyUnreachable",
+          "disarmFailure",
+          "discreteOnlyOpenClose",
+          "dispenseAmountAboveLimit",
+          "dispenseAmountBelowLimit",
+          "dispenseAmountRemainingExceeded",
+          "dispenseFractionalAmountNotSupported",
+          "dispenseFractionalUnitNotSupported",
+          "dispenseUnitNotSupported",
+          "doorClosedTooLong",
+          "emergencyHeatOn",
+          "faultyBattery",
+          "floorUnreachable",
+          "functionNotSupported",
+          "genericDispenseNotSupported",
+          "hardError",
+          "inAutoMode",
+          "inAwayMode",
+          "inDryMode",
+          "inEcoMode",
+          "inFanOnlyMode",
+          "inHeatOrCool",
+          "inHumidifierMode",
+          "inOffMode",
+          "inPurifierMode",
+          "inSleepMode",
+          "inSoftwareUpdate",
+          "lockFailure",
+          "lockedState",
+          "lockedToRange",
+          "lowBattery",
+          "maxSettingReached",
+          "maxSpeedReached",
+          "minSettingReached",
+          "minSpeedReached",
+          "monitoringServiceConnectionLost",
+          "needsAttachment",
+          "needsBin",
+          "needsPads",
+          "needsSoftwareUpdate",
+          "needsWater",
+          "networkProfileNotRecognized",
+          "networkSpeedTestInProgress",
+          "noAvailableApp",
+          "noAvailableChannel",
+          "noChannelSubscription",
+          "noTimerExists",
+          "notSupported",
+          "obstructionDetected",
+          "offline",
+          "deviceOffline",
+          "onRequiresMode",
+          "passphraseIncorrect",
+          "percentOutOfRange",
+          "pinIncorrect",
+          "rainDetected",
+          "rangeTooClose",
+          "relinkRequired",
+          "roomsOnDifferentFloors",
+          "safetyShutOff",
+          "sceneCannotBeApplied",
+          "securityRestriction",
+          "softwareUpdateNotAvailable",
+          "startRequiresTime",
+          "stillCoolingDown",
+          "stillWarmingUp",
+          "streamUnavailable",
+          "streamUnplayable",
+          "tankEmpty",
+          "targetAlreadyReached",
+          "timerValueOutOfRange",
+          "tooManyFailedAttempts",
+          "transientError",
+          "turnedOff",
+          "unableToLocateDevice",
+          "unknownFoodPreset",
+          "unlockFailure",
+          "unpausableState",
+          "userCancelled",
+          "valueOutOfRange"
+        ]
+      }
+    }
   }
 } as const;

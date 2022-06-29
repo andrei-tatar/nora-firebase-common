@@ -15,7 +15,11 @@ const individualSchemas = {
     },
     'object-detection-notification': {
         type: 'ObjectDetectionNotification',
-        path: './src/object-detection-notification.ts',
+        path: './src/device-notification.ts',
+    },
+    'runcycle-notification': {
+        type: 'RunCycleNotification',
+        path: './src/device-notification.ts',
     },
 };
 
@@ -54,8 +58,7 @@ try {
         return dict;
     }, {});
 
-    const schema = `
-/* This file is auto-generated during build. Don't modify it! any changes will be overwritten. */
+    const schema = `/* This file is auto-generated during build. Don't modify it! any changes will be overwritten. */
 /* tslint:disable */
 
 export type SchemaType = keyof typeof Schema;
