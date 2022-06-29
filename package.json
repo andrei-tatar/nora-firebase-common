@@ -1,6 +1,6 @@
 {
   "name": "@andrei-tatar/nora-firebase-common",
-  "version": "1.10.5",
+  "version": "1.11.0",
   "description": "Common stuff for nora firebase",
   "main": "build/index.js",
   "scripts": {
