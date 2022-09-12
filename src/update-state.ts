@@ -79,6 +79,6 @@ function updateStateInternal(update: any, state: any, path = ''): boolean {
     return hasChanges;
 }
 
-function entries<T>(o: T): [keyof T, any][] {
+function entries<T extends object>(o: T): [keyof T, any][] {
     return Object.entries(o) as any;
 }

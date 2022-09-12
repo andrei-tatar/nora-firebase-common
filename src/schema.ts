@@ -12380,7 +12380,8 @@ export const IndividualSchema = {
           "properties": {
             "action": {
               "type": "string",
-              "description": "An action available to the user when the notification is presented"
+              "description": "An action available to the user when the notification is presented",
+              "maxLength": 200
             },
             "icon": {
               "type": "string",
@@ -12397,7 +12398,8 @@ export const IndividualSchema = {
           ],
           "additionalProperties": false
         },
-        "description": "An array of notification actions representing the actions available to the user when the notification is presented."
+        "description": "An array of notification actions representing the actions available to the user when the notification is presented.",
+        "maxItems": 3
       },
       "badge": {
         "type": "string",
@@ -12471,7 +12473,8 @@ export const IndividualSchema = {
           },
           "defaultAction": {
             "type": "string",
-            "description": "Used to set a default action for clicking this notification."
+            "description": "Used to set a default action for clicking this notification.",
+            "maxLength": 200
           },
           "close": {
             "type": "boolean",

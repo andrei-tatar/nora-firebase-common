@@ -6,10 +6,12 @@ export interface WebpushNotification {
     /**
      * An array of notification actions representing the actions
      * available to the user when the notification is presented.
+     * @maxItems 3
      */
     actions?: Array<{
         /**
          * An action available to the user when the notification is presented
+         * @maxLength 200
          */
         action: string;
         /**
@@ -86,6 +88,7 @@ export interface WebpushNotification {
         sender?: string;
         /**
          * Used to set a default action for clicking this notification.
+         * @maxLength 200
          */
         defaultAction?: string;
         /**
