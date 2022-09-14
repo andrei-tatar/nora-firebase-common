@@ -117,3 +117,7 @@ export function isObjectDetectionDevice(device: Pick<dev.Device, 'traits'>): dev
 export function isRunCycleDevice(device: Pick<dev.Device, 'traits'>): device is dev.RunCycleDevice {
     return device.traits.includes('action.devices.traits.RunCycle');
 }
+
+export function isDockDevice(device: Pick<dev.Device, 'traits'>): device is dev.DockDevice {
+    return device.traits.includes('action.devices.traits.Dock');
+}

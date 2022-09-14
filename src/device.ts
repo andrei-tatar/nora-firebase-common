@@ -668,6 +668,14 @@ export type RunCycleDevice = Device<{
     traits: ['action.devices.traits.RunCycle']
 };
 
+export type DockDevice = Device<{
+    isDocked: boolean;
+}, {}, {
+    returnDockErrorCodeIfAlreadyDocked?: boolean;
+}> & {
+    traits: ['action.devices.traits.Dock']
+};
+
 export type ErrorCode =
     'aboveMaximumLightEffectsDuration' |
     'aboveMaximumTimerDuration' |
@@ -850,7 +858,8 @@ export type DeviceType =
     'action.devices.types.SPRINKLER' |
     'action.devices.types.DISHWASHER' |
     'action.devices.types.WASHER' |
-    'action.devices.types.DRYER';
+    'action.devices.types.DRYER' |
+    'action.devices.types.VACUUM';
 
 export type Trait =
     'action.devices.traits.ArmDisarm' |
@@ -877,5 +886,6 @@ export type Trait =
     'action.devices.traits.StartStop' |
     'action.devices.traits.EnergyStorage' |
     'action.devices.traits.ObjectDetection' |
-    'action.devices.traits.RunCycle';
+    'action.devices.traits.RunCycle' |
+    'action.devices.traits.Dock';
 

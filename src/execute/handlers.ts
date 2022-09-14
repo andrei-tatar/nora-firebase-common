@@ -661,6 +661,23 @@ HANDLERS.set('action.devices.commands.Charge', (device, params) => {
     return null;
 });
 
+HANDLERS.set('action.devices.commands.Dock', (device) => {
+    if (checks.isDockDevice(device)) {
+        if (device.state.isDocked && device.noraSpecific.returnDockErrorCodeIfAlreadyDocked) {
+            throw new ExecuteCommandError('alreadyDocked');
+        }
+
+        const updateState: Partial<devices.DockDevice['state']> = {
+            isDocked: true,
+        };
+
+        return {
+            updateState
+        };
+    }
+    return null;
+});
+
 function limit(n: number, minimum = 0, maximum = 100) {
     return Math.min(maximum, Math.max(minimum, n));
 }
