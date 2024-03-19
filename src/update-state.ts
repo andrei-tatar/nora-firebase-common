@@ -16,6 +16,9 @@ const arrayItemKeyMap = new Map<string, string>([
     ['currentSensorStateData', 'name'],
 ]);
 
+// https://github.com/andrei-tatar/nora-firebase-common/issues/9
+const ignoreKeys: any[] = ['__proto__', 'constructor', 'prototype'];
+
 function updateArrayState(update: any[], state: any[], path = ''): boolean {
     let hasChanges = false;
 
@@ -51,6 +54,8 @@ function updateStateInternal(update: any, state: any, path = ''): boolean {
 
     let hasChanges = false;
     for (const [key, newValue] of entries(update)) {
+        if (ignoreKeys.includes(key)) { continue; }
+
         const oldValue = state[key];
         const newType = typeof newValue;
         const oldType = typeof oldValue;

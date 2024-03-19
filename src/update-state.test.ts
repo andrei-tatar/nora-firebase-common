@@ -222,5 +222,14 @@ describe('updateState', () => {
             }],
         });
     });
+
+    it('should not update via prototype props', () => {
+        var BAD_JSON = JSON.parse('{"__proto__":{"polluted":true}}')
+
+        const { hasChanges } = updateState(BAD_JSON, {})
+
+        expect(hasChanges).to.be.false;
+        expect((Object.prototype as any).polluted).to.be.undefined;
+    });
 });
 
