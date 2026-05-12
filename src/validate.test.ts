@@ -1,45 +1,50 @@
-import * as chai from 'chai';
-import {
-  ArmDisarmDevice, FanSpeedDevice, ObjectDetectionDevice, OnOffDevice,
-  SensorStateDevice, TemperatureSettingDevice, Trait
-} from './device';
-import { validate } from './validate';
+import { expect, describe, it } from "@jest/globals";
 
-const expect = chai.expect;
-describe('validate', () => {
-  it('should return true for valid states', () => {
-    const result = validate(['action.devices.traits.Brightness'], 'state', {
+import {
+  ArmDisarmDevice,
+  FanSpeedDevice,
+  ObjectDetectionDevice,
+  OnOffDevice,
+  SensorStateDevice,
+  TemperatureSettingDevice,
+  Trait,
+} from "./device";
+import { validate } from "./validate";
+
+describe("validate", () => {
+  it("should return true for valid states", () => {
+    const result = validate(["action.devices.traits.Brightness"], "state", {
       online: false,
       brightness: 95,
     });
 
-    expect(result.valid).to.be.true;
+    expect(result.valid).toBe(true);
   });
 
-  it('should return false for invalid states', () => {
-    const result = validate(['action.devices.traits.Brightness'], 'state', {
-      invalidProperty: 'value',
+  it("should return false for invalid states", () => {
+    const result = validate(["action.devices.traits.Brightness"], "state", {
+      invalidProperty: "value",
     });
 
-    expect(result.valid).to.be.false;
+    expect(result.valid).toBe(false);
   });
 
-  it('should return true for valid states for multiple traits', () => {
+  it("should return true for valid states for multiple traits", () => {
     const result = validate(
-      ['action.devices.traits.Brightness', 'action.devices.traits.OnOff'],
-      'state',
+      ["action.devices.traits.Brightness", "action.devices.traits.OnOff"],
+      "state",
       {
         online: false,
         brightness: 95,
         on: true,
-      }
+      },
     );
 
-    expect(result.valid).to.be.true;
+    expect(result.valid).toBe(true);
   });
 
-  it('should return false for partial children', () => {
-    const result = validate(['action.devices.traits.ColorSetting'], 'state', {
+  it("should return false for partial children", () => {
+    const result = validate(["action.devices.traits.ColorSetting"], "state", {
       color: {
         spectrumHsv: {
           hue: 230,
@@ -47,11 +52,11 @@ describe('validate', () => {
       },
     });
 
-    expect(result.valid).to.be.false;
+    expect(result.valid).toBe(false);
   });
 
-  it('complete state schema check should return true for complete children', () => {
-    const result = validate(['action.devices.traits.ColorSetting'], 'state', {
+  it("complete state schema check should return true for complete children", () => {
+    const result = validate(["action.devices.traits.ColorSetting"], "state", {
       color: {
         spectrumHsv: {
           hue: 230,
@@ -62,13 +67,13 @@ describe('validate', () => {
       online: true,
     });
 
-    expect(result.valid).to.be.true;
+    expect(result.valid).toBe(true);
   });
 
-  it('should return true for complete children', () => {
+  it("should return true for complete children", () => {
     const result = validate(
-      ['action.devices.traits.ColorSetting'],
-      'state-update',
+      ["action.devices.traits.ColorSetting"],
+      "state-update",
       {
         color: {
           spectrumHsv: {
@@ -77,38 +82,38 @@ describe('validate', () => {
             value: 0.5,
           },
         },
-      }
+      },
     );
 
-    expect(result.valid).to.be.true;
+    expect(result.valid).toBe(true);
   });
 
-  it('update should return true for partial children', () => {
+  it("update should return true for partial children", () => {
     const result = validate(
-      ['action.devices.traits.ColorSetting'],
-      'state-update',
+      ["action.devices.traits.ColorSetting"],
+      "state-update",
       {
         color: {
           spectrumHsv: {
             hue: 230,
           },
         },
-      }
+      },
     );
 
-    expect(result.valid).to.be.true;
+    expect(result.valid).toBe(true);
   });
 
-  it('should merge anyOf schemas and validate ok', () => {
+  it("should merge anyOf schemas and validate ok", () => {
     const device = {
-      id: '3fa1fb5:3a24c04',
-      type: 'action.devices.types.CURTAIN',
+      id: "3fa1fb5:3a24c04",
+      type: "action.devices.types.CURTAIN",
       traits: [
-        'action.devices.traits.OpenClose',
-        'action.devices.traits.LockUnlock',
+        "action.devices.traits.OpenClose",
+        "action.devices.traits.LockUnlock",
       ],
-      name: { name: 'Test' },
-      roomHint: '',
+      name: { name: "Test" },
+      roomHint: "",
       willReportState: true,
       state: { online: true, openPercent: 0, isLocked: false, isJammed: false },
       noraSpecific: {},
@@ -117,85 +122,96 @@ describe('validate', () => {
         commandOnlyOpenClose: false,
         queryOnlyOpenClose: false,
       },
-      structureHint: 'Test',
+      structureHint: "Test",
     };
 
-    const result = validate(device.traits as Trait[], 'device', device);
-    expect(result.valid).to.be.true;
+    const result = validate(device.traits as Trait[], "device", device);
+    expect(result.valid).toBe(true);
   });
 
-  it('should merge anyOf partial state schemas and validate ok', () => {
+  it("should merge anyOf partial state schemas and validate ok", () => {
     const result = validate(
-      ['action.devices.traits.OpenClose', 'action.devices.traits.LockUnlock'],
-      'state-update',
+      ["action.devices.traits.OpenClose", "action.devices.traits.LockUnlock"],
+      "state-update",
       {
         openState: [
           {
             openPercent: 50,
           },
         ],
-      }
+      },
     );
-    expect(result.valid).to.be.true;
+    expect(result.valid).toBe(true);
   });
 
-  it('should validate sensor attributes ok', () => {
+  it("should validate sensor attributes ok", () => {
     const device: SensorStateDevice = {
-      id: '3fa1fb5:3a24c04',
-      type: 'action.devices.types.SENSOR',
-      traits: ['action.devices.traits.SensorState'],
-      name: { name: 'Test' },
-      roomHint: '',
+      id: "3fa1fb5:3a24c04",
+      type: "action.devices.types.SENSOR",
+      traits: ["action.devices.traits.SensorState"],
+      name: { name: "Test" },
+      roomHint: "",
       willReportState: true,
       state: {
         online: true,
-        currentSensorStateData: [{
-          name: 'AirQuality',
-          currentSensorState: 'fair',
-          rawValue: 13,
-        }],
+        currentSensorStateData: [
+          {
+            name: "AirQuality",
+            currentSensorState: "fair",
+            rawValue: 13,
+          },
+        ],
       },
       noraSpecific: {},
       attributes: {
         sensorStatesSupported: [
           {
-            name: 'AirQuality',
+            name: "AirQuality",
             descriptiveCapabilities: {
-              availableStates: ['fair', 'good'],
+              availableStates: ["fair", "good"],
             },
             numericCapabilities: {
-              rawValueUnit: 'AQI',
+              rawValueUnit: "AQI",
             },
           },
         ],
       },
-      structureHint: 'Test',
+      structureHint: "Test",
     };
 
-    const result = validate(device.traits, 'device', device);
-    expect(result.valid).to.be.true;
+    const result = validate(device.traits, "device", device);
+    expect(result.valid).toBe(true);
   });
 
-  it('should return false for sensor percentage outside of bounds', () => {
-    const sensorState: SensorStateDevice['state'] = {
+  it("should return false for sensor percentage outside of bounds", () => {
+    const sensorState: SensorStateDevice["state"] = {
       online: true,
-      currentSensorStateData: [{
-        name: 'FilterLifeTime',
-        currentSensorState: 'unknown',
-        rawValue: 123,
-      }],
+      currentSensorStateData: [
+        {
+          name: "FilterLifeTime",
+          currentSensorState: "unknown",
+          rawValue: 123,
+        },
+      ],
     };
 
-    const result = validate(['action.devices.traits.SensorState'], 'state', sensorState);
-    expect(result.valid).to.be.false;
+    const result = validate(
+      ["action.devices.traits.SensorState"],
+      "state",
+      sensorState,
+    );
+    expect(result.valid).toBe(false);
   });
 
-  it('should validate FanSpeed&OnOff device', () => {
+  it("should validate FanSpeed&OnOff device", () => {
     const device: FanSpeedDevice & OnOffDevice = {
-      id: 'some-id',
-      traits: ['action.devices.traits.FanSpeed', 'action.devices.traits.OnOff'] as never,
+      id: "some-id",
+      traits: [
+        "action.devices.traits.FanSpeed",
+        "action.devices.traits.OnOff",
+      ] as never,
       name: {
-        name: 'test'
+        name: "test",
       },
       noraSpecific: {},
       attributes: {
@@ -206,87 +222,102 @@ describe('validate', () => {
         on: true,
         online: true,
       },
-      type: 'action.devices.types.FAN',
+      type: "action.devices.types.FAN",
       willReportState: true,
     };
 
-    const result = validate(['action.devices.traits.FanSpeed', 'action.devices.traits.OnOff'], 'device', device);
-    expect(result.valid).to.be.true;
+    const result = validate(
+      ["action.devices.traits.FanSpeed", "action.devices.traits.OnOff"],
+      "device",
+      device,
+    );
+    expect(result.valid).toBe(true);
   });
 
-
-  it('should validate ArmDisarm device', () => {
+  it("should validate ArmDisarm device", () => {
     const device: ArmDisarmDevice = {
-      id: 'some-id',
-      traits: ['action.devices.traits.ArmDisarm'] as never,
+      id: "some-id",
+      traits: ["action.devices.traits.ArmDisarm"] as never,
       name: {
-        name: 'test'
+        name: "test",
       },
       noraSpecific: {},
       attributes: {
         availableArmLevels: {
           levels: [
             {
-              level_name: 'L1',
+              level_name: "L1",
               level_values: [
                 {
-                  level_synonym: ['L1'],
-                  lang: 'de'
-                }
-              ]
-            }
+                  level_synonym: ["L1"],
+                  lang: "de",
+                },
+              ],
+            },
           ],
-          ordered: true
-        }
+          ordered: true,
+        },
       },
       state: {
         isArmed: true,
-        currentArmLevel: 'L1',
+        currentArmLevel: "L1",
         exitAllowance: 10,
-        online: true
+        online: true,
       },
-      type: 'action.devices.types.SECURITYSYSTEM',
+      type: "action.devices.types.SECURITYSYSTEM",
       willReportState: true,
     };
 
-    const result = validate(['action.devices.traits.ArmDisarm'], 'device', device);
-    expect(result.valid).to.be.true;
+    const result = validate(
+      ["action.devices.traits.ArmDisarm"],
+      "device",
+      device,
+    );
+    expect(result.valid).toBe(true);
   });
 
-  it('should validate TemperatureSetting & FanSpeed state update', () => {
-    const update: Partial<(TemperatureSettingDevice & FanSpeedDevice)['state']> = {
-      thermostatMode: 'cool',
+  it("should validate TemperatureSetting & FanSpeed state update", () => {
+    const update: Partial<
+      (TemperatureSettingDevice & FanSpeedDevice)["state"]
+    > = {
+      thermostatMode: "cool",
     };
 
-    const result = validate([
-      'action.devices.traits.TemperatureSetting',
-      'action.devices.traits.FanSpeed',
-    ], 'state-update', update);
+    const result = validate(
+      [
+        "action.devices.traits.TemperatureSetting",
+        "action.devices.traits.FanSpeed",
+      ],
+      "state-update",
+      update,
+    );
 
-    expect(result.valid).to.be.true;
+    expect(result.valid).toBe(true);
   });
 
-  it('should validate ObjectDetection device', () => {
+  it("should validate ObjectDetection device", () => {
     const device: ObjectDetectionDevice = {
-      id: 'some-id',
-      type: 'action.devices.types.DOORBELL',
-      traits: ['action.devices.traits.ObjectDetection'],
+      id: "some-id",
+      type: "action.devices.types.DOORBELL",
+      traits: ["action.devices.traits.ObjectDetection"],
       name: {
-        name: 'Test Device',
+        name: "Test Device",
       },
-      roomHint: 'My Room',
+      roomHint: "My Room",
       willReportState: true,
       notificationSupportedByAgent: true,
       state: {
         online: true,
       },
-      attributes: {
-      },
-      noraSpecific: {
-      },
+      attributes: {},
+      noraSpecific: {},
     };
 
-    const result = validate(['action.devices.traits.ObjectDetection'], 'device', device);
-    expect(result.valid).to.be.true;
+    const result = validate(
+      ["action.devices.traits.ObjectDetection"],
+      "device",
+      device,
+    );
+    expect(result.valid).toBe(true);
   });
 });
